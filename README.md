@@ -1,43 +1,43 @@
-# Inicijalne upute za prijavu projekta iz Razvoja aplikacija za mobilne i pametne uređaje
-
-Poštovane kolegice i kolege, 
-
-čestitamo vam jer ste uspješno prijavili svoj projektni tim na kolegiju Razvoj aplikacija za mobilne i pametne uređaje, te je za vas automatski kreiran repozitorij koji ćete koristiti za verzioniranje vašega koda i za jednostavno dokumentiranje istoga.
-
-Ovaj dokument (README.md) predstavlja **osobnu iskaznicu vašeg projekta**. Vaš prvi zadatak je **prijaviti vlastiti projektni prijedlog** na način da ćete prijavu vašeg projekta, sukladno uputama danim u ovom tekstu, napisati upravo u ovaj dokument, umjesto ovoga teksta.
-
-Za upute o sintaksi koju možete koristiti u ovom dokumentu i kod pisanje vaše projektne dokumentacije pogledajte [ovaj link](https://guides.github.com/features/mastering-markdown/).
-Sav programski kod potrebno je verzionirati u glavnoj **master** grani i **obvezno** smjestiti u mapu Software. Sve artefakte (npr. slike) koje ćete koristiti u vašoj dokumentaciju obvezno verzionirati u posebnoj grani koja je već kreirana i koja se naziva **master-docs** i smjestiti u mapu Documentation.
-
-Nakon vaše prijave bit će vam dodijeljen mentor s kojim ćete tijekom semestra raditi na ovom projektu. Mentor će vam slati povratne informacije kroz sekciju Discussions također dostupnu na GitHubu vašeg projekta. A sada, vrijeme je da prijavite vaš projekt. Za prijavu vašeg projektnog prijedloga molimo vas koristite **predložak** koji je naveden u nastavku, a započnite tako da kliknete na *olovku* u desnom gornjem kutu ovoga dokumenta :) 
-
-# Naziv projekta
-(u redak iznad navedite kratki proizvoljni naziv projekta prikladan akademskoj zajednici, a ovaj tekst kao i uvodni tekst iznad obrišite)
+# PawPal
 
 ## Projektni tim
-(svi članovi tima moraju biti iz iste seminarske grupe)
 
 Ime i prezime | E-mail adresa (FOI) | JMBAG | Github korisničko ime | Seminarska grupa
 ------------  | ------------------- | ----- | --------------------- | ----------------
-Ime i prezime | mojaadresa@foi.hr | 000000000 | githubuser | G01
-Ime i prezime | ... | ... | ... | ...
+Niko Rastija | nrastija22@foi.hr | 0016159047 | nrastija22foi | G2
+Petra Skoko | pskoko22@foi.hr | 0016159874 | pskoko22 | G2
+Nensi Vugrinec | nvugrinec22@foi.hr | 0016158989 | nvugrinec22 | G2
+Mirta Vuković | mvukovic22@foi.hr | 0016158765 | mvukovic22 | G2
 
 ## Opis domene
-Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
+Aplikacija PawPal nudi korisnicima širok spektar funkcionalnosti za brigu o psima i promicanje udomljavanja. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, dok pregledavaju dostupne pse za udomljavanje uz različite filtre. Korisnikove funkcionalnosti podrazumijevaju kreiranje profila, praćenje i ocjenjivanje usluga te sudjelovanje u volonterskim aktivnostima.
 
 ## Specifikacija projekta
-Umjesto ovih uputa opišite zahtjeve za funkcionalnošću mobilne aplikacije ili aplikacije za pametne uređaje. Pobrojite osnovne funkcionalnosti i za svaku naznačite ime odgovornog člana tima. Opišite osnovnu buduću arhitekturu programskog proizvoda. Obratite pozornost da mobilne aplikacije često zahtijevaju pozadinske servise. Također uzmite u obzir da bi svaki član tima trebao biti odgovoran za otprilike 3 funkcionalnosti, te da bi opterećenje članova tima trebalo biti ujednačeno. Priložite odgovarajuće dijagrame i skice gdje je to prikladno. Funkcionalnosti sustava bobrojite u tablici ispod koristeći predložak koji slijedi:
+PawPal je aplikacija koja pomaže vlasnicima pasa u brizi o njihovim ljubimcima I promiče udomljavanje. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, te pregledavati dostupne pse za udomljavanje s filtrima prema različitim kriterijima. Aplikacija omogućuje kreiranje profila, praćenje i ocjenjivanje usluga, te sudjelovanje u volonterskim aktivnostima. PawPal također nudi edukativne sadržaje o njezi i treningu. Intuitivno sučelje čini je idealnim alatom za sve ljubitelje pasa.
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Login | Za pristup dnevniku potrebnba je autentikacija korisnika pomoću login funkcionalnosti. Korisnik se logira s podacima koji su mu dodijeljeni prilikom ... | Zlatko Stapić
-F02 | Pregled dnevnika | .... | ...
+F01 | Registracija i prijava korisničkog računa | Za pristup aplikaciji korisnik se prijavljuje već postojećim korisničkim računom unosom korisničkog imena i lozinke ako ga ima, ukoliko ga nema mora provesti postupak registracije tako što unosi svoje osobne podatke poput imena, prezimena, korisničkog imena, lozinke i drugih podataka. | Mirta Vuković
+F02 | Odjava i brisanje računa | Korisnik ima mogućnost odjave iz aplikacije i ima mogućnost obrisati korisnički račun ukoliko više ne želi koristiti aplikaciju. | Petra Skoko
+F03 | Pseći spa salon | Korisnik ima mogućnost rezervacije termina za uređivanje svog ljubimca. To uključuje: termin šišanja, termin četkanja, termin rezanja noktiju i termin općenitog uljepšavanja. Korisnik ima uvid u slobodne termine i cijene određenih usluga. | Mirta Vuković
+F04 | Pregled kod veterinara | Korisnik ima mogućnost rezervacije termina kod ovlaštenog veterinara kojeg može sam odabrati sa liste svih veterinara uz unos simptoma ili potrebe dolaska (npr. cijepljenje, kontrola zdravlja…). Korisnik ima uvid u slobodne termine i cijene određenih usluga.  | Petra Skoko
+F05 | Doggy daycare (Dnevni boravak za pse) | Korisnik ima mogućnost rezervacije “dnevnog boravka za pse”. Čuvanje psa može biti cjelodnevno ili poludnevno. Korisnik ima mogućnost vidjeti koliko je zauzetih mjesta te ukoliko nema mjesta ne može odabrati taj termin. Korisnik ima uvid u cijene usluga. | Nensi Vugrinec
+F06 | Šetnja psa | Korisnik može rezervirati šetnju za svoje pse s profesionalnim šetačima ili volonterima. Korisnik može postaviti termin, odabrati šetača, trajanje šetnje i dodatnih usluga poput hranjenja nakon šetnje. Nakon rezervacije termina dobiva obavijest o prihvaćanju ili odbijanju termina od strane šetača. | Petra Skoko
+F07 | Škola za pse | Korisnik može upisati svog ljubimca u školu za pse u specijaliziranim centrima (osnovni trening, napredni trening, socijalizacija itd.) koji su vođeni profesionalcima uz pomoć volontera. Korisnik ima uvid u profil voditelja, termine i cijene usluga. | Nensi Vugrinec
+F08 | Notifikacije i podsjetnici | Korisnik dobiva obavijesti i podsjetnike za nadolazeće rezervacije poput nadolazećeg termina za šišanje psa, šetanje psa i slično. Korisnik ima mogućnost uključiti opciju da dobiva obavijesti kada mora svog psa(ukoliko ga ima) voditi na medicinski tretman odnosno na godišnje preglede i cjepljenja. | Niko Rastija
+F09 | Udomljavanje pasa | Korisnik može vidjeti popis svih pasa za udomljavanje te može vidjeti detalje o svakom psu poput imena, dobi, pasmine, rođendana, veterinarske obrade i slično. Ukoliko korisnik želi udomiti psa treba ispuniti obrazac sa svojim podacima te ga šalje i čeka odgovor odgovorne osobe za udomljavanje pasa. | Mirta Vuković
+F10 | Pregled rezervacija | Korisnik ima mogućnost pregleda svih rezervacija koje je napravio te ima mogućnost pogledati detalje rezevacije. Korisnik ima mogućnost otkazati rezervaciju ukoliko mu ne odgovara. | Niko Rastija
+F11 | Korisnički profil i profil psa | Korisnik ima mogućnost uređivanja svog profila i mjenjanje svojih podataka. Korisnik ima mogućnost izradu profila za svog psa gdje unosi osnovne podatke o svom psu poput dobi, pasmine i ostalih podataka. | Nensi Vugrinec
+F12 | Online trgovina | Korisnik ima mogućnost kupovati proizvode poput hrane za pse, igračaka, opreme za njegu, lijekova i slično preko online trgovine. Korisnik ima mogućnost filtriranja i sortiranja proizvoda te mogućnost biranja opcije plaćanja i načina dostave proizvoda. | Niko Rastija
 
 ## Tehnologije i oprema
-Umjesto ovih uputa jasno popišite sve tehnologije, alate i opremu koju ćete koristiti pri implementaciji vašeg rješenja. Vaše rješenje može biti implementirano u bilo kojoj tehnologiji za razvoj mobilnih aplikacija ili aplikacija za pametne uređaje osim u hibridnim web tehnologijama kao što su React Native ili HTML+CSS+JS. Tehnologije koje ćete koristiti bi trebale biti javno dostupne, a ako ih ne budemo obrađivali na vježbama u vašoj dokumentaciji ćete morati navesti način preuzimanja, instaliranja i korištenja onih tehnologija koje su neopbodne kako bi se vaš programski proizvod preveo i pokrenuo. Pazite da svi alati koje ćete koristiti moraju imati odgovarajuću licencu. Što se tiče zahtjeva nastavnika, obvezno je koristiti git i GitHub za verzioniranje programskog koda, GitHub Wiki za pisanje jednostavne dokumentacije sukladno uputama mentora, a projektne zadatke je potrebno planirati i pratiti u alatu GitHub projects.
+Za implementaciju naše aplikacije za brigu o psima i udomljavanje, koristit ćemo ovdje navedene tehnologije, alate i opremu. Aplikacija će biti razvijena za Android uređaje u programskom jeziku Kotlin. Za razvoj koristiti će se IDE Android Studio, verzija Koala. 
 
-## Baza podataka i web server
-Nastavnici vam mogu pripremiti MySQL bazu podataka i web server na kojem možete postaviti jednostavne web servise. Ako želite da vam pripremimo ove sustave obavezno to navedite umjesto ovog teksta s napomenom "Tražimo pristup serveru na kojemu ćemo moći imati bazu podataka". Alternativno, možete koristiti bilo koji online dostupan sustav kao i studentske licence na pojedinim platformama kao što su Heroku ili Azure. Međutim, budite spremni da vas nastavnici navedu na to da lokalno stvorite okruženje na kojemu se server pokreće i da se aplikacija na istoj mreži spaja na server.
+Za upravljanje verzijama koda, koristit ćemo Git u kombinaciji s platformom GitHub u našem projektu.
+Sav rad na tehničkoj i projektnoj dokumentaciji bit će obavljen putem GitHub Wiki, dok će koncepti planiranja i praćenja projektnog napretka biti vođeni kroz GitHub Projects (aspekt Project managementa).
+
+## Baze podataka i web server
+Za bazu podataka koristili bi lokalnu bazu podataka pomoću Room library-ja u Kotlinu. Room pruža sloj apstrakcije preko SQLitea.
 
 ## .gitignore
-Uzmite u obzir da je u mapi Software .gitignore konfiguriran za nekoliko tehnologija, ali samo ako će projekti biti smješteni direktno u mapu Software ali ne i u neku pod mapu. Nakon odabira konačne tehnologije i projekta obavezno dopunite/premjestite gitignore kako bi vaš projekt zadovoljavao kriterije koji su opisani u ReadMe.md dokumentu dostupnom u mapi Software.
+Koristit ćemo unaprijed definirani .gitignore file koji se nalazi u Software folderu.
