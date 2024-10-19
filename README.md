@@ -10,10 +10,10 @@ Nensi Vugrinec | nvugrinec22@foi.hr | 0016158989 | nvugrinec22 | G2
 Mirta Vuković | mvukovic22@foi.hr | 0016158765 | mvukovic22 | G2
 
 ## Opis domene
-Aplikacija PawPal nudi korisnicima širok spektar funkcionalnosti za brigu o psima i promicanje udomljavanja. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, dok pregledavaju dostupne pse za udomljavanje uz različite filtre. Korisnikove funkcionalnosti podrazumijevaju kreiranje profila, praćenje i ocjenjivanje usluga te sudjelovanje u volonterskim aktivnostima.
+PawPal je aplikacija koja pomaže vlasnicima pasa u brizi o njihovim ljubimcima I promiče udomljavanje. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, te pregledavati dostupne pse za udomljavanje s filtrima prema različitim kriterijima. Aplikacija omogućuje kreiranje profila, praćenje i ocjenjivanje usluga, te sudjelovanje u volonterskim aktivnostima. PawPal također nudi edukativne sadržaje o njezi i treningu. Intuitivno sučelje čini je idealnim alatom za sve ljubitelje pasa. 
 
 ## Specifikacija projekta
-PawPal je aplikacija koja pomaže vlasnicima pasa u brizi o njihovim ljubimcima I promiče udomljavanje. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, te pregledavati dostupne pse za udomljavanje s filtrima prema različitim kriterijima. Aplikacija omogućuje kreiranje profila, praćenje i ocjenjivanje usluga, te sudjelovanje u volonterskim aktivnostima. PawPal također nudi edukativne sadržaje o njezi i treningu. Intuitivno sučelje čini je idealnim alatom za sve ljubitelje pasa.
+Aplikacija PawPal nudi korisnicima širok spektar funkcionalnosti za brigu o psima i promicanje udomljavanja. Korisnici mogu lako rezervirati grooming, šetnje sa šetačima i dnevne boravke, dok pregledavaju dostupne pse za udomljavanje uz različite filtre. Korisnikove funkcionalnosti podrazumijevaju kreiranje profila, praćenje i ocjenjivanje usluga te sudjelovanje u volonterskim aktivnostima.
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
