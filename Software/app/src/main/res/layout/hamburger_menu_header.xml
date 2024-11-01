@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/username_hamburger"
         android:paddingTop="8dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text = "Niko Rastija"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text = "nrastija22@student.foi.hr"/>
 
     <View
