@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
-    android:background="@color/white">
+    android:background="@color/primaryColor">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
@@ -20,7 +20,7 @@
         android:paddingTop="8dp"
         android:textSize="20sp"
         android:text = "Niko Rastija"
-        android:textColor="@color/black"
+        android:textColor="@color/accentColor"
         android:textStyle="bold"
         />
 
@@ -28,13 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:textColor="@color/accentColor"
         android:text = "nrastija22@student.foi.hr"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="30dp"
-        android:background="@color/backgroundColor"/>
+        android:background="@color/secondaryColor"/>
 
 
 

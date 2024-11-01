@@ -41,7 +41,8 @@
         app:headerLayout="@layout/hamburger_menu_header"
         app:menu ="@menu/hamburger_menu_navigacija"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true"
+        android:background="@color/primaryColor"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
