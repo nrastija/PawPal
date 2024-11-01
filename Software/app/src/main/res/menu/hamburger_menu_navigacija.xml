@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id ="@+id/nav_home"
+        android:icon = "@drawable/home_icon"
+        android:title="Početna stranica"/>
+
+    <item
+        android:id ="@+id/nav_profile"
+        android:icon = "@drawable/profile_icon"
+        android:title="Korisnički profil"/>
+
+    <item
+        android:id ="@+id/nav_finance"
+        android:icon = "@drawable/finance_icon"
+        android:title="Financijski pregled"/>
+
+    <item
+        android:id ="@+id/nav_reservations"
+        android:icon = "@drawable/reservations_icon"
+        android:title="Pregled rezervacija"/>
+
+    <item android:title="Usluge">
+
+        <menu>
+
+            <item
+                android:id ="@+id/nav_veterinar"
+                android:icon = "@drawable/vet_icon"
+                android:title="Veterinar"/>
+
+            <item
+                android:id ="@+id/nav_spa"
+                android:icon = "@drawable/spa_icon"
+                android:title="Pseći spa"/>
+
+            <item
+                android:id ="@+id/nav_school"
+                android:icon = "@drawable/school_icon"
+                android:title="Škola za pse"/>
+
+            <item
+                android:id ="@+id/nav_adoption"
+                android:icon = "@drawable/adoption_icon"
+                android:title="Udomljavanje pasa"/>
+
+            <item
+                android:id ="@+id/nav_lost_dogs"
+                android:icon = "@drawable/lost_dogs_icon"
+                android:title="Prijava izgubljenog psa"/>
+
+        </menu>
+
+    </item>
+
+    <item android:title="Trgovina">
+
+        <menu>
+
+            <item
+                android:id ="@+id/nav_shop"
+                android:icon = "@drawable/shop_icon"
+                android:title="Online trgovina"/>
+
+
+
+        </menu>
+
+    </item>
+
+</menu>
