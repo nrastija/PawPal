@@ -40,9 +40,11 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/hamburger_menu_header"
         app:menu ="@menu/hamburger_menu_navigacija"
+        app:itemIconTint="@color/accentColor"
+        app:itemTextColor="@color/accentColor"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:background="@color/primaryColor"/>
+        android:background="@color/primaryColor" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
