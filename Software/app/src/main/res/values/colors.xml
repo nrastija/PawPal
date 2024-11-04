@@ -6,7 +6,7 @@
     <color name="textColorPrimary">#454955</color>
     <color name="textColorSecondary">#E9E5E5</color>
     <color name="primaryColor">#f8efe1</color>
-    <color name="secondaryColor">#d4a373</color>
+    <color name="secondaryColor">#ffd873</color>
     <color name="accentColor">#6b4226</color>
     <color name="navigationBar">#938f99</color>
 </resources>
