@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
+import com.example.pawpal.f12_shop.entiteti.KosaricaProizvoda
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
 
@@ -29,7 +30,7 @@ class KosaricaActivity : BaseActivity() {
 
         adapter = ProizvodAdapter(
             proizvodList,
-            onRemoveClick = { proizvod -> obrišiProizvod(proizvod) },
+            onRemoveClick = { proizvod -> obrisiProizvod(proizvod) },
             onIncreaseClick = { proizvod -> povecajKolicinu(proizvod) },
             onDecreaseClick = { proizvod -> smanjiKolicinu(proizvod) }
         )
@@ -37,14 +38,16 @@ class KosaricaActivity : BaseActivity() {
     }
 
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
+        // Define products directly
         return listOf(
             Proizvod(1, "Darling", 6.31, "Test", 1, null),
             Proizvod(2, "Sok", 51.31, "Test2", 2, null),
-            Proizvod(3, "Hrana", 0.31, "Test3", 1, null),
+            Proizvod(3, "Hrana", 0.31, "Test3", 1, null)
         )
     }
 
-    private fun obrišiProizvod(proizvod: Proizvod) {
+
+    private fun obrisiProizvod(proizvod: Proizvod) {
         proizvodList.remove(proizvod)
         adapter.notifyDataSetChanged()
         Toast.makeText(this, "${proizvod.naziv} removed", Toast.LENGTH_SHORT).show()
@@ -55,7 +58,6 @@ class KosaricaActivity : BaseActivity() {
     }
 
     private fun smanjiKolicinu(proizvod: Proizvod) {
-        proizvod.
         Toast.makeText(this, "Smanjio kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
     }
 }
