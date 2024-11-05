@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 */
-
 package com.example.pawpal.main
 
 import android.os.Bundle
@@ -76,7 +75,6 @@ import com.example.pawpal.R
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.ActionBarDrawerToggle
 
-
 class MainActivity : AppCompatActivity() {
 
     lateinit var toggle: ActionBarDrawerToggle
@@ -86,35 +84,37 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Step 1: Set the login layout as the initial view
+        // Početni layout - Login
         setContentView(R.layout.f01_loginlayout)
 
-        // Initialize login button
+        // Inicijalizacija dugmadi
         val loginButton: Button = findViewById(R.id.btnLogin)
+        val btnProziran: Button = findViewById(R.id.btnProziran)
+
         loginButton.setOnClickListener {
             performLogin()
         }
-    }
 
-    // Step 2: Perform the login check
-    private fun performLogin() {
-        // Example credentials (for testing, replace with real logic as needed)
-        val usernameInput = findViewById<EditText>(R.id.txtKorime2).text.toString()
-        val passwordInput = findViewById<EditText>(R.id.txtLozinka).text.toString()
-
-        if (usernameInput == "nrastija22" && passwordInput == "doberman") {
-            // On successful login, switch to the main activity layout with the navigation drawer
-            setContentView(R.layout.activity_main)
-
-            // Initialize toolbar, drawer, and navigation
-            initializeDrawer()
-        } else {
-            // Show an error message if login fails
-            Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+        // Otvaranje registracije
+        btnProziran.setOnClickListener {
+            openRegistrationLayout()
         }
     }
 
-    // Step 3: Initialize drawer and toolbar for activity_main layout
+    private fun performLogin() {
+        val usernameInput = findViewById<EditText>(R.id.txtKorime2).text.toString()
+        val passwordInput = findViewById<EditText>(R.id.txtLozinka).text.toString()
+
+        // Verifikacija korisničkog imena i lozinke
+        if (usernameInput == "nrastija22" && passwordInput == "doberman") {
+            // Ako je login uspešan, otvara glavni sadržaj
+            setContentView(R.layout.activity_main)
+            initializeDrawer()
+        } else {
+            Toast.makeText(this, "Netočan unos", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun initializeDrawer() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -128,23 +128,35 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Set up the navigation item click listeners
+        // Slušatelj za stavke menija
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_profile -> Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_finance -> Toast.makeText(this, "Finance clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_reservations -> Toast.makeText(this, "Reservations clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_veterinar -> Toast.makeText(this, "Veterinar clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_adoption -> Toast.makeText(this, "Adoption clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_shop -> Toast.makeText(this, "Shop clicked", Toast.LENGTH_SHORT).show()
-                // Add other navigation cases as needed
+                // ... ostale opcije
             }
             drawerLayout.closeDrawers()
             true
+        }
+    }
+
+    private fun openRegistrationLayout() {
+        // Uključujemo layout registracije i omogućavamo povratak na login
+        setContentView(R.layout.f01_registrationlayout)
+
+        val btnProziran2: Button = findViewById(R.id.btnProziran2)
+        btnProziran2.setOnClickListener {
+            openLoginLayout()
+        }
+    }
+
+    private fun openLoginLayout() {
+        // Vraćamo se na login ekran
+        setContentView(R.layout.f01_loginlayout)
+
+        val loginButton: Button = findViewById(R.id.btnLogin)
+        loginButton.setOnClickListener {
+            performLogin()
         }
     }
 
