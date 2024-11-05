@@ -1,19 +1,17 @@
-package com.example.pawpal.main
+package com.example.pawpal.f12_shop
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
+import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : BaseActivity() {
-
+class ShopActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.f12_layout_shop)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -22,12 +20,5 @@ class MainActivity : BaseActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 }
