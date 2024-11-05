@@ -1,6 +1,9 @@
 package com.example.pawpal.f12_shop
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,5 +23,20 @@ class ShopActivity : BaseActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje kosarice
+        menuInflater.inflate(R.menu.f12_menu_kosarica, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na kosaricu
+        return when (item.itemId) {
+            R.id.shop_basket -> {
+                Toast.makeText(this, "Basket clicked", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
