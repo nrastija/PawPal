@@ -2,4 +2,5 @@
     <string name="app_name">PawPal</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="f12_kosarica">Kosarica</string>
 </resources>
