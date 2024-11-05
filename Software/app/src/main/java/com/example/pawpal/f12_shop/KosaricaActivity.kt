@@ -1,16 +1,19 @@
 package com.example.pawpal.f12_shop
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
-import com.google.android.material.navigation.NavigationView
 
 class KosaricaActivity : BaseActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ProizvodAdapter
+    private val proizvodList = mutableListOf<Proizvod>() // Mutable list za dinamicka azuriranja
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,15 +22,40 @@ class KosaricaActivity : BaseActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        recyclerView = findViewById(R.id.recycler_view_kosarica) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        dohvatiProizvodeKosarice();
+        proizvodList.addAll(dohvatiProizvodeKosarice())
+
+        adapter = ProizvodAdapter(
+            proizvodList,
+            onRemoveClick = { proizvod -> obrišiProizvod(proizvod) },
+            onIncreaseClick = { proizvod -> povecajKolicinu(proizvod) },
+            onDecreaseClick = { proizvod -> smanjiKolicinu(proizvod) }
+        )
+        recyclerView.adapter = adapter
     }
 
-    private fun dohvatiProizvodeKosarice(): List<Proizvod>{
+    private fun dohvatiProizvodeKosarice(): List<Proizvod> {
         return listOf(
-            Proizvod(1,"Darling",6.31,"Test",1,null),
-            Proizvod(1,"Sok",51.31,"Test2",2,null),
-            Proizvod(1,"Hrana",0.31,"Test3",1,null),
+            Proizvod(1, "Darling", 6.31, "Test", 1, null),
+            Proizvod(2, "Sok", 51.31, "Test2", 2, null),
+            Proizvod(3, "Hrana", 0.31, "Test3", 1, null),
         )
+    }
+
+    private fun obrišiProizvod(proizvod: Proizvod) {
+        proizvodList.remove(proizvod)
+        adapter.notifyDataSetChanged()
+        Toast.makeText(this, "${proizvod.naziv} removed", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun povecajKolicinu(proizvod: Proizvod) {
+        Toast.makeText(this, "Povecao kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun smanjiKolicinu(proizvod: Proizvod) {
+        proizvod.
+        Toast.makeText(this, "Smanjio kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
     }
 }
