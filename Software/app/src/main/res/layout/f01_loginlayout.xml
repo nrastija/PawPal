@@ -7,8 +7,20 @@
     android:background="@color/secondaryColor"
     android:textAlignment="center">
 
+
+    <ImageView
+        android:id="@+id/imgBijelo"
+        android:layout_width="534dp"
+        android:layout_height="1041dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bijelo" />
+
     <TextView
-        android:id="@+id/txt_dobrodosli"
+        android:id="@+id/txtDobrodosli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dobrodošli u"
@@ -18,64 +30,52 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
-
+        app:layout_constraintVertical_bias="0.113" />
 
     <TextView
-        android:id="@+id/txt_pawpal"
+        android:id="@+id/txtPawPal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PAWPAL!"
         android:textColor="@color/accentColor"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="411dp"
-        android:layout_height="435dp"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.167" />
 
-    <TextView
-        android:id="@+id/txt_prijava"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Prijava"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.159"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        <TextView
+                android:id="@+id/txtPrijava"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prijava"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.159"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.482" />
 
-    <TextView
-        android:id="@+id/txt_registracija"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registracija"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484" />
+            <TextView
+                android:id="@+id/txtRegistracija"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registracija"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.802"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.482" />
+
 
     <View
         android:id="@+id/zutocrta"
@@ -87,66 +87,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_prijava"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
 
     <Button
-        android:id="@+id/btn_login"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/secondaryColor"
-        android:text="PRIJAVI ME"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.817" />
+               android:id="@+id/btnLogin"
+               android:layout_width="200dp"
+               android:layout_height="50dp"
+               android:backgroundTint="@color/secondaryColor"
+               android:text="PRIJAVI ME"
+               android:textSize="20sp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.497"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.817" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Lozinka"
-        android:inputType="textPassword"
-        android:padding="18dp"
-        android:textColor="@color/textColorSecondary"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+          <EditText
+              android:id="@+id/txtLozinka"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:ems="10"
+              android:hint="Lozinka"
+              android:inputType="textPassword"
+              android:padding="18dp"
+              android:textColor="@color/textColorPrimary"
+              android:textSize="20sp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintHorizontal_bias="0.228"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintVertical_bias="0.678" />
 
-    <EditText
-        android:id="@+id/editTextTextUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Korisničko ime"
-        android:inputType="text"
-        android:padding="18dp"
-        android:textColor="@color/textColorSecondary"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+           <EditText
+               android:id="@+id/txtKorime2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:ems="10"
+               android:hint="Korisničko ime"
+               android:inputType="text"
+               android:padding="18dp"
+               android:textColor="@color/textColorPrimary"
+               android:textSize="20sp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintHorizontal_bias="0.228"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="0.583" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="253dp"
-        android:layout_height="412dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:id="@+id/imgPesek"
+        android:layout_width="205dp"
+        android:layout_height="189dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.966"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128"
-        app:srcCompat="@drawable/pesek" />
+        app:layout_constraintVertical_bias="0.273"
+        app:srcCompat="@drawable/pesek2" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

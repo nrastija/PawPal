@@ -7,9 +7,19 @@
     android:background="@color/secondaryColor"
     android:textAlignment="center">
 
+    <ImageView
+        android:id="@+id/imgBijelo"
+        android:layout_width="534dp"
+        android:layout_height="1041dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bijelo" />
 
     <TextView
-        android:id="@+id/txt_dobrodosli"
+        android:id="@+id/txtDobrodosli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dobrodošli u"
@@ -19,24 +29,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.101" />
+        app:layout_constraintVertical_bias="0.113"  />
 
 
     <TextView
-        android:id="@+id/txt_pawpal"
+        android:id="@+id/txtPawPal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PAWPAL!"
         android:textColor="@color/accentColor"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintVertical_bias="0.167"/>
 
-    <View
+  <!--  <View
         android:id="@+id/view"
         android:layout_width="411dp"
         android:layout_height="435dp"
@@ -47,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
+-->
     <TextView
         android:id="@+id/txt_prijava"
         android:layout_width="wrap_content"
@@ -64,35 +74,35 @@
         app:layout_constraintVertical_bias="0.483" />
 
     <TextView
-        android:id="@+id/txt_registracija"
+        android:id="@+id/txtRegistracija"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registracija"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintHorizontal_bias="0.802"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.482" />
 
     <View
         android:id="@+id/zutocrta"
-        android:layout_width="130dp"
+        android:layout_width="132dp"
         android:layout_height="4dp"
         android:layout_marginTop="32dp"
         android:background="@color/secondaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintHorizontal_bias="0.799"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_prijava"
-        app:layout_constraintVertical_bias="0.005" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btnLogin"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/secondaryColor"
@@ -115,7 +125,7 @@
         android:padding="18dp"
         android:textColor="@color/textColorSecondary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,21 +133,21 @@
         app:layout_constraintVertical_bias="0.866" />
 
     <EditText
-        android:id="@+id/txtKorime"
+        android:id="@+id/txtKorime2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Korisničko ime"
         android:inputType="text"
         android:padding="18dp"
-        android:textColor="@color/textColorSecondary"
+        android:textColor="@color/textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        app:layout_constraintVertical_bias="0.583"  />
 
     <EditText
         android:id="@+id/txtEmail"
@@ -147,9 +157,9 @@
         android:hint="E-MAIL"
         android:inputType="textEmailAddress"
         android:padding="18dp"
-        android:textColor="@color/textColorSecondary"
+        android:textColor="@color/textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,9 +174,9 @@
         android:hint="Broj telefona"
         android:inputType="phone"
         android:padding="18dp"
-        android:textColor="@color/textColorSecondary"
+        android:textColor="@color/textColorPrimary"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,14 +184,14 @@
         app:layout_constraintVertical_bias="0.678" />
 
     <ImageView
-        android:id="@+id/imgSlikaPesek"
-        android:layout_width="253dp"
-        android:layout_height="412dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        android:id="@+id/imgPesek"
+        android:layout_width="205dp"
+        android:layout_height="189dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.966"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128"
-        app:srcCompat="@drawable/pesek" />
+        app:layout_constraintVertical_bias="0.273"
+        app:srcCompat="@drawable/pesek2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
