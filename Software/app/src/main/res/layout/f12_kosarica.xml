@@ -10,8 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:titleTextColor="@color/secondaryColor"
+        android:background="@color/secondaryColor"
+        android:titleTextColor="@color/accentColor"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- RecyclerView za prikaz proizvoda -->
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vaša narudžba"
-            android:textColor="@color/black"
+            android:textColor="@color/accentColor"
             android:textSize="16sp" />
 
         <TextView
@@ -52,10 +52,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="$29.4"
+            android:text="Cijena"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textColor="@color/accentColor" />
 
         <!-- Gumb za završavanje narudžbe -->
         <Button
@@ -65,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="Završi narudžbu"
-            android:textColor="@color/white"
+            android:textColor="@color/accentColor"
             android:textStyle="bold" />
     </LinearLayout>
 

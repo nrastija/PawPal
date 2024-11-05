@@ -1,5 +1,6 @@
 package com.example.pawpal.f12_shop
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -33,7 +34,8 @@ class ShopActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na kosaricu
         return when (item.itemId) {
             R.id.shop_basket -> {
-                Toast.makeText(this, "Basket clicked", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, KosaricaActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

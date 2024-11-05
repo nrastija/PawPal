@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/testSlika" />
+        app:srcCompat="@drawable/test_slika" />
 
     <TextView
         android:id="@+id/nazivProizvoda"
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:background="@color/lightGray"
+        android:background="@color/primaryColor"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="4dp"
