@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
+    private var isRegistrationLayoutActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,11 +134,27 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_profile -> Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
-                // ... ostale opcije
+                R.id.nav_finance -> Toast.makeText(this, "Finance clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_reservations -> Toast.makeText(this, "Reservations clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_veterinar -> Toast.makeText(this, "Veterinar clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_adoption -> Toast.makeText(this, "Adoption clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_shop -> Toast.makeText(this, "Shop clicked", Toast.LENGTH_SHORT).show()
             }
             drawerLayout.closeDrawers()
             true
         }
+    }
+
+    private fun toggleLayout() {
+        if (isRegistrationLayoutActive) {
+            openLoginLayout()
+        } else {
+            openRegistrationLayout()
+        }
+        isRegistrationLayoutActive = !isRegistrationLayoutActive
     }
 
     private fun openRegistrationLayout() {
@@ -146,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnProziran2: Button = findViewById(R.id.btnProziran2)
         btnProziran2.setOnClickListener {
-            openLoginLayout()
+            toggleLayout()
         }
     }
 
@@ -157,6 +174,11 @@ class MainActivity : AppCompatActivity() {
         val loginButton: Button = findViewById(R.id.btnLogin)
         loginButton.setOnClickListener {
             performLogin()
+        }
+
+        val btnProziran: Button = findViewById(R.id.btnProziran)
+        btnProziran.setOnClickListener {
+            toggleLayout()
         }
     }
 
