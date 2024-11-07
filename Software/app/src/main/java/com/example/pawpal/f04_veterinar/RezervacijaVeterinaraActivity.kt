@@ -1,33 +1,21 @@
 package com.example.pawpal.f04_veterinar
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
 
-class odabirVeterinaraActivity : AppCompatActivity() {
+class RezervacijaVeterinaraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_odabir_veterinara)
+        setContentView(R.layout.activity_rezervacija_veterinara)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-
-        val gumobovi = listOf(R.id.gumb1, R.id.gumb2, R.id.gumb3, R.id.gumb4, R.id.gumb5)
-
-        gumobovi.forEach{ id->
-            findViewById<Button>(id).setOnClickListener{
-                val intent = Intent(this, RezervacijaVeterinaraActivity::class.java)
-            startActivity(intent)
-        }
-
         }
     }
 }
