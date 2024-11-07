@@ -6,9 +6,8 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <!-- Slika proizvoda -->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/slikaProizvodaShop"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1"
@@ -17,31 +16,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <!-- Naziv proizvoda -->
     <TextView
-        android:id="@+id/nazivProizvoda"
+        android:id="@+id/nazivProizvodaShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Naziv proizvoda"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/slikaProizvodaShop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintMarginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Cijena proizvoda -->
     <TextView
-        android:id="@+id/cijenaProizvoda"
+        android:id="@+id/cijenaProizvodaShop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cijena €"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/nazivProizvoda"
+        app:layout_constraintTop_toBottomOf="@id/nazivProizvodaShop"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/kategorijaProizvodaShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Kategorija"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintMarginTop="4dp" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nazivProizvodaShop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

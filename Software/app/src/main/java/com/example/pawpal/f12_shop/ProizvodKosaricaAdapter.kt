@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 
-class ProizvodAdapter(
+class ProizvodKosaricaAdapter(
     private val proizvodList: List<Proizvod>,
     private val obrisiProizvod: (Proizvod) -> Unit,
     private val povecajKolicinu: (Proizvod) -> Unit,
     private val smanjiKolicinu: (Proizvod) -> Unit
-) : RecyclerView.Adapter<ProizvodAdapter.ProizvodViewHolder>() {
+) : RecyclerView.Adapter<ProizvodKosaricaAdapter.ProizvodViewHolder>() {
 
     inner class ProizvodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nazivProizvoda: TextView = view.findViewById(R.id.nazivProizvoda)

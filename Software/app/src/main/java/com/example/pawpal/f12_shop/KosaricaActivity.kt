@@ -6,14 +6,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.KosaricaProizvoda
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
 
 class KosaricaActivity : BaseActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ProizvodAdapter
+    private lateinit var adapter: ProizvodKosaricaAdapter
     private val proizvodList = mutableListOf<Proizvod>() // Mutable list za dinamicka azuriranja
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class KosaricaActivity : BaseActivity() {
 
         proizvodList.addAll(dohvatiProizvodeKosarice())
 
-        adapter = ProizvodAdapter(
+        adapter = ProizvodKosaricaAdapter(
             proizvodList,
             obrisiProizvod = { proizvod -> obrisiProizvod(proizvod) },
             povecajKolicinu = { proizvod -> povecajKolicinu(proizvod) },
