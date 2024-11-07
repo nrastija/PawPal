@@ -11,9 +11,9 @@ import com.example.pawpal.f12_shop.entiteti.Proizvod
 
 class ProizvodAdapter(
     private val proizvodList: List<Proizvod>,
-    private val onRemoveClick: (Proizvod) -> Unit,
-    private val onIncreaseClick: (Proizvod) -> Unit,
-    private val onDecreaseClick: (Proizvod) -> Unit
+    private val obrisiProizvod: (Proizvod) -> Unit,
+    private val povecajKolicinu: (Proizvod) -> Unit,
+    private val smanjiKolicinu: (Proizvod) -> Unit
 ) : RecyclerView.Adapter<ProizvodAdapter.ProizvodViewHolder>() {
 
     inner class ProizvodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,16 +36,14 @@ class ProizvodAdapter(
         val proizvod = proizvodList[position]
 
         holder.nazivProizvoda.text = proizvod.naziv
-        holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} kn"
+        holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
         holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
-        // Set a placeholder image or load from URL if needed
         holder.slikaProizvoda.setImageResource(R.drawable.test_slika)
         holder.quantityText.text = "1" // Set initial quantity
 
-        // Set listeners for increase, decrease, and remove actions
-        holder.removeButton.setOnClickListener { onRemoveClick(proizvod) }
-        holder.buttonIncrease.setOnClickListener { onIncreaseClick(proizvod) }
-        holder.buttonDecrease.setOnClickListener { onDecreaseClick(proizvod) }
+        holder.removeButton.setOnClickListener { obrisiProizvod(proizvod) }
+        holder.buttonIncrease.setOnClickListener { povecajKolicinu(proizvod) }
+        holder.buttonDecrease.setOnClickListener { smanjiKolicinu(proizvod) }
     }
 
     override fun getItemCount(): Int = proizvodList.size

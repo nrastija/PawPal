@@ -8,16 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".f12_shop.ShopActivity">
 
-    <!-- Main content area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!-- Toolbar for the hamburger menu -->
-
-        <!-- Title TextView for the Online Shop -->
-
-        <!-- RecyclerView for displaying the list of products -->
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -54,9 +47,9 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintVertical_bias="0.0" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navigation drawer for the hamburger menu -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

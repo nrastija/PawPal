@@ -30,9 +30,9 @@ class KosaricaActivity : BaseActivity() {
 
         adapter = ProizvodAdapter(
             proizvodList,
-            onRemoveClick = { proizvod -> obrisiProizvod(proizvod) },
-            onIncreaseClick = { proizvod -> povecajKolicinu(proizvod) },
-            onDecreaseClick = { proizvod -> smanjiKolicinu(proizvod) }
+            obrisiProizvod = { proizvod -> obrisiProizvod(proizvod) },
+            povecajKolicinu = { proizvod -> povecajKolicinu(proizvod) },
+            smanjiKolicinu = { proizvod -> smanjiKolicinu(proizvod) }
         )
         recyclerView.adapter = adapter
     }
