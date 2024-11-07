@@ -4,15 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pawpal.R
+import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
 
 class ShopActivity : BaseActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ProizvodShopAdapter
+    private val proizvodList = mutableListOf<Proizvod>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.f12_layout_shop)
@@ -24,6 +31,26 @@ class ShopActivity : BaseActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
+
+        recyclerView = findViewById(R.id.recycler_view_products) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        proizvodList.addAll(dohvatiProizvodeKosarice())
+
+        adapter = ProizvodShopAdapter(
+            proizvodList
+        )
+
+        recyclerView.adapter = adapter
+    }
+
+    private fun dohvatiProizvodeKosarice(): List<Proizvod> {
+        // Define products directly
+        return listOf(
+            Proizvod(1, "Darling", 6.31, "Test", 1, null),
+            Proizvod(2, "Sok", 51.31, "Test2", 2, null),
+            Proizvod(3, "Hrana", 0.31, "Test3", 1, null)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje kosarice
