@@ -60,292 +60,321 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/veterinar_1"
-        android:layout_width="354dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/veterinar_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.385"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pozadina"
-        app:layout_constraintVertical_bias="0.032" />
-
-    <ImageView
-        android:id="@+id/vet_profil1"
-        android:layout_width="124dp"
-        android:layout_height="113dp"
-        android:src="@drawable/veterinar_profil"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_1"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_1"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_1"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_1"
-        app:layout_constraintVertical_bias="0.567" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/veterinar_2"
-        android:layout_width="354dp"
-        android:layout_height="156dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pozadina"
-        app:layout_constraintVertical_bias="0.449" />
-
-    <ImageView
-        android:id="@+id/vet_profil2"
-        android:layout_width="124dp"
-        android:layout_height="113dp"
-        android:src="@drawable/veterinar_profil"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_2"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_2"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_2"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_2"
-        app:layout_constraintVertical_bias="0.567" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/veterinar_3"
-        android:layout_width="354dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pozadina"
-        app:layout_constraintVertical_bias="0.51" />
-
-    <ImageView
-        android:id="@+id/vet_profil3"
-        android:layout_width="124dp"
-        android:layout_height="113dp"
-        android:src="@drawable/veterinar_profil"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_3"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_3"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_3"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_3"
-        app:layout_constraintVertical_bias="0.567" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/veterinar_4"
-        android:layout_width="354dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pozadina"
-        app:layout_constraintVertical_bias="1.09" />
-
-    <ImageView
-        android:id="@+id/vet_profil4"
-        android:layout_width="124dp"
-        android:layout_height="113dp"
-        android:src="@drawable/veterinar_profil"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_4"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_4"
-        app:layout_constraintHorizontal_bias="0.08"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_4"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_4"
-        app:layout_constraintVertical_bias="0.567" />
-
-    <TextView
-        android:id="@+id/titula1"
-        android:layout_width="111dp"
-        android:layout_height="33dp"
-        android:text="dr.med.vet"
-        android:textSize="24dp"
-        android:textStyle="italic"
-
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_1"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_1"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_1"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_1"
-        app:layout_constraintVertical_bias="0.201" />
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        >
 
 
-    <TextView
-        android:id="@+id/titula2"
-        android:layout_width="111dp"
-        android:layout_height="33dp"
-        android:text="dr.med.vet"
-        android:textSize="24dp"
-        android:textStyle="italic"
+        <LinearLayout
+            android:layout_width="409dp"
+            android:layout_height="689dp"
+            android:layout_marginTop="1dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pozadina"
+            app:layout_constraintVertical_bias="0.0">
 
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_2"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_2"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_2"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_2"
-        app:layout_constraintVertical_bias="0.201" />
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="38dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
 
-    <TextView
-        android:id="@+id/titula3"
-        android:layout_width="111dp"
-        android:layout_height="33dp"
-        android:text="dr.med.vet"
-        android:textSize="24dp"
-        android:textStyle="italic"
+                <ImageView
+                    android:id="@+id/kutija1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/veterinar_profil" />
 
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_3"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_3"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_3"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_3"
-        app:layout_constraintVertical_bias="0.201" />
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/titula4"
-        android:layout_width="111dp"
-        android:layout_height="33dp"
-        android:text="dr.med.vet"
-        android:textSize="24dp"
-        android:textStyle="italic"
 
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_4"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_4"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_4"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_4"
-        app:layout_constraintVertical_bias="0.201" />
+                    <TextView
+                        android:id="@+id/titula1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginTop="15dp"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="dr.med.vet" />
 
-    <TextView
-        android:id="@+id/ime_vet1"
-        android:layout_width="137dp"
-        android:layout_height="34dp"
-        android:text="Niko Rastija"
-        android:textSize="24dp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_1"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_1"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_1"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_1"
-        app:layout_constraintVertical_bias="0.532" />
+                    <TextView
+                        android:id="@+id/ime_vet1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="Niko Rastija"
+                        android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/odaberi_veterinara"
-        android:layout_width="156dp"
-        android:layout_height="45dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Odaberi"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_1"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_1"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_1"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_1"
-        app:layout_constraintVertical_bias="0.915" />
+                    <Button
+                        android:id="@+id/gumb1"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/primaryColor"
+                        android:textColor="@color/textColorPrimary"
+                        android:text="Odaberi"
+                        android:textSize="24dp"
+                        tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/ime_vet2"
-        android:layout_width="150dp"
-        android:layout_height="32dp"
-        android:text="Mirta Vuković"
-        android:textSize="24dp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_2"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_2"
-        app:layout_constraintHorizontal_bias="0.906"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_2"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_2"
-        app:layout_constraintVertical_bias="0.532" />
+                </LinearLayout>
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/odaberi_veterinara2"
-        android:layout_width="156dp"
-        android:layout_height="45dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Odaberi"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_2"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_2"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_2"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_2"
-        app:layout_constraintVertical_bias="0.915" />
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
 
-    <TextView
-        android:id="@+id/ime_vet3"
-        android:layout_width="170dp"
-        android:layout_height="32dp"
-        android:text="Nensi Vugrinec"
-        android:textSize="24dp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_3"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_3"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_3"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_3"
-        app:layout_constraintVertical_bias="0.532" />
+                <ImageView
+                    android:id="@+id/kutija2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/veterinar_profil" />
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/odaberi_veterinara3"
-        android:layout_width="133dp"
-        android:layout_height="42dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Odaberi"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_3"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_3"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_3"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_3"
-        app:layout_constraintVertical_bias="0.915" />
 
-    <TextView
-        android:id="@+id/ime_vet4"
-        android:layout_width="137dp"
-        android:layout_height="34dp"
-        android:text="Petra Skoko"
-        android:textSize="24dp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_4"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_4"
-        app:layout_constraintHorizontal_bias="0.852"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_4"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_4"
-        app:layout_constraintVertical_bias="0.532" />
+                    <TextView
+                        android:id="@+id/titula2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginTop="15dp"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="dr.med.vet" />
 
-    <Button
-        android:id="@+id/odaberi_veterinara4"
-        android:layout_width="133dp"
-        android:layout_height="42dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Odaberi"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/veterinar_4"
-        app:layout_constraintEnd_toEndOf="@+id/veterinar_4"
-        app:layout_constraintHorizontal_bias="0.837"
-        app:layout_constraintStart_toStartOf="@+id/veterinar_4"
-        app:layout_constraintTop_toTopOf="@+id/veterinar_4"
-        app:layout_constraintVertical_bias="0.915" />
+                    <TextView
+                        android:id="@+id/ime_vet2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="Nensi Vugrinec"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:id="@+id/gumb2"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:text="Odaberi"
+                        android:textSize="24dp"
+                        android:backgroundTint="@color/primaryColor"
+                        android:textColor="@color/textColorPrimary"
+                        tools:ignore="TextContrastCheck" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
+
+                <ImageView
+                    android:id="@+id/kutija3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/veterinar_profil" />
+
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/titula3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginTop="15dp"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="dr.med.vet" />
+
+                    <TextView
+                        android:id="@+id/ime_vet3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="Mirta Vuković"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:id="@+id/gumb3"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:text="Odaberi"
+                        android:textSize="24dp"
+                        tools:ignore="TextContrastCheck"
+                        android:backgroundTint="@color/primaryColor"
+                        android:textColor="@color/textColorPrimary"/>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
+
+                <ImageView
+                    android:id="@+id/kutija4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/veterinar_profil" />
+
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/titula4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginTop="15dp"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="dr.med.vet" />
+
+                    <TextView
+                        android:id="@+id/ime_vet4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="Petra Skoko"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:id="@+id/gumb4"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:text="Odaberi"
+                        android:textSize="24dp"
+                        tools:ignore="TextContrastCheck"
+                        android:backgroundTint="@color/primaryColor"
+                        android:textColor="@color/textColorPrimary"/>
+
+                </LinearLayout>
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="38dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
+
+                <ImageView
+                    android:id="@+id/kutija5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    app:srcCompat="@drawable/veterinar_profil" />
+
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/titula5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:layout_marginTop="15dp"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="dr.med.vet" />
+
+                    <TextView
+                        android:id="@+id/ime_vet5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:textSize="26dp"
+                        android:layout_gravity="center"
+                        android:text="Nara Narić"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:id="@+id/gumb5"
+                        android:layout_width="160dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:text="Odaberi"
+                        android:textSize="24dp"
+                        tools:ignore="TextContrastCheck"
+                        android:backgroundTint="@color/primaryColor"
+                        android:textColor="@color/textColorPrimary"/>
+
+                </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
