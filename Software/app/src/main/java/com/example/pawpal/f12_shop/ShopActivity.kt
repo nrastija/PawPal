@@ -35,16 +35,21 @@ class ShopActivity : BaseActivity() {
         recyclerView = findViewById(R.id.recyclerShop) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        proizvodList.addAll(dohvatiProizvodeKosarice())
+        proizvodList.addAll(dohvatiProizvodeShop())
 
-        adapter = ProizvodShopAdapter(
-            proizvodList
-        )
+        adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
+            val intent = Intent(this, ProizvodDetaljActivity::class.java)
+            intent.putExtra("nazivProizvoda", proizvod.naziv)
+            intent.putExtra("cijenaProizvoda", proizvod.cijena)
+            intent.putExtra("opisProizvoda", proizvod.opis)
+            intent.putExtra("kategorijaProizvoda", proizvod.kategorijaID)
+            startActivity(intent)
+        }
 
         recyclerView.adapter = adapter
     }
 
-    private fun dohvatiProizvodeKosarice(): List<Proizvod> {
+    private fun dohvatiProizvodeShop(): List<Proizvod> {
         // Define products directly
         return listOf(
             Proizvod(1, "Darling", 6.31, "Test", 1, null),
@@ -68,4 +73,5 @@ class ShopActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 }

@@ -11,6 +11,7 @@ import com.example.pawpal.f12_shop.entiteti.Proizvod
 
 class ProizvodShopAdapter (
     private val proizvodList: List<Proizvod>,
+    private val onProizvodClick: (Proizvod) -> Unit
     ) : RecyclerView.Adapter<ProizvodShopAdapter.ProizvodViewHolder>() {
 
         inner class ProizvodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,6 +33,10 @@ class ProizvodShopAdapter (
             holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
             holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
             holder.slikaProizvoda.setImageResource(R.drawable.test_slika)
+
+            holder.itemView.setOnClickListener {
+                onProizvodClick(proizvod)
+            }
         }
 
         override fun getItemCount(): Int = proizvodList.size

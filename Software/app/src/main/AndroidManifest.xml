@@ -15,6 +15,7 @@
 
         <activity android:name=".f12_shop.ShopActivity" />
         <activity android:name=".f12_shop.KosaricaActivity" />
+        <activity android:name=".f12_shop.ProizvodDetaljActivity" />
 
         <activity
             android:name=".main.MainActivity"
