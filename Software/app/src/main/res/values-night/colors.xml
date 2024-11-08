@@ -9,4 +9,5 @@
     <color name="secondaryColor">#282828 </color>
     <color name="accentColor">#deb46a</color>
     <color name="navigationBar">#938f99</color>
+    <color name="filterStrokeColor">#ffffff</color>
 </resources>
