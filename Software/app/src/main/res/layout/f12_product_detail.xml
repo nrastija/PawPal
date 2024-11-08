@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,13 +29,15 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/test_slika" />
+                android:src="@drawable/test_slika"
+                android:padding = "8dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:padding = "8dp">
 
                 <TextView
                     android:id="@+id/nazivProizvoda"
@@ -63,7 +65,8 @@
                 android:paddingTop="8dp"
                 android:text="Kategorija proizvoda"
                 android:textColor="@color/proizvodInfo"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:padding = "8dp"/>
 
             <TextView
                 android:id="@+id/opisProizvoda"
@@ -73,14 +76,16 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/proizvodInfo"
                 android:text="Opis proizvoda"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:padding = "8dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp">
 
                 <TextView
                     android:id="@+id/kolicinaProizvoda"
@@ -93,12 +98,13 @@
 
                 <Spinner
                     android:id="@+id/odabirKolicineSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:background="@drawable/kolicina_background"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
                     android:layout_marginStart="8dp"
+                    android:background="@drawable/kolicina_background"
                     android:padding="8dp"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center" />
             </LinearLayout>
 
 
@@ -113,6 +119,7 @@
         android:backgroundTint="@color/secondaryColor"
         android:text="Dodaj proizvod u košaricu"
         android:textColor="@color/accentColor"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"/>
 
 </LinearLayout>
