@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pawpal.R
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
