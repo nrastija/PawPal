@@ -11,4 +11,5 @@
     <color name="navigationBar">#938f99</color>
     <color name="filterStrokeColor">#000000</color>
     <color name="proizvodInfo">#88848E</color>
+    <color name="proizvodKolicinaBorder">#E2DACE</color>
 </resources>

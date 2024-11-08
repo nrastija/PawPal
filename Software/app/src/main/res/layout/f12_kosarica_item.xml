@@ -23,10 +23,12 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="152dp"
         android:text="Proizvod"
-        android:textColor="@color/black"
+        android:textColor="@color/accentColor"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/remove_button"
+        android:layout_marginStart="20dp"
+        android:layout_marginVertical="6dp"
+        app:layout_constraintEnd_toStartOf="@id/btnObrisi"
         app:layout_constraintStart_toEndOf="@id/slikaProizvoda"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -35,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Kategorija"
-        android:textColor="@color/accentColor"
+        android:textColor="@color/proizvodInfo"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/nazivProizvoda"
         app:layout_constraintTop_toBottomOf="@id/nazivProizvoda" />
@@ -46,63 +48,57 @@
         android:layout_height="wrap_content"
         android:text="Cijena"
         android:textSize="12sp"
-        android:textColor="@color/black"
+        android:textColor="@color/proizvodInfo"
         app:layout_constraintStart_toStartOf="@id/nazivProizvoda"
         app:layout_constraintTop_toBottomOf="@id/kategorijaProizvoda" />
 
-    <!-- Remove Button -->
-
     <LinearLayout
-        android:id="@+id/quantity_controls"
+        android:id="@+id/kontroleKolicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@color/primaryColor"
+        android:layout_marginEnd="9dp"
+        android:background="@drawable/kolicina_background"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="4dp"
-        android:paddingEnd="16dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/remove_button">
+        app:layout_constraintTop_toBottomOf="@+id/btnObrisi">
 
-        <!-- Decrease Button -->
         <TextView
-            android:id="@+id/button_decrease"
+            android:id="@+id/btnSmanji"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/kosarica_dodavanje"
             android:gravity="center"
             android:text="−"
-            android:textColor="@android:color/black"
+            android:textColor="@color/accentColor"
             android:textSize="20sp" />
 
-        <!-- Quantity Text -->
-
-        <!-- Increase Button -->
         <TextView
-            android:id="@+id/quantity_text"
+            android:id="@+id/kolicinaBroj"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:gravity="center"
             android:text="1"
-            android:textColor="@android:color/black"
+            android:textColor="@color/accentColor"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/button_increase"
+            android:id="@+id/btnPovecaj"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@drawable/kosarica_dodavanje"
             android:gravity="center"
             android:text="+"
-            android:textColor="@android:color/black"
+            android:textColor="@color/accentColor"
             android:textSize="20sp" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/remove_button"
+        android:id="@+id/btnObrisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

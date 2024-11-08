@@ -21,10 +21,10 @@ class ProizvodKosaricaAdapter(
         val cijenaProizvoda: TextView = view.findViewById(R.id.cijenaProizvoda)
         val kategorijaProizvoda: TextView = view.findViewById(R.id.kategorijaProizvoda)
         val slikaProizvoda: ImageView = view.findViewById(R.id.slikaProizvoda)
-        val removeButton: TextView = view.findViewById(R.id.remove_button)
-        val buttonDecrease: TextView = view.findViewById(R.id.button_decrease)
-        val buttonIncrease: TextView = view.findViewById(R.id.button_increase)
-        val quantityText: TextView = view.findViewById(R.id.quantity_text)
+        val removeButton: TextView = view.findViewById(R.id.btnObrisi)
+        val buttonDecrease: TextView = view.findViewById(R.id.btnSmanji)
+        val buttonIncrease: TextView = view.findViewById(R.id.btnPovecaj)
+        val quantityText: TextView = view.findViewById(R.id.kolicinaBroj)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProizvodViewHolder {
