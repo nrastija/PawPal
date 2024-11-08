@@ -7,6 +7,7 @@ import android.view.MenuItem
 
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pawpal.R
@@ -32,8 +33,8 @@ class ShopActivity : BaseActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-        recyclerView = findViewById(R.id.recycler_view_products) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = findViewById(R.id.recyclerShop) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         proizvodList.addAll(dohvatiProizvodeKosarice())
 

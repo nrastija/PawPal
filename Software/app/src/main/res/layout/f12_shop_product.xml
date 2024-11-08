@@ -1,55 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
 
-    <ImageView
-        android:id="@+id/slikaProizvodaShop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/nazivProizvodaShop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Naziv proizvoda"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/slikaProizvodaShop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/slikaProizvodaShop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/test_slika" />
 
-    <TextView
-        android:id="@+id/cijenaProizvodaShop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cijena €"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/nazivProizvodaShop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/nazivProizvodaShop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Naziv proizvoda"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/accentColor"/>
 
-    <TextView
-        android:id="@+id/kategorijaProizvodaShop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Kategorija"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nazivProizvodaShop" />
+        <TextView
+            android:id="@+id/cijenaProizvodaShop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cijena €"
+            android:textColor="@color/accentColor"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/kategorijaProizvodaShop"
+            android:layout_width="379dp"
+            android:layout_height="wrap_content"
+            android:text="Kategorija"
+            android:textColor="@color/accentColor"
+            android:textSize="14sp"
+            android:textAlignment="textEnd"/>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
