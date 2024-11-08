@@ -1,6 +1,9 @@
 package com.example.pawpal.f12_shop
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +39,22 @@ class KosaricaActivity : BaseActivity() {
         recyclerView.adapter = adapter
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje return gumba
+        menuInflater.inflate(R.menu.f12_menu_return, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na return gumb
+        return when (item.itemId) {
+            R.id.return_icon -> {
+                val intent = Intent(this, ShopActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
         // Define products directly
         return listOf(
@@ -59,4 +78,6 @@ class KosaricaActivity : BaseActivity() {
     private fun smanjiKolicinu(proizvod: Proizvod) {
         Toast.makeText(this, "Smanjio kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
     }
+
+
 }
