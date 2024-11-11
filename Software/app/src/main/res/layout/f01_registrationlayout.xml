@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.167"/>
 
     <TextView
-        android:id="@+id/txt_prijava"
+        android:id="@+id/txtPrijava"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prijava"
@@ -94,7 +94,7 @@
         app:layout_constraintVertical_bias="0.492" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegistriraj"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/secondaryColor"
@@ -108,9 +108,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96" />
 
+
     <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
+        android:id="@+id/editLozinka"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Lozinka"
@@ -121,14 +122,14 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.866" />
 
     <EditText
-        android:id="@+id/txtKorime2"
-        android:layout_width="wrap_content"
+        android:id="@+id/editKorime"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Korisničko ime"
@@ -139,14 +140,14 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583"  />
+        app:layout_constraintVertical_bias="0.678" />
 
     <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="wrap_content"
+        android:id="@+id/editEmail"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="E-MAIL"
@@ -157,28 +158,46 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.396"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.772" />
 
     <EditText
-        android:id="@+id/txtBrojMobitela"
-        android:layout_width="wrap_content"
+        android:id="@+id/editIme"
+        android:layout_width="139dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Broj telefona"
-        android:inputType="phone"
+        android:hint="Ime"
+        android:inputType="text"
         android:padding="18dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
+        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.583" />
+
+    <EditText
+        android:id="@+id/editPrezime"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Prezime"
+        android:inputType="text"
+        android:padding="18dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.583" />
 
     <ImageView
         android:id="@+id/imgPesek"
@@ -193,7 +212,7 @@
         app:srcCompat="@drawable/pesek2" />
 
     <Button
-        android:id="@+id/btnProziran2"
+        android:id="@+id/btnProziranReg"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="#00000000"
