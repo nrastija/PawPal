@@ -20,6 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
+        android:background="@color/basketColor"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/total_price_container"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +31,7 @@
         android:id="@+id/total_price_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/basketColor"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +60,7 @@
 
         <!-- Gumb za završavanje narudžbe -->
         <Button
-            android:id="@+id/btn_narudzba"
+            android:id="@+id/btnNarudzba"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

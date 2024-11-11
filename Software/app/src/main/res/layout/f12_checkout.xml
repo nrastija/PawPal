@@ -57,6 +57,33 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
+            <RadioGroup
+                android:id="@+id/odabirTipaKartice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp">
+
+                <RadioButton
+                    android:id="@+id/visaOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Visa"
+                    android:drawableStart="@drawable/visa_logo"
+                    android:drawablePadding="8dp"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/mastercardOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mastercard"
+                    android:drawableStart="@drawable/mastercard_logo"
+                    android:drawablePadding="8dp"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
             <EditText
                 android:id="@+id/unosBrojKartice"
                 android:layout_width="match_parent"
@@ -64,7 +91,6 @@
                 android:hint="Broj kartice"
                 android:inputType="number"
                 android:padding="10dp"
-                android:background="@drawable/edit_icon"
                 android:layout_marginBottom="8dp" />
 
             <EditText
@@ -72,9 +98,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Datum isteka (MM/YY)"
-                android:inputType="date"
+                android:inputType="text"
+                android:digits="0123456789/"
                 android:padding="10dp"
-                android:background="@drawable/edit_icon"
                 android:layout_marginBottom="8dp" />
 
             <EditText
@@ -83,18 +109,18 @@
                 android:layout_height="wrap_content"
                 android:hint="CVV"
                 android:inputType="numberPassword"
-                android:padding="10dp"
-                android:background="@drawable/edit_icon" />
+                android:padding="10dp" />
         </LinearLayout>
 
+
         <Button
-            android:id="@+id/gumbPotvrdiPlacanje"
+            android:id="@+id/btnPotvrdiPlacanje"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/secondaryColor"
             android:text="Potvrdi plaćanje"
             android:textColor="@android:color/white"
-            android:backgroundTint="@color/secondaryColor"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp" />
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>
