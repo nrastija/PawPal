@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,12 @@ class KosaricaActivity : BaseActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        val btnNarudzba: Button = findViewById(R.id.btnNarudzba)
+        btnNarudzba.setOnClickListener{
+            val intent = Intent(this, CheckoutActivity::class.java);
+            startActivity(intent);
+        }
+
         recyclerView = findViewById(R.id.recycler_view_kosarica) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -37,6 +44,8 @@ class KosaricaActivity : BaseActivity() {
             smanjiKolicinu = { proizvod -> smanjiKolicinu(proizvod) }
         )
         recyclerView.adapter = adapter
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje return gumba
