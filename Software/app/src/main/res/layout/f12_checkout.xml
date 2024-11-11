@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/backgroundColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/naslovCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odaberite način plaćanja"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/accentColor"
+            android:layout_marginBottom="16dp" />
+
+        <RadioGroup
+            android:id="@+id/odabirPlacanja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/placanjeGotovinom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjeGotovina"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/placanjeKartica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjeKartica"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/sekcijaPodaciKartice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Podaci kartice"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/unosBrojKartice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Broj kartice"
+                android:inputType="number"
+                android:padding="10dp"
+                android:background="@drawable/edit_icon"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/unosDatumIsteka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Datum isteka (MM/YY)"
+                android:inputType="date"
+                android:padding="10dp"
+                android:background="@drawable/edit_icon"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/unosCVV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CVV"
+                android:inputType="numberPassword"
+                android:padding="10dp"
+                android:background="@drawable/edit_icon" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/gumbPotvrdiPlacanje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Potvrdi plaćanje"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/secondaryColor"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

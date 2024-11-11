@@ -7,4 +7,6 @@
     <string name="filterHrana">Hrana</string>
     <string name="filterHigijena">Higijena</string>
     <string name="filterOstalo">Ostalo</string>
+    <string name="placanjeGotovina">Gotovina</string>
+    <string name="placanjeKartica">Kartica</string>
 </resources>
