@@ -45,7 +45,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_profile -> Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_finance -> Toast.makeText(this, "Finance clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_reservations -> Toast.makeText(this, "Reservations clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_veterinar -> Toast.makeText(this, "Veterinar clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_veterinar -> {
+                    val intent = Intent(this, odabirVeterinaraActivity::class.java)
+                    startActivity(intent);
+                }
                 R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_adoption -> Toast.makeText(this, "Adoption clicked", Toast.LENGTH_SHORT).show()
@@ -56,8 +59,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val intent = Intent(this, odabirVeterinaraActivity::class.java)
-        startActivity(intent)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
