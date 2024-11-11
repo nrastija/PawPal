@@ -84,31 +84,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Početni layout - Login
-        setContentView(R.layout.f01_loginlayout)
-
-        // Inicijalizacija dugmadi
-        val loginButton: Button = findViewById(R.id.btnLogin)
-        val btnProziran: Button = findViewById(R.id.btnProziran)
-
-        loginButton.setOnClickListener {
-            performLogin()
-        }
-
-        // Otvaranje registracije
-        btnProziran.setOnClickListener {
-            openRegistrationLayout()
-        }
+        otvoriPrijavu() // Početni ekran je login
     }
 
-    private fun performLogin() {
-        val usernameInput = findViewById<EditText>(R.id.txtKorime2).text.toString()
-        val passwordInput = findViewById<EditText>(R.id.txtLozinka).text.toString()
+    private fun Ulogirajse() {
+        val korimeInput = findViewById<EditText>(R.id.txtKorime2).text.toString()
+        val lozinkaInput = findViewById<EditText>(R.id.txtLozinka).text.toString()
 
-        // Verifikacija korisničkog imena i lozinke
-        if (usernameInput == "nrastija22" && passwordInput == "doberman") {
-            // Ako je login uspešan, otvara glavni sadržaj
+        if (korimeInput == "nrastija22" && lozinkaInput == "doberman") {
             setContentView(R.layout.activity_main)
             initializeDrawer()
         } else {
@@ -129,7 +112,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Slušatelj za stavke menija
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
@@ -150,15 +132,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun toggleLayout() {
         if (isRegistrationLayoutActive) {
-            openLoginLayout()
+            otvoriPrijavu()
         } else {
-            openRegistrationLayout()
+            otvoriRegistraciju()
         }
         isRegistrationLayoutActive = !isRegistrationLayoutActive
     }
 
-    private fun openRegistrationLayout() {
-        // Uključujemo layout registracije i omogućavamo povratak na login
+    private fun otvoriRegistraciju() {
         setContentView(R.layout.f01_registrationlayout)
 
         val btnProziran2: Button = findViewById(R.id.btnProziran2)
@@ -167,13 +148,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openLoginLayout() {
-        // Vraćamo se na login ekran
+    private fun otvoriPrijavu() {
         setContentView(R.layout.f01_loginlayout)
 
         val loginButton: Button = findViewById(R.id.btnLogin)
         loginButton.setOnClickListener {
-            performLogin()
+            Ulogirajse()
         }
 
         val btnProziran: Button = findViewById(R.id.btnProziran)

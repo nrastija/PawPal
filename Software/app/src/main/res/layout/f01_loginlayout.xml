@@ -5,19 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/secondaryColor"
+    android:background="@color/white"
     android:textAlignment="center">
 
-    <ImageView
-        android:id="@+id/imgBijelo"
-        android:layout_width="534dp"
-        android:layout_height="1041dp"
-        android:layout_marginTop="84dp"
+    <TextView
+        android:id="@+id/zutapozadina"
+        android:layout_width="418dp"
+        android:layout_height="318dp"
+        android:background="@color/secondaryColor"
+        android:text="TextView"
+        android:textColor="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bijelo" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/txtDobrodosli"
@@ -95,6 +99,7 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/secondaryColor"
         android:text="PRIJAVI ME"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +116,8 @@
         android:hint="Lozinka"
         android:inputType="textPassword"
         android:padding="18dp"
-        android:textColor="@color/textColorPrimary"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +134,8 @@
         android:hint="Korisničko ime"
         android:inputType="text"
         android:padding="18dp"
-        android:textColor="@color/textColorPrimary"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,5 +170,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.491"
         tools:ignore="TextContrastCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
