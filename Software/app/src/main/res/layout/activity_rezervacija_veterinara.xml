@@ -76,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="22dp"
                 android:layout_gravity="center"
+                android:gravity="center"
+                android:textStyle="italic"
                 android:layout_marginTop="10dp"/>
 
             <LinearLayout

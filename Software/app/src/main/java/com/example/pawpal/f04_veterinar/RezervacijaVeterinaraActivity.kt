@@ -15,6 +15,7 @@ import com.example.pawpal.R
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.Locale
+import kotlin.math.min
 
 class RezervacijaVeterinaraActivity : AppCompatActivity() {
 private lateinit var datumTekst : TextView
@@ -41,23 +42,31 @@ private lateinit var vrijemeGumb : Button
         datumGumb.setOnClickListener{
 
             val kalendar = Calendar.getInstance()
-            val godina = kalendar.get(Calendar.YEAR)
-            val mjesec = kalendar.get(Calendar.MONTH)
-            val dan = kalendar.get(Calendar.DAY_OF_MONTH)
+            kalendar.add(Calendar.DAY_OF_YEAR, 1)
+            val minDate = kalendar.timeInMillis
 
             val biracDatuma = DatePickerDialog(
                 this,
-                { _, selectedYear, selectedMonth, selectedDay ->
-                    val odabranDatum = "$selectedDay/${selectedMonth+1}/$selectedYear"
-                    datumTekst.text = "Odabrani datum: $odabranDatum"
+                { _, year, month, dayOfMonth ->
+                    kalendar.set(year, month, dayOfMonth)
+
+                    if(kalendar.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY){
+                        datumTekst.text = "Nedjelja nije dostupna. Molimo odaberite drugi dan"
+                    } else{
+                        val selectedDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(kalendar.time)
+                        datumTekst.text = "Odabrani datum: $selectedDate"
+                    }
                 },
-                godina, mjesec, dan
+                kalendar.get(Calendar.YEAR),
+                kalendar.get(Calendar.MONTH),
+                kalendar.get(Calendar.DAY_OF_MONTH)
             )
+            biracDatuma.datePicker.minDate = minDate
             biracDatuma.show()
         }
 
 
-        vrijemeGumb.setOnClickListener{
+        vrijemeGumb.setOnClickListener {
             val kalendar = Calendar.getInstance()
             val trenutniSat = kalendar.get(Calendar.HOUR_OF_DAY)
             val trenutnaMinuta = kalendar.get(Calendar.MINUTE)
@@ -65,14 +74,17 @@ private lateinit var vrijemeGumb : Button
             val biracVremena = TimePickerDialog(
                 this,
                 { _, selectedHour, selectedMinute ->
-                    val formatiranoVrijeme = String.format("%02d:%02d", selectedHour, selectedMinute)
-                    vrijemeTekst.text = "Odabrano vrijeme: $formatiranoVrijeme"
+                    if (selectedHour in 8..18) {
+                        val formatiranoVrijeme =
+                            String.format("%02d:%02d", selectedHour, selectedMinute)
+                        vrijemeTekst.text = "Odabrano vrijeme: $formatiranoVrijeme"
+                    } else {
+                        vrijemeTekst.text = "Molimo odaberite vrijeme između 08:00 i 19:00."
+                    }
                 },
                 trenutniSat, trenutnaMinuta, true
             )
             biracVremena.show()
         }
-
-
     }
 }
