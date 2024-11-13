@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,130 +10,170 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/pozadina"
-        android:layout_width="413dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@color/secondaryColor"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        app:layout_constraintTop_toBottomOf="@id/pozadina"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="689dp"
-            android:layout_marginTop="2dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pozadina">
+            android:padding="16dp">
 
-            <FrameLayout
-                android:layout_width="340dp"
-                android:layout_height="157dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="70dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/zaobljeni_rubovi_kutije">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Odaberite datum rezervacije:"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-
-                    <Button
-                        android:id="@+id/datumGumb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textSize="17dp"
-                        android:layout_marginTop="30dp"
-                        android:backgroundTint="@color/primaryColor"
-                        android:text="Kliknite za odabir datuma dolaska"
-                        android:textColor="@color/textColorPrimary" />
-
+                <Button
+                    android:id="@+id/datumGumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Klikni"
+                    android:textSize="16dp"
+                    android:backgroundTint="@color/primaryColor"
+                    android:textColor="@color/textColorPrimary" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/datumTekst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 android:textStyle="italic"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                />
-        </LinearLayout>
-</FrameLayout>
+                android:layout_marginTop="8dp" />
 
-    <FrameLayout
-        android:layout_width="340dp"
-        android:layout_height="157dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
-          <Button
-              android:id="@+id/vrijemeGumb"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:textSize="17dp"
-              android:layout_marginTop="30dp"
-              android:backgroundTint="@color/primaryColor"
-              android:textColor="@color/textColorPrimary"
-              android:text="Odaberite vrijeme dolaska"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Odaberite vrijeme rezervacije:"
+                    android:textSize="18dp"
+                    android:layout_marginRight="10dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/vrijemeGumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Klikni"
+                    android:textSize="16dp"
+                    android:backgroundTint="@color/primaryColor"
+                    android:textColor="@color/textColorPrimary" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/vrijemeTekst"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textStyle="italic"
-                android:layout_marginTop="20dp"/>
-    </LinearLayout>
-    </FrameLayout>
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vrsta usluge:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="50dp" />
+
             <Spinner
                 android:id="@+id/spiner"
-                android:layout_width="340dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/primaryColor" />
 
-<EditText
-    android:id="@+id/dodatniOpis"
-    android:layout_width="340dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:hint="Unesite dodatni opis"
-    android:inputType="textMultiLine"
-    android:background="@drawable/zaobljeni_rubovi_kutije"
-    android:padding="30dp"
-    android:layout_marginTop="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dodatni opis:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="50dp" />
+
+            <EditText
+                android:id="@+id/dodatniOpis"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:hint="Unesite dodatni opis"
+                android:inputType="textMultiLine"
+                android:background="@color/primaryColor"
+                android:padding="16dp"
+                android:layout_marginTop="8dp" />
 
             <Button
                 android:id="@+id/potvrdi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/primaryColor"
                 android:text="Potvrdi opis"
+                android:textSize="17sp"
                 android:textColor="@color/textColorPrimary" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/ponisti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poništi"
+            android:backgroundTint="@color/secondaryColor"
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Potvrdi"
+            android:backgroundTint="@color/secondaryColor"
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="40dp"/>
+    </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

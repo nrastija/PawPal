@@ -31,6 +31,7 @@ private lateinit var vrijemeGumb : Button
 private lateinit var spiner : Spinner
 private lateinit var dodatniOpis : EditText
 private lateinit var potvrdi : Button
+private lateinit var ponisti : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,16 @@ private lateinit var potvrdi : Button
 
         dodatniOpis = findViewById(R.id.dodatniOpis)
         potvrdi = findViewById(R.id.potvrdi)
+        ponisti = findViewById(R.id.ponisti)
+
+
+        ponisti.setOnClickListener{
+            datumTekst.text = ""
+            vrijemeTekst.text = ""
+            spiner.setSelection(0)
+            dodatniOpis.text.clear()
+            Toast.makeText(this, "Podaci su poništeni", Toast.LENGTH_SHORT).show()
+        }
 
         potvrdi.setOnClickListener{
             val opis = dodatniOpis.text.toString()
