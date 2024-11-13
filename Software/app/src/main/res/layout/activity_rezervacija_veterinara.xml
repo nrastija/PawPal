@@ -18,10 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,23 +29,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pozadina">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <FrameLayout
+                android:layout_width="340dp"
+                android:layout_height="157dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:text="Odaberite željeni datum dolaska:"
-                android:textSize="24dp" />
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/zaobljeni_rubovi_kutije">
 
-            <Button
-                android:id="@+id/datumGumb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Kliknite za odabir datuma"
-                />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:id="@+id/datumGumb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="17dp"
+                        android:layout_marginTop="30dp"
+                        android:backgroundTint="@color/primaryColor"
+                        android:text="Kliknite za odabir datuma dolaska"
+                        android:textColor="@color/textColorPrimary" />
+
 
             <TextView
                 android:id="@+id/datumTekst"
@@ -59,15 +64,33 @@
                 android:textSize="22dp"
                 android:textStyle="italic"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 />
+        </LinearLayout>
+</FrameLayout>
 
+    <FrameLayout
+        android:layout_width="340dp"
+        android:layout_height="157dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/zaobljeni_rubovi_kutije">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
           <Button
               android:id="@+id/vrijemeGumb"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
+              android:textSize="17dp"
+              android:layout_marginTop="30dp"
+              android:backgroundTint="@color/primaryColor"
+              android:textColor="@color/textColorPrimary"
               android:text="Odaberite vrijeme dolaska"/>
 
             <TextView
@@ -78,14 +101,38 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textStyle="italic"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"/>
+    </LinearLayout>
+    </FrameLayout>
+            <Spinner
+                android:id="@+id/spiner"
+                android:layout_width="340dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:background="@color/primaryColor" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+<EditText
+    android:id="@+id/dodatniOpis"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:hint="Unesite dodatni opis"
+    android:inputType="textMultiLine"
+    android:background="@drawable/zaobljeni_rubovi_kutije"
+    android:padding="30dp"
+    android:layout_marginTop="25dp"/>
+
+            <Button
+                android:id="@+id/potvrdi"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/primaryColor"
+                android:text="Potvrdi opis"
+                android:textColor="@color/textColorPrimary" />
 
 
         </LinearLayout>
-    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

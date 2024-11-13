@@ -4,9 +4,15 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CalendarView
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -22,6 +28,9 @@ private lateinit var datumTekst : TextView
 private lateinit var datumGumb : Button
 private lateinit var vrijemeTekst :  TextView
 private lateinit var vrijemeGumb : Button
+private lateinit var spiner : Spinner
+private lateinit var dodatniOpis : EditText
+private lateinit var potvrdi : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +47,61 @@ private lateinit var vrijemeGumb : Button
 
         vrijemeTekst = findViewById(R.id.vrijemeTekst)
         vrijemeGumb = findViewById(R.id.vrijemeGumb)
+
+        spiner = findViewById(R.id.spiner)
+
+        dodatniOpis = findViewById(R.id.dodatniOpis)
+        potvrdi = findViewById(R.id.potvrdi)
+
+        potvrdi.setOnClickListener{
+            val opis = dodatniOpis.text.toString()
+
+            if(opis.isNotEmpty()){
+
+            }
+        }
+
+
+
+        val usluge = listOf(
+                    "Odaberite uslugu",
+                    "Prvi pregled",
+                    "Kontrola" ,
+                    " Cijepljenje",
+                    " Laboratorijska dijagnostika",
+                    " Dermatologija",
+                    " Kirurgija",
+                    " Neurologija",
+                    " Oftamologija",
+                    " Stomatologija"
+        )
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, usluge)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spiner.adapter=adapter
+
+        spiner.setSelection(0)
+        spiner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+                val selectedService = parentView?.getItemAtPosition(position) as String
+
+                if(selectedService == "Odaberite uslugu"){
+                    Toast.makeText(this@RezervacijaVeterinaraActivity, "Molimo odaberite uslugu", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(this@RezervacijaVeterinaraActivity, "Odabrali ste uslugu: $selectedService", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                spiner.setSelection(0)
+            }
+        }
 
         datumGumb.setOnClickListener{
 
