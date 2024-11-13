@@ -1,5 +1,6 @@
 package com.example.pawpal.f11_profil
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -22,13 +23,12 @@ class PrikazProfilaPsaActivity : BaseActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-
-        val ime = intent.getStringExtra("ime") ?: "N/A"
-        val dob = intent.getStringExtra("dob") ?: "N/A"
-        val pasmina = intent.getStringExtra("pasmina") ?: "N/A"
-        val spol = intent.getStringExtra("spol") ?: "N/A"
-        val kilaza = intent.getStringExtra("kilaza") ?: "N/A"
-
+        val sharedPreferences = getSharedPreferences("DogProfilePrefs", Context.MODE_PRIVATE)
+        val ime = sharedPreferences.getString("ime", "N/A")
+        val dob = sharedPreferences.getString("dob", "N/A")
+        val pasmina = sharedPreferences.getString("pasmina", "N/A")
+        val spol = sharedPreferences.getString("spol", "N/A")
+        val kilaza = sharedPreferences.getString("kilaza", "N/A")
 
         findViewById<TextView>(R.id.textIme).text = "IME: $ime"
         findViewById<TextView>(R.id.textDob).text = "DOB: $dob"
