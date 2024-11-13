@@ -2,8 +2,7 @@ package com.example.pawpal.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
+
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
@@ -21,7 +20,7 @@ class MainActivity : BaseActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        setupHamburgerMenu(drawerLayout, toolbar, navView)
+       setupHamburgerMenu(drawerLayout, toolbar, navView)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".f12_shop.ShopActivity" />
+        <activity android:name=".f11_profil.ProfilKorisnikaActivity"/>
+        <activity android:name=".f11_profil.KreiranjeProfilaPsaActivity"/>
+        <activity android:name=".f11_profil.PrikazProfilaPsaActivity"/>
     </application>
 
 </manifest>
