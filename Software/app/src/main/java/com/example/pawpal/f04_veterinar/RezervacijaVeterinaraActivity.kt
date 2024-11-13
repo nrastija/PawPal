@@ -17,6 +17,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.setPadding
 import com.example.pawpal.R
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
@@ -40,6 +41,12 @@ private lateinit var ponisti : Button
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)){ view, insets->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            view.setPadding(0, 0, 0, imeInsets.bottom)
             insets
         }
 
@@ -153,8 +160,12 @@ private lateinit var ponisti : Button
                         val formatiranoVrijeme =
                             String.format("%02d:%02d", selectedHour, selectedMinute)
                         vrijemeTekst.text = "Odabrano vrijeme: $formatiranoVrijeme"
+                        vrijemeTekst.setTextColor(resources.getColor(R.color.textColorPrimary))
+                        vrijemeTekst.setTypeface(null, android.graphics.Typeface.ITALIC)
                     } else {
                         vrijemeTekst.text = "Molimo odaberite vrijeme između 08:00 i 19:00."
+                        vrijemeTekst.setTextColor(resources.getColor(R.color.warningColor))
+                        vrijemeTekst.setTypeface(null, android.graphics.Typeface.BOLD)
                     }
                 },
                 trenutniSat, trenutnaMinuta, true

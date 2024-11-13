@@ -176,4 +176,15 @@
         </LinearLayout>
     </ScrollView>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pozadina"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="@+id/pozadina"
+        app:layout_constraintTop_toTopOf="@+id/pozadina"
+        app:srcCompat="@drawable/veterinar_profil" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
