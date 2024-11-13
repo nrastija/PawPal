@@ -1,7 +1,9 @@
 package com.example.pawpal.f04_veterinar
 
+import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -13,7 +15,8 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class RezervacijaVeterinaraActivity : AppCompatActivity() {
-
+private lateinit var datumTekst : TextView
+private lateinit var datumGumb : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,19 +27,26 @@ class RezervacijaVeterinaraActivity : AppCompatActivity() {
             insets
         }
 
-        val calendar = findViewById<CalendarView>(R.id.calendar)
-        val dateText = findViewById<TextView>(R.id.dateText)
+        datumTekst = findViewById(R.id.datumTekst)
+        datumGumb = findViewById(R.id.datumGumb)
 
-        calendar.minDate = System.currentTimeMillis()
-        calendar.setOnDateChangeListener{ _, year, month, dayOfMonth->
-            val selectedDate = Calendar.getInstance()
-            selectedDate.set(year, month, dayOfMonth)
+        datumGumb.setOnClickListener{
 
+            val kalendar = Calendar.getInstance()
+            val godina = kalendar.get(Calendar.YEAR)
+            val mjesec = kalendar.get(Calendar.MONTH)
+            val dan = kalendar.get(Calendar.DAY_OF_MONTH)
 
-            val formatirajDatum = SimpleDateFormat("EEE, MMM, d, yyyy", Locale.getDefault())
-            val formatiranDatum = formatirajDatum.format(selectedDate.time)
-
-            dateText.text = "Odabran datum: $formatiranDatum"
+            val biracDatuma = DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val odabranDatum = "$selectedDay/${selectedMonth+1}/$selectedYear"
+                    datumTekst.text = "Odabrani datum: $odabranDatum"
+                },
+                godina, mjesec, dan
+            )
+            biracDatuma.show()
         }
+
     }
 }
