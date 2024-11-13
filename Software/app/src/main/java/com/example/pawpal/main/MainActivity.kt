@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
@@ -14,9 +13,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.ActionBarDrawerToggle
 
 class MainActivity : BaseActivity() {
-class MainActivity : AppCompatActivity() {
 
-    lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private var isRegistrationLayoutActive = false
@@ -24,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        otvoriPrijavu() // Start with login screen
+        otvoriPrijavu()
     }
 
     private fun otvoriPrijavu() {
@@ -37,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnProziranPri: Button = findViewById(R.id.btnProziranPri)
         btnProziranPri.setOnClickListener {
-            toggleLayout() // Switch to registration layout
+            toggleLayout()
         }
     }
 
@@ -48,19 +45,18 @@ class MainActivity : AppCompatActivity() {
         if (korisnici.any { it.first == korimeUnos && it.second == lozinkaUnos }) {
             Toast.makeText(this, "Uspješna prijava", Toast.LENGTH_SHORT).show()
             setContentView(R.layout.activity_main)
+            val toolbar: Toolbar = findViewById(R.id.toolbar)
+            setSupportActionBar(toolbar)
+
+            val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+            val navView: NavigationView = findViewById(R.id.nav_view)
+
+            setupHamburgerMenu(drawerLayout, toolbar, navView)
             initializeDrawer()
+
         } else {
             Toast.makeText(this, "Netočni podaci", Toast.LENGTH_SHORT).show()
         }
-    }
-
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-
-       setupHamburgerMenu(drawerLayout, toolbar, navView)
     }
 
     private fun toggleLayout() {
@@ -84,6 +80,21 @@ class MainActivity : AppCompatActivity() {
         btnRegistriraj.setOnClickListener {
             korisnikRegistracija()
         }
+    }
+
+    private fun initializeDrawer() {
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        drawerLayout = findViewById(R.id.drawerLayout)
+        navView = findViewById(R.id.nav_view)
+
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     private fun korisnikRegistracija() {
