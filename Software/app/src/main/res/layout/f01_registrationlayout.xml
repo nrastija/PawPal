@@ -209,7 +209,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.072"
-        app:srcCompat="@drawable/pawpal_tekst" />
+        app:srcCompat="@drawable/tekstpawpal" />
 
     <ImageView
         android:id="@+id/imgPesek"
