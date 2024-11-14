@@ -20,11 +20,19 @@ class odabirVeterinaraActivity : AppCompatActivity() {
             insets
         }
 
-        val gumobovi = listOf(R.id.gumb1, R.id.gumb2, R.id.gumb3, R.id.gumb4, R.id.gumb5)
+        val gumobovi = listOf(
+            R.id.gumb1 to "Dr. Niko Rastija",
+            R.id.gumb2 to "Dr. Nensi Vugrinec",
+            R.id.gumb3 to "Dr. Mirta Vuković",
+            R.id.gumb4 to "Dr. Petra Skoko",
+            R.id.gumb5 to "Dr. Nara Narić"
+        )
 
-        gumobovi.forEach{ id->
+
+        gumobovi.forEach{ (id, naziv_vet)->
             findViewById<Button>(id).setOnClickListener{
                 val intent = Intent(this, RezervacijaVeterinaraActivity::class.java)
+                intent.putExtra("ime_veterinara",naziv_vet )
             startActivity(intent)
         }
 

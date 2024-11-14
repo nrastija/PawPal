@@ -9,7 +9,7 @@
     tools:context=".f04_veterinar.RezervacijaVeterinaraActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/pozadina"
+        android:id="@+id/toolbarVeterinar"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@color/secondaryColor"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="200dp"
-        app:layout_constraintTop_toBottomOf="@id/pozadina"
+        app:layout_constraintTop_toBottomOf="@id/toolbarVeterinar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -138,7 +138,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="50dp">
 
         <Button
             android:id="@+id/ponisti"
@@ -168,15 +169,35 @@
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarVeterinar"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarVeterinar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbarVeterinar">
+
+        <TextView
+            android:id="@+id/textImeVeterinara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="55dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pozadina"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarVeterinar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="@+id/pozadina"
-        app:layout_constraintTop_toTopOf="@+id/pozadina"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/toolbarVeterinar"
+        app:layout_constraintTop_toTopOf="@+id/toolbarVeterinar"
+        app:layout_constraintVertical_bias="0.45"
         app:srcCompat="@drawable/veterinar_profil" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

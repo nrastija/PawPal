@@ -24,6 +24,7 @@ class PotvrdaRezervacije : AppCompatActivity() {
             insets
         }
 
+
         val datumTextView = findViewById<TextView>(R.id.datumTextView)
         val vrijemeTextView = findViewById<TextView>(R.id.vrijemeTextView)
         val uslugaTextView = findViewById<TextView>(R.id.uslugaTextView)
@@ -35,6 +36,10 @@ class PotvrdaRezervacije : AppCompatActivity() {
         val vrijeme = intent.getStringExtra("odabrano_vrijeme")
         val usluga = intent.getStringExtra("odabrana_usluga")
         val opis = intent.getStringExtra("uneseni_opis")
+        val imeVeterinara = intent.getStringExtra("ime_veterinara")
+
+        val textView = findViewById<TextView>(R.id.textOdabirImeVeterinara)
+        textView.text = imeVeterinara
 
         datumTextView.text = datum
         vrijemeTextView.text = vrijeme

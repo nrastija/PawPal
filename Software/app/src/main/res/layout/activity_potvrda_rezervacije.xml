@@ -19,17 +19,23 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/pozadina"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="@+id/pozadina"
-        app:layout_constraintTop_toTopOf="@+id/pozadina"
-        app:srcCompat="@drawable/veterinar_profil" />
+        app:layout_constraintTop_toTopOf="@+id/pozadina">
 
+        <TextView
+            android:id="@+id/textOdabirImeVeterinara"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="55dp"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,6 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,7 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pozadina">
-
 
         <TextView
         android:layout_width="wrap_content"
@@ -63,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
+            android:textStyle="italic"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center" />
 
@@ -80,7 +88,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
+            android:textStyle="italic"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center" />
 
@@ -99,7 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
+            android:textStyle="italic"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center" />
 
@@ -117,9 +127,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:layout_marginTop="20dp"
+            android:textStyle="italic"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,20 +159,25 @@
                 android:textColor="@color/textColorPrimary"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="70dp"/>
+                android:layout_marginLeft="50dp"/>
 
 
         </LinearLayout>
 
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-
     </LinearLayout>
+
 </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pozadina"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="@+id/pozadina"
+        app:layout_constraintTop_toTopOf="@+id/pozadina"
+        app:layout_constraintVertical_bias="0.45"
+        app:srcCompat="@drawable/veterinar_profil" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

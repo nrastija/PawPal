@@ -9,11 +9,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -51,6 +51,13 @@ private lateinit var ponisti : Button
             insets
         }
 
+        val imeVeterinara = intent.getStringExtra("ime_veterinara")
+
+        val textView = findViewById<TextView>(R.id.textImeVeterinara)
+        textView.text = imeVeterinara
+
+
+
         datumTekst = findViewById(R.id.datumTekst)
         datumGumb = findViewById(R.id.datumGumb)
 
@@ -77,6 +84,7 @@ private lateinit var ponisti : Button
             val datum = datumTekst.text.toString()
             val vrijeme = vrijemeTekst.text.toString()
             val usluga = spiner.selectedItem.toString()
+            val imeVeterinara = intent.getStringExtra("ime_veterinara")
 
             if(opis.isNotEmpty()&& datum.isNotEmpty()&& vrijeme.isNotEmpty()&& usluga!="Odaberite uslugu"){
                 val intent = Intent(this, PotvrdaRezervacije::class.java)
@@ -84,6 +92,7 @@ private lateinit var ponisti : Button
                 intent.putExtra("odabrano_vrijeme", vrijeme)
                 intent.putExtra("odabrana_usluga", usluga)
                 intent.putExtra("uneseni_opis", opis)
+                intent.putExtra("ime_veterinara", imeVeterinara)
 
                 startActivity(intent)
             }else{
@@ -122,8 +131,6 @@ private lateinit var ponisti : Button
 
                 if(selectedService == "Odaberite uslugu"){
                     Toast.makeText(this@RezervacijaVeterinaraActivity, "Molimo odaberite uslugu", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this@RezervacijaVeterinaraActivity, "Odabrali ste uslugu: $selectedService", Toast.LENGTH_SHORT).show()
                 }
             }
 
