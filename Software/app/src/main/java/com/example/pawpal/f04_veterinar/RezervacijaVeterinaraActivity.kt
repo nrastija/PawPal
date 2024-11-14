@@ -2,6 +2,7 @@ package com.example.pawpal.f04_veterinar
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
@@ -73,9 +74,20 @@ private lateinit var ponisti : Button
 
         potvrdi.setOnClickListener{
             val opis = dodatniOpis.text.toString()
+            val datum = datumTekst.text.toString()
+            val vrijeme = vrijemeTekst.text.toString()
+            val usluga = spiner.selectedItem.toString()
 
-            if(opis.isNotEmpty()){
+            if(opis.isNotEmpty()&& datum.isNotEmpty()&& vrijeme.isNotEmpty()&& usluga!="Odaberite uslugu"){
+                val intent = Intent(this, PotvrdaRezervacije::class.java)
+                intent.putExtra("ODABRANI_DATUM", datum)
+                intent.putExtra("ODABRANO_VRIJEME", vrijeme)
+                intent.putExtra("ODABRANA USLIGA", usluga)
+                intent.putExtra("OPIS", opis)
 
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "Molimo ispunite sve podatke.", Toast.LENGTH_SHORT).show()
             }
         }
 

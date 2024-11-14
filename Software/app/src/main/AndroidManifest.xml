@@ -13,6 +13,9 @@
         android:theme="@style/Theme.PawPal"
         tools:targetApi="31">
         <activity
+            android:name=".f04_veterinar.PotvrdaRezervacije"
+            android:exported="false" />
+        <activity
             android:name=".f04_veterinar.RezervacijaVeterinaraActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
