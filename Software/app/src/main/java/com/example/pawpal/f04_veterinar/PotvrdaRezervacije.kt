@@ -1,5 +1,6 @@
 package com.example.pawpal.f04_veterinar
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
+import com.example.pawpal.main.MainActivity
 import org.w3c.dom.Text
 
 class PotvrdaRezervacije : AppCompatActivity() {
@@ -38,6 +40,12 @@ class PotvrdaRezervacije : AppCompatActivity() {
         uslugaTextView.text = usluga
         opisTextView.text = opis
 
+        potvrdiGumb.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        }
 
     }
 }
