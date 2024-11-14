@@ -80,10 +80,10 @@ private lateinit var ponisti : Button
 
             if(opis.isNotEmpty()&& datum.isNotEmpty()&& vrijeme.isNotEmpty()&& usluga!="Odaberite uslugu"){
                 val intent = Intent(this, PotvrdaRezervacije::class.java)
-                intent.putExtra("ODABRANI_DATUM", datum)
-                intent.putExtra("ODABRANO_VRIJEME", vrijeme)
-                intent.putExtra("ODABRANA USLIGA", usluga)
-                intent.putExtra("OPIS", opis)
+                intent.putExtra("odabrani_datum", datum)
+                intent.putExtra("odabrano_vrijeme", vrijeme)
+                intent.putExtra("odabrana_usluga", usluga)
+                intent.putExtra("uneseni_opis", opis)
 
                 startActivity(intent)
             }else{
