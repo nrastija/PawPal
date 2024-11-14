@@ -14,7 +14,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 
 class MainActivity : BaseActivity() {
 
@@ -49,7 +48,6 @@ class MainActivity : BaseActivity() {
         val korimeUnos = findViewById<EditText>(R.id.editKorime2).text.toString()
         val lozinkaUnos = findViewById<EditText>(R.id.editLozinka2).text.toString()
 
-        // Make sure we're checking the right SharedPreferences name
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val savedKorime = sharedPreferences.getString("korisnikKorime", "")
         val savedLozinka = sharedPreferences.getString("korisnikLozinka", "")
@@ -119,7 +117,6 @@ class MainActivity : BaseActivity() {
             val korisnik = Korisnik(korime, lozinka, ime, prezime, email)
             korisnici.add(korisnik)
 
-            // Save credentials in SharedPreferences under the same name
             val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("korisnikIme", ime)
@@ -129,17 +126,15 @@ class MainActivity : BaseActivity() {
             editor.putString("korisnikLozinka", lozinka)
             editor.apply()
 
-            // Show a success message
+
             Toast.makeText(this, "Uspješna registracija!", Toast.LENGTH_SHORT).show()
 
-            // Reset to the login screen
+
             otvoriPrijavu()
         } else {
             Toast.makeText(this, "Molim popunite sve podatke.", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {

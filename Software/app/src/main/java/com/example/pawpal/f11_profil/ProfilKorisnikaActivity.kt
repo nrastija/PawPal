@@ -67,14 +67,12 @@ class ProfilKorisnikaActivity : BaseActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-        // Dohvat podataka iz SharedPreferences
         val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val ime = sharedPreferences.getString("korisnikIme", "Nema podataka") ?: "Nema podataka"
         val prezime = sharedPreferences.getString("korisnikPrezime", "Nema podataka") ?: "Nema podataka"
         val email = sharedPreferences.getString("korisnikEmail", "Nema podataka") ?: "Nema podataka"
         val korime = sharedPreferences.getString("korisnikKorime", "Nema podataka") ?: "Nema podataka"
 
-        // Postavljanje podataka u odgovarajuće TextView
         val korisnickoImeTextView: TextView = findViewById(R.id.KorIme)
         val imeTextView: TextView = findViewById(R.id.Ime)
         val prezimeTextView: TextView = findViewById(R.id.Prezime)
@@ -88,6 +86,11 @@ class ProfilKorisnikaActivity : BaseActivity() {
         val btnMojLjubimac: Button = findViewById(R.id.btnMojLjubimac)
         btnMojLjubimac.setOnClickListener {
             val intent = Intent(this, KreiranjeProfilaPsaActivity::class.java)
+            startActivity(intent)
+        }
+        val btnUrediPodatkeK: Button = findViewById(R.id.btnUrediPodatkeK)
+        btnUrediPodatkeK.setOnClickListener {
+            val intent = Intent(this, UredivanjeProfilaKorisnika::class.java)
             startActivity(intent)
         }
     }
