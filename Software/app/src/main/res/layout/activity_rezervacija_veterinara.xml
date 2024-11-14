@@ -132,18 +132,9 @@
                 android:inputType="textMultiLine"
                 android:background="@color/primaryColor"
                 android:padding="16dp"
+                android:layout_marginBottom="30dp"
                 android:layout_marginTop="8dp" />
 
-            <Button
-                android:id="@+id/potvrdiOpis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/primaryColor"
-                android:text="Potvrdi opis"
-                android:textSize="17sp"
-                android:textColor="@color/textColorPrimary" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

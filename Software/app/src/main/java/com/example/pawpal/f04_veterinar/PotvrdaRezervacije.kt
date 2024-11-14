@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -41,9 +42,15 @@ class PotvrdaRezervacije : AppCompatActivity() {
         opisTextView.text = opis
 
         potvrdiGumb.setOnClickListener{
+            Toast.makeText(this, "Rezervacija potvrđena!", Toast.LENGTH_SHORT).show()
+
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+            finish()
+        }
+
+        odustaniGumb.setOnClickListener{
             finish()
         }
 
