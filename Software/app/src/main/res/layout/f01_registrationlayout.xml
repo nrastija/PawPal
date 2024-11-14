@@ -33,22 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113"  />
-
-
-    <TextView
-        android:id="@+id/txtPawPal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PAWPAL!"
-        android:textColor="@color/accentColor"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.167"/>
+        app:layout_constraintVertical_bias="0.103" />
 
     <TextView
         android:id="@+id/txtPrijava"
@@ -199,17 +184,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.583" />
 
-    <ImageView
-        android:id="@+id/imgPesek"
-        android:layout_width="205dp"
-        android:layout_height="189dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.273"
-        app:srcCompat="@drawable/pesek2" />
 
     <Button
         android:id="@+id/btnProziranReg"
@@ -226,4 +200,26 @@
         app:layout_constraintVertical_bias="0.483"
         tools:ignore="TextContrastCheck" />
 
+    <ImageView
+        android:id="@+id/PawPaltekst"
+        android:layout_width="153dp"
+        android:layout_height="166dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072"
+        app:srcCompat="@drawable/pawpal_tekst" />
+
+    <ImageView
+        android:id="@+id/imgPesek"
+        android:layout_width="356dp"
+        android:layout_height="461dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166"
+        app:srcCompat="@drawable/pawpal_peseki" />
 </androidx.constraintlayout.widget.ConstraintLayout>
