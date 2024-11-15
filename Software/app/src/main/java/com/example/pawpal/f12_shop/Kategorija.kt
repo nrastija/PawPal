@@ -1,6 +1,7 @@
 package com.example.pawpal.f12_shop
 
 enum class Kategorija(val id: Int, val naziv: String) {
+    RESET(0, "Reset"),
     ZDRAVLJE(1, "Zdravlje"),
     HRANA(2, "Hrana"),
     HIGIJENA(3, "Higijena"),

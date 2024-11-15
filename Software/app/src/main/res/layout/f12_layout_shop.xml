@@ -164,6 +164,17 @@
                 app:chipStrokeColor="@color/filterStrokeColor"
                 app:chipStrokeWidth="1dp" />
 
+            <com.google.android.material.chip.Chip
+            android:id="@+id/filterReset"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset"
+            android:textColor="@color/accentColor"
+            app:checkedIconVisible="false"
+            app:chipBackgroundColor="@color/secondaryColor"
+            app:chipStrokeColor="@color/filterStrokeColor"
+            app:chipStrokeWidth="1dp" />
         </com.google.android.material.chip.ChipGroup>
 
 

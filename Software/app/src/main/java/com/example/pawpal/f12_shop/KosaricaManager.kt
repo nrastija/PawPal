@@ -34,7 +34,11 @@ object KosaricaManager {
         return BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
     }
 
-    fun isprazniKosaricuLista() {
+    fun filtrirajProizvodePoKategoriji(kategorija: Kategorija, proizvodi: List<Proizvod>): List<Proizvod> {
+        return proizvodi.filter { it.kategorijaID == kategorija.id }
+    }
+
+        fun isprazniKosaricuLista() {
         kosarica.clear()
     }
 

@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
+import com.example.pawpal.f12_shop.KosaricaManager.filtrirajProizvodePoKategoriji
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
@@ -35,7 +37,6 @@ class ShopActivity : BaseActivity() {
         recyclerView = findViewById(R.id.recyclerShop) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
         recyclerView.layoutManager = GridLayoutManager(this, 2)
 
-        proizvodList.addAll(dohvatiProizvodeShop())
 
         adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
             val intent = Intent(this, ProizvodDetaljActivity::class.java)
@@ -48,6 +49,21 @@ class ShopActivity : BaseActivity() {
         }
 
         recyclerView.adapter = adapter
+
+        proizvodList.addAll(dohvatiProizvodeShop())
+        adapter.notifyDataSetChanged()
+
+        val btnZdravlje: Button = findViewById(R.id.filterZdravlje)
+        val btnHrana: Button = findViewById(R.id.filterHrana)
+        val btnHigijena: Button = findViewById(R.id.filterHigijena)
+        val btnOstalo: Button = findViewById(R.id.filterOstalo)
+        val btnReset: Button = findViewById(R.id.filterReset)
+
+        btnZdravlje.setOnClickListener { filtrirajProizvode(Kategorija.ZDRAVLJE) }
+        btnHrana.setOnClickListener { filtrirajProizvode(Kategorija.HRANA) }
+        btnHigijena.setOnClickListener { filtrirajProizvode(Kategorija.HIGIJENA) }
+        btnOstalo.setOnClickListener { filtrirajProizvode(Kategorija.OSTALO) }
+        btnReset.setOnClickListener { filtrirajProizvode(Kategorija.RESET) }
     }
 
     private fun dohvatiProizvodeShop(): List<Proizvod> {
@@ -74,4 +90,29 @@ class ShopActivity : BaseActivity() {
         }
     }
 
+    private fun filtrirajProizvode(kategorija: Kategorija) {
+        val filtriraniProizvodi = if (kategorija == Kategorija.RESET) {
+            dohvatiProizvodeShop()
+        } else {
+            filtrirajProizvodePoKategoriji(kategorija, dohvatiProizvodeShop())
+        }
+
+        proizvodList.clear()
+        proizvodList.addAll(filtriraniProizvodi)
+
+        recyclerView.animate()
+            .alpha(0f)
+            .setDuration(0)
+            .withEndAction {
+
+                adapter.notifyDataSetChanged()
+
+                recyclerView.animate()
+                    .alpha(1f)
+                    .setDuration(400)
+                    .start()
+            }
+            .start()
+
+    }
 }

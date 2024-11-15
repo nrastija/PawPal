@@ -9,4 +9,5 @@
     <string name="filterOstalo">Ostalo</string>
     <string name="placanjeGotovina">Gotovina</string>
     <string name="placanjeKartica">Kartica</string>
+    <string name="reset">RESET</string>
 </resources>
