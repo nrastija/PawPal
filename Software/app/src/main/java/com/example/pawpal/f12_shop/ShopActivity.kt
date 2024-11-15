@@ -43,6 +43,7 @@ class ShopActivity : BaseActivity() {
             intent.putExtra("cijenaProizvoda", proizvod.cijena)
             intent.putExtra("opisProizvoda", proizvod.opis)
             intent.putExtra("kategorijaProizvoda", proizvod.kategorijaID)
+            intent.putExtra("imageUrl", proizvod.imageUrl)
             startActivity(intent)
         }
 
@@ -51,9 +52,9 @@ class ShopActivity : BaseActivity() {
 
     private fun dohvatiProizvodeShop(): List<Proizvod> {
         return listOf(
-            Proizvod(1, "Darling", 6.31, "Test", 1, 0, null),
-            Proizvod(2, "Sok", 51.31, "Test2", 2, 0, null),
-            Proizvod(3, "Hrana", 0.31, "Test3", 1, 0, null)
+            Proizvod(1, "Paramol 250ML", 14.99, "Lijek za pse protiv virusa", 1, 0, "proizvod_1"),
+            Proizvod(2, "Reid Fills 400G", 11.98, "Hrana za pse u granulama", 2, 0, "proizvod_2"),
+            Proizvod(3, "Pupino 3000x", 79.99, "Aparat za brijanje pasa", 1, 0, "proizvod_3")
         )
     }
 

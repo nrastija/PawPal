@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/test_slika"
                 android:padding = "8dp"/>
 
             <LinearLayout

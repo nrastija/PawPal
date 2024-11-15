@@ -37,12 +37,18 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         val cijena = intent.getDoubleExtra("cijenaProizvoda", 0.0)
         val opis = intent.getStringExtra("opisProizvoda")
         val kategorija = intent.getIntExtra("kategorijaProizvoda", 0)
+        val nazivSlike = intent.getStringExtra("imageUrl")
 
         nazivProizvoda.text = naziv
         cijenaProizvoda.text = "Cijena: $cijena €"
         opisProizvoda.text = opis
         kategorijaProizvoda.text = "Kategorija: $kategorija"
-        slikaProizvoda.setImageResource(R.drawable.test_slika)
+        val slikaID = resources.getIdentifier(nazivSlike, "drawable", packageName)
+        if (slikaID != 0) {
+            slikaProizvoda.setImageResource(slikaID)
+        } else {
+            slikaProizvoda.setImageResource(android.R.drawable.ic_menu_report_image)
+        }
 
         //adapter za spinner
         val kolicinaList = listOf("1", "2", "3", "4", "5")
@@ -52,7 +58,6 @@ class ProizvodDetaljActivity : AppCompatActivity() {
 
 
         gumbDodajUKosaricu.setOnClickListener {
-            Toast.makeText(this, "Vrijednost adaptera: ${spinnerKolicina.selectedItem.toString().toInt()}" , Toast.LENGTH_SHORT).show()
             val proizvod = Proizvod(
                 proizvodID = intent.getIntExtra("proizvodId", 0),
                 naziv = intent.getStringExtra("nazivProizvoda") ?: "",
@@ -60,10 +65,10 @@ class ProizvodDetaljActivity : AppCompatActivity() {
                 opis = intent.getStringExtra("opisProizvoda") ?: "",
                 kategorijaID = intent.getIntExtra("kategorijaProizvoda", 0),
                 kolicina = spinnerKolicina.selectedItem.toString().toInt(),
-                imageUrl = intent.getStringExtra("imageUrl")
+                imageUrl = nazivSlike
             )
 
-            Toast.makeText(this, "Dodano u košaricu!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Dodan ${naziv} u košaricu!", Toast.LENGTH_SHORT).show()
             KosaricaManager.dodajProizvodLista(proizvod)
         }
     }

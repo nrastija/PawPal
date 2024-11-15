@@ -37,4 +37,5 @@ object KosaricaManager {
     fun isprazniKosaricuLista() {
         kosarica.clear()
     }
+
 }

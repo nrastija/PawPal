@@ -32,7 +32,10 @@ class ProizvodShopAdapter (
             holder.nazivProizvoda.text = proizvod.naziv
             holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
             holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
-            holder.slikaProizvoda.setImageResource(R.drawable.test_slika)
+
+            val nazivSlike = proizvod.imageUrl
+            val slikaID = holder.itemView.context.resources.getIdentifier(nazivSlike, "drawable", holder.itemView.context.packageName)
+            holder.slikaProizvoda.setImageResource(slikaID)
 
             holder.itemView.setOnClickListener {
                 onProizvodClick(proizvod)
