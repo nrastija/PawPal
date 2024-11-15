@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.pawpal.R
+import com.example.pawpal.f12_shop.entiteti.Proizvod
 
 class ProizvodDetaljActivity : AppCompatActivity() {
 
@@ -43,7 +44,6 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         kategorijaProizvoda.text = "Kategorija: $kategorija"
         slikaProizvoda.setImageResource(R.drawable.test_slika)
 
-
         //adapter za spinner
         val kolicinaList = listOf("1", "2", "3", "4", "5")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, kolicinaList)
@@ -51,7 +51,18 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         spinnerKolicina.adapter = adapter
 
         gumbDodajUKosaricu.setOnClickListener {
-            Toast.makeText(this, "Pritisnut gumb dodaj u košaricu", Toast.LENGTH_SHORT).show()
+            val proizvod = Proizvod(
+                proizvodID = intent.getIntExtra("proizvodId", 0),
+                naziv = intent.getStringExtra("nazivProizvoda") ?: "",
+                cijena = intent.getDoubleExtra("cijenaProizvoda", 0.0),
+                opis = intent.getStringExtra("opisProizvoda") ?: "",
+                kategorijaID = intent.getIntExtra("kategorijaProizvoda", 0),
+                kolicina = spinnerKolicina.selectedItem.toString().toInt(),
+                imageUrl = "@drawable/test_slika.jpg"
+            )
+
+            Toast.makeText(this, "Dodano u košaricu!", Toast.LENGTH_SHORT).show()
+            KosaricaManager.dodajProizvodLista(proizvod)
         }
     }
 

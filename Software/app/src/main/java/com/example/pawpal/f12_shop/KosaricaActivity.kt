@@ -65,26 +65,22 @@ class KosaricaActivity : BaseActivity() {
     }
 
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
-        // Define products directly
-        return listOf(
-            Proizvod(1, "Darling", 6.31, "Test", 1, null),
-            Proizvod(2, "Sok", 51.31, "Test2", 2, null),
-            Proizvod(3, "Hrana", 0.31, "Test3", 1, null)
-        )
+        return KosaricaManager.dohvatiProizvodeLista()
     }
 
 
     private fun obrisiProizvod(proizvod: Proizvod) {
-        proizvodList.remove(proizvod)
-        adapter.notifyDataSetChanged()
-        Toast.makeText(this, "${proizvod.naziv} removed", Toast.LENGTH_SHORT).show()
+        KosaricaManager.obrisiProizvodLista(proizvod)
+        Toast.makeText(this, "${proizvod.naziv} obrisan iz kosarice", Toast.LENGTH_SHORT).show()
     }
 
     private fun povecajKolicinu(proizvod: Proizvod) {
+        KosaricaManager.povecajKolicinuList(proizvod);
         Toast.makeText(this, "Povecao kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
     }
 
     private fun smanjiKolicinu(proizvod: Proizvod) {
+        KosaricaManager.smanjiKolicinuList(proizvod);
         Toast.makeText(this, "Smanjio kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
     }
 

@@ -50,11 +50,10 @@ class ShopActivity : BaseActivity() {
     }
 
     private fun dohvatiProizvodeShop(): List<Proizvod> {
-        // Define products directly
         return listOf(
-            Proizvod(1, "Darling", 6.31, "Test", 1, null),
-            Proizvod(2, "Sok", 51.31, "Test2", 2, null),
-            Proizvod(3, "Hrana", 0.31, "Test3", 1, null)
+            Proizvod(1, "Darling", 6.31, "Test", 1, 0, null),
+            Proizvod(2, "Sok", 51.31, "Test2", 2, 0, null),
+            Proizvod(3, "Hrana", 0.31, "Test3", 1, 0, null)
         )
     }
 

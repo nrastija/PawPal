@@ -20,5 +20,6 @@ data class Proizvod(
     val cijena: Double,
     val opis: String,
     val kategorijaID: Int,
+    var kolicina: Int,
     val imageUrl: String? = null
 )
