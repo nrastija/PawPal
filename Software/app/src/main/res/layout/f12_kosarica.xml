@@ -22,13 +22,13 @@
         android:padding="8dp"
         android:background="@color/basketColor"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/total_price_container"
+        app:layout_constraintBottom_toTopOf="@id/containerUkupnaCijena"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Ukupna cijena i gumb za završavanje narudžbe -->
     <LinearLayout
-        android:id="@+id/total_price_container"
+        android:id="@+id/containerUkupnaCijena"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/basketColor"
@@ -41,7 +41,7 @@
         <!-- Ukupna cijena -->
 
         <TextView
-            android:id="@+id/total_price_label"
+            android:id="@+id/lblUkupnaCijena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vaša narudžba"
@@ -49,14 +49,14 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/total_price"
+            android:id="@+id/ukupnaCijena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:text="Cijena"
+            android:textColor="@color/accentColor"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/accentColor" />
+            android:textStyle="bold" />
 
         <!-- Gumb za završavanje narudžbe -->
         <Button

@@ -60,7 +60,7 @@ class ProizvodDetaljActivity : AppCompatActivity() {
                 opis = intent.getStringExtra("opisProizvoda") ?: "",
                 kategorijaID = intent.getIntExtra("kategorijaProizvoda", 0),
                 kolicina = spinnerKolicina.selectedItem.toString().toInt(),
-                imageUrl = "@drawable/test_slika.jpg"
+                imageUrl = intent.getStringExtra("imageUrl")
             )
 
             Toast.makeText(this, "Dodano u košaricu!", Toast.LENGTH_SHORT).show()

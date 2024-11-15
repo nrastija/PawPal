@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class KosaricaActivity : BaseActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProizvodKosaricaAdapter
+    private lateinit var ukupnaCijenaLabel: TextView
     private val proizvodList = mutableListOf<Proizvod>() // Mutable list za dinamicka azuriranja
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,7 @@ class KosaricaActivity : BaseActivity() {
             startActivity(intent);
         }
 
+        ukupnaCijenaLabel = findViewById(R.id.ukupnaCijena)
         recyclerView = findViewById(R.id.recycler_view_kosarica) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -45,7 +48,7 @@ class KosaricaActivity : BaseActivity() {
         )
         recyclerView.adapter = adapter
 
-
+        azurirajUkupnuCijenu()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje return gumba
@@ -78,6 +81,7 @@ class KosaricaActivity : BaseActivity() {
             adapter.notifyItemRemoved(pozicija)
         }
 
+        azurirajUkupnuCijenu()
         Toast.makeText(this, "${proizvod.naziv} obrisan iz kosarice", Toast.LENGTH_SHORT).show()
     }
 
@@ -88,6 +92,7 @@ class KosaricaActivity : BaseActivity() {
         if (pozicija >= 0) {
             adapter.notifyItemChanged(pozicija)
         }
+        azurirajUkupnuCijenu()
     }
 
     private fun smanjiKolicinu(proizvod: Proizvod) {
@@ -102,7 +107,13 @@ class KosaricaActivity : BaseActivity() {
                 adapter.notifyItemRemoved(pozicija)
             }
         }
+        azurirajUkupnuCijenu()
     }
 
+
+    private fun azurirajUkupnuCijenu() {
+        val cijena = KosaricaManager.izracunajCijenuLista()
+        ukupnaCijenaLabel.text = "Ukupna cijena: $cijena €"
+    }
 
 }
