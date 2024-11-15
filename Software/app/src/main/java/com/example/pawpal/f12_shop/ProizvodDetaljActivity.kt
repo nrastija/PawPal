@@ -50,7 +50,9 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerKolicina.adapter = adapter
 
+
         gumbDodajUKosaricu.setOnClickListener {
+            Toast.makeText(this, "Vrijednost adaptera: ${spinnerKolicina.selectedItem.toString().toInt()}" , Toast.LENGTH_SHORT).show()
             val proizvod = Proizvod(
                 proizvodID = intent.getIntExtra("proizvodId", 0),
                 naziv = intent.getStringExtra("nazivProizvoda") ?: "",

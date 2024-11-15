@@ -71,17 +71,37 @@ class KosaricaActivity : BaseActivity() {
 
     private fun obrisiProizvod(proizvod: Proizvod) {
         KosaricaManager.obrisiProizvodLista(proizvod)
+        val pozicija = proizvodList.indexOf(proizvod)
+
+        if (pozicija >= 0) {
+            proizvodList.removeAt(pozicija)
+            adapter.notifyItemRemoved(pozicija)
+        }
+
         Toast.makeText(this, "${proizvod.naziv} obrisan iz kosarice", Toast.LENGTH_SHORT).show()
     }
 
     private fun povecajKolicinu(proizvod: Proizvod) {
-        KosaricaManager.povecajKolicinuList(proizvod);
-        Toast.makeText(this, "Povecao kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
+        KosaricaManager.povecajKolicinuList(proizvod)
+        val pozicija = proizvodList.indexOf(proizvod)
+
+        if (pozicija >= 0) {
+            adapter.notifyItemChanged(pozicija)
+        }
     }
 
     private fun smanjiKolicinu(proizvod: Proizvod) {
         KosaricaManager.smanjiKolicinuList(proizvod);
-        Toast.makeText(this, "Smanjio kolicinu za ${proizvod.naziv}", Toast.LENGTH_SHORT).show()
+        val pozicija = proizvodList.indexOf(proizvod)
+
+        if (pozicija >= 0) {
+            if (proizvod.kolicina > 0) {
+                adapter.notifyItemChanged(pozicija)
+            } else {
+                proizvodList.removeAt(pozicija)
+                adapter.notifyItemRemoved(pozicija)
+            }
+        }
     }
 
 

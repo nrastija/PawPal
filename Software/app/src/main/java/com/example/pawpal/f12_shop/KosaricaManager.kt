@@ -27,6 +27,10 @@ object KosaricaManager {
         }
     }
 
+    fun izracunajCijenuLista(){
+
+    }
+
     fun isprazniKosaricuLista() {
         kosarica.clear()
     }

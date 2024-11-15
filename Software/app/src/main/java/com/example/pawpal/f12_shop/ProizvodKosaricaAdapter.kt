@@ -39,7 +39,7 @@ class ProizvodKosaricaAdapter(
         holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
         holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
         holder.slikaProizvoda.setImageResource(R.drawable.test_slika)
-        holder.quantityText.text = "1" // Set initial quantity
+        holder.quantityText.text = "${proizvod.kolicina}"
 
         holder.removeButton.setOnClickListener { obrisiProizvod(proizvod) }
         holder.buttonIncrease.setOnClickListener { povecajKolicinu(proizvod) }
