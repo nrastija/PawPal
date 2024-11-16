@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayoutUredivanjeK"
+    android:id="@+id/drawerLayoutPromjenaLozinke"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryColor"
@@ -15,86 +15,74 @@
         android:layout_height="match_parent"
         android:background="@color/backgroundColor">
 
-        <Button
-            android:id="@+id/btnSpremiP"
+        <EditText
+            android:id="@+id/novaLozinka"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="SPREMI"
-            android:textColor="@color/white"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:hint="Nova lozinka"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.88"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.594" />
+
+        <TextView
+            android:id="@+id/textNovaLozinka2"
+            android:layout_width="108dp"
+            android:layout_height="40dp"
+            android:text="NOVA LOZINKA:  "
+            android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.587" />
 
         <EditText
-            android:id="@+id/KorIme"
+            android:id="@+id/StaraLozinka"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Korisničko ime"
-            android:inputType="text"
+            android:hint="Trenutna lozinka"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.641" />
-
-        <EditText
-            android:id="@+id/ImePsa"
-            android:layout_width= "wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:hint="Ime"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textKorIme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="KORSNIČKO IME: "
-            android:textStyle="bold"
+            android:id="@+id/textPonovnaLozinka"
+            android:layout_width="108dp"
+            android:layout_height="40dp"
+            android:text="PONOVITE LOZINKU:  "
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.638" />
+            app:layout_constraintVertical_bias="0.687" />
 
         <TextView
-            android:id="@+id/textPrezime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PREZIME:  "
-            android:textStyle="bold"
+            android:id="@+id/textTrenutnaLozinka"
+            android:layout_width="108dp"
+            android:layout_height="40dp"
+            android:text="TRENUTNA LOZINKA: "
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.57" />
-
-        <TextView
-            android:id="@+id/textIme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="IME: "
-            android:textStyle="bold"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.021"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintVertical_bias="0.494" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
@@ -109,12 +97,12 @@
 
 
         <TextView
-            android:id="@+id/UredivanjeProfila"
+            android:id="@+id/PromjenaLozinke"
             android:layout_width="244dp"
             android:layout_height="36dp"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:text="Uređivanje profila"
+            android:text="Promjena lozinke"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
@@ -124,41 +112,27 @@
 
 
         <Button
-            android:id="@+id/btnPromjeniLozinku"
+            android:id="@+id/btnSpremiP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="80dp"
             android:backgroundTint="@color/secondaryColor"
-            android:text="PROMJENI LOZINKU"
+            android:text="SPREMI"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarUredivanjeK"
+            android:id="@+id/toolbarPromjenaLozinke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/secondaryColor"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/hamburger_menu_icon"
             app:titleTextColor="@color/accentColor"/>
-
-        <TextView
-            android:id="@+id/textMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E-MAIL:"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.022"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.707" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -173,37 +147,25 @@
             app:tint="@color/white"/>
 
         <EditText
-            android:id="@+id/Prezime"
+            android:id="@+id/NovaLozinka"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Prezime"
-            android:inputType="text"
+            android:hint="Ponovite novu lozinku"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintVertical_bias="0.695" />
 
-        <EditText
-            android:id="@+id/Mail"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.711" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id = "@+id/navUredivanjeK"
+        android:id = "@+id/navPromjenaLozinke"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/hamburger_menu_header"

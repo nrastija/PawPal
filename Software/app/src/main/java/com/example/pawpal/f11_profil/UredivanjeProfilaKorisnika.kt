@@ -35,6 +35,12 @@ class UredivanjeProfilaKorisnika : BaseActivity() {
         emailEditText.setText(sharedPreferences.getString("korisnikEmail", ""))
         korimeEditText.setText(sharedPreferences.getString("korisnikKorime", ""))
 
+        val btnPromjeniLozinku: Button = findViewById(R.id.btnPromjeniLozinku)
+        btnPromjeniLozinku.setOnClickListener {
+            val intent = Intent(this, PromjenaLozinkeActivity::class.java)
+            startActivity(intent)
+        }
+
         val btnSpremiP: Button = findViewById(R.id.btnSpremiP)
         btnSpremiP.setOnClickListener {
             val editor = sharedPreferences.edit()
@@ -43,7 +49,6 @@ class UredivanjeProfilaKorisnika : BaseActivity() {
             editor.putString("korisnikEmail", emailEditText.text.toString())
             editor.putString("korisnikKorime", korimeEditText.text.toString())
             editor.apply()
-
 
             val intent = Intent(this, ProfilKorisnikaActivity::class.java)
             startActivity(intent)
