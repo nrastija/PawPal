@@ -6,57 +6,67 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor"
-    tools:context=".main.MainActivity">
+    tools:context=".f12_shop.ShopActivity">
 
+    <!-- Main content area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!-- Toolbar for the hamburger menu -->
+
+        <!-- Title TextView for the Online Shop -->
+
+        <!-- RecyclerView for displaying the list of products -->
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:background="@color/secondaryColor"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
+            app:titleTextColor="@color/accentColor"
+            tools:layout_editor_absoluteX="0dp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="341dp"
-            android:layout_height="427dp"
+        <TextView
+            android:id="@+id/naslov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Online Shop"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.555   " />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_products"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.401"
-            app:srcCompat="@drawable/tekstpawpal" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="357dp"
-            android:layout_height="226dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/pawpal_peseki_kopija" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Navigation drawer for the hamburger menu -->
     <com.google.android.material.navigation.NavigationView
-        android:id = "@+id/nav_view"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/hamburger_menu_header"
-        app:menu ="@menu/hamburger_menu_navigacija"
+        app:menu="@menu/hamburger_menu_navigacija"
         app:itemIconTint="@color/accentColor"
         app:itemTextColor="@color/accentColor"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="@color/primaryColor" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

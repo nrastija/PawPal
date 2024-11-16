@@ -10,4 +10,6 @@
     <color name="accentColor">#6b4226</color>
     <color name="navigationBar">#938f99</color>
     <color name="warningColor">#FF0000</color>
+    <color name="bijelazakoristiti">#ffffff</color>
+
 </resources>
