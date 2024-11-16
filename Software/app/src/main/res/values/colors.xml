@@ -9,6 +9,11 @@
     <color name="secondaryColor">#ffd873</color>
     <color name="accentColor">#6b4226</color>
     <color name="navigationBar">#938f99</color>
+    <color name="filterStrokeColor">#000000</color>
+    <color name="proizvodInfo">#88848E</color>
+    <color name="proizvodKolicinaBorder">#E2DACE</color>
+    <color name="basketColor">#FFFFFF</color>
+    <color name="warningColor">#FF0000</color>
     <color name="bijelazakoristiti">#ffffff</color>
 
 </resources>
