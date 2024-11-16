@@ -30,10 +30,10 @@ class PrikazProfilaPsaActivity : BaseActivity() {
         val spol = sharedPreferences.getString("spol", "N/A")
         val kilaza = sharedPreferences.getString("kilaza", "N/A")
 
-        findViewById<TextView>(R.id.textIme).text = "IME: $ime"
-        findViewById<TextView>(R.id.textDob).text = "DOB: $dob"
-        findViewById<TextView>(R.id.textPasmina).text = "PASMINA: $pasmina"
-        findViewById<TextView>(R.id.textSpol).text = "SPOL: $spol"
-        findViewById<TextView>(R.id.textKilaza).text = "KILAŽA: $kilaza"
+        findViewById<TextView>(R.id.podatakIme).text = ime
+        findViewById<TextView>(R.id.podatakDob).text = dob
+        findViewById<TextView>(R.id.podatakPasmina).text = pasmina
+        findViewById<TextView>(R.id.podatakSpol).text = spol
+        findViewById<TextView>(R.id.podatakKilaza).text = kilaza
     }
 }
