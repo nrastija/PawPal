@@ -24,24 +24,24 @@
             android:inputType="textPassword"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.88"
+            app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+            app:layout_constraintVertical_bias="0.619" />
 
         <TextView
             android:id="@+id/textNovaLozinka2"
-            android:layout_width="108dp"
-            android:layout_height="40dp"
+            android:layout_width="122dp"
+            android:layout_height="52dp"
             android:text="NOVA LOZINKA:  "
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.587" />
+            app:layout_constraintVertical_bias="0.622" />
 
         <EditText
             android:id="@+id/StaraLozinka"
@@ -58,31 +58,31 @@
 
         <TextView
             android:id="@+id/textPonovnaLozinka"
-            android:layout_width="108dp"
-            android:layout_height="40dp"
+            android:layout_width="121dp"
+            android:layout_height="60dp"
             android:text="PONOVITE LOZINKU:  "
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.687" />
+            app:layout_constraintVertical_bias="0.767" />
 
         <TextView
             android:id="@+id/textTrenutnaLozinka"
-            android:layout_width="108dp"
-            android:layout_height="40dp"
+            android:layout_width="107dp"
+            android:layout_height="55dp"
             android:text="TRENUTNA LOZINKA: "
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.494" />
+            app:layout_constraintVertical_bias="0.505" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
@@ -118,6 +118,7 @@
             android:layout_marginBottom="80dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="SPREMI"
+            android:textSize="17sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -158,8 +159,7 @@
             app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.695" />
-
+            app:layout_constraintVertical_bias="0.754" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

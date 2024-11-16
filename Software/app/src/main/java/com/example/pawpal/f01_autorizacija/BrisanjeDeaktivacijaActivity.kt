@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
+import com.example.pawpal.f11_profil.UredivanjeProfilaKorisnika
 import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
 
@@ -37,6 +38,12 @@ class BrisanjeDeaktivacijaActivity : BaseActivity() {
         val btnOdjava: Button = findViewById(R.id.btnOdjava)
         btnOdjava.setOnClickListener {
             showOdjavaDialog()
+        }
+
+        val btnUredivanjeProfila: Button = findViewById(R.id.btnUredivanjeProfila)
+        btnUredivanjeProfila.setOnClickListener {
+            val intent = Intent(this, UredivanjeProfilaKorisnika::class.java)
+            startActivity(intent)
         }
     }
 

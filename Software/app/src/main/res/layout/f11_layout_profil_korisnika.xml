@@ -58,7 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/secondaryColor"
-            android:text="UREDI PODATKE"
+            android:text="UPRAVLJANJE PROFILOM"
+            android:textSize="17sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,8 +72,8 @@
             android:layout_marginBottom="112dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="MOJ LJUBIMAC"
-
             android:textColor="@color/white"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -191,7 +192,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="358dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -200,18 +201,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="KORISNIČKO IME:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakKorIme"
-                        android:layout_width="wrap_content"
+                        android:layout_width="167dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Korisnicko ime"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="20sp"
-                        android:layout_marginStart="8dp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>

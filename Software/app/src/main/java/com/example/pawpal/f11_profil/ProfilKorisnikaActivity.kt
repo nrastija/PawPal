@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
+import com.example.pawpal.f01_autorizacija.BrisanjeDeaktivacijaActivity
 import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
 
@@ -48,7 +49,7 @@ class ProfilKorisnikaActivity : BaseActivity() {
         }
         val btnUrediPodatkeK: Button = findViewById(R.id.btnUrediPodatkeK)
         btnUrediPodatkeK.setOnClickListener {
-            val intent = Intent(this, UredivanjeProfilaKorisnika::class.java)
+            val intent = Intent(this, BrisanjeDeaktivacijaActivity::class.java)
             startActivity(intent)
         }
     }

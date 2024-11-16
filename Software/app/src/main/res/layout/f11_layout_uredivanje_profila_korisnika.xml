@@ -22,6 +22,7 @@
             android:layout_marginBottom="40dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="SPREMI"
+            android:textSize="17sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -59,15 +60,15 @@
             android:id="@+id/textKorIme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="KORSNIČKO IME: "
-            android:textStyle="bold"
+            android:text="KORISNIČKO\nIME: "
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintHorizontal_bias="0.021"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.638" />
+            app:layout_constraintVertical_bias="0.644" />
 
         <TextView
             android:id="@+id/textPrezime"
@@ -130,6 +131,7 @@
             android:layout_marginBottom="120dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="PROMJENI LOZINKU"
+            android:textSize="17sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

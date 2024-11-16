@@ -11,12 +11,12 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)  // Povežite sa vašim layoutom activity_main.xml
+        setContentView(R.layout.activity_main)
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout) // Provjerite da li imate ovaj ID u XML-u
-        val toolbar: Toolbar = findViewById(R.id.toolbar)  // Provjerite da li imate ovaj ID u XML-u
-        val navView: NavigationView = findViewById(R.id.nav_view)  // Provjerite da li imate ovaj ID u XML-u
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val navView: NavigationView = findViewById(R.id.nav_view)
 
-        setupHamburgerMenu(drawerLayout, toolbar, navView) // Pozivate metodu iz BaseActivity za konfiguraciju hamburger menija
+        setupHamburgerMenu(drawerLayout, toolbar, navView)
     }
 }

@@ -14,18 +14,17 @@ import com.example.pawpal.main.MainActivity
 class PrijavaRegistracijaActivity : AppCompatActivity() {
 
     private lateinit var sharedPreferences: SharedPreferences
-    private var UlogiranDaNe = true  // Ovisno o stanju, prikazujemo prijavu ili registraciju
+    private var UlogiranDaNe = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.f01_loginlayout)  // Početni layout za prijavu
+        setContentView(R.layout.f01_loginlayout)
 
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
         initializeLoginLayoutButtons()
     }
 
-    // Prvo inicijaliziramo gumbe za login
     private fun initializeLoginLayoutButtons() {
         val loginButton: Button = findViewById(R.id.btnLogin)
         loginButton.setOnClickListener {
@@ -46,7 +45,6 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         }
     }
 
-    // Inicijaliziramo gumbe za registraciju kad smo prebaceni u registracijski layout
     private fun initializeRegistrationLayoutButtons() {
         val btnRegistriraj: Button = findViewById(R.id.btnRegistriraj)
         btnRegistriraj.setOnClickListener {
@@ -59,21 +57,18 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         }
     }
 
-    // Prebacivanje na registracijski layout
     private fun PrebaciNaRegistraciju() {
         setContentView(R.layout.f01_registrationlayout)
         UlogiranDaNe = false  // Prebacivanje u stanje registracije
         initializeRegistrationLayoutButtons()
     }
 
-    // Prebacivanje na login layout
     private fun PrebaciNaLogin() {
         setContentView(R.layout.f01_loginlayout)
         UlogiranDaNe = true  // Prebacivanje u stanje prijave
         initializeLoginLayoutButtons()
     }
 
-    // Prijava korisnika
     private fun ulogirajse() {
         val korimeUnos = findViewById<EditText>(R.id.editKorime2).text.toString()
         val lozinkaUnos = findViewById<EditText>(R.id.editLozinka2).text.toString()
@@ -86,11 +81,9 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         val savedKorime = sharedPreferences.getString("korisnikKorime", "")
         val savedLozinka = sharedPreferences.getString("korisnikLozinka", "")
 
-        // Provjera korisničkih podataka
         if (korimeUnos == savedKorime && lozinkaUnos == savedLozinka) {
             Toast.makeText(this, "Uspješna prijava", Toast.LENGTH_SHORT).show()
 
-            // Nakon uspješne prijave, otvorimo glavni ekran
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()  // Zatvori prijavu aktivnost
@@ -99,7 +92,6 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         }
     }
 
-    // Registracija korisnika
     private fun korisnikRegistracija() {
         val korime = findViewById<EditText>(R.id.editKorime).text.toString()
         val lozinka = findViewById<EditText>(R.id.editLozinka).text.toString()
@@ -118,7 +110,6 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Uspješna registracija!", Toast.LENGTH_SHORT).show()
 
-            // Prebacivanje u login layout nakon registracije
             PrebaciNaLogin()
         } else {
             Toast.makeText(this, "Molim popunite sve podatke.", Toast.LENGTH_SHORT).show()

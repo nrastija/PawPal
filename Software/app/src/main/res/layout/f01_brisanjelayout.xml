@@ -31,29 +31,29 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnOdjava"
-                android:layout_width="290dp"
+                android:layout_width="260dp"
                 android:layout_height="64dp"
                 android:background="@drawable/gumb_zaobljenost"
                 android:text="Odjava"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.691" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUredivanjeProfila"
-                android:layout_width="290dp"
+                android:layout_width="260dp"
                 android:layout_height="64dp"
                 android:background="@drawable/gumb_zaobljenost"
-                android:text="Uredi podatke"
+                android:text="Uređivanje profila"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
@@ -63,19 +63,19 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnBrisanjeProfila"
-                android:layout_width="290dp"
+                android:layout_width="260dp"
                 android:layout_height="64dp"
                 android:background="@drawable/gumb_zaobljenost"
                 android:text="Deaktivacija"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.832" />
+                app:layout_constraintVertical_bias="0.838" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
