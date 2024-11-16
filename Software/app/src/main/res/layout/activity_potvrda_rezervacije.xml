@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryColor"
     tools:context=".f04_veterinar.PotvrdaRezervacije">
 
 
@@ -13,11 +14,13 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:background="@color/secondaryColor"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.appcompat.widget.Toolbar>
+
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -47,7 +50,8 @@
 
 
 
-    <LinearLayout
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -132,39 +136,36 @@
             android:layout_marginBottom="10dp"
             android:layout_gravity="center" />
 
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="30dp">
 
             <Button
                 android:id="@+id/odustaniGumb"
-                android:layout_width="135dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Odustani"
                 android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/textColorPrimary"
+                android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_marginLeft="40dp"/>
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/potvrdiGumb"
-                android:layout_width="135dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Potvrdi"
+                android:text="Rezerviraj"
                 android:backgroundTint="@color/secondaryColor"
-                android:textColor="@color/textColorPrimary"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:layout_marginLeft="50dp"/>
 
-
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
 
 </ScrollView>
 

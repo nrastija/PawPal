@@ -9,9 +9,7 @@
     android:background="@color/primaryColor"
     tools:context=".main.MainActivity">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -28,33 +26,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="276dp"
-        android:layout_height="42dp"
-        android:background="@drawable/zaobljeni_rubovi"
-        app:layout_constraintBottom_toBottomOf="@+id/pozadina"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.791">
-
-    </SearchView>
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="212dp"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:text="Odaberite veterinara!"
-        android:textSize="22dp"
+        android:textSize="24dp"
+        android:gravity="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/pozadina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.479" />
+        app:layout_constraintVertical_bias="0.656" />
 
     <ImageView
         android:id="@+id/vet_icon"

@@ -86,7 +86,10 @@ private lateinit var ponisti : Button
             val usluga = spiner.selectedItem.toString()
             val imeVeterinara = intent.getStringExtra("ime_veterinara")
 
-            if(opis.isNotEmpty()&& datum.isNotEmpty()&& vrijeme.isNotEmpty()&& usluga!="Odaberite uslugu"){
+            val ValidanDatum = !datum.contains("Nedjeljom ne radimo!") && datum.contains("Odabrani datum")
+            val ValidnoVrijeme = vrijeme.contains("Odabrano vrijeme")
+
+            if(opis.isNotEmpty()&& datum.isNotEmpty()&& vrijeme.isNotEmpty()&& usluga!="Odaberite uslugu" && ValidanDatum && ValidnoVrijeme){
                 val intent = Intent(this, PotvrdaRezervacije::class.java)
                 intent.putExtra("odabrani_datum", datum)
                 intent.putExtra("odabrano_vrijeme", vrijeme)
@@ -96,7 +99,7 @@ private lateinit var ponisti : Button
 
                 startActivity(intent)
             }else{
-                Toast.makeText(this, "Molimo ispunite sve podatke.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Molimo ispunite sve podatke ispravno.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -104,15 +107,15 @@ private lateinit var ponisti : Button
 
         val usluge = listOf(
                     "Odaberite uslugu",
-                    "Prvi pregled",
-                    "Kontrola" ,
-                    " Cijepljenje",
-                    " Laboratorijska dijagnostika",
-                    " Dermatologija",
-                    " Kirurgija",
-                    " Neurologija",
-                    " Oftamologija",
-                    " Stomatologija"
+                    "Prvi pregled - 30,00€",
+                    "Kontrola - 35,00€" ,
+                    " Cijepljenje - 60,00€",
+                    " Laboratorijska dijagnostika - 120,00€",
+                    " Dermatologija - 70,00€",
+                    " Kirurgija - 170,00€",
+                    " Neurologija - 200,00€",
+                    " Oftamologija - 80,00€",
+                    " Stomatologija - 60,00€"
         )
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, usluge)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -129,9 +132,7 @@ private lateinit var ponisti : Button
 
                 val selectedService = parentView?.getItemAtPosition(position) as String
 
-                if(selectedService == "Odaberite uslugu"){
-                    Toast.makeText(this@RezervacijaVeterinaraActivity, "Molimo odaberite uslugu", Toast.LENGTH_SHORT).show()
-                }
+
             }
 
 
@@ -152,10 +153,14 @@ private lateinit var ponisti : Button
                     kalendar.set(year, month, dayOfMonth)
 
                     if(kalendar.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY){
-                        datumTekst.text = "Nedjelja nije dostupna. Molimo odaberite drugi dan"
+                        datumTekst.text = "Nedjeljom ne radimo! Molimo odaberite drugi dan"
+                        datumTekst.setTextColor(resources.getColor(R.color.warningColor))
+                        datumTekst.setTypeface(null, android.graphics.Typeface.BOLD)
                     } else{
                         val selectedDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(kalendar.time)
                         datumTekst.text = "Odabrani datum: $selectedDate"
+                        datumTekst.setTextColor(resources.getColor(R.color.textColorPrimary))
+                        datumTekst.setTypeface(null, android.graphics.Typeface.ITALIC)
                     }
                 },
                 kalendar.get(Calendar.YEAR),
