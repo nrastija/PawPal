@@ -41,6 +41,15 @@
                 android:text="@string/placanjeKartica"
                 android:textColor="@color/accentColor"
                 android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/placanjePayPal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjePayPal"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp" />
+
         </RadioGroup>
 
         <LinearLayout

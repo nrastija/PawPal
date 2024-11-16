@@ -16,7 +16,19 @@
         <activity android:name=".f12_shop.ShopActivity" />
         <activity android:name=".f12_shop.KosaricaActivity" />
         <activity android:name=".f12_shop.ProizvodDetaljActivity" />
-        <activity android:name=".f12_shop.CheckoutActivity" />
+        <activity
+            android:name=".f12_shop.CheckoutActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data
+                android:scheme="com.example.pawpal"
+                android:host="paypalpay" />
+        </intent-filter>
+        </activity>
 
         <activity
             android:name=".main.MainActivity"

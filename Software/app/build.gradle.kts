@@ -54,4 +54,9 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+    //PayPal placanje
+    implementation ("com.paypal.android:paypal-web-payments:1.7.1")
+    implementation ("com.paypal.android:card-payments:1.7.1")
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+
 }
