@@ -40,6 +40,7 @@ class ShopActivity : BaseActivity() {
 
         adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
             val intent = Intent(this, ProizvodDetaljActivity::class.java)
+            intent.putExtra("sifraProizvoda", proizvod.proizvodID)
             intent.putExtra("nazivProizvoda", proizvod.naziv)
             intent.putExtra("cijenaProizvoda", proizvod.cijena)
             intent.putExtra("opisProizvoda", proizvod.opis)

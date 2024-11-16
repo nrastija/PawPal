@@ -59,7 +59,7 @@ class ProizvodDetaljActivity : AppCompatActivity() {
 
         gumbDodajUKosaricu.setOnClickListener {
             val proizvod = Proizvod(
-                proizvodID = intent.getIntExtra("proizvodId", 0),
+                proizvodID = intent.getIntExtra("sifraProizvoda", 0),
                 naziv = intent.getStringExtra("nazivProizvoda") ?: "",
                 cijena = intent.getDoubleExtra("cijenaProizvoda", 0.0),
                 opis = intent.getStringExtra("opisProizvoda") ?: "",

@@ -8,7 +8,14 @@ object KosaricaManager {
     private val kosarica: MutableList<Proizvod> = mutableListOf()
 
     fun dodajProizvodLista(proizvod: Proizvod) {
-        kosarica.add(proizvod)
+        val postojeciProizvod = kosarica.find { it.proizvodID == proizvod.proizvodID }
+        if (postojeciProizvod != null){
+            ;postojeciProizvod.kolicina += proizvod.kolicina
+        }
+        else{
+            kosarica.add(proizvod)
+        }
+
     }
     fun dohvatiProizvodeLista(): List<Proizvod> {
         return kosarica
