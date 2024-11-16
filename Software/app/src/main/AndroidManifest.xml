@@ -34,6 +34,9 @@
         <activity android:name=".f01_autorizacija.BrisanjeDeaktivacijaActivity"/>
         <activity android:name=".main.BaseActivity" />
         <activity android:name=".f11_profil.PromjenaLozinkeActivity"/>
+        <activity android:name=".f04_veterinar.odabirVeterinaraActivity"/>
+        <activity android:name=".f04_veterinar.RezervacijaVeterinaraActivity"/>
+        <activity android:name=".f04_veterinar.PotvrdaRezervacije"/>
 
 
     </application>
