@@ -39,6 +39,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".f01_autorizacija.PrijavaRegistracijaActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Define other activities -->
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".f12_shop.ShopActivity" />
+        <activity android:name=".f11_profil.ProfilKorisnikaActivity"/>
+        <activity android:name=".f11_profil.KreiranjeProfilaPsaActivity"/>
+        <activity android:name=".f11_profil.PrikazProfilaPsaActivity"/>
+        <activity android:name=".f11_profil.UredivanjeProfilaKorisnika"/>
+        <activity android:name=".f01_autorizacija.BrisanjeDeaktivacijaActivity"/>
+        <activity android:name=".main.BaseActivity" />
+        <activity android:name=".f11_profil.PromjenaLozinkeActivity"/>
+        <activity android:name=".f04_veterinar.odabirVeterinaraActivity"/>
+        <activity android:name=".f04_veterinar.RezervacijaVeterinaraActivity"/>
+        <activity android:name=".f04_veterinar.PotvrdaRezervacije"/>
+
+
     </application>
 
 </manifest>

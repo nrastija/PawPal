@@ -13,4 +13,7 @@
     <color name="proizvodInfo">#88848E</color>
     <color name="proizvodKolicinaBorder">#E2DACE</color>
     <color name="basketColor">#FFFFFF</color>
+    <color name="warningColor">#FF0000</color>
+    <color name="bijelazakoristiti">#ffffff</color>
+
 </resources>
