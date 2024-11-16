@@ -59,13 +59,13 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
 
     private fun PrebaciNaRegistraciju() {
         setContentView(R.layout.f01_registrationlayout)
-        UlogiranDaNe = false  // Prebacivanje u stanje registracije
+        UlogiranDaNe = false
         initializeRegistrationLayoutButtons()
     }
 
     private fun PrebaciNaLogin() {
         setContentView(R.layout.f01_loginlayout)
-        UlogiranDaNe = true  // Prebacivanje u stanje prijave
+        UlogiranDaNe = true
         initializeLoginLayoutButtons()
     }
 
@@ -81,12 +81,19 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         val savedKorime = sharedPreferences.getString("korisnikKorime", "")
         val savedLozinka = sharedPreferences.getString("korisnikLozinka", "")
 
-        if (korimeUnos == savedKorime && lozinkaUnos == savedLozinka) {
-            Toast.makeText(this, "Uspješna prijava", Toast.LENGTH_SHORT).show()
-
+        if (korimeUnos == "test" && lozinkaUnos == "test") {
+            Toast.makeText(this, "Uspješna prijava kao 'test' korisnik", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()  // Zatvori prijavu aktivnost
+            finish()
+            return
+        }
+
+        if (korimeUnos == savedKorime && lozinkaUnos == savedLozinka) {
+            Toast.makeText(this, "Uspješna prijava", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this, "Netočni podaci", Toast.LENGTH_SHORT).show()
         }

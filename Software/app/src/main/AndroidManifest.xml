@@ -13,7 +13,6 @@
         android:theme="@style/Theme.PawPal"
         tools:targetApi="31">
 
-        <!-- Set PrijavaActivity as the launcher activity -->
         <activity
             android:name=".f01_autorizacija.PrijavaRegistracijaActivity"
             android:exported="true">
@@ -24,7 +23,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Define other activities -->
         <activity android:name=".main.MainActivity" />
         <activity android:name=".f12_shop.ShopActivity" />
         <activity android:name=".f11_profil.ProfilKorisnikaActivity"/>
