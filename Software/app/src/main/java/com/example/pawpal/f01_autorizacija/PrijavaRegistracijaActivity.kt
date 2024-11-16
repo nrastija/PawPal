@@ -82,7 +82,7 @@ class PrijavaRegistracijaActivity : AppCompatActivity() {
         val savedLozinka = sharedPreferences.getString("korisnikLozinka", "")
 
         if (korimeUnos == "test" && lozinkaUnos == "test") {
-            Toast.makeText(this, "Uspješna prijava kao 'test' korisnik", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Uspješna prijava", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
