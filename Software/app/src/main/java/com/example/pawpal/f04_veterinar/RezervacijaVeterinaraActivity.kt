@@ -130,12 +130,7 @@ private lateinit var ponisti : Button
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
-
-                val selectedService = parentView?.getItemAtPosition(position) as String
-
-
-            }
+            ) {}
 
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
