@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.provider.ContactsContract.Contacts
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -17,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.setPadding
@@ -168,14 +170,14 @@ private lateinit var ponisti : Button
                         }
                         selectedDateCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY -> {
                             datumTekst.text = "Nedjeljom ne radimo! Molimo odaberite drugi dan"
-                            datumTekst.setTextColor(resources.getColor(R.color.warningColor))
+                            datumTekst.setTextColor(ContextCompat.getColor(this, R.color.warningColor))
                             datumTekst.setTypeface(null, android.graphics.Typeface.BOLD)
                         }
                         else -> {
                             val selectedDateText =
                                 SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(selectedDate)
                             datumTekst.text = "Odabrani datum: $selectedDateText"
-                            datumTekst.setTextColor(resources.getColor(R.color.textColorPrimary))
+                            datumTekst.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary))
                             datumTekst.setTypeface(null, android.graphics.Typeface.ITALIC)
                         }
                     }
@@ -231,11 +233,11 @@ private lateinit var ponisti : Button
                         val formatiranoVrijeme =
                             String.format("%02d:%02d", selectedHour, selectedMinute)
                         vrijemeTekst.text = "Odabrano vrijeme: $formatiranoVrijeme"
-                        vrijemeTekst.setTextColor(resources.getColor(R.color.textColorPrimary))
+                        vrijemeTekst.setTextColor(ContextCompat.getColor(this, R.color.textColorPrimary))
                         vrijemeTekst.setTypeface(null, android.graphics.Typeface.ITALIC)
                     } else {
                         vrijemeTekst.text = "Molimo odaberite vrijeme između 08:00 i 19:00."
-                        vrijemeTekst.setTextColor(resources.getColor(R.color.warningColor))
+                        vrijemeTekst.setTextColor(ContextCompat.getColor(this, R.color.warningColor))
                         vrijemeTekst.setTypeface(null, android.graphics.Typeface.BOLD)
                     }
                 },
