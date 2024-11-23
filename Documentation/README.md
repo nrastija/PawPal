@@ -1,21 +1,35 @@
 # Dokumentacija projekta
+## 1. Testni podaci
 
-## 1. Ikonice i slike
+## 1.1. Logiranje u aplikaciju
+Kako bi vam omogućili logiranje u aplikaciju bez registracije, za vas smo pripremili sljedeće testne podatke:
 
-### 1.1. F01
+Username: test<br>
+Password: test
+
+## 1.2. PayPal testni podaci
+Kako bi mogli testirati PayPal testno okruženje u web shopu, zatražiti će vas korisničko ime i lozinku za logiranje u testni (sandbox) račun. Podaci sandbox računa su sljedeći:
+
+Username: testpawpal@test.com <br>
+Password: rampu2024
+
+
+## 2. Ikonice i slike
+
+### 2.1. F01
 
 ziehefzie, Brown and Red Paw Flat Illustrative Pets Logo - [Poveznica na izvor](https://www.canva.com/templates/EAGRF9T3fbs-brown-and-red-paw-flat-illustrative-pets-logo/)
 
-### 1.2. F04
+### 2.2. F04
 
 Freepik, Veterinarian icon - [Poveznica na izvor](https://www.flaticon.com/free-icon/veterinarian_2365014?term=vet&page=1&position=2&origin=search&related_id=2365014)
 
 paulalee, Veterinary icon - [Poveznica na izvor](https://www.flaticon.com/free-icon/veterinary_11312482?term=vet&page=1&position=33&origin=search&related_id=11312482)
 
-### 1.3. F11
+### 2.3. F11
 Freepik, Puppy - [Poveznica na izvor](https://www.flaticon.com/free-icon/puppy_2454317?term=puppy&page=1&position=73&origin=search&related_id=2454317)
 
-### 1.4. F12
+### 2.4. F12
 
 Freepik, Home icon - [Poveznica na izvor](https://www.flaticon.com/free-icon/home_1946488?term=home&page=1&position=2&origin=search&related_id=1946488)
 
