@@ -115,6 +115,7 @@ class ProizvodDetaljFragment : Fragment() {
 
             Toast.makeText(requireContext(), "Dodan ${naziv} u košaricu!", Toast.LENGTH_SHORT).show()
             KosaricaManager.dodajProizvodLista(proizvod)
+
         }
     }
 }
