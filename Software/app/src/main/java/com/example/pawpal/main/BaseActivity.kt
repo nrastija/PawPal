@@ -11,7 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
-import com.example.pawpal.f12_shop.ShopActivity
+import com.example.pawpal.ui.ShopActivity
 import com.google.android.material.navigation.NavigationView
 
 open class BaseActivity : AppCompatActivity() {

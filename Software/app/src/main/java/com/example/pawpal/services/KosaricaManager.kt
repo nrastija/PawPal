@@ -1,6 +1,7 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.services
 
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.entities.Proizvod
+import com.example.pawpal.entities.Kategorija
 import java.math.BigDecimal
 import java.math.RoundingMode
 

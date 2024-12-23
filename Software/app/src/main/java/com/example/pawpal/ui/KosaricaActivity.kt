@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.adapters.ProizvodKosaricaAdapter
+import com.example.pawpal.entities.Proizvod
 import com.example.pawpal.main.BaseActivity
+import com.example.pawpal.services.KosaricaManager
 
 class KosaricaActivity : BaseActivity() {
 

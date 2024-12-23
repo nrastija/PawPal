@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.KosaricaManager.filtrirajProizvodePoKategoriji
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.adapters.ProizvodShopAdapter
+import com.example.pawpal.entities.Kategorija
+import com.example.pawpal.services.KosaricaManager.filtrirajProizvodePoKategoriji
+import com.example.pawpal.entities.Proizvod
 import com.example.pawpal.main.BaseActivity
 import com.google.android.material.navigation.NavigationView
 

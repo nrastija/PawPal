@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.entities.Proizvod
 
 class ProizvodShopAdapter (
     private val proizvodList: List<Proizvod>,

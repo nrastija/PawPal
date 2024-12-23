@@ -1,10 +1,8 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Base64
 import android.view.View
 import android.widget.Button
@@ -16,6 +14,7 @@ import android.widget.Toast
 import com.example.pawpal.R
 import com.example.pawpal.main.BaseActivity
 import com.example.pawpal.main.MainActivity
+import com.example.pawpal.services.KosaricaManager
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
