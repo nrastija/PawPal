@@ -19,13 +19,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="50dp"
             app:cardBackgroundColor="@color/primaryColor"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,21 +71,23 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor" />
+            android:layout_margin="16dp"
+            android:src="@drawable/shopping_cart"
+            app:backgroundTint="@color/secondaryColor"
+            app:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
         <HorizontalScrollView
             android:id="@+id/filteriGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -177,6 +179,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/filteriGroup"
             app:layout_constraintVertical_bias="1.0" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
