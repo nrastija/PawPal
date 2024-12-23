@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity(){
         removeImagesForFragment();
 
         supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }

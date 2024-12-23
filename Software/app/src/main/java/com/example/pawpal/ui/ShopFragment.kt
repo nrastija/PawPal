@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -18,12 +19,15 @@ import com.example.pawpal.adapters.ProizvodShopAdapter
 import com.example.pawpal.entities.Kategorija
 import com.example.pawpal.entities.Proizvod
 import com.example.pawpal.services.KosaricaManager.filtrirajProizvodePoKategoriji
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 
 class ShopFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProizvodShopAdapter
     private val proizvodList = mutableListOf<Proizvod>()
+
+    private lateinit var floatingButton: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,7 @@ class ShopFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerShop)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        floatingButton = view.findViewById(R.id.floatingButton)
 
         adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
             // Navigacija na ProizvodDetaljFragment
@@ -72,6 +77,14 @@ class ShopFragment : Fragment() {
         btnHigijena.setOnClickListener { filtrirajProizvode(Kategorija.HIGIJENA) }
         btnOstalo.setOnClickListener { filtrirajProizvode(Kategorija.OSTALO) }
         btnReset.setOnClickListener { filtrirajProizvode(Kategorija.RESET) }
+
+        floatingButton.setOnClickListener {
+            val newFragment = KosaricaFragment();
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, newFragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun dohvatiProizvodeShop(): List<Proizvod> {
