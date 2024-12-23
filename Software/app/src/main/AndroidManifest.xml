@@ -14,20 +14,6 @@
         tools:targetApi="31" >
 
         <activity
-            android:name=".ui.CheckoutActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-
-            <data
-                android:scheme="com.example.pawpal"
-                android:host="paypalpay" />
-        </intent-filter>
-        </activity>
-
-        <activity
             android:name=".f01_autorizacija.PrijavaRegistracijaActivity"
             android:exported="true">
             <intent-filter>
@@ -37,12 +23,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".main.MainActivity" />
+        <activity
+            android:name=".main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="com.example.pawpal"
+                    android:host="paypalpay" />
+            </intent-filter>
+        </activity>
+
 
         <activity android:name=".main.BaseActivity" />
-        <activity android:name=".ui.ShopActivity" />
-        <activity android:name=".ui.KosaricaActivity" />
-        <activity android:name=".ui.ProizvodDetaljActivity" />
+        <activity android:name=".ui.CheckoutActivity" />
         <activity android:name=".f11_profil.ProfilKorisnikaActivity"/>
         <activity android:name=".f11_profil.KreiranjeProfilaPsaActivity"/>
         <activity android:name=".f11_profil.PrikazProfilaPsaActivity"/>

@@ -79,15 +79,5 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na return gumb
-        return when (item.itemId) {
-            R.id.return_icon -> {
-                val intent = Intent(this, ShopActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
 }

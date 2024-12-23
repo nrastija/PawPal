@@ -58,17 +58,6 @@ class KosaricaActivity : BaseActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na return gumb
-        return when (item.itemId) {
-            R.id.return_icon -> {
-                val intent = Intent(this, ShopActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
         return KosaricaManager.dohvatiProizvodeLista()
     }

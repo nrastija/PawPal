@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodKosaricaAdapter
 import com.example.pawpal.entities.Proizvod
+import com.example.pawpal.main.MainActivity
 import com.example.pawpal.services.KosaricaManager
 
 class KosaricaFragment : Fragment() {
@@ -59,21 +60,6 @@ class KosaricaFragment : Fragment() {
         recyclerView.adapter = adapter
 
         azurirajUkupnuCijenu()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.f12_menu_return, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.return_icon -> {
-                parentFragmentManager.popBackStack() // Navigate back to the previous fragment
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
