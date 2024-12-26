@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.circleimageview)
     implementation(libs.androidx.room.common)
+    implementation(libs.engage.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,8 +57,10 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
 
     //SQLDelight baza podataka
-    implementation("com.squareup.sqldelight:android-driver:1.5.5") // Android Driver
-    implementation("com.squareup.sqldelight:coroutines-extensions-jvm:1.5.5") // Coroutines support
+    implementation("app.cash.sqldelight:android-driver:2.0.2") // SQLDelight Android Driver
+    implementation("app.cash.sqldelight:coroutines-extensions:2.0.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     //PayPal placanje
     implementation ("com.paypal.android:paypal-web-payments:1.7.1")
@@ -69,8 +72,7 @@ dependencies {
 sqldelight {
     databases {
         create("AppDatabase") {
-            packageName.set("com.example.pawpal.database")
-            schemaOutputDirectory.set(file("src/main/sqldelight/schema"))
+            packageName.set("com.example.pawpal.appdatabase")
         }
     }
 }
