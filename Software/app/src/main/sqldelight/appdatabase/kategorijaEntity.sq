@@ -1,0 +1,4 @@
+CREATE TABLE kategorija (
+    kategorijaID INTEGER NOT NULL PRIMARY KEY,
+    naziv TEXT NOT NULL
+);

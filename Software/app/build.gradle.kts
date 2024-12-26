@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.ksp)
+    id("app.cash.sqldelight") version "2.0.2"
 }
 
 android {
@@ -54,9 +55,22 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
 
+    //SQLDelight baza podataka
+    implementation("com.squareup.sqldelight:android-driver:1.5.5") // Android Driver
+    implementation("com.squareup.sqldelight:coroutines-extensions-jvm:1.5.5") // Coroutines support
+
     //PayPal placanje
     implementation ("com.paypal.android:paypal-web-payments:1.7.1")
     implementation ("com.paypal.android:card-payments:1.7.1")
     implementation ("com.squareup.okhttp3:okhttp:4.11.0")
 
+}
+
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.example.pawpal.database")
+            schemaOutputDirectory.set(file("src/main/sqldelight/schema"))
+        }
+    }
 }
