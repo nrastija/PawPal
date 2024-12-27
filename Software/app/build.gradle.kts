@@ -72,7 +72,7 @@ dependencies {
 sqldelight {
     databases {
         create("AppDatabase") {
-            packageName.set("com.example.pawpal.appdatabase")
+            packageName.set("com.pawpal.appdatabase")
         }
     }
 }
