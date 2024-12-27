@@ -1,5 +1,6 @@
 package com.example.pawpal.main
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,14 +12,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.ui.ShopFragment
 import com.google.android.material.navigation.NavigationView
+import com.pawpal.appdatabase.AppDatabase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,13 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
+
+        //Resetiranje - ciscenje podataka u BP
+        resetDatabase(this)
+
+        //Instanciranje - instanca nove BP
+        val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "appdatabase.db")
+        database = AppDatabase(driver)
     }
 
 
@@ -56,6 +67,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToFragment(fragment: Fragment) {
+        if (fragment is DatabaseConsumer) {
+            fragment.database = database
+        }
+
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         setImagesVisibility(View.GONE)
 
@@ -70,4 +85,9 @@ class MainActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.imageView2).visibility = visibility
         findViewById<ImageView>(R.id.imageView7).visibility = visibility
     }
+
+    fun resetDatabase(context: Context) {
+        context.deleteDatabase("appdatabase.db")
+    }
 }
+
