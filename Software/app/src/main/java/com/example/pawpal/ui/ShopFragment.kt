@@ -82,12 +82,7 @@ class ShopFragment : Fragment(), DatabaseConsumer {
 
     private fun navigateToProizvodDetaljFragment(proizvod: appdatabase.Proizvod) {
         val detaljFragment = ProizvodDetaljFragment.newInstance(
-            proizvod.proizvodID,
-            proizvod.naziv,
-            proizvod.cijena,
-            proizvod.opis,
-            proizvod.kategorijaId,
-            proizvod.imageUrl
+            proizvod.proizvodID
         )
 
         detaljFragment.database = database

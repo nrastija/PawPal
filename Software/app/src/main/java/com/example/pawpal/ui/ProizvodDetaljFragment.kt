@@ -25,50 +25,22 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
 
     override lateinit var database: AppDatabase
     private var proizvodID: Long = 0
-    private var naziv: String? = null
-    private var cijena: Double = 0.0
-    private var opis: String? = null
-    private var kategorijaID: Long = 0
-    private var imageUrl: String? = null
 
     companion object {
         const val ARG_PROIZVOD_ID = "sifraProizvoda"
-        const val ARG_NAZIV = "nazivProizvoda"
-        const val ARG_CIJENA = "cijenaProizvoda"
-        const val ARG_OPIS = "opisProizvoda"
-        const val ARG_KATEGORIJA_ID = "kategorijaProizvoda"
-        const val ARG_IMAGE_URL = "imageUrl"
 
-        fun newInstance(
-            proizvodID: Long,
-            naziv: String,
-            cijena: Double,
-            opis: String?,
-            kategorijaID: Long,
-            imageUrl: String?
-        ): ProizvodDetaljFragment {
+        fun newInstance(proizvodID: Long): ProizvodDetaljFragment {
             val fragment = ProizvodDetaljFragment()
             val args = Bundle()
             args.putLong(ARG_PROIZVOD_ID, proizvodID)
-            args.putString(ARG_NAZIV, naziv)
-            args.putDouble(ARG_CIJENA, cijena)
-            args.putString(ARG_OPIS, opis)
-            args.putLong(ARG_KATEGORIJA_ID, kategorijaID)
-            args.putString(ARG_IMAGE_URL, imageUrl)
             fragment.arguments = args
             return fragment
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             proizvodID = it.getLong(ARG_PROIZVOD_ID)
-            naziv = it.getString(ARG_NAZIV)
-            cijena = it.getDouble(ARG_CIJENA)
-            opis = it.getString(ARG_OPIS)
-            kategorijaID = it.getLong(ARG_KATEGORIJA_ID)
-            imageUrl = it.getString(ARG_IMAGE_URL)
         }
     }
 
@@ -91,25 +63,19 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
         val spinnerKolicina: Spinner = view.findViewById(R.id.odabirKolicineSpinner)
         val gumbDodajUKosaricu: Button = view.findViewById(R.id.dodajProizvodUKosaricu)
 
-        nazivProizvoda.text = naziv
-        cijenaProizvoda.text = "Cijena: $cijena €"
-        opisProizvoda.text = opis
-
-        var kategorijaDataSource = KategorijaDataSourceImpl(database)
-
         lifecycleScope.launch {
-            Log.d("Debug", "KategorijaID: $kategorijaID")
-            val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(kategorijaID)
-            Log.d("Debug", "KategorijaNaziv: $kategorijaNaziv")
+            val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
+
+            nazivProizvoda.text = proizvod.naziv
+            cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
+            opisProizvoda.text = proizvod.opis
+
+            val kategorijaDataSource = KategorijaDataSourceImpl(database)
+            val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(proizvod.kategorijaId)
             kategorijaProizvoda.text = "Kategorija: $kategorijaNaziv"
-        }
 
-
-        val slikaID = resources.getIdentifier(imageUrl, "drawable", requireContext().packageName)
-        if (slikaID != 0) {
-            slikaProizvoda.setImageResource(slikaID)
-        } else {
-            slikaProizvoda.setImageResource(android.R.drawable.ic_menu_report_image)
+            val slikaID = resources.getIdentifier(proizvod.imageUrl, "drawable", requireContext().packageName)
+            slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }
 
         // Adapter for spinner
