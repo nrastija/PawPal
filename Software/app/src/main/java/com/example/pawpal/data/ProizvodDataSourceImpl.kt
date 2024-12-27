@@ -5,10 +5,16 @@ import appdatabase.Proizvod
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class ProizvodDataSourceImpl(db: AppDatabase) : ProizvodDataSource{
 
     private val queries = db.proizvodQueries
+    override suspend fun dohvatiProizvodPoId(proizvodId: Long): Proizvod? {
+        return withContext(Dispatchers.IO){
+            queries.dohvatiProizvodPoId(proizvodId).executeAsOneOrNull()
+        }
+    }
 
     override fun dohvatiProizvode(): Flow<List<Proizvod>> {
         return queries.dohvatiProizvode().asFlow().mapToList(context = Dispatchers.IO)

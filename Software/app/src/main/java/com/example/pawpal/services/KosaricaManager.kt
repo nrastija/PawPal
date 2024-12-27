@@ -1,6 +1,5 @@
 package com.example.pawpal.services
 
-import com.example.pawpal.entities.Kategorija
 import com.example.pawpal.f12_shop.entiteti.Proizvod
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -42,9 +41,9 @@ object KosaricaManager {
         return BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
     }
 
-    fun filtrirajProizvodePoKategoriji(kategorija: Kategorija, proizvodi: List<Proizvod>): List<Proizvod> {
+    /*fun filtrirajProizvodePoKategoriji(kategorija: Kategorija, proizvodi: List<Proizvod>): List<Proizvod> {
         return proizvodi.filter { it.kategorijaID == kategorija.id }
-    }
+    }*/
 
         fun isprazniKosaricuLista() {
         kosarica.clear()

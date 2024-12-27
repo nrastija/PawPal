@@ -1,6 +1,7 @@
 package com.example.pawpal.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +12,23 @@ import android.widget.TextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
+import com.example.pawpal.data.KategorijaDataSourceImpl
 import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.services.KosaricaManager
+import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.launch
 
-class ProizvodDetaljFragment : Fragment() {
+class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
 
-    private var proizvodID: Int = 0
+    override lateinit var database: AppDatabase
+    private var proizvodID: Long = 0
     private var naziv: String? = null
     private var cijena: Double = 0.0
     private var opis: String? = null
-    private var kategorijaID: Int = 0
+    private var kategorijaID: Long = 0
     private var imageUrl: String? = null
 
     companion object {
@@ -42,11 +49,11 @@ class ProizvodDetaljFragment : Fragment() {
         ): ProizvodDetaljFragment {
             val fragment = ProizvodDetaljFragment()
             val args = Bundle()
-            //args.putInt(ARG_PROIZVOD_ID, proizvodID)
+            args.putLong(ARG_PROIZVOD_ID, proizvodID)
             args.putString(ARG_NAZIV, naziv)
             args.putDouble(ARG_CIJENA, cijena)
             args.putString(ARG_OPIS, opis)
-            //args.putInt(ARG_KATEGORIJA_ID, kategorijaID)
+            args.putLong(ARG_KATEGORIJA_ID, kategorijaID)
             args.putString(ARG_IMAGE_URL, imageUrl)
             fragment.arguments = args
             return fragment
@@ -56,11 +63,11 @@ class ProizvodDetaljFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            proizvodID = it.getInt(ARG_PROIZVOD_ID)
+            proizvodID = it.getLong(ARG_PROIZVOD_ID)
             naziv = it.getString(ARG_NAZIV)
             cijena = it.getDouble(ARG_CIJENA)
             opis = it.getString(ARG_OPIS)
-            kategorijaID = it.getInt(ARG_KATEGORIJA_ID)
+            kategorijaID = it.getLong(ARG_KATEGORIJA_ID)
             imageUrl = it.getString(ARG_IMAGE_URL)
         }
     }
@@ -87,7 +94,16 @@ class ProizvodDetaljFragment : Fragment() {
         nazivProizvoda.text = naziv
         cijenaProizvoda.text = "Cijena: $cijena €"
         opisProizvoda.text = opis
-        kategorijaProizvoda.text = "Kategorija: $kategorijaID"
+
+        var kategorijaDataSource = KategorijaDataSourceImpl(database)
+
+        lifecycleScope.launch {
+            Log.d("Debug", "KategorijaID: $kategorijaID")
+            val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(kategorijaID)
+            Log.d("Debug", "KategorijaNaziv: $kategorijaNaziv")
+            kategorijaProizvoda.text = "Kategorija: $kategorijaNaziv"
+        }
+
 
         val slikaID = resources.getIdentifier(imageUrl, "drawable", requireContext().packageName)
         if (slikaID != 0) {
@@ -102,7 +118,7 @@ class ProizvodDetaljFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerKolicina.adapter = adapter
 
-        gumbDodajUKosaricu.setOnClickListener {
+        /*gumbDodajUKosaricu.setOnClickListener {
             val proizvod = Proizvod(
                 proizvodID = proizvodID,
                 naziv = naziv ?: "",
@@ -116,6 +132,6 @@ class ProizvodDetaljFragment : Fragment() {
             Toast.makeText(requireContext(), "Dodan ${naziv} u košaricu!", Toast.LENGTH_SHORT).show()
             KosaricaManager.dodajProizvodLista(proizvod)
 
-        }
+        }*/
     }
 }
