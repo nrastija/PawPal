@@ -3,6 +3,7 @@ package com.example.pawpal.f12_shop.entiteti
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ForeignKey
+import com.example.pawpal.entities.KategorijaProizvoda
 
 @Entity(
     tableName = "proizvod",

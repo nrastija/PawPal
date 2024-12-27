@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.pawpal.R
 import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.services.KosaricaManager
 
 class ProizvodDetaljActivity : AppCompatActivity() {
 
@@ -78,15 +79,5 @@ class ProizvodDetaljActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na return gumb
-        return when (item.itemId) {
-            R.id.return_icon -> {
-                val intent = Intent(this, ShopActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
 }

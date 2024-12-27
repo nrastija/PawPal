@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import appdatabase.Proizvod
+
 
 class ProizvodKosaricaAdapter(
     private val proizvodList: List<Proizvod>,
@@ -37,8 +38,8 @@ class ProizvodKosaricaAdapter(
 
         holder.nazivProizvoda.text = proizvod.naziv
         holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
-        holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
-        holder.quantityText.text = "${proizvod.kolicina}"
+        holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaId}"
+        holder.quantityText.text = "${"0"}"
 
         val nazivSlike = proizvod.imageUrl
         val slikaID = holder.itemView.context.resources.getIdentifier(nazivSlike, "drawable", holder.itemView.context.packageName)

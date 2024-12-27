@@ -11,7 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
-import com.example.pawpal.f12_shop.ShopActivity
 import com.google.android.material.navigation.NavigationView
 
 open class BaseActivity : AppCompatActivity() {
@@ -53,8 +52,6 @@ open class BaseActivity : AppCompatActivity() {
                 R.id.nav_adoption -> Toast.makeText(this, "Adoption clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_shop -> {
-                    val intent = Intent(this, ShopActivity::class.java)
-                    startActivity(intent)
                 }
             }
             drawerLayout.closeDrawers()

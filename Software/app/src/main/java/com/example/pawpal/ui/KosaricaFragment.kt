@@ -1,44 +1,55 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
+import com.example.pawpal.adapters.ProizvodKosaricaAdapter
 import com.example.pawpal.f12_shop.entiteti.Proizvod
-import com.example.pawpal.main.BaseActivity
+import com.example.pawpal.main.MainActivity
+import com.example.pawpal.services.KosaricaManager
 
-class KosaricaActivity : BaseActivity() {
+class KosaricaFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProizvodKosaricaAdapter
     private lateinit var ukupnaCijenaLabel: TextView
     private val proizvodList = mutableListOf<Proizvod>() // Mutable list za dinamicka azuriranja
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.f12_kosarica)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.f12_kosarica, container, false)
+        return view
+    }
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val btnNarudzba: Button = findViewById(R.id.btnNarudzba)
-        btnNarudzba.setOnClickListener{
-            val intent = Intent(this, CheckoutActivity::class.java);
-            startActivity(intent);
+        ukupnaCijenaLabel = view.findViewById(R.id.ukupnaCijena)
+        recyclerView = view.findViewById(R.id.recycler_view_kosarica)
+
+        val btnNarudzba: Button = view.findViewById(R.id.btnNarudzba)
+        btnNarudzba.setOnClickListener {
+            val intent = Intent(requireContext(), CheckoutActivity::class.java)
+            startActivity(intent)
         }
 
-        ukupnaCijenaLabel = findViewById(R.id.ukupnaCijena)
-        recyclerView = findViewById(R.id.recycler_view_kosarica) //Instanciranje recyclerviewa u kojem ce se prikazati podaci
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        proizvodList.addAll(dohvatiProizvodeKosarice())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        /*proizvodList.addAll(dohvatiProizvodeKosarice())
 
         adapter = ProizvodKosaricaAdapter(
             proizvodList,
@@ -48,29 +59,12 @@ class KosaricaActivity : BaseActivity() {
         )
         recyclerView.adapter = adapter
 
-        azurirajUkupnuCijenu()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // kreiranje return gumba
-        menuInflater.inflate(R.menu.f12_menu_return, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean { // funkcija obrade klika na return gumb
-        return when (item.itemId) {
-            R.id.return_icon -> {
-                val intent = Intent(this, ShopActivity::class.java)
-                startActivity(intent)
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+        azurirajUkupnuCijenu()*/
     }
 
     private fun dohvatiProizvodeKosarice(): List<Proizvod> {
         return KosaricaManager.dohvatiProizvodeLista()
     }
-
 
     private fun obrisiProizvod(proizvod: Proizvod) {
         KosaricaManager.obrisiProizvodLista(proizvod)
@@ -82,7 +76,7 @@ class KosaricaActivity : BaseActivity() {
         }
 
         azurirajUkupnuCijenu()
-        Toast.makeText(this, "${proizvod.naziv} obrisan iz kosarice", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "${proizvod.naziv} obrisan iz košarice", Toast.LENGTH_SHORT).show()
     }
 
     private fun povecajKolicinu(proizvod: Proizvod) {
@@ -96,7 +90,7 @@ class KosaricaActivity : BaseActivity() {
     }
 
     private fun smanjiKolicinu(proizvod: Proizvod) {
-        KosaricaManager.smanjiKolicinuList(proizvod);
+        KosaricaManager.smanjiKolicinuList(proizvod)
         val pozicija = proizvodList.indexOf(proizvod)
 
         if (pozicija >= 0) {
@@ -110,10 +104,8 @@ class KosaricaActivity : BaseActivity() {
         azurirajUkupnuCijenu()
     }
 
-
     private fun azurirajUkupnuCijenu() {
         val cijena = KosaricaManager.izracunajCijenuLista()
         ukupnaCijenaLabel.text = "Ukupna cijena: $cijena €"
     }
-
 }

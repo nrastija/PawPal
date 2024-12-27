@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.entities
 
 enum class Kategorija(val id: Int, val naziv: String) {
     RESET(0, "Reset"),
