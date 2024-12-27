@@ -1,0 +1,16 @@
+CREATE TABLE kosarica (
+    kosaricaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    korisnikID INTEGER,
+    vrijemeKreiranja TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+InsertKosarica:
+INSERT INTO kosarica (korisnikID)
+VALUES (?);
+
+sveKosarice:
+SELECT * FROM kosarica;
+
+provjeriPostojanje:
+SELECT * FROM kosarica
+WHERE korisnikID = ?;

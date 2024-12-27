@@ -1,0 +1,28 @@
+CREATE TABLE KosaricaProizvod (
+    kosaricaID INTEGER NOT NULL,
+    proizvodID INTEGER NOT NULL,
+    kolicina INTEGER NOT NULL,
+    PRIMARY KEY (kosaricaID, proizvodID),
+    FOREIGN KEY (kosaricaID) REFERENCES kosarica(kosaricaID) ON DELETE CASCADE,
+    FOREIGN KEY (proizvodID) REFERENCES proizvod(proizvodID) ON DELETE CASCADE
+);
+
+dodajProizvodUKosaricu:
+INSERT INTO KosaricaProizvod (kosaricaID, proizvodID, kolicina)
+VALUES (?, ?, ?);
+
+azurirajKosaricu:
+UPDATE KosaricaProizvod
+SET kolicina = ?
+WHERE kosaricaID = ? AND proizvodID = ?;
+
+filtrirajKosaricu:
+SELECT p.*
+FROM proizvod p
+INNER JOIN KosaricaProizvod kp ON p.proizvodID = kp.proizvodID
+WHERE kp.kosaricaID = ?;
+
+brisanjeKosarice:
+DELETE FROM KosaricaProizvod
+WHERE kosaricaID = ? ;
+
