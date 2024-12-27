@@ -1,33 +1,26 @@
 package com.example.pawpal.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodShopAdapter
-import com.example.pawpal.entities.Kategorija
-import com.example.pawpal.entities.Proizvod
-import com.example.pawpal.services.KosaricaManager.filtrirajProizvodePoKategoriji
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.navigation.NavigationView
+import com.example.pawpal.data.ProizvodDataSourceImpl
+import com.example.pawpal.main.DatabaseConsumer
+import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.launch
 
-class ShopFragment : Fragment() {
+class ShopFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProizvodShopAdapter
-    private val proizvodList = mutableListOf<Proizvod>()
-
-    private lateinit var floatingButton: FloatingActionButton
+    private val proizvodList = mutableListOf<appdatabase.Proizvod>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,82 +33,77 @@ class ShopFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.recyclerShop)
-        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        val proizvodDataSource = ProizvodDataSourceImpl(database)
 
-        floatingButton = view.findViewById(R.id.floatingButton)
-
-        adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
-            // Navigacija na ProizvodDetaljFragment
-            val detaljFragment = ProizvodDetaljFragment.newInstance(
-                proizvod.proizvodID,
-                proizvod.naziv,
-                proizvod.cijena,
-                proizvod.opis,
-                proizvod.kategorijaID,
-                proizvod.imageUrl
-            )
-            parentFragmentManager.beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                .replace(R.id.fragmentContainer, detaljFragment)
-                .addToBackStack(null)
-                .commit()
+        val queries = database.proizvodQueries
+        queries.transaction {
+            queries.insertProizvod("Paramol 250ML", 14.99, "Lijek za pse protiv virusa", "proizvod_1", 1)
+            queries.insertProizvod("Reid Fills 400G", 11.98, "Hrana za pse u granulama", "proizvod_2", 2)
+            queries.insertProizvod("Pupino 3000x", 79.99, "Aparat za brijanje pasa", "proizvod_3", 3)
+            queries.insertProizvod("Groomer Elite Set", 49.99, "Set četki za održavanje higijene vašeg psa", "proizvod_4", 3)
+            queries.insertProizvod("Healthy Paws 2KG", 32.00, "Healthy paws zdrava hrana sa povrćem za pse", "proizvod_5", 2)
+            queries.insertProizvod("Healthy Paws Multivitamal", 32.00, "Multivitamin smjesa za zdravlje pasa, 90 kapsula", "proizvod_6", 1)
+            queries.insertProizvod("CozyPaw SleepPad", 74.50, "Udoban ergonomski krevet za pse, namijenjen za pse male do srednje veličine", "proizvod_7", 4)
         }
 
+        recyclerView = view.findViewById(R.id.recyclerShop)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        adapter = ProizvodShopAdapter(proizvodList) { proizvod ->
+            navigateToProizvodDetaljFragment(proizvod)
+        }
         recyclerView.adapter = adapter
 
-        proizvodList.addAll(dohvatiProizvodeShop())
-        adapter.notifyDataSetChanged()
+        fetchProducts(proizvodDataSource)
 
+        // Set up category filter buttons
         val btnZdravlje: Button = view.findViewById(R.id.filterZdravlje)
         val btnHrana: Button = view.findViewById(R.id.filterHrana)
         val btnHigijena: Button = view.findViewById(R.id.filterHigijena)
         val btnOstalo: Button = view.findViewById(R.id.filterOstalo)
         val btnReset: Button = view.findViewById(R.id.filterReset)
 
-        btnZdravlje.setOnClickListener { filtrirajProizvode(Kategorija.ZDRAVLJE) }
-        btnHrana.setOnClickListener { filtrirajProizvode(Kategorija.HRANA) }
-        btnHigijena.setOnClickListener { filtrirajProizvode(Kategorija.HIGIJENA) }
-        btnOstalo.setOnClickListener { filtrirajProizvode(Kategorija.OSTALO) }
-        btnReset.setOnClickListener { filtrirajProizvode(Kategorija.RESET) }
-
-        floatingButton.setOnClickListener {
-            val newFragment = KosaricaFragment();
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, newFragment)
-                .addToBackStack(null)
-                .commit()
-        }
+        btnZdravlje.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 1) } // Example category ID
+        btnHrana.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 2) }
+        btnHigijena.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 3) }
+        btnOstalo.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 4) }
+        btnReset.setOnClickListener { fetchProducts(proizvodDataSource) }
     }
 
-    private fun dohvatiProizvodeShop(): List<Proizvod> {
-        return listOf(
-            Proizvod(1, "Paramol 250ML", 14.99, "Lijek za pse protiv virusa", 1, 0, "proizvod_1"),
-            Proizvod(2, "Reid Fills 400G", 11.98, "Hrana za pse u granulama", 2, 0, "proizvod_2"),
-            Proizvod(3, "Pupino 3000x", 79.99, "Aparat za brijanje pasa", 1, 0, "proizvod_3")
-        )
-    }
-
-    private fun filtrirajProizvode(kategorija: Kategorija) {
-        val filtriraniProizvodi = if (kategorija == Kategorija.RESET) {
-            dohvatiProizvodeShop()
-        } else {
-            filtrirajProizvodePoKategoriji(kategorija, dohvatiProizvodeShop())
-        }
-
-        proizvodList.clear()
-        proizvodList.addAll(filtriraniProizvodi)
-
-        recyclerView.animate()
-            .alpha(0f)
-            .setDuration(0)
-            .withEndAction {
-                adapter.notifyDataSetChanged()
-                recyclerView.animate()
-                    .alpha(1f)
-                    .setDuration(400)
-                    .start()
+    private fun fetchProducts(proizvodDataSource: ProizvodDataSourceImpl) {
+        lifecycleScope.launch {
+            proizvodDataSource.dohvatiProizvode().collect { products ->
+                updateProductList(products)
             }
-            .start()
+        }
+    }
+
+    private fun fetchFilteredProducts(proizvodDataSource: ProizvodDataSourceImpl, kategorijaId: Long) {
+        lifecycleScope.launch {
+            proizvodDataSource.filtrirajProizvodePoKategoriji(kategorijaId).collect { products ->
+                updateProductList(products.distinct())
+            }
+        }
+    }
+
+    private fun updateProductList(products: List<appdatabase.Proizvod>) {
+        proizvodList.clear()
+        proizvodList.addAll(products)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun navigateToProizvodDetaljFragment(proizvod: appdatabase.Proizvod) {
+        val detaljFragment = ProizvodDetaljFragment.newInstance(
+            proizvod.proizvodID,
+            proizvod.naziv,
+            proizvod.cijena,
+            proizvod.opis,
+            proizvod.kategorijaId,
+            proizvod.imageUrl
+        )
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            .replace(R.id.fragmentContainer, detaljFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

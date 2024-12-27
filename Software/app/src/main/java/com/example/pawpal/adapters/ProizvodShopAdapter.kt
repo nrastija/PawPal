@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.Proizvod
 import com.example.pawpal.R
-import com.example.pawpal.entities.Proizvod
 
-class ProizvodShopAdapter (
-    private val proizvodList: List<Proizvod>,
+class ProizvodShopAdapter(
+    private val proizvodList: MutableList<Proizvod>,
     private val onProizvodClick: (Proizvod) -> Unit
     ) : RecyclerView.Adapter<ProizvodShopAdapter.ProizvodViewHolder>() {
 
@@ -31,7 +31,7 @@ class ProizvodShopAdapter (
 
             holder.nazivProizvoda.text = proizvod.naziv
             holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
-            holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
+            holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaId}"
 
             val nazivSlike = proizvod.imageUrl
             val slikaID = holder.itemView.context.resources.getIdentifier(nazivSlike, "drawable", holder.itemView.context.packageName)

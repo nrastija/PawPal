@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.pawpal.R
-import com.example.pawpal.entities.Proizvod
+import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.services.KosaricaManager
 
 class ProizvodDetaljActivity : AppCompatActivity() {

@@ -12,7 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.pawpal.R
-import com.example.pawpal.entities.Proizvod
+import com.example.pawpal.f12_shop.entiteti.Proizvod
 import com.example.pawpal.services.KosaricaManager
 
 class ProizvodDetaljFragment : Fragment() {
@@ -33,20 +33,20 @@ class ProizvodDetaljFragment : Fragment() {
         const val ARG_IMAGE_URL = "imageUrl"
 
         fun newInstance(
-            proizvodID: Int,
+            proizvodID: Long,
             naziv: String,
             cijena: Double,
-            opis: String,
-            kategorijaID: Int,
+            opis: String?,
+            kategorijaID: Long,
             imageUrl: String?
         ): ProizvodDetaljFragment {
             val fragment = ProizvodDetaljFragment()
             val args = Bundle()
-            args.putInt(ARG_PROIZVOD_ID, proizvodID)
+            //args.putInt(ARG_PROIZVOD_ID, proizvodID)
             args.putString(ARG_NAZIV, naziv)
             args.putDouble(ARG_CIJENA, cijena)
             args.putString(ARG_OPIS, opis)
-            args.putInt(ARG_KATEGORIJA_ID, kategorijaID)
+            //args.putInt(ARG_KATEGORIJA_ID, kategorijaID)
             args.putString(ARG_IMAGE_URL, imageUrl)
             fragment.arguments = args
             return fragment

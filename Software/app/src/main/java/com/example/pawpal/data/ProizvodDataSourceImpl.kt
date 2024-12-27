@@ -2,7 +2,7 @@ package com.example.pawpal.data
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.Proizvod
-import com.example.pawpal.appdatabase.AppDatabase
+import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 
@@ -25,7 +25,9 @@ class ProizvodDataSourceImpl(db: AppDatabase) : ProizvodDataSource{
         imageUrl: String,
         kategorijaID: Long?
     ) {
-        queries.insertProizvod(naziv, cijena, opis, imageUrl, kategorijaID)
+        if (kategorijaID != null) {
+            queries.insertProizvod(naziv, cijena, opis, imageUrl, kategorijaID)
+        }
     }
 
 }
