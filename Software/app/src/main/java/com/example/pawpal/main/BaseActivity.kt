@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
+import com.example.pawpal.f02_izgubljeni_pas.PrijavaIzgubljenihPasa
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.f12_shop.ShopActivity
@@ -51,7 +52,10 @@ open class BaseActivity : AppCompatActivity() {
                 R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_adoption -> Toast.makeText(this, "Adoption clicked", Toast.LENGTH_SHORT).show()
-                R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_lost_dogs -> {
+                    val intent = Intent(this, PrijavaIzgubljenihPasa::class.java)
+                    startActivity(intent)
+                }
                 R.id.nav_shop -> {
                     val intent = Intent(this, ShopActivity::class.java)
                     startActivity(intent)
