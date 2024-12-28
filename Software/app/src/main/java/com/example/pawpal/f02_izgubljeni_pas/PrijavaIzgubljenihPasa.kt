@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -31,19 +32,32 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
 
         val buttonPrilozi: Button = findViewById(R.id.prilozislikupsa)
         imageView = findViewById(R.id.imageView)
+        ponisti = findViewById(R.id.ponisti)
+        dodatniopispsa = findViewById(R.id.dodatniopispsa)
+        zadnjeviden = findViewById(R.id.zadnjeviden)
 
         buttonPrilozi.setOnClickListener{
             openImageChooser()
         }
 
+        ponisti.setOnClickListener{
+            imageView.setImageURI(null)
+            dodatniopispsa.text.clear()
+            zadnjeviden.text.clear()
+        }
     }
+
+
+    private lateinit var imageView: ImageView
+    private lateinit var ponisti: Button
+    private lateinit var dodatniopispsa: EditText
+    private lateinit var zadnjeviden: EditText
 
     private fun openImageChooser() {
         pickImageLauncher.launch("image/*")
     }
 
 
-    private lateinit var imageView: ImageView
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             checkImageSize(it)

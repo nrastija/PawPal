@@ -103,13 +103,13 @@
                 android:id="@+id/dodatniopispsa"
                 android:layout_width="350dp"
                 android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/primaryColor"
                 android:hint="Unesite dodatni opis"
                 android:inputType="textMultiLine"
-                android:background="@color/primaryColor"
-                android:layout_gravity="center"
-                android:padding="15dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="8dp" />
+                android:padding="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
