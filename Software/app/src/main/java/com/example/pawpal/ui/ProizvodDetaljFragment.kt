@@ -11,57 +11,33 @@ import android.widget.TextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.Proizvod
-import com.example.pawpal.services.KosaricaManager
+import com.example.pawpal.data.impl.KategorijaDataSourceImpl
+import com.example.pawpal.main.DatabaseConsumer
+import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.launch
 
-class ProizvodDetaljFragment : Fragment() {
+class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
 
-    private var proizvodID: Int = 0
-    private var naziv: String? = null
-    private var cijena: Double = 0.0
-    private var opis: String? = null
-    private var kategorijaID: Int = 0
-    private var imageUrl: String? = null
+    override lateinit var database: AppDatabase
+    private var proizvodID: Long = 0
 
     companion object {
         const val ARG_PROIZVOD_ID = "sifraProizvoda"
-        const val ARG_NAZIV = "nazivProizvoda"
-        const val ARG_CIJENA = "cijenaProizvoda"
-        const val ARG_OPIS = "opisProizvoda"
-        const val ARG_KATEGORIJA_ID = "kategorijaProizvoda"
-        const val ARG_IMAGE_URL = "imageUrl"
 
-        fun newInstance(
-            proizvodID: Long,
-            naziv: String,
-            cijena: Double,
-            opis: String?,
-            kategorijaID: Long,
-            imageUrl: String?
-        ): ProizvodDetaljFragment {
+        fun newInstance(proizvodID: Long): ProizvodDetaljFragment {
             val fragment = ProizvodDetaljFragment()
             val args = Bundle()
-            //args.putInt(ARG_PROIZVOD_ID, proizvodID)
-            args.putString(ARG_NAZIV, naziv)
-            args.putDouble(ARG_CIJENA, cijena)
-            args.putString(ARG_OPIS, opis)
-            //args.putInt(ARG_KATEGORIJA_ID, kategorijaID)
-            args.putString(ARG_IMAGE_URL, imageUrl)
+            args.putLong(ARG_PROIZVOD_ID, proizvodID)
             fragment.arguments = args
             return fragment
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            proizvodID = it.getInt(ARG_PROIZVOD_ID)
-            naziv = it.getString(ARG_NAZIV)
-            cijena = it.getDouble(ARG_CIJENA)
-            opis = it.getString(ARG_OPIS)
-            kategorijaID = it.getInt(ARG_KATEGORIJA_ID)
-            imageUrl = it.getString(ARG_IMAGE_URL)
+            proizvodID = it.getLong(ARG_PROIZVOD_ID)
         }
     }
 
@@ -84,16 +60,18 @@ class ProizvodDetaljFragment : Fragment() {
         val spinnerKolicina: Spinner = view.findViewById(R.id.odabirKolicineSpinner)
         val gumbDodajUKosaricu: Button = view.findViewById(R.id.dodajProizvodUKosaricu)
 
-        nazivProizvoda.text = naziv
-        cijenaProizvoda.text = "Cijena: $cijena €"
-        opisProizvoda.text = opis
-        kategorijaProizvoda.text = "Kategorija: $kategorijaID"
+        lifecycleScope.launch {
+            val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
 
-        val slikaID = resources.getIdentifier(imageUrl, "drawable", requireContext().packageName)
-        if (slikaID != 0) {
-            slikaProizvoda.setImageResource(slikaID)
-        } else {
-            slikaProizvoda.setImageResource(android.R.drawable.ic_menu_report_image)
+            nazivProizvoda.text = proizvod.naziv
+            cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
+            opisProizvoda.text = proizvod.opis
+
+            val kategorijaDataSource = KategorijaDataSourceImpl(database)
+            val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(proizvod.kategorijaId)
+            kategorijaProizvoda.text = "Kategorija: $kategorijaNaziv"
+            val slikaID = resources.getIdentifier(proizvod.imageUrl, "drawable", requireContext().packageName)
+            slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }
 
         // Adapter for spinner
@@ -103,18 +81,43 @@ class ProizvodDetaljFragment : Fragment() {
         spinnerKolicina.adapter = adapter
 
         gumbDodajUKosaricu.setOnClickListener {
-            val proizvod = Proizvod(
-                proizvodID = proizvodID,
-                naziv = naziv ?: "",
-                cijena = cijena,
-                opis = opis ?: "",
-                kategorijaID = kategorijaID,
-                kolicina = spinnerKolicina.selectedItem.toString().toInt(),
-                imageUrl = imageUrl
-            )
 
-            Toast.makeText(requireContext(), "Dodan ${naziv} u košaricu!", Toast.LENGTH_SHORT).show()
-            KosaricaManager.dodajProizvodLista(proizvod)
+            lifecycleScope.launch {
+                val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
+
+                //logika za dohvacanje ID-ja korisnika
+                val korisnikId = 1L
+
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull();
+
+                if (kosarica == null){
+                    database.kosaricaQueries.InsertKosarica(korisnikId)
+                    val novaKosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull()
+
+                    if (novaKosarica != null) {
+                        database.kosaricaProizvodQueries.dodajProizvodUKosaricu(novaKosarica.kosaricaID,
+                            proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                            Toast.makeText(context, "Proizvod dodan u košaricu!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else{
+                    val postojiProizvod = database.kosaricaProizvodQueries.provjeriPostojanje(proizvod.proizvodID).executeAsOneOrNull()
+
+                    if (postojiProizvod == false) {
+                        database.kosaricaProizvodQueries.dodajProizvodUKosaricu(kosarica.kosaricaID,
+                            proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                        Toast.makeText(context, "Proizvod dodan u košaricu!", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        database.kosaricaProizvodQueries.azurirajKolicinu(
+                            spinnerKolicina.selectedItem.toString().toLong(),
+                            kosarica.kosaricaID,
+                            proizvod.proizvodID
+                        )
+                        Toast.makeText(context, "Proizvod ažuriran u košarici!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
         }
     }

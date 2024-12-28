@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodShopAdapter
-import com.example.pawpal.data.ProizvodDataSourceImpl
+import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -34,17 +35,7 @@ class ShopFragment : Fragment(), DatabaseConsumer {
         super.onViewCreated(view, savedInstanceState)
 
         val proizvodDataSource = ProizvodDataSourceImpl(database)
-
-        val queries = database.proizvodQueries
-        queries.transaction {
-            queries.insertProizvod("Paramol 250ML", 14.99, "Lijek za pse protiv virusa", "proizvod_1", 1)
-            queries.insertProizvod("Reid Fills 400G", 11.98, "Hrana za pse u granulama", "proizvod_2", 2)
-            queries.insertProizvod("Pupino 3000x", 79.99, "Aparat za brijanje pasa", "proizvod_3", 3)
-            queries.insertProizvod("Groomer Elite Set", 49.99, "Set četki za održavanje higijene vašeg psa", "proizvod_4", 3)
-            queries.insertProizvod("Healthy Paws 2KG", 32.00, "Healthy paws zdrava hrana sa povrćem za pse", "proizvod_5", 2)
-            queries.insertProizvod("Healthy Paws Multivitamal", 32.00, "Multivitamin smjesa za zdravlje pasa, 90 kapsula", "proizvod_6", 1)
-            queries.insertProizvod("CozyPaw SleepPad", 74.50, "Udoban ergonomski krevet za pse, namijenjen za pse male do srednje veličine", "proizvod_7", 4)
-        }
+        val floatingButton: FloatingActionButton = view.findViewById(R.id.floatingButton)
 
         recyclerView = view.findViewById(R.id.recyclerShop)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -67,6 +58,21 @@ class ShopFragment : Fragment(), DatabaseConsumer {
         btnHigijena.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 3) }
         btnOstalo.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 4) }
         btnReset.setOnClickListener { fetchProducts(proizvodDataSource) }
+
+        floatingButton.setOnClickListener {
+            lifecycleScope.launch {
+                //POTREBNO KASNIJE DOHVATITI KORISNIKID!
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                    ?: let {
+                        database.kosaricaQueries.InsertKosarica(1)
+                        database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                    }
+
+                if (kosarica != null) {
+                    navigateToKosaricaFragment(kosarica)
+                }
+            }
+        }
     }
 
     private fun fetchProducts(proizvodDataSource: ProizvodDataSourceImpl) {
@@ -93,16 +99,27 @@ class ShopFragment : Fragment(), DatabaseConsumer {
 
     private fun navigateToProizvodDetaljFragment(proizvod: appdatabase.Proizvod) {
         val detaljFragment = ProizvodDetaljFragment.newInstance(
-            proizvod.proizvodID,
-            proizvod.naziv,
-            proizvod.cijena,
-            proizvod.opis,
-            proizvod.kategorijaId,
-            proizvod.imageUrl
+            proizvod.proizvodID
         )
+
+        detaljFragment.database = database
+
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, detaljFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun navigateToKosaricaFragment(kosarica: appdatabase.Kosarica) {
+        val kosaricaFragment = KosaricaFragment.newInstance(
+            kosarica.kosaricaID
+        )
+        kosaricaFragment.database = database
+
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            .replace(R.id.fragmentContainer, kosaricaFragment)
             .addToBackStack(null)
             .commit()
     }

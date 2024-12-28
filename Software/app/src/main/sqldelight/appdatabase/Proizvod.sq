@@ -15,6 +15,9 @@ insertProizvod:
 dohvatiProizvode:
   SELECT * FROM proizvod;
 
+dohvatiProizvodPoId:
+SELECT * FROM  proizvod WHERE proizvodID = ?;
+
 filtrirajProizvodePoKategoriji:
   SELECT * FROM proizvod
   WHERE kategorijaId = ?;

@@ -3,29 +3,52 @@ package com.example.pawpal.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.DohvatiProizvodeZaKosaricu
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodKosaricaAdapter
-import com.example.pawpal.f12_shop.entiteti.Proizvod
-import com.example.pawpal.main.MainActivity
-import com.example.pawpal.services.KosaricaManager
+import com.example.pawpal.main.DatabaseConsumer
+import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 
-class KosaricaFragment : Fragment() {
+class KosaricaFragment : Fragment(), DatabaseConsumer {
 
+    override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProizvodKosaricaAdapter
     private lateinit var ukupnaCijenaLabel: TextView
-    private val proizvodList = mutableListOf<Proizvod>() // Mutable list za dinamicka azuriranja
+    private val proizvodList = mutableListOf<DohvatiProizvodeZaKosaricu>()
+
+    companion object {
+        private const val ARG_KOSARICA_ID = "kosarica_id"
+
+        fun newInstance(kosaricaID: Long): KosaricaFragment {
+            val fragment = KosaricaFragment()
+            val args = Bundle()
+            args.putLong(ARG_KOSARICA_ID, kosaricaID)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    private var kosaricaID: Long = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            kosaricaID = it.getLong(ARG_KOSARICA_ID, 0)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +72,6 @@ class KosaricaFragment : Fragment() {
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        /*proizvodList.addAll(dohvatiProizvodeKosarice())
 
         adapter = ProizvodKosaricaAdapter(
             proizvodList,
@@ -59,53 +81,63 @@ class KosaricaFragment : Fragment() {
         )
         recyclerView.adapter = adapter
 
-        azurirajUkupnuCijenu()*/
+        dohvatiProizvodeKosarice()
     }
 
-    private fun dohvatiProizvodeKosarice(): List<Proizvod> {
-        return KosaricaManager.dohvatiProizvodeLista()
-    }
 
-    private fun obrisiProizvod(proizvod: Proizvod) {
-        KosaricaManager.obrisiProizvodLista(proizvod)
-        val pozicija = proizvodList.indexOf(proizvod)
-
-        if (pozicija >= 0) {
-            proizvodList.removeAt(pozicija)
-            adapter.notifyItemRemoved(pozicija)
+    private fun dohvatiProizvodeKosarice(){
+        lifecycleScope.launch {
+            val proizvodi = database.kosaricaProizvodQueries.dohvatiProizvodeZaKosaricu(kosaricaID).executeAsList()
+            updateProizvodList(proizvodi)
         }
-
-        azurirajUkupnuCijenu()
-        Toast.makeText(requireContext(), "${proizvod.naziv} obrisan iz košarice", Toast.LENGTH_SHORT).show()
     }
 
-    private fun povecajKolicinu(proizvod: Proizvod) {
-        KosaricaManager.povecajKolicinuList(proizvod)
-        val pozicija = proizvodList.indexOf(proizvod)
-
-        if (pozicija >= 0) {
-            adapter.notifyItemChanged(pozicija)
+    private fun obrisiProizvod(proizvod: DohvatiProizvodeZaKosaricu) {
+        lifecycleScope.launch {
+            val brisanProizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvod.proizvodID).executeAsOneOrNull()
+            database.kosaricaProizvodQueries.brisanjeProizvodaKosarice(kosaricaID, proizvod.proizvodID)
+            dohvatiProizvodeKosarice()
+            Toast.makeText(requireContext(), "${brisanProizvod?.naziv} obrisan iz košarice", Toast.LENGTH_SHORT).show()
         }
-        azurirajUkupnuCijenu()
     }
 
-    private fun smanjiKolicinu(proizvod: Proizvod) {
-        KosaricaManager.smanjiKolicinuList(proizvod)
-        val pozicija = proizvodList.indexOf(proizvod)
+    private fun povecajKolicinu(proizvod: DohvatiProizvodeZaKosaricu) {
+        lifecycleScope.launch {
+            database.kosaricaProizvodQueries.azurirajKolicinu(
+                kolicina = 1,
+                kosaricaID = kosaricaID,
+                proizvodID = proizvod.proizvodID
+            )
+            dohvatiProizvodeKosarice()
+        }
+    }
 
-        if (pozicija >= 0) {
-            if (proizvod.kolicina > 0) {
-                adapter.notifyItemChanged(pozicija)
+    private fun smanjiKolicinu(proizvod: DohvatiProizvodeZaKosaricu) {
+        lifecycleScope.launch {
+            if (proizvod.kolicina > 1) {
+                database.kosaricaProizvodQueries.azurirajKolicinu(
+                    kolicina = -1,
+                    kosaricaID = kosaricaID,
+                    proizvodID = proizvod.proizvodID
+                )
             } else {
-                proizvodList.removeAt(pozicija)
-                adapter.notifyItemRemoved(pozicija)
+                obrisiProizvod(proizvod)
             }
+            dohvatiProizvodeKosarice()
         }
-        azurirajUkupnuCijenu()
     }
 
     private fun azurirajUkupnuCijenu() {
-        val cijena = KosaricaManager.izracunajCijenuLista()
-        ukupnaCijenaLabel.text = "Ukupna cijena: $cijena €"
+        val ukupnaCijena = proizvodList.sumOf { it.cijena * it.kolicina }
+        val zaokruzenaCijena = BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
+        ukupnaCijenaLabel.text = "Ukupna cijena: $zaokruzenaCijena €"
     }
+
+    private fun updateProizvodList(proizvodi: List<DohvatiProizvodeZaKosaricu>) {
+        proizvodList.clear()
+        proizvodList.addAll(proizvodi)
+        adapter.notifyDataSetChanged()
+        azurirajUkupnuCijenu()
+    }
+
 }

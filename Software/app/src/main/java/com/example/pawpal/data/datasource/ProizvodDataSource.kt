@@ -1,9 +1,11 @@
-package com.example.pawpal.data
+package com.example.pawpal.data.datasource
 
 import appdatabase.Proizvod
 import kotlinx.coroutines.flow.Flow
 
 interface ProizvodDataSource {
+
+     suspend fun dohvatiProizvodPoId(proizvodId: Long): Proizvod?
 
      fun dohvatiProizvode(): Flow<List<Proizvod>>
 

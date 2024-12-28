@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
+import com.example.pawpal.data.impl.KategorijaDataSourceImpl
+import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.ui.ShopFragment
@@ -43,8 +45,9 @@ class MainActivity : AppCompatActivity() {
         //Instanciranje - instanca nove BP
         val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "appdatabase.db")
         database = AppDatabase(driver)
-    }
 
+        populateDatabase()
+    }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
         setSupportActionBar(toolbar)
@@ -84,6 +87,33 @@ class MainActivity : AppCompatActivity() {
     private fun setImagesVisibility(visibility: Int) {
         findViewById<ImageView>(R.id.imageView2).visibility = visibility
         findViewById<ImageView>(R.id.imageView7).visibility = visibility
+    }
+
+    private fun populateDatabase() {
+        val proizvodDataSource = ProizvodDataSourceImpl(database)
+
+        val queriesProizvod = database.proizvodQueries
+        queriesProizvod.transaction {
+            queriesProizvod.insertProizvod("Paramol 250ML", 14.99, "Lijek za pse protiv virusa", "proizvod_1", 1)
+            queriesProizvod.insertProizvod("Reid Fills 400G", 11.98, "Hrana za pse u granulama", "proizvod_2", 2)
+            queriesProizvod.insertProizvod("Pupino 3000x", 79.99, "Aparat za brijanje pasa", "proizvod_3", 3)
+            queriesProizvod.insertProizvod("Groomer Elite Set", 49.99, "Set četki za održavanje higijene vašeg psa", "proizvod_4", 3)
+            queriesProizvod.insertProizvod("Healthy Paws 2KG", 32.00, "Healthy paws zdrava hrana sa povrćem za pse", "proizvod_5", 2)
+            queriesProizvod.insertProizvod("Healthy Paws Multivitamal", 32.00, "Multivitamin smjesa za zdravlje pasa, 90 kapsula", "proizvod_6", 1)
+            queriesProizvod.insertProizvod("CozyPaw SleepPad", 74.50, "Udoban ergonomski krevet za pse, namijenjen za pse male do srednje veličine", "proizvod_7", 4)
+        }
+
+        val kategorijaDataSource = KategorijaDataSourceImpl(database)
+
+        val queriesKategorija = database.kategorijaQueries
+        queriesKategorija.transaction{
+            queriesKategorija.insertKategorija(1, "Zdravlje")
+            queriesKategorija.insertKategorija(2, "Hrana")
+            queriesKategorija.insertKategorija(3, "Higijena")
+            queriesKategorija.insertKategorija(4, "Ostalo")
+
+        }
+
     }
 
     fun resetDatabase(context: Context) {
