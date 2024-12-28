@@ -14,3 +14,4 @@ SELECT * FROM kosarica;
 provjeriPostojanje:
 SELECT * FROM kosarica
 WHERE korisnikID = ?;
+

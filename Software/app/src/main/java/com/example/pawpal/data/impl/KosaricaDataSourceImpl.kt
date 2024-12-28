@@ -25,4 +25,5 @@ class KosaricaDataSourceImpl(db: AppDatabase) : KosaricaDataSource {
             queries.provjeriPostojanje(korisnikId).executeAsOneOrNull()
         }
     }
+
 }

@@ -13,6 +13,7 @@ import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodShopAdapter
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -34,6 +35,7 @@ class ShopFragment : Fragment(), DatabaseConsumer {
         super.onViewCreated(view, savedInstanceState)
 
         val proizvodDataSource = ProizvodDataSourceImpl(database)
+        val floatingButton: FloatingActionButton = view.findViewById(R.id.floatingButton)
 
         recyclerView = view.findViewById(R.id.recyclerShop)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -56,6 +58,21 @@ class ShopFragment : Fragment(), DatabaseConsumer {
         btnHigijena.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 3) }
         btnOstalo.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 4) }
         btnReset.setOnClickListener { fetchProducts(proizvodDataSource) }
+
+        floatingButton.setOnClickListener {
+            lifecycleScope.launch {
+                //POTREBNO KASNIJE DOHVATITI KORISNIKID!
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                    ?: let {
+                        database.kosaricaQueries.InsertKosarica(1)
+                        database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                    }
+
+                if (kosarica != null) {
+                    navigateToKosaricaFragment(kosarica)
+                }
+            }
+        }
     }
 
     private fun fetchProducts(proizvodDataSource: ProizvodDataSourceImpl) {
@@ -90,6 +107,19 @@ class ShopFragment : Fragment(), DatabaseConsumer {
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, detaljFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun navigateToKosaricaFragment(kosarica: appdatabase.Kosarica) {
+        val kosaricaFragment = KosaricaFragment.newInstance(
+            kosarica.kosaricaID
+        )
+        kosaricaFragment.database = database
+
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            .replace(R.id.fragmentContainer, kosaricaFragment)
             .addToBackStack(null)
             .commit()
     }

@@ -9,4 +9,5 @@ interface KosaricaDataSource {
     suspend fun insertKosarica(korisnikId: Long)
 
     suspend fun provjeriPostojanje(korisnikId: Long): Kosarica?
+
 }
