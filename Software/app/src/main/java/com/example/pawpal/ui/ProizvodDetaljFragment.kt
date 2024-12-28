@@ -1,7 +1,6 @@
 package com.example.pawpal.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
-import com.example.pawpal.data.KategorijaDataSourceImpl
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+import com.example.pawpal.data.impl.KategorijaDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
-import com.example.pawpal.services.KosaricaManager
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -84,20 +81,34 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerKolicina.adapter = adapter
 
-        /*gumbDodajUKosaricu.setOnClickListener {
-            val proizvod = Proizvod(
-                proizvodID = proizvodID,
-                naziv = naziv ?: "",
-                cijena = cijena,
-                opis = opis ?: "",
-                kategorijaID = kategorijaID,
-                kolicina = spinnerKolicina.selectedItem.toString().toInt(),
-                imageUrl = imageUrl
-            )
+        gumbDodajUKosaricu.setOnClickListener {
 
-            Toast.makeText(requireContext(), "Dodan ${naziv} u košaricu!", Toast.LENGTH_SHORT).show()
-            KosaricaManager.dodajProizvodLista(proizvod)
+            lifecycleScope.launch {
+                val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
 
-        }*/
+                //logika za dohvacanje ID-ja korisnika
+                val korisnikId = 1L
+
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull();
+
+                if (kosarica == null){
+                    database.kosaricaQueries.InsertKosarica(korisnikId)
+                    Toast.makeText(context, "Kreirana nova košarica za korisnika", Toast.LENGTH_SHORT).show()
+                    val novaKosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull()
+
+                    if (novaKosarica != null) {
+                        database.kosaricaProizvodQueries.dodajProizvodUKosaricu(novaKosarica.kosaricaID,
+                            proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                    }
+                }
+                else{
+                    Toast.makeText(context, "Postoji košarica za korisnika", Toast.LENGTH_SHORT).show()
+
+                    database.kosaricaProizvodQueries.dodajProizvodUKosaricu(kosarica.kosaricaID,
+                        proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                }
+            }
+
+        }
     }
 }

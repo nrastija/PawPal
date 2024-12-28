@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodShopAdapter
-import com.example.pawpal.data.ProizvodDataSourceImpl
+import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch

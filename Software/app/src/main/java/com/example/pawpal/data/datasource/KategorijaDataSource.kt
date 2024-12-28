@@ -1,4 +1,4 @@
-package com.example.pawpal.data
+package com.example.pawpal.data.datasource
 
 interface KategorijaDataSource {
     suspend fun dohvatiNazivPoId(kategorijaId: Long): String

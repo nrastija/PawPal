@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
-import com.example.pawpal.data.KategorijaDataSourceImpl
-import com.example.pawpal.data.ProizvodDataSourceImpl
+import com.example.pawpal.data.impl.KategorijaDataSourceImpl
+import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.ui.ShopFragment

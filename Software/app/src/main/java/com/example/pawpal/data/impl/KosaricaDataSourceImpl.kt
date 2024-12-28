@@ -1,9 +1,9 @@
-package com.example.pawpal.data
+package com.example.pawpal.data.impl
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.Kosarica
-import appdatabase.KosaricaQueries
+import com.example.pawpal.data.datasource.KosaricaDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

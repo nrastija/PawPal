@@ -1,13 +1,14 @@
-package com.example.pawpal.data
+package com.example.pawpal.data.impl
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.Proizvod
+import com.example.pawpal.data.datasource.ProizvodDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-class ProizvodDataSourceImpl(db: AppDatabase) : ProizvodDataSource{
+class ProizvodDataSourceImpl(db: AppDatabase) : ProizvodDataSource {
 
     private val queries = db.proizvodQueries
     override suspend fun dohvatiProizvodPoId(proizvodId: Long): Proizvod? {
