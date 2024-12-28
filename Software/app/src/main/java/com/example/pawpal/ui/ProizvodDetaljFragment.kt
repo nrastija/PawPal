@@ -93,19 +93,30 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
 
                 if (kosarica == null){
                     database.kosaricaQueries.InsertKosarica(korisnikId)
-                    Toast.makeText(context, "Kreirana nova košarica za korisnika", Toast.LENGTH_SHORT).show()
                     val novaKosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull()
 
                     if (novaKosarica != null) {
                         database.kosaricaProizvodQueries.dodajProizvodUKosaricu(novaKosarica.kosaricaID,
                             proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                            Toast.makeText(context, "Proizvod dodan u košaricu!", Toast.LENGTH_SHORT).show()
                     }
                 }
                 else{
-                    Toast.makeText(context, "Postoji košarica za korisnika", Toast.LENGTH_SHORT).show()
+                    val postojiProizvod = database.kosaricaProizvodQueries.provjeriPostojanje(proizvod.proizvodID).executeAsOneOrNull()
 
-                    database.kosaricaProizvodQueries.dodajProizvodUKosaricu(kosarica.kosaricaID,
-                        proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                    if (postojiProizvod == false) {
+                        database.kosaricaProizvodQueries.dodajProizvodUKosaricu(kosarica.kosaricaID,
+                            proizvod.proizvodID, spinnerKolicina.selectedItem.toString().toLong())
+                        Toast.makeText(context, "Proizvod dodan u košaricu!", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        database.kosaricaProizvodQueries.azurirajKolicinu(
+                            spinnerKolicina.selectedItem.toString().toLong(),
+                            kosarica.kosaricaID,
+                            proizvod.proizvodID
+                        )
+                        Toast.makeText(context, "Proizvod ažuriran u košarici!", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 

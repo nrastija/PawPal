@@ -1,5 +1,6 @@
 package com.example.pawpal.data.impl
 
+import android.util.Log
 import com.example.pawpal.data.datasource.KosaricaProizvodDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
@@ -13,13 +14,19 @@ class KosaricaProizvodDataSourceImpl(db: AppDatabase) : KosaricaProizvodDataSour
         queries.dodajProizvodUKosaricu(kosaricaId, proizvodId, kolicina)
     }
 
-    override suspend fun azurirajKosaricu(kosaricaId: Long, proizvodId: Long, kolicina: Long) {
-        queries.azurirajKosaricu(kosaricaId, proizvodId, kolicina)
+    override suspend fun azurirajKolicinu(kosaricaId: Long, proizvodId: Long, kolicina: Long) {
+        queries.azurirajKolicinu(kolicina, kosaricaId, proizvodId)
     }
 
     override suspend fun brisanjeProizvodaKosarice(kosaricaId: Long) {
         withContext(Dispatchers.IO){
             queries.brisanjeKosarice(kosaricaId)
+        }
+    }
+
+    override suspend fun provjeriPostojanje(proizvodId: Long) {
+        return withContext(Dispatchers.IO){
+            queries.provjeriPostojanje(proizvodId).executeAsOneOrNull()
         }
     }
 

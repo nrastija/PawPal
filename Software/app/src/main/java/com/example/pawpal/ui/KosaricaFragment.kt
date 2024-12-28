@@ -1,4 +1,4 @@
-package com.example.pawpal.ui
+/*package com.example.pawpal.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -108,4 +108,4 @@ class KosaricaFragment : Fragment() {
         val cijena = KosaricaManager.izracunajCijenuLista()
         ukupnaCijenaLabel.text = "Ukupna cijena: $cijena €"
     }
-}
+}*/

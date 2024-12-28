@@ -14,7 +14,6 @@ import android.widget.Toast
 import com.example.pawpal.R
 import com.example.pawpal.main.BaseActivity
 import com.example.pawpal.main.MainActivity
-import com.example.pawpal.services.KosaricaManager
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -94,7 +93,7 @@ class CheckoutActivity : BaseActivity() {
             }
 
             Toast.makeText(this, "Placanje uspjesno izvrseno!", Toast.LENGTH_LONG).show()
-            KosaricaManager.isprazniKosaricuLista()
+            //KosaricaManager.isprazniKosaricuLista()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -150,7 +149,7 @@ class CheckoutActivity : BaseActivity() {
     private fun kreirajNarudzbu(accessToken: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
 
-        val requestBody = JSONObject().apply {
+       /* val requestBody = JSONObject().apply {
             put("intent", "CAPTURE")
             put("purchase_units", JSONArray().apply {
             put("application_context", JSONObject().apply {
@@ -163,12 +162,12 @@ class CheckoutActivity : BaseActivity() {
                     })
                 })
             })
-        }
+        }*/
 
         val request = Request.Builder()
             .url("$baseUrl/v2/checkout/orders")
             .addHeader("Authorization", "Bearer $accessToken")
-            .post(requestBody.toString().toRequestBody("application/json".toMediaType()))
+            //.post(requestBody.toString().toRequestBody("application/json".toMediaType()))
             .build()
 
         client.newCall(request).enqueue(object : Callback {

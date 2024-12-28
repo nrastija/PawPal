@@ -11,10 +11,13 @@ dodajProizvodUKosaricu:
 INSERT INTO KosaricaProizvod (kosaricaID, proizvodID, kolicina)
 VALUES (?, ?, ?);
 
-azurirajKosaricu:
+azurirajKolicinu:
 UPDATE KosaricaProizvod
-SET kolicina = ?
+SET kolicina = kolicina + ?
 WHERE kosaricaID = ? AND proizvodID = ?;
+
+provjeriPostojanje:
+SELECT EXISTS(SELECT 1 FROM KosaricaProizvod WHERE proizvodID = ?);
 
 filtrirajKosaricu:
 SELECT p.*
