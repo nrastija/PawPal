@@ -7,4 +7,166 @@
     android:layout_height="match_parent"
     tools:context=".f02_izgubljeni_pas.PrijavaIzgubljenihPasa">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarIzgubljenPas"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@color/secondaryColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prijavi izgubljenog psa"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintTop_toTopOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintVertical_bias="0.698" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarIzgubljenPas" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarIzgubljenPas" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Priložite sliku izgubljenog psa: "
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/prilozislikupsa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Priloži"
+                android:textSize="18dp"
+                android:backgroundTint="@color/primaryColor"
+                android:textColor="@color/textColorPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dodatni opis:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="40dp" />
+
+            <EditText
+                android:id="@+id/dodatniopispsa"
+                android:layout_width="350dp"
+                android:layout_height="100dp"
+                android:hint="Unesite dodatni opis"
+                android:inputType="textMultiLine"
+                android:background="@color/primaryColor"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zadnje viđena lokacija:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp" />
+
+            <EditText
+                android:id="@+id/zadnjeviden"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:hint="Unesite lokaciju"
+                android:inputType="textMultiLine"
+                android:background="@color/primaryColor"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="50dp">
+
+            <Button
+                android:id="@+id/ponisti"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Poništi"
+                android:backgroundTint="@color/secondaryColor"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/potvrdi"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Potvrdi"
+                android:backgroundTint="@color/secondaryColor"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="50dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintTop_toTopOf="@+id/toolbarIzgubljenPas"
+        app:layout_constraintVertical_bias="0.16"
+        app:srcCompat="@drawable/wanted" />
 </androidx.constraintlayout.widget.ConstraintLayout>
