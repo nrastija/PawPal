@@ -8,4 +8,8 @@ interface KosaricaProizvodDataSource {
     suspend fun brisanjeProizvodaKosarice(kosaricaId: Long)
 
     suspend fun provjeriPostojanje(proizvodId: Long)
+
+    suspend fun dohvatiProizvodeZaKosaricu(kosaricaId: Long)
+
+    suspend fun brisanjeProizvodaKosarice(kosaricaId: Long, proizvodId: Long)
 }

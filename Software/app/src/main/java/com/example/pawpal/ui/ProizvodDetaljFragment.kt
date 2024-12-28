@@ -70,7 +70,6 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             val kategorijaDataSource = KategorijaDataSourceImpl(database)
             val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(proizvod.kategorijaId)
             kategorijaProizvoda.text = "Kategorija: $kategorijaNaziv"
-
             val slikaID = resources.getIdentifier(proizvod.imageUrl, "drawable", requireContext().packageName)
             slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }

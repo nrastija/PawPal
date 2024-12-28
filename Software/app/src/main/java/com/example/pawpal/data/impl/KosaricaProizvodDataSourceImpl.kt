@@ -24,9 +24,21 @@ class KosaricaProizvodDataSourceImpl(db: AppDatabase) : KosaricaProizvodDataSour
         }
     }
 
+    override suspend fun brisanjeProizvodaKosarice(kosaricaId: Long, proizvodId: Long) {
+        withContext(Dispatchers.IO){
+            queries.brisanjeProizvodaKosarice(kosaricaId, proizvodId)
+        }
+    }
+
     override suspend fun provjeriPostojanje(proizvodId: Long) {
         return withContext(Dispatchers.IO){
             queries.provjeriPostojanje(proizvodId).executeAsOneOrNull()
+        }
+    }
+
+    override suspend fun dohvatiProizvodeZaKosaricu(kosaricaId: Long) {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiProizvodeZaKosaricu(kosaricaId).executeAsList()
         }
     }
 

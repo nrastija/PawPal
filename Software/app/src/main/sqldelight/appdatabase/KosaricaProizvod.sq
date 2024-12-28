@@ -25,6 +25,17 @@ FROM proizvod p
 INNER JOIN KosaricaProizvod kp ON p.proizvodID = kp.proizvodID
 WHERE kp.kosaricaID = ?;
 
+dohvatiProizvodeZaKosaricu:
+SELECT kp.proizvodID, p.naziv, p.cijena, p.imageUrl, p.kategorijaId, kp.kolicina
+FROM KosaricaProizvod kp
+JOIN proizvod p ON kp.proizvodID = p.proizvodID
+WHERE kp.kosaricaID = ?;
+
+brisanjeProizvodaKosarice:
+DELETE FROM KosaricaProizvod
+WHERE kosaricaID = ? AND proizvodID = ?;
+
+
 brisanjeKosarice:
 DELETE FROM KosaricaProizvod
 WHERE kosaricaID = ? ;
