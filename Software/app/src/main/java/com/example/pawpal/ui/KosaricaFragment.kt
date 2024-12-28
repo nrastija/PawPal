@@ -18,6 +18,8 @@ import com.example.pawpal.adapters.ProizvodKosaricaAdapter
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 class KosaricaFragment : Fragment(), DatabaseConsumer {
 
@@ -95,7 +97,7 @@ class KosaricaFragment : Fragment(), DatabaseConsumer {
             val brisanProizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvod.proizvodID).executeAsOneOrNull()
             database.kosaricaProizvodQueries.brisanjeProizvodaKosarice(kosaricaID, proizvod.proizvodID)
             dohvatiProizvodeKosarice()
-            Toast.makeText(requireContext(), "${brisanProizvod?.proizvodID} obrisan iz košarice", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "${brisanProizvod?.naziv} obrisan iz košarice", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -127,7 +129,8 @@ class KosaricaFragment : Fragment(), DatabaseConsumer {
 
     private fun azurirajUkupnuCijenu() {
         val ukupnaCijena = proizvodList.sumOf { it.cijena * it.kolicina }
-        ukupnaCijenaLabel.text = "Ukupna cijena: $ukupnaCijena €"
+        val zaokruzenaCijena = BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
+        ukupnaCijenaLabel.text = "Ukupna cijena: $zaokruzenaCijena €"
     }
 
     private fun updateProizvodList(proizvodi: List<DohvatiProizvodeZaKosaricu>) {

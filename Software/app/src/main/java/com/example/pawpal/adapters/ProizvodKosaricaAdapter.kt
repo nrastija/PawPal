@@ -41,7 +41,7 @@ class ProizvodKosaricaAdapter(
         holder.nazivProizvoda.text = proizvod.naziv
         holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
         holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaId}"
-        holder.quantityText.text = "${"0"}"
+        holder.quantityText.text = "${proizvod.kolicina}"
 
         val nazivSlike = proizvod.imageUrl
         val slikaID = holder.itemView.context.resources.getIdentifier(nazivSlike, "drawable", holder.itemView.context.packageName)
