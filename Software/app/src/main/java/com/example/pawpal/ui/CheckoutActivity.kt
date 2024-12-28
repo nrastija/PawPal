@@ -1,10 +1,8 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.ui
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Base64
 import android.view.View
 import android.widget.Button
@@ -95,7 +93,7 @@ class CheckoutActivity : BaseActivity() {
             }
 
             Toast.makeText(this, "Placanje uspjesno izvrseno!", Toast.LENGTH_LONG).show()
-            KosaricaManager.isprazniKosaricuLista()
+            //KosaricaManager.isprazniKosaricuLista()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -151,7 +149,7 @@ class CheckoutActivity : BaseActivity() {
     private fun kreirajNarudzbu(accessToken: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
 
-        val requestBody = JSONObject().apply {
+       /* val requestBody = JSONObject().apply {
             put("intent", "CAPTURE")
             put("purchase_units", JSONArray().apply {
             put("application_context", JSONObject().apply {
@@ -164,12 +162,12 @@ class CheckoutActivity : BaseActivity() {
                     })
                 })
             })
-        }
+        }*/
 
         val request = Request.Builder()
             .url("$baseUrl/v2/checkout/orders")
             .addHeader("Authorization", "Bearer $accessToken")
-            .post(requestBody.toString().toRequestBody("application/json".toMediaType()))
+            //.post(requestBody.toString().toRequestBody("application/json".toMediaType()))
             .build()
 
         client.newCall(request).enqueue(object : Callback {

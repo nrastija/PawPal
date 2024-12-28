@@ -3,30 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".f12_shop.ShopActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/secondaryColor"
-        android:titleTextColor="@color/accentColor"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- RecyclerView za prikaz proizvoda -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_kosarica"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
         android:background="@color/basketColor"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/containerUkupnaCijena"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Ukupna cijena i gumb za završavanje narudžbe -->
     <LinearLayout
         android:id="@+id/containerUkupnaCijena"
         android:layout_width="0dp"
@@ -38,7 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Ukupna cijena -->
 
         <TextView
             android:id="@+id/lblUkupnaCijena"

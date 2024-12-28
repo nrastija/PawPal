@@ -1,4 +1,4 @@
-package com.example.pawpal.f12_shop
+package com.example.pawpal.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,14 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.DohvatiProizvodeZaKosaricu
+import appdatabase.KosaricaProizvod
 import com.example.pawpal.R
-import com.example.pawpal.f12_shop.entiteti.Proizvod
+
 
 class ProizvodKosaricaAdapter(
-    private val proizvodList: List<Proizvod>,
-    private val obrisiProizvod: (Proizvod) -> Unit,
-    private val povecajKolicinu: (Proizvod) -> Unit,
-    private val smanjiKolicinu: (Proizvod) -> Unit
+    private val proizvodList: List<DohvatiProizvodeZaKosaricu>,
+    private val obrisiProizvod: (DohvatiProizvodeZaKosaricu) -> Unit,
+    private val povecajKolicinu: (DohvatiProizvodeZaKosaricu) -> Unit,
+    private val smanjiKolicinu: (DohvatiProizvodeZaKosaricu) -> Unit
 ) : RecyclerView.Adapter<ProizvodKosaricaAdapter.ProizvodViewHolder>() {
 
     inner class ProizvodViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,9 +37,10 @@ class ProizvodKosaricaAdapter(
     override fun onBindViewHolder(holder: ProizvodViewHolder, position: Int) {
         val proizvod = proizvodList[position]
 
+
         holder.nazivProizvoda.text = proizvod.naziv
         holder.cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
-        holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaID}"
+        holder.kategorijaProizvoda.text = "Kategorija: ${proizvod.kategorijaId}"
         holder.quantityText.text = "${proizvod.kolicina}"
 
         val nazivSlike = proizvod.imageUrl
