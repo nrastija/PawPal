@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.KategorijaDataSourceImpl
+import com.example.pawpal.data.impl.KorisnikDataSourceImpl
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
@@ -40,10 +41,11 @@ class MainActivity : AppCompatActivity() {
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
         //Resetiranje - ciscenje podataka u BP
-        resetDatabase(this)
+        //resetDatabase(this)
 
         //Instanciranje - instanca nove BP
         database = (application as PawPalApplication).database
+        //resetDatabase(this)
 
         populateDatabase()
     }
@@ -112,11 +114,10 @@ class MainActivity : AppCompatActivity() {
             queriesKategorija.insertKategorija(4, "Ostalo")
 
         }
-
     }
 
-    fun resetDatabase(context: Context) {
+    /*fun resetDatabase(context: Context) {
         context.deleteDatabase("appdatabase.db")
-    }
+    }*/
 }
 
