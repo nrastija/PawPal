@@ -1,5 +1,4 @@
 package com.example.pawpal.ui
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -24,7 +23,6 @@ class RegistracijaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.f01_registrationlayout)
 
-        resetDatabase(this)
         database = (application as PawPalApplication).database
         korisnikDataSource = KorisnikDataSourceImpl(database)
 
@@ -64,9 +62,6 @@ class RegistracijaActivity : AppCompatActivity() {
                 Toast.makeText(this@RegistracijaActivity, "Greška pri registraciji: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-    fun resetDatabase(context: Context) {
-        context.deleteDatabase("appdatabase.db")
     }
 }
 
