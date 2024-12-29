@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
 import com.example.pawpal.f11_profil.UredivanjeProfilaKorisnika
 import com.example.pawpal.main.BaseActivity
+import com.example.pawpal.ui.PrijavaActivity
 import com.google.android.material.navigation.NavigationView
 
 class BrisanjeDeaktivacijaActivity : BaseActivity() {
@@ -87,7 +88,7 @@ class BrisanjeDeaktivacijaActivity : BaseActivity() {
         Toast.makeText(this, "Uspješno ste obrisali račun.", Toast.LENGTH_SHORT).show()
 
 
-        val intent = Intent(this, PrijavaRegistracijaActivity::class.java)
+        val intent = Intent(this, PrijavaActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -96,7 +97,7 @@ class BrisanjeDeaktivacijaActivity : BaseActivity() {
 
         Toast.makeText(this, "Odjavljeni ste.", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, PrijavaRegistracijaActivity::class.java)
+        val intent = Intent(this, PrijavaActivity::class.java)
         startActivity(intent)
         finish()
 
