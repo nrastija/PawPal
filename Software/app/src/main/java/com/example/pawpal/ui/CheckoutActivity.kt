@@ -11,9 +11,12 @@ import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.pawpal.R
 import com.example.pawpal.main.BaseActivity
 import com.example.pawpal.main.MainActivity
+import com.example.pawpal.main.PawPalApplication
+import com.pawpal.appdatabase.AppDatabase
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -23,15 +26,18 @@ import java.io.IOException
 
 
 
-class CheckoutActivity : BaseActivity() {
+class CheckoutActivity : AppCompatActivity()  {
 
     private val clientId = "AduORiP6xE0YofgC2ady1_ppafkMzyEe8gatyYxNGHUMIXTQC1n86Gx3lAQ12R3pl4yvf9-ydzWhYQEz"
     private val clientSecret = "EBO92QqXn7wmX_cZKDvu-I_Kw_c3R8mTsdf1UjG3lPMur8nT-tM8kI0CXbsS6p3xHkHiP3RA469NAg3p"
     private val baseUrl = "https://api-m.sandbox.paypal.com"
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.f12_checkout)
+
+        database = (application as PawPalApplication).database
 
         val radioGroupPlacanja: RadioGroup = findViewById(R.id.odabirPlacanja)
         val placanjeGotovinom: RadioButton = findViewById(R.id.placanjeGotovinom)
@@ -68,6 +74,8 @@ class CheckoutActivity : BaseActivity() {
         }
 
         val btnPotvrda: Button = findViewById(R.id.btnPotvrdiPlacanje)
+        //POTREBNO DODATI KORISNIKOV ID KAD MIRTA NAPRAVI
+        val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
 
         btnPotvrda.setOnClickListener {
             if (placanjePayPal.isChecked){
@@ -93,7 +101,11 @@ class CheckoutActivity : BaseActivity() {
             }
 
             Toast.makeText(this, "Placanje uspjesno izvrseno!", Toast.LENGTH_LONG).show()
-            //KosaricaManager.isprazniKosaricuLista()
+
+
+            if (kosarica != null) {
+                database.kosaricaProizvodQueries.brisanjeKosarice(kosarica.kosaricaID)
+            }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -149,7 +161,7 @@ class CheckoutActivity : BaseActivity() {
     private fun kreirajNarudzbu(accessToken: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
 
-       /* val requestBody = JSONObject().apply {
+        val requestBody = JSONObject().apply {
             put("intent", "CAPTURE")
             put("purchase_units", JSONArray().apply {
             put("application_context", JSONObject().apply {
@@ -158,16 +170,16 @@ class CheckoutActivity : BaseActivity() {
                 put(JSONObject().apply {
                     put("amount", JSONObject().apply {
                         put("currency_code", "EUR")
-                        put("value", KosaricaManager.izracunajCijenuLista().toString())
+                        //put("value", KosaricaManager.izracunajCijenuLista().toString())
                     })
                 })
             })
-        }*/
+        }
 
         val request = Request.Builder()
             .url("$baseUrl/v2/checkout/orders")
             .addHeader("Authorization", "Bearer $accessToken")
-            //.post(requestBody.toString().toRequestBody("application/json".toMediaType()))
+            .post(requestBody.toString().toRequestBody("application/json".toMediaType()))
             .build()
 
         client.newCall(request).enqueue(object : Callback {

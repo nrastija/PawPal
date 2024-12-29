@@ -12,4 +12,7 @@ interface KosaricaProizvodDataSource {
     suspend fun dohvatiProizvodeZaKosaricu(kosaricaId: Long)
 
     suspend fun brisanjeProizvodaKosarice(kosaricaId: Long, proizvodId: Long)
+
+    suspend fun dohvatiUkupnuCijenuZaKosaricu(kosaricaId: Long): Double
+
 }

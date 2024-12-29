@@ -1,0 +1,12 @@
+CREATE TABLE NarudzbaProizvod (
+    narudzbaId INTEGER NOT NULL,
+    proizvodId INTEGER NOT NULL,
+    kolicina INTEGER NOT NULL,
+    PRIMARY KEY (narudzbaId, proizvodId),
+    FOREIGN KEY (narudzbaId) REFERENCES narudzba(narudzbaID) ON DELETE CASCADE,
+    FOREIGN KEY (proizvodId) REFERENCES proizvod(proizvodID) ON DELETE CASCADE
+);
+
+insertProizvodUNarudzbu:
+INSERT INTO NarudzbaProizvod (narudzbaId, proizvodId, kolicina)
+VALUES (?, ?, ?);

@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.circleimageview)
     implementation(libs.androidx.room.common)
     implementation(libs.engage.core)
+    implementation(libs.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

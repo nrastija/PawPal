@@ -12,6 +12,7 @@ activity = "1.9.3"
 constraintlayout = "2.1.4"
 roomCommon = "2.6.1"
 engageCore = "1.5.5"
+common = "0.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,6 +26,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 circleimageview = { group = "de.hdodenhof", name = "circleimageview", version = "3.1.0" }
 androidx-room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 engage-core = { group = "com.google.android.engage", name = "engage-core", version.ref = "engageCore" }
+common = { group = "com.google.ai.client.generativeai", name = "common", version.ref = "common" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

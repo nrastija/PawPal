@@ -43,8 +43,7 @@ class MainActivity : AppCompatActivity() {
         resetDatabase(this)
 
         //Instanciranje - instanca nove BP
-        val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "appdatabase.db")
-        database = AppDatabase(driver)
+        database = (application as PawPalApplication).database
 
         populateDatabase()
     }
