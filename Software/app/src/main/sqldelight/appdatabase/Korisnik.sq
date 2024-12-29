@@ -1,0 +1,39 @@
+CREATE TABLE korisnik (
+    korisnikID INTEGER PRIMARY KEY AUTOINCREMENT,
+    korime TEXT NOT NULL UNIQUE,
+    ime TEXT NOT NULL,
+    prezime TEXT NOT NULL,
+    lozinka TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+);
+
+dodajKorisnik:
+INSERT
+INTO korisnik(korime, ime, prezime, lozinka, email)
+VALUES (?, ?, ?,?,?);
+
+dajSveKorisnike:
+SELECT *
+FROM korisnik;
+
+dajKorisnikaPoKorime:
+SELECT *
+FROM korisnik
+WHERE korime = ?;
+
+dajKorisnikaPoID:
+SELECT *
+FROM korisnik
+WHERE korisnikID = :id;
+
+obrisiKorisnikaPoID:
+DELETE
+FROM korisnik
+WHERE korisnikID = :id;
+
+obrisiKorisnikaPoKorime:
+DELETE
+FROM korisnik
+WHERE korime = :korime;
+
+
