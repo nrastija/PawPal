@@ -1,6 +1,5 @@
 package com.example.pawpal.main
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -15,7 +14,6 @@ import androidx.fragment.app.FragmentManager
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.KategorijaDataSourceImpl
-import com.example.pawpal.data.impl.KorisnikDataSourceImpl
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
@@ -23,11 +21,11 @@ import com.example.pawpal.ui.ShopFragment
 import com.google.android.material.navigation.NavigationView
 import com.pawpal.appdatabase.AppDatabase
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var database: AppDatabase
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -45,7 +43,34 @@ class MainActivity : AppCompatActivity() {
 
         //Instanciranje - instanca nove BP
         database = (application as PawPalApplication).database
-        //resetDatabase(this)
+
+            // Save user data
+            val korisnici = database.korisnikQueries.dajSveKorisnike().executeAsList()
+
+            // Delete database
+            deleteDatabase("appdatabase.db")
+
+            // Create new database instance
+            database = AppDatabase(
+                AndroidSqliteDriver(
+                    AppDatabase.Schema,
+                    applicationContext,
+                    "appdatabase.db"
+                )
+            )
+
+            // Restore user data
+            database.korisnikQueries.transaction {
+                korisnici.forEach { korisnik ->
+                    database.korisnikQueries.dodajKorisnik(
+                        korisnik.korime,
+                        korisnik.ime,
+                        korisnik.prezime,
+                        korisnik.lozinka,
+                        korisnik.email
+                    )
+                }
+            }
 
         populateDatabase()
     }
