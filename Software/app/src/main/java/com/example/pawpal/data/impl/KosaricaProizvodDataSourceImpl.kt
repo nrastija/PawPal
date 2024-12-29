@@ -42,4 +42,10 @@ class KosaricaProizvodDataSourceImpl(db: AppDatabase) : KosaricaProizvodDataSour
         }
     }
 
+    override suspend fun dohvatiUkupnuCijenuZaKosaricu(kosaricaId: Long): Double {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiUkupnuCijenuZaKosaricu(kosaricaId).executeAsOneOrNull() ?: 0.0
+        } as Double
+    }
+
 }
