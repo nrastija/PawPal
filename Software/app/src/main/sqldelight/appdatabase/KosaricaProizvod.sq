@@ -31,10 +31,15 @@ FROM KosaricaProizvod kp
 JOIN proizvod p ON kp.proizvodID = p.proizvodID
 WHERE kp.kosaricaID = ?;
 
+dohvatiUkupnuCijenuZaKosaricu:
+SELECT SUM(p.cijena * kp.kolicina)
+FROM KosaricaProizvod kp
+JOIN proizvod p ON kp.proizvodID = p.proizvodID
+WHERE kp.kosaricaID = ?;
+
 brisanjeProizvodaKosarice:
 DELETE FROM KosaricaProizvod
 WHERE kosaricaID = ? AND proizvodID = ?;
-
 
 brisanjeKosarice:
 DELETE FROM KosaricaProizvod

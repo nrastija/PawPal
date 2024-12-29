@@ -1,5 +1,5 @@
 CREATE TABLE narudzba (
-    narudzbaId INTEGER PRIMARY KEY AUTOINCREMENT,
+    narudzbaID INTEGER PRIMARY KEY AUTOINCREMENT,
     korisnikId INTEGER NOT NULL,
     ukupnaCijena REAL NOT NULL,
     datum TEXT NOT NULL,
