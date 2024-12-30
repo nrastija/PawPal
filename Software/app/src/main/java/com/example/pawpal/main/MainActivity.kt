@@ -39,13 +39,22 @@ class MainActivity : AppCompatActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-        //Resetiranje - ciscenje podataka u BP
-        resetDatabase(this)
+        val sharedPreferences = getSharedPreferences("AppPreferences", Context.MODE_PRIVATE)
+        val firstStart = sharedPreferences.getBoolean("firstStart", true)
 
-        //Instanciranje - instanca nove BP
-        database = (application as PawPalApplication).database
+        if (firstStart) {
+            resetDatabase(this)
 
-        populateDatabase()
+            database = (application as PawPalApplication).database
+
+            populateDatabase()
+            sharedPreferences.edit().putBoolean("firstStart", false).apply()
+        }
+        else {
+            database = (application as PawPalApplication).database
+        }
+
+
     }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {

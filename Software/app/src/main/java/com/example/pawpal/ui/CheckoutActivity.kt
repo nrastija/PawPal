@@ -23,7 +23,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 class CheckoutActivity : AppCompatActivity()  {
@@ -32,12 +33,13 @@ class CheckoutActivity : AppCompatActivity()  {
     private val clientSecret = "EBO92QqXn7wmX_cZKDvu-I_Kw_c3R8mTsdf1UjG3lPMur8nT-tM8kI0CXbsS6p3xHkHiP3RA469NAg3p"
     private val baseUrl = "https://api-m.sandbox.paypal.com"
     lateinit var database: AppDatabase
+    var kosaricaID: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.f12_checkout)
 
-        database = (application as PawPalApplication).database
+        kosaricaID = intent.getLongExtra("KOSARICA_ID", -1L)
 
         val radioGroupPlacanja: RadioGroup = findViewById(R.id.odabirPlacanja)
         val placanjeGotovinom: RadioButton = findViewById(R.id.placanjeGotovinom)
@@ -75,11 +77,16 @@ class CheckoutActivity : AppCompatActivity()  {
 
         val btnPotvrda: Button = findViewById(R.id.btnPotvrdiPlacanje)
         //POTREBNO DODATI KORISNIKOV ID KAD MIRTA NAPRAVI
+
+        database = (application as PawPalApplication).database
+
+
         val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
 
         btnPotvrda.setOnClickListener {
             if (placanjePayPal.isChecked){
                 pokreniPlacanje()
+                unosNarudzbe("Paypal")
                 return@setOnClickListener
             }
             else if (placanjeKarticom.isChecked) {
@@ -92,16 +99,16 @@ class CheckoutActivity : AppCompatActivity()  {
                     return@setOnClickListener
                 } else {
                     Toast.makeText(this, "Plaćanje je u tijeku...", Toast.LENGTH_SHORT).show()
-
+                    unosNarudzbe("Kartica")
                 }
 
             }
             else if (placanjeGotovinom.isChecked) {
                 Toast.makeText(this, "Placanje gotovinom je odabrano.", Toast.LENGTH_SHORT).show()
+                unosNarudzbe("Gotovina")
             }
 
             Toast.makeText(this, "Placanje uspjesno izvrseno!", Toast.LENGTH_LONG).show()
-
 
             if (kosarica != null) {
                 database.kosaricaProizvodQueries.brisanjeKosarice(kosarica.kosaricaID)
@@ -160,21 +167,25 @@ class CheckoutActivity : AppCompatActivity()  {
 
     private fun kreirajNarudzbu(accessToken: String, callback: (String?) -> Unit) {
         val client = OkHttpClient()
+        val ukupnaCijena = database.kosaricaProizvodQueries.dohvatiUkupnuCijenuZaKosaricu(kosaricaID).executeAsOneOrNull()?.SUM ?: 0.0
+        val zaokruzenaCijena = BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
 
         val requestBody = JSONObject().apply {
             put("intent", "CAPTURE")
-            put("purchase_units", JSONArray().apply {
             put("application_context", JSONObject().apply {
                 put("return_url", "com.example.pawpal://paypalpay")
+                put("cancel_url", "com.example.pawpal://paypalcancel")
             })
+            put("purchase_units", JSONArray().apply {
                 put(JSONObject().apply {
                     put("amount", JSONObject().apply {
                         put("currency_code", "EUR")
-                        //put("value", KosaricaManager.izracunajCijenuLista().toString())
+                        put("value", zaokruzenaCijena ?: "0.00")
                     })
                 })
             })
         }
+
 
         val request = Request.Builder()
             .url("$baseUrl/v2/checkout/orders")
@@ -209,6 +220,42 @@ class CheckoutActivity : AppCompatActivity()  {
     private fun redirekcijaWeb(approvalUrl: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(approvalUrl))
         startActivity(intent)
+    }
+
+    private fun unosNarudzbe(nacinPlacanja: String) {
+        val ukupnaCijena = database.kosaricaProizvodQueries
+            .dohvatiUkupnuCijenuZaKosaricu(kosaricaID)
+            .executeAsOneOrNull()?.SUM ?: 0.0
+
+        val datumNarudzbe = System.currentTimeMillis().toString()
+        val statusNarudzbe = "Uspješna"
+
+        // Insert into Narudzba table
+        database.narudzbaQueries.insertNarudzba(
+            korisnikId = 1, //ID KORISNIKA KAD MIRTA NAPRAVI
+            ukupnaCijena = ukupnaCijena,
+            datum = datumNarudzbe,
+            status = statusNarudzbe,
+            nacinPlacanja = nacinPlacanja
+        )
+
+        val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
+
+        val proizvodiUKosarici = database.kosaricaProizvodQueries
+            .dohvatiProizvodeZaKosaricu(kosaricaID)
+            .executeAsList()
+
+        proizvodiUKosarici.forEach { proizvod ->
+            database.narudzbaProizvodQueries.insertProizvodUNarudzbu(
+                narudzbaId = narudzbaId,
+                proizvodId = proizvod.proizvodID,
+                kolicina = proizvod.kolicina
+            )
+        }
+
+        database.kosaricaProizvodQueries.brisanjeKosarice(kosaricaID)
+
+        Toast.makeText(this, "Narudžba uspješno kreirana!", Toast.LENGTH_SHORT).show()
     }
 
 }

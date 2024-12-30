@@ -11,8 +11,9 @@ class NarudzbaDataSourceImpl(db: AppDatabase) : NarudzbaDataSource {
         korisnikId: Long,
         ukupnaCijena: Double,
         datum: String,
+        status: String,
         nacinPlacanja: String
     ) {
-        queries.insertNarudzba(korisnikId, ukupnaCijena, datum, nacinPlacanja)
+        queries.insertNarudzba(korisnikId, ukupnaCijena, datum, status, nacinPlacanja)
     }
 }

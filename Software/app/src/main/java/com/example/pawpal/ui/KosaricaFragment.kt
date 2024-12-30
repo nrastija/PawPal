@@ -68,6 +68,7 @@ class KosaricaFragment : Fragment(), DatabaseConsumer {
         val btnNarudzba: Button = view.findViewById(R.id.btnNarudzba)
         btnNarudzba.setOnClickListener {
             val intent = Intent(requireContext(), CheckoutActivity::class.java)
+            intent.putExtra("KOSARICA_ID", kosaricaID)
             startActivity(intent)
         }
 
