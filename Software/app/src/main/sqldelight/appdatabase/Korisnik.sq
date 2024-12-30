@@ -8,7 +8,7 @@ CREATE TABLE korisnik (
 );
 
 dodajKorisnik:
-INSERT
+INSERT OR REPLACE
 INTO korisnik(korime, ime, prezime, lozinka, email)
 VALUES (?, ?, ?,?,?);
 
@@ -36,4 +36,15 @@ DELETE
 FROM korisnik
 WHERE korime = :korime;
 
+azurirajKorisnika:
+UPDATE korisnik
+SET korime = :korime,
+    ime = :ime,
+    prezime = :prezime,
+    email = :email
+WHERE korisnikID = :korisnikID;
 
+azurirajLozinku:
+UPDATE korisnik
+SET lozinka = :novaLozinka
+WHERE korisnikID = :korisnikID;
