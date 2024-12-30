@@ -129,8 +129,11 @@ class KosaricaFragment : Fragment(), DatabaseConsumer {
 
     private fun azurirajUkupnuCijenu() {
         val ukupnaCijena = database.kosaricaProizvodQueries.dohvatiUkupnuCijenuZaKosaricu(kosaricaID).executeAsOneOrNull()
-        //val zaokruzenaCijena = BigDecimal(ukupnaCijena).setScale(2, RoundingMode.HALF_UP).toDouble()
-        ukupnaCijenaLabel.text = "Ukupna cijena: $ukupnaCijena €"
+        val zaokruzenaCijena = ukupnaCijena?.SUM?.let { BigDecimal(it).setScale(2, RoundingMode.HALF_UP).toDouble() }
+
+        if (ukupnaCijena != null) {
+            ukupnaCijenaLabel.text = "Ukupna cijena: ${zaokruzenaCijena} €"
+        }
     }
 
     private fun updateProizvodList(proizvodi: List<DohvatiProizvodeZaKosaricu>) {
