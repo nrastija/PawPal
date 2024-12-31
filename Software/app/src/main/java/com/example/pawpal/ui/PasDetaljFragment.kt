@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
-import com.example.pawpal.data.impl.KategorijaDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
+import com.example.pawpal.main.MainActivity
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -45,15 +45,25 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.f09_detaljilayout, container, false)
+        return inflater.inflate(R.layout.f09_pas_detalji, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as? MainActivity)?.apply {
+            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            supportActionBar?.hide()
+        }
+
+        view.findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         val slikaPsa: ImageView = view.findViewById(R.id.SlikaDetaljiPas)
         val imePsa: TextView = view.findViewById(R.id.ImeDetaljiPas)
         val opisPsa: TextView = view.findViewById(R.id.OpisDetaljiPas)
-        val pasminaPsa: TextView = view.findViewById(R.id.Pasmina)
+        val pasminaPsa: TextView = view.findViewById(R.id.PasminaDetaljiPas)
         val starostPsa: TextView = view.findViewById(R.id.StarostDetaljiPas)
         val zdravljePsa: TextView = view.findViewById(R.id.CjepivaDetaljiPas)
         val spolPsa: TextView = view.findViewById(R.id.SpolDetaljiPas)
@@ -80,6 +90,15 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
 
         gumbUdomi.setOnClickListener {
             Toast.makeText(context, "Zahtjev za udomljavanje je poslan!", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Restore navigation drawer and toolbar
+        (activity as? MainActivity)?.apply {
+            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            supportActionBar?.show()
         }
     }
 }

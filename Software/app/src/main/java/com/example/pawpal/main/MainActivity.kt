@@ -99,8 +99,20 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_veterinar -> startActivity(
                     Intent(this, odabirVeterinaraActivity::class.java)
                 )
-                R.id.nav_shop -> navigateToFragment(ShopFragment())
-                R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                R.id.nav_shop -> {
+                    val shopFragment = ShopFragment().apply {
+                        database = (application as PawPalApplication).database
+                    }
+                    navigateToFragment(shopFragment)
+                }
+
+
+                R.id.nav_adoption -> {
+                val udomljavanjeFragment = UdomljavanjeFragment().apply {
+                    database = (application as PawPalApplication).database
+                }
+                navigateToFragment(udomljavanjeFragment)
+            }
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT)
                     .show()
             }

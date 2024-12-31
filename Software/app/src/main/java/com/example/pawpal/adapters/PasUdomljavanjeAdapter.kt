@@ -22,7 +22,7 @@ class PasUdomljavanjeAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PasViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.novo_f09_udomljavanje_paslayout, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.f09_pas_udomljavanje, parent, false)
         return PasViewHolder(view)
     }
 

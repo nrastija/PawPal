@@ -4,17 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.PasUdomljavanjeAdapter
-import com.example.pawpal.data.impl.PasUdomljavanjeDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -29,7 +25,7 @@ class UdomljavanjeFragment : Fragment(), DatabaseConsumer {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.novo_f09_udomljavanjelayout, container, false)
+        return inflater.inflate(R.layout.f09_udomljavanje, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,12 +54,14 @@ class UdomljavanjeFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun navigateToPasDetaljFragment(pas: appdatabase.Pasudomljavanje) {
-        val detaljFragment = PasDetaljFragment.newInstance(pas.pasudomljavanjeID)
-        detaljFragment.database = database
+        val detaljFragment = PasDetaljFragment.newInstance(pas.pasudomljavanjeID).apply {
+            database = this@UdomljavanjeFragment.database
+        }
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, detaljFragment)
             .addToBackStack(null)
             .commit()
     }
+
 }
