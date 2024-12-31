@@ -1,0 +1,32 @@
+CREATE TABLE pasudomljavanje (
+    pasudomljavanjeID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ime TEXT NOT NULL,
+    dob INTEGER NOT NULL,
+    spol TEXT NOT NULL,
+    opis TEXT,
+    datumRodenja TEXT,
+    kilaza REAL,
+    pasmina TEXT NOT NULL,
+    dodatneinfo TEXT,
+    cijepiva TEXT,
+    imageUrl TEXT NOT NULL
+);
+
+
+  dohvatiSvePse:
+  SELECT *
+  FROM pasudomljavanje;
+
+  dohvatiPsaPoImenu:
+  SELECT *
+  FROM pasudomljavanje
+  WHERE ime = ?;
+
+  dohvatiPsaPoID:
+  SELECT *
+  FROM pasudomljavanje
+  WHERE pasudomljavanjeID = ?;
+
+  dodajPasUdomljavanje:
+    INSERT INTO pasudomljavanje (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl)
+    VALUES (?, ?, ?, ?, ?,?,?,?,?,?);
