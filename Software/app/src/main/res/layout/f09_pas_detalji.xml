@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/bijelazakoristiti"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp"
+        android:clipToPadding="true"
+        android:layout_margin="0dp"> <!-- Set margin to 0 to span the whole screen -->
+
+        <!-- Slika psa -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/SlikaDetaljiPas"
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/zumi"
+                android:clipToOutline="true" />
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/arrow_back_icon"
+                android:scaleType="centerInside"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+
+        </FrameLayout>
+
+        <!-- Ime psa -->
+        <TextView
+            android:id="@+id/ImeDetaljiPas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lucas"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <!-- Informacije u karticama -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/PasminaDetaljiPas"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Breed\nBernese"
+                android:background="@drawable/rounded_background"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/KilazaDetaljiPas"
+                android:layout_width="110sp"
+                android:layout_height="70sp"
+                android:text="Kilaza\n 8kg"
+                android:background="@drawable/rounded_background"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/SpolDetaljiPas"
+                android:layout_width="110sp"
+                android:layout_height="70sp"
+                android:text="Sex\nMale"
+                android:background="@drawable/rounded_background"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/StarostDetaljiPas"
+                android:layout_width="110sp"
+                android:layout_height="70sp"
+                android:text="Age\n1 year"
+                android:background="@drawable/rounded_background"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/DatumRodenjaDetaljiPas"
+                android:layout_width="150sp"
+                android:layout_height="70sp"
+                android:text="Datum rodenja\n21.01.2024."
+                android:background="@drawable/rounded_background"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:padding="12dp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/DetaljiPasOmeni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O meni"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+        <!-- Opis psa -->
+        <TextView
+            android:id="@+id/OpisDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lucas is super friendly and needs as much love and attention as he gives to you. He’s great with kids which makes him a wonderful pet."
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp"
+            tools:ignore="VisualLintLongText" />
+
+        <TextView
+            android:id="@+id/DetaljiPasDodatneInformacije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodatne informacije"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <TextView
+            android:id="@+id/CjepivaDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cjepiva"
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/DodatneInfoDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodatne informacije"
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Gumb za udomljavanje psa -->
+        <Button
+            android:id="@+id/adopt_button"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:padding="16dp"
+            android:text="Posvoji me"
+            android:textColor="@color/bijelazakoristiti"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingRight="20sp"
+            android:paddingLeft="20sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</ScrollView>
