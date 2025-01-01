@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SkolaAdapter
 import com.example.pawpal.data.impl.SkolaDataSourceImpl
+import com.example.pawpal.data.impl.WishlistDataSourceImpl
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
@@ -36,9 +39,11 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
 
         recyclerView = view.findViewById(R.id.recyclerSkole)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = SkolaAdapter(skolaList) { skola ->
-            navigateToSkolaDetaljFragment(skola)
-        }
+        adapter = SkolaAdapter(
+            skolaList,
+            onDetailsClick = { skola -> navigateToSkolaDetaljFragment(skola) },
+            onWishlistClick = { skola -> addToWishlist(skola) }
+        )
         recyclerView.adapter = adapter
 
         fetchSkole(skolaDataSource)
@@ -67,4 +72,26 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
             .addToBackStack(null)
             .commit()
     }
+
+    private fun addToWishlist(skola: appdatabase.Skola) {
+        val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+        if (korisnikID == null) {
+            Toast.makeText(requireContext(), "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        lifecycleScope.launch {
+            val wishlistDataSource = WishlistDataSourceImpl(database)
+            val isInWishlist = wishlistDataSource.isSkolaInWishlist(skola.skolaID, korisnikID)
+
+            if (!isInWishlist) {
+                wishlistDataSource.addToWishlist(skola.skolaID, korisnikID)
+                Toast.makeText(requireContext(), "${skola.naziv} dodano u wishlist!", Toast.LENGTH_SHORT).show()
+            } else {
+                wishlistDataSource.removeFromWishlist(skola.skolaID, korisnikID)
+                Toast.makeText(requireContext(), "${skola.naziv} uklonjeno iz wishlist-a!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 }

@@ -19,3 +19,8 @@ SELECT * FROM skola;
 
 deleteAllSkole:
 DELETE FROM skola;
+
+
+deleteSkolaById:
+DELETE FROM skola
+WHERE skolaID = ?;
