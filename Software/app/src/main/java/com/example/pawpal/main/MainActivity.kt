@@ -15,6 +15,7 @@ import com.example.pawpal.R
 import com.example.pawpal.ui.ProfilKorisnikaActivity
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
+import com.example.pawpal.ui.WishlistFragment
 import com.google.android.material.navigation.NavigationView
 import com.pawpal.appdatabase.AppDatabase
 
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_profile -> startActivity(Intent(this, ProfilKorisnikaActivity::class.java))
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
+                R.id.nav_wishlist -> navigateToFragment(WishlistFragment())
+
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
             }
             drawerLayout.closeDrawers()
