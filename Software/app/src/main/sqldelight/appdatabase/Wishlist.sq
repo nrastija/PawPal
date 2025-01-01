@@ -1,0 +1,17 @@
+CREATE TABLE Wishlist (
+    wishlistID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    skolaID INTEGER NOT NULL REFERENCES skola(skolaID) ON DELETE CASCADE,
+    korisnikID INTEGER NOT NULL REFERENCES korisnik(korisnikID) ON DELETE CASCADE
+);
+
+insertWishlistItem:
+INSERT INTO Wishlist (skolaID, korisnikID) VALUES (?, ?);
+
+deleteWishlistItem:
+DELETE FROM Wishlist WHERE skolaID = ? AND korisnikID = ?;
+
+dohvatiSveWishlistItems:
+SELECT skolaID FROM Wishlist WHERE korisnikID = ?;
+
+dohvatiSkoluIzWishlista:
+SELECT * FROM Wishlist WHERE skolaID = ? AND korisnikID = ?;
