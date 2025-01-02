@@ -28,10 +28,22 @@ class WishlistDataSourceImpl(private val db: AppDatabase) : WishlistDataSource {
         }
     }
 
+    override suspend fun updateWishlistStatus(korisnikID: Long, status: Long) {
+        withContext(Dispatchers.IO) {
+            wishlistQueries.updateWishlistStatus(status, korisnikID)
+        }
+    }
+
+    override suspend fun getWishlistStatus(korisnikID: Long): Long {
+        return withContext(Dispatchers.IO) {
+            wishlistQueries.dohvatiWishlistStatus(korisnikID).executeAsOneOrNull() ?: 0L
+        }
+    }
+
     override suspend fun getAllWishlistItemsWithPriorities(korisnikID: Long): List<Pair<Skola, Long>> {
         return withContext(Dispatchers.IO) {
             val wishlistItems = wishlistQueries.dohvatiSveWishlistItems(korisnikID).executeAsList()
-            wishlistItems.mapNotNull { (skolaID, prioritet) ->
+            wishlistItems.mapNotNull { (skolaID, prioritet, _) ->
                 val skola = skolaQueries.dohvatiSkoluPoId(skolaID).executeAsOneOrNull()
                 skola?.let { it to prioritet }
             }
