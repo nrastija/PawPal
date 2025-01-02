@@ -37,13 +37,15 @@ class PasUdomljavanjeDataSourceImpl(db: AppDatabase) : PasUdomljavanjeDataSource
         pasmina: String,
         dodatneInfo: String,
         cijepiva: String,
-        imageUrl: String
+        imageUrl: String,
+        imageUrl2: String,
+        imageUrl3: String
     ) {
         withContext(Dispatchers.IO) {
             queries.dodajPasUdomljavanje(
                 ime, dob, spol, opis, datumRodenja,
                 kilaza, pasmina, dodatneInfo,
-                cijepiva, imageUrl
+                cijepiva, imageUrl, imageUrl2, imageUrl3
             )
         }
     }

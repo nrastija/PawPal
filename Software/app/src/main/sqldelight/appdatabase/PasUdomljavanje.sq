@@ -9,7 +9,9 @@ CREATE TABLE pasudomljavanje (
     pasmina TEXT NOT NULL,
     dodatneinfo TEXT,
     cijepiva TEXT,
-    imageUrl TEXT NOT NULL
+    imageUrl TEXT NOT NULL,
+    imageUrl2 TEXT NOT NULL,
+    imageUrl3 TEXT NOT NULL
 );
 
 
@@ -28,5 +30,5 @@ CREATE TABLE pasudomljavanje (
   WHERE pasudomljavanjeID = ?;
 
   dodajPasUdomljavanje:
-    INSERT INTO pasudomljavanje (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl)
-    VALUES (?, ?, ?, ?, ?,?,?,?,?,?);
+    INSERT INTO pasudomljavanje (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl, imageUrl2, imageUrl3)
+    VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?);

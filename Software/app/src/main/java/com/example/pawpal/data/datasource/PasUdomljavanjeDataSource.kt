@@ -20,6 +20,8 @@ interface PasUdomljavanjeDataSource {
         pasmina: String,
         dodatneInfo: String,
         cijepiva: String,
-        imageUrl: String
+        imageUrl: String,
+        imageUrl2: String,
+        imageUrl3: String
     )
 }

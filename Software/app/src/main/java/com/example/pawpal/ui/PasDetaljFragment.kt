@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -60,7 +59,9 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             parentFragmentManager.popBackStack()
         }
 
-        val slikaPsa: ImageView = view.findViewById(R.id.SlikaDetaljiPas)
+        val slikaPsa1: ImageView = view.findViewById(R.id.PasDetaljiSlika1)
+        val slikaPsa2: ImageView = view.findViewById(R.id.PasDetaljiSlika2)
+        val slikaPsa3: ImageView = view.findViewById(R.id.PasDetaljiSlika3)
         val imePsa: TextView = view.findViewById(R.id.ImeDetaljiPas)
         val opisPsa: TextView = view.findViewById(R.id.OpisDetaljiPas)
         val pasminaPsa: TextView = view.findViewById(R.id.PasminaDetaljiPas)
@@ -76,26 +77,38 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()
             imePsa.text = pas.ime
             opisPsa.text = pas.opis ?: "Nema opisa"
-            pasminaPsa.text = "Pasmina: ${pas.pasmina}"
-            starostPsa.text = "Starost: ${pas.dob} godina"
-            zdravljePsa.text = "Cijepiva: ${pas.cijepiva}"
-            spolPsa.text = "Spol: ${pas.spol}"
-            datumRodjenjaPsa.text = "Datum rođenja: ${pas.datumRodenja}"
-            kilazaPsa.text = "Kilaza: ${pas.kilaza} kg"
-            dodatneInfoPsa.text = "Dodatne informacije: ${pas.dodatneinfo ?: "Nema dodatnih informacija"}"
+            pasminaPsa.text = "Pasmina \n${pas.pasmina}"
+            starostPsa.text = "Starost \n${pas.dob} godina"
+            zdravljePsa.text = "Cijepiva \n${pas.cijepiva}"
+            spolPsa.text = "Spol \n${pas.spol}"
+            datumRodjenjaPsa.text = "Datum rođenja \n${pas.datumRodenja}"
+            kilazaPsa.text = "Kilaža \n${pas.kilaza} kg"
+            dodatneInfoPsa.text = "Dodatne informacije: \n${pas.dodatneinfo ?: "Nema dodatnih informacija"}"
 
-            val slikaID = resources.getIdentifier(pas.imageUrl, "drawable", requireContext().packageName)
-            slikaPsa.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
+            setImage(slikaPsa1, pas.imageUrl)
+            setImage(slikaPsa2, pas.imageUrl3)
+            setImage(slikaPsa3, pas.imageUrl2)
         }
+
 
         gumbUdomi.setOnClickListener {
-            Toast.makeText(context, "Zahtjev za udomljavanje je poslan!", Toast.LENGTH_SHORT).show()
+            val formFragment = ZahtjevUdomljavanjeFragment.newInstance(pasID)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, formFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
+
     }
+
+    private fun setImage(view: ImageView, imageName: String) {
+        val imageID = resources.getIdentifier(imageName, "drawable", requireContext().packageName)
+        view.setImageResource(if (imageID != 0) imageID else android.R.drawable.ic_menu_report_image)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        // Restore navigation drawer and toolbar
         (activity as? MainActivity)?.apply {
             findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             supportActionBar?.show()
