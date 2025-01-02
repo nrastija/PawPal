@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "nara", "nara2", "nara3"
+                "nara2", "nara3", "nara"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Zumi",
@@ -212,16 +212,28 @@ class MainActivity : AppCompatActivity() {
                 "kira3", "kira", "kira2"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
-                "Snupi",
-                12,
+                "Striček Viršl",
+                5,
                 "Mužjak",
-                "Ja sam Snupi, nježan chow chow poznat po svojoj impresivnoj, gustoj grivi i smirenoj prirodi. Iako sam stariji, još uvijek zračim dostojanstvom i ljubaznošću. Moja karakteristična smeđa dlaka daje mi izgled medvjedića, a na mom licu često možete primijetiti izraz tihe mudrosti. Vjerni sam prijatelj koji uživa u mirnim šetnjama, udobnim trenucima odmora i svojoj omiljenoj hrskavici. Unatoč svojim godinama, i dalje nosim onu posebnu, neponovljivu osobnost koja čini chow chow pasminu tako jedinstvenom.",
-                "15.12.2012.",
-                41.60,
-                "Chow chow",
-                "Voli duge šetnje",
+                "Ja sam Striček Viršl, ponosni jazavčar sa srcem većim od mene! Moj izduženi izgled i kratke šapice osvajaju svakoga ko me sretne. Iako sam malen, nosim u sebi ogromnu energiju i ljubav prema ljudima. Volim istraživati svaki kutak tokom naših šetnji, a moj nos je uvijek u potrazi za najzanimljivijim mirisima. Nakon aktivnog dana, uživam u uvijanju u mekanu dekicu dok sanjam o novim avanturama. Uvek sam spreman za igru, ali i za nježne trenutke sa svojim ljudima. Ako tražiš vernog, veselog i neodoljivog prijatelja, tu sam – Striček Viršl!",
+                "02.03.2018.",
+                5.80,
+                "Dugodlaki jazavčar",
+                "Obožava igranje i istraživanje",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "snupi", "snupi", "snupi"
+                "wirsl1", "wirsl2", "wirsl1"
+            )
+            queriesPasUdomljavanje.dodajPasUdomljavanje(
+                "Molly",
+                3,
+                "Ženka",
+                "Ja sam Molly, preslatka maltezerica s mekanim, bijelim krznom koje podsjeća na oblak! Iako sam mala rastom, u meni se krije ogromno srce puno ljubavi i veselja. Obožavam provoditi vreme sa svojom ljudskom porodicom, bilo da se mazimo na kauču ili uživamo u kratkim šetnjama. Moje velike, sjajne oči uvijek prate svaki tvoj pokret, a moj veseli repić neumorno pokazuje koliko te volim. Ako tražiš nježnog i odanog prijatelja koji će ti uljepšati svaki dan, ja sam spremna da postanem dio tvoje obitelji!",
+                "10.07.2020.",
+                4.50,
+                "Maltezer",
+                "Uživanje u maženju i društvu, ne slaže se s drugim psima",
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "molly3", "molly2", "molly"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Rex",
