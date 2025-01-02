@@ -10,3 +10,6 @@ VALUES (?, ?);
 dohvatiNazivKategorije:
 SELECT naziv FROM kategorija
 WHERE kategorijaID = ?;
+
+deleteAllKategorijas:
+DELETE FROM kategorija;
