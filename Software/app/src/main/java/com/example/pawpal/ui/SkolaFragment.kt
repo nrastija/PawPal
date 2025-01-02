@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.Skola
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SkolaAdapter
 import com.example.pawpal.data.impl.SkolaDataSourceImpl
@@ -22,7 +23,7 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
     override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SkolaAdapter
-    private val skolaList = mutableListOf<appdatabase.Skola>()
+    private val skolaList = mutableListOf<Skola>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,13 +57,13 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
         }
     }
 
-    private fun updateSkolaList(skole: List<appdatabase.Skola>) {
+    private fun updateSkolaList(skole: List<Skola>) {
         skolaList.clear()
         skolaList.addAll(skole)
         adapter.notifyDataSetChanged()
     }
 
-    private fun navigateToSkolaDetaljFragment(skola: appdatabase.Skola) {
+    private fun navigateToSkolaDetaljFragment(skola: Skola) {
         val detaljFragment = SkolaDetaljiFragment.newInstance(skola.skolaID)
         detaljFragment.database = database
 
@@ -73,7 +74,7 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
             .commit()
     }
 
-    private fun addToWishlist(skola: appdatabase.Skola) {
+    private fun addToWishlist(skola: Skola) {
         val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
         if (korisnikID == null) {
             Toast.makeText(requireContext(), "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
@@ -85,7 +86,13 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
             val isInWishlist = wishlistDataSource.isSkolaInWishlist(skola.skolaID, korisnikID)
 
             if (!isInWishlist) {
-                wishlistDataSource.addToWishlist(skola.skolaID, korisnikID)
+
+                val currentWishlist = wishlistDataSource.getAllWishlistItemsWithPriorities(korisnikID)
+                val nextPriority = (currentWishlist.maxOfOrNull { it.second } ?: 0L) + 1
+
+                wishlistDataSource.addToWishlist(
+                    skola.skolaID, korisnikID, nextPriority
+                )
                 Toast.makeText(requireContext(), "${skola.naziv} dodano u wishlist!", Toast.LENGTH_SHORT).show()
             } else {
                 wishlistDataSource.removeFromWishlist(skola.skolaID, korisnikID)
@@ -93,5 +100,6 @@ class SkolaFragment : Fragment(), DatabaseConsumer {
             }
         }
     }
+
 
 }
