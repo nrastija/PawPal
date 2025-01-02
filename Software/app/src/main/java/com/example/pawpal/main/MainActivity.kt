@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity() {
                 "Labrador",
                 "Uživa u pažnji djece, alergična na kikiriki",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "kira", "kira", "kira"
+                "kira3", "kira", "kira2"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Snupi",
@@ -268,7 +268,7 @@ class MainActivity : AppCompatActivity() {
                 "Njemački oštrodlaki ptičar",
                 "Zahtijeva duge šetnje, ima puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "ref2","ref","ref3"
+                "ref3","ref","ref2"
             )
         }
 

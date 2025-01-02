@@ -57,7 +57,7 @@
                 android:padding="8dp"
                 android:text="Udomi psa!"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/black"
+                android:textColor="@color/crnoubijelo"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li posjedujete druge kućne ljubimce?"
-                android:textColor="@color/black"
+                android:textColor="@color/crnoubijelo"
                 android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp" />
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li ste samac ili član obitelji?"
-                android:textColor="@color/black"
+                android:textColor="@color/crnoubijelo"
                 android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp" />
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li imate iskustva sa psima?"
-                android:textColor="@color/black"
+                android:textColor="@color/crnoubijelo"
                 android:textStyle="bold"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp" />
@@ -202,16 +202,14 @@
 
             <Button
                 android:id="@+id/UdomiPsa"
-                android:layout_width="240dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/secondaryColor"
-                android:padding="16dp"
+                android:padding="12dp"
                 android:text="Pošalji zahtjev"
-                android:textColor="@color/bijelazakoristiti"
-                android:textSize="20sp"
+                android:textColor="@color/crnoubijelo"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:paddingRight="20sp"
-                android:paddingLeft="20sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center"/>
