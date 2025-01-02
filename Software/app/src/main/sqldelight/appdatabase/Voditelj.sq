@@ -25,3 +25,5 @@ WHERE sv.skolaID = ?;
 dohvatiVoditeljaPoId:
 SELECT * FROM voditelj
 WHERE voditeljID = ?;
+
+
