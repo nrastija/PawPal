@@ -123,11 +123,7 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
                 .replace(R.id.fragmentContainer, fragment)
                 .addToBackStack(null)
                 .commit()
+            }
         }
-    }
-
-
-
-
 
 }
