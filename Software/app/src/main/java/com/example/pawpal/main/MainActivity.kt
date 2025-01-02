@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                 8.8,
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "nara"
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "nara", "nara2", "nara3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Zumi",
@@ -180,6 +180,8 @@ class MainActivity : AppCompatActivity() {
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "zumi",
+                "zumi",
                 "zumi")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Kira",
@@ -190,7 +192,10 @@ class MainActivity : AppCompatActivity() {
                 35.00,
                 "Labrador",
                 "Uživa u pažnji djece, alergična na kikiriki",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "kira")
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "kira",
+                "kira",
+                "kira")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Snupi",
                 12,
@@ -200,7 +205,10 @@ class MainActivity : AppCompatActivity() {
                 41.60,
                 "Chow chow",
                 "Voli duge šetnje",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "snupi")
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "snupi",
+                "snupi",
+               "snupi" )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Rex",
                 10,
@@ -210,7 +218,10 @@ class MainActivity : AppCompatActivity() {
                 40.10,
                 "Njemački ovčar",
                 "Problemi s kukovima",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "reks")
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "reks",
+                "reks2",
+                "reks3")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Nala",
                 3,
@@ -220,7 +231,8 @@ class MainActivity : AppCompatActivity() {
                 6.5,
                 "Jorkširski terijer",
                 "Ne slaže se najbolje s drugim psima",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "nala")
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "nala","nala2","nala3")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Maša",
                 1,
@@ -231,18 +243,18 @@ class MainActivity : AppCompatActivity() {
                 "Njemački špic-pomeranac",
                 "Uživa u društvu djece, puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "masa")
+                "masa","masa2", "masa")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Ref",
-                5,
+                4,
                 "Mužjak",
                 "Ref je 5-godišnji njemački oštrodlaki ptičar, lovački pas izuzetnih sposobnosti. S svojom gustim, oštrim krznom prilagođenim za rad u zahtjevnim uvjetima, Ref je pravi profesionalac u lovu, s izvrsnim instinktom za praćenje mirisa. Iako je najviše usmjeren na lovačke zadatke, njegova energična i vesela priroda također ga čini sjajnim članom obitelji. Uz visoku inteligenciju, Ref je vrlo poslušan i voljan raditi sa svojim vlasnicima, bilo da je u lovu ili uživa u obiteljskim trenucima. S godinama, stekao je i mudrost, ali i dalje zrači snagom i entuzijazmom za nove izazove.",
-                "06.05.2019.",
-                23.50,
+                "06.05.2020.",
+                27.50,
                 "Njemački oštrodlaki ptičar",
                 "Zahtijeva duge šetnje, ima puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "ref")
+                "ref","ref2","ref3")
         }
     }
 }

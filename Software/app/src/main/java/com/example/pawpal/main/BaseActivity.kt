@@ -49,7 +49,7 @@ open class BaseActivity : AppCompatActivity() {
                 }
                 R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
-                                R.id.nav_adoption -> {
+                R.id.nav_adoption -> {
 
                 }
                 R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
