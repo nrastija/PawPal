@@ -36,7 +36,8 @@
 
                     <ImageView
                         android:id="@+id/slikaPasCovjek"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
+                        android:layout_marginLeft="2dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:adjustViewBounds="true"
@@ -46,18 +47,19 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="0dp"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/big_sale_title"
+                            android:id="@+id/novinajboljiprijatelj"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Pronađite svog novog najboljeg prijatelja!"
                             android:textColor="@color/accentColor"
                             android:textSize="20sp"
+                            android:layout_marginRight="20dp"
                             android:textStyle="bold" />
 
                         <TextView
