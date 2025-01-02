@@ -30,6 +30,12 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
             insets
         }
 
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { view, insets ->
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            view.setPadding(0, 0, 0, imeInsets.bottom)
+            insets
+        }
+
         val buttonPrilozi: Button = findViewById(R.id.prilozislikupsa)
         imageView = findViewById(R.id.imageView)
         ponisti = findViewById(R.id.ponisti)
