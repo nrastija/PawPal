@@ -15,22 +15,15 @@
         android:textSize="18sp"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/buttonIncreasePriority"
+    <Spinner
+        android:id="@+id/odabirPrioriteta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="↑"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:entries="@array/opcije_prioriteta" />
 
     <Button
-        android:id="@+id/buttonDecreasePriority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="↓"
-        android:layout_marginEnd="8dp" />
-
-    <Button
-        android:id="@+id/buttonRemove"
+        android:id="@+id/gumbUkloni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ukloni" />
