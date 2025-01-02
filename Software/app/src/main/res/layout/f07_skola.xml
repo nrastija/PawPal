@@ -10,7 +10,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="157dp"
+        android:layout_height="match_parent"
         android:background="@drawable/zaobljeni_rubovi_kutije">
 
         <ImageView
@@ -31,28 +31,35 @@
                 android:id="@+id/IME_SKOLE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="0.3"
-                android:textSize="26dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
                 android:text="Osnovni trening"
-                android:textStyle="bold"/>
-
+                android:textSize="26dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/gumb1"
                 android:layout_width="160dp"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/primaryColor"
-                android:textColor="@color/textColorPrimary"
                 android:text="Detalji"
-                android:textSize="24dp"
-                tools:ignore="TextContrastCheck" />
+                android:textColor="@color/textColorPrimary"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/gumbWishlist"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:backgroundTint="@color/primaryColor"
+                android:text="Dodaj na Wishlist"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="16dp" />
         </LinearLayout>
     </FrameLayout>
 </androidx.cardview.widget.CardView>
