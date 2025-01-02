@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.Skola
 import com.example.pawpal.R
 import com.example.pawpal.adapters.WishlistAdapter
 import com.example.pawpal.data.impl.WishlistDataSourceImpl
@@ -21,7 +22,7 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
     override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: WishlistAdapter
-    private val wishlist = mutableListOf<appdatabase.Skola>()
+    private val wishlist = mutableListOf<Pair<Skola, Long>>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +37,15 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
 
         recyclerView = view.findViewById(R.id.recyclerWishlist)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = WishlistAdapter(wishlist, ::removeSkola, ::changePriority)
+        adapter = WishlistAdapter(
+            wishlist,
+            onPriorityChange = { skola, priority ->
+                updatePriority(skola, priority)
+            },
+            onRemoveClick = { skola ->
+                removeSkola(skola)
+            }
+        )
         recyclerView.adapter = adapter
 
         fetchWishlist()
@@ -55,7 +64,7 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
 
         lifecycleScope.launch {
             val wishlistDataSource = WishlistDataSourceImpl(database)
-            val wishlistItems = wishlistDataSource.getAllWishlistItems(korisnikID)
+            val wishlistItems = wishlistDataSource.getAllWishlistItemsWithPriorities(korisnikID)
 
             wishlist.clear()
             wishlist.addAll(wishlistItems)
@@ -63,9 +72,17 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
         }
     }
 
+    private fun updatePriority(skola: Skola, priority: Long) {
+        val korisnikID = KorisnikManager.dajUlogiranogKorisnika() ?: return
 
+        lifecycleScope.launch {
+            val wishlistDataSource = WishlistDataSourceImpl(database)
+            wishlistDataSource.updateWishlistPrioritet(skola.skolaID, korisnikID, priority)
+            fetchWishlist()
+        }
+    }
 
-    private fun removeSkola(skola: appdatabase.Skola) {
+    private fun removeSkola(skola: Skola) {
         val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
         if (korisnikID == null) {
             Toast.makeText(requireContext(), "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
@@ -79,16 +96,20 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
         }
     }
 
-
-
-    private fun changePriority(skola: appdatabase.Skola, newIndex: Int) {
-        wishlist.remove(skola)
-        wishlist.add(newIndex, skola)
-        adapter.notifyDataSetChanged()
-    }
-
     private fun sendRequest() {
-        val sortedSkole = wishlist.map { it.naziv }.joinToString("\n")
-        Toast.makeText(requireContext(), "Zahtjev poslan:\n$sortedSkole", Toast.LENGTH_SHORT).show()
+        val fragment = PregledWishlisteFragment()
+
+        if (fragment is DatabaseConsumer) {
+            fragment.database = database
+        }
+
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .addToBackStack(null)
+            .commit()
     }
+
+
+
 }
