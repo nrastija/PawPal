@@ -26,7 +26,7 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
         opisPsa = findViewById(R.id.opisPsa)
         zadnjalokacija = findViewById(R.id.zadnjalokacija)
         slikapsa = findViewById(R.id.slikapsa)
-
+        odustani = findViewById(R.id.odustaniGumb)
 
 
         val opis = intent.getStringExtra("opis")
@@ -41,11 +41,14 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
             slikapsa.setImageURI(slika)
         }
 
+        odustani.setOnClickListener{
+            finish()
+        }
 
     }
 
     private lateinit var opisPsa: TextView
     private lateinit var zadnjalokacija: TextView
     private lateinit var slikapsa: ImageView
-
+    private lateinit var odustani: Button
 }
