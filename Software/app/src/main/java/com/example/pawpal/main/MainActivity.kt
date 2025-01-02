@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home -> drawerLayout.closeDrawers()
                 R.id.nav_profile -> startActivity(Intent(this, ProfilKorisnikaActivity::class.java))
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
-                R.id.nav_school -> navigateToFragment(SkolaFragment())
+               R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_wishlist -> navigateToFragment(WishlistFragment())
 
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
