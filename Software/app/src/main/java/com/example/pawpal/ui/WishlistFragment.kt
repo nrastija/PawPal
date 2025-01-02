@@ -104,17 +104,28 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
             return
         }
 
-        val fragment = PregledWishlisteFragment()
-
-        if (fragment is DatabaseConsumer) {
-            fragment.database = database
+        val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+        if (korisnikID == null) {
+            Toast.makeText(requireContext(), "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .addToBackStack(null)
-            .commit()
+        lifecycleScope.launch {
+            val wishlistDataSource = WishlistDataSourceImpl(database)
+            wishlistDataSource.updateWishlistStatus(korisnikID, 1)
+
+            val fragment = PregledWishlisteFragment()
+            if (fragment is DatabaseConsumer) {
+                fragment.database = database
+            }
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
     }
+
 
 
 
