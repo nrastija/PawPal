@@ -41,7 +41,7 @@
                         android:layout_gravity="center_vertical"
                         android:adjustViewBounds="true"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/covjekpas" />
+                        android:src="@drawable/pesek1" />
 
                     <LinearLayout
                         android:layout_width="0dp"
