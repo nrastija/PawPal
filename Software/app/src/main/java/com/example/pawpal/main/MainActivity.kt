@@ -15,6 +15,7 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.KategorijaDataSourceImpl
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
+import com.example.pawpal.f02_izgubljeni_pas.PrijavaIzgubljenihPasa
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.ui.ShopFragment
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_profile -> startActivity(Intent(this, ProfilKorisnikaActivity::class.java))
                 R.id.nav_veterinar -> startActivity(Intent(this, odabirVeterinaraActivity::class.java))
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
+                R.id.nav_lost_dogs -> startActivity(Intent(this, PrijavaIzgubljenihPasa::class.java))
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
             }
             drawerLayout.closeDrawers()
