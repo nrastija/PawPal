@@ -134,7 +134,7 @@
                     android:textSize="20dp" />
 
                 <Button
-                    android:id="@+id/potvrdiGumb"
+                    android:id="@+id/potvrdi"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="Potvrdi"

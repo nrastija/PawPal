@@ -1,15 +1,18 @@
 package com.example.pawpal.f02_izgubljeni_pas
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
+import com.example.pawpal.main.MainActivity
 import org.w3c.dom.Text
 
 class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
@@ -27,6 +30,7 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
         zadnjalokacija = findViewById(R.id.zadnjalokacija)
         slikapsa = findViewById(R.id.slikapsa)
         odustani = findViewById(R.id.odustaniGumb)
+        potvrdi = findViewById(R.id.potvrdi)
 
 
         val opis = intent.getStringExtra("opis")
@@ -45,10 +49,20 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
             finish()
         }
 
+        potvrdi.setOnClickListener{
+            Toast.makeText(this, "Prijava psa potvrđena!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     private lateinit var opisPsa: TextView
     private lateinit var zadnjalokacija: TextView
     private lateinit var slikapsa: ImageView
     private lateinit var odustani: Button
+    private lateinit var potvrdi: Button
 }
