@@ -36,20 +36,19 @@ class UdomljavanjeFragment : Fragment(), DatabaseConsumer {
             navigateToPasDetaljFragment(pas)
         }
         recyclerView.adapter = adapter
-        fetchDogs() // Dohvat podataka o psima iz baze
+        dajPeseke()
     }
 
-    private fun fetchDogs() {
+    private fun dajPeseke() {
         lifecycleScope.launch {
-            // Zamijeniti s tvojim izvorom podataka
-            val dogs = database.pasUdomljavanjeQueries.dohvatiSvePse().executeAsList() // Pretpostavljam da koristiš SQLite
-            updateDogList(dogs)
+            val peseki = database.pasUdomljavanjeQueries.dohvatiSvePse().executeAsList()
+            updateDogList(peseki)
         }
     }
 
-    private fun updateDogList(dogs: List<appdatabase.Pasudomljavanje>) {
+    private fun updateDogList(peseki: List<appdatabase.Pasudomljavanje>) {
         pasList.clear()
-        pasList.addAll(dogs)
+        pasList.addAll(peseki)
         adapter.notifyDataSetChanged()
     }
 

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Gornji dio sa slikom -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
@@ -30,7 +29,7 @@
                     android:clipToOutline="true" />
 
                 <ImageButton
-                    android:id="@+id/backButton"
+                    android:id="@+id/btnNatrag"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
@@ -38,13 +37,9 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/arrow_back_icon"
                     tools:ignore="SpeakableTextPresentCheck"></ImageButton>
-
             </FrameLayout>
-
-            <!-- Naslov preko slike -->
         </RelativeLayout>
 
-        <!-- Donji dio forme -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +48,6 @@
             android:padding="0dp"
             android:layout_marginTop="-10dp">
 
-            <!-- Polja za unos -->
             <TextView
                 android:id="@+id/UdomiPasUdomljavanje"
                 android:layout_width="match_parent"
@@ -87,7 +81,7 @@
                 android:layout_marginBottom="16dp" />
 
             <EditText
-                android:id="@+id/addressInput"
+                android:id="@+id/AdresaUdomljavanje"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -97,7 +91,7 @@
                 android:layout_marginBottom="16dp" />
 
             <EditText
-                android:id="@+id/phoneInput"
+                android:id="@+id/BrojTelefonaUdomljavanje"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:hint="Broj telefona"
@@ -106,7 +100,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- RadioButton za veličinu psa -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -194,7 +187,6 @@
                     android:text="Ne, ovo mi je prvi pas kojem sam vlasnik" />
             </RadioGroup>
 
-            <!-- Polje za dodatne informacije -->
             <EditText
                 android:id="@+id/DodatneInfoUdomljavanje"
                 android:layout_width="280dp"
@@ -207,7 +199,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Gumb za podnošenje -->
             <Button
                 android:id="@+id/UdomiPsa"
                 android:layout_width="240dp"
@@ -223,7 +214,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center"/>
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

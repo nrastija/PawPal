@@ -31,12 +31,10 @@ class PasUdomljavanjeAdapter(
         holder.pasIme.text = pas.ime
         holder.pasOpis.text = "${pas.spol}, ${pas.dob} godina"
 
-        // Postavljanje slike psa
         val slikicaNaziv = pas.imageUrl2
         val slikicaID = holder.itemView.context.resources.getIdentifier(slikicaNaziv, "drawable", holder.itemView.context.packageName)
         holder.pasSlika.setImageResource(slikicaID)
 
-        // Klik na detalje
         holder.gumbicDetalji.setOnClickListener {
             onItemClick(pas)
         }
@@ -44,7 +42,6 @@ class PasUdomljavanjeAdapter(
 
     override fun getItemCount(): Int = pasUdomljavanjeList.size
 
-    // Osvježavanje liste u adapteru
     fun updateList(newList: List<Pasudomljavanje>) {
         pasUdomljavanjeList.clear()
         pasUdomljavanjeList.addAll(newList)

@@ -168,7 +168,8 @@ class MainActivity : AppCompatActivity() {
                 8.8,
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
-                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza", "nara", "nara2", "nara3"
+                "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
+                "nara", "nara2", "nara3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Zumi",
@@ -180,9 +181,7 @@ class MainActivity : AppCompatActivity() {
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "zumi",
-                "zumi",
-                "zumi")
+                "zumi", "zumi", "zumi")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Kira",
                 12,
@@ -193,9 +192,7 @@ class MainActivity : AppCompatActivity() {
                 "Labrador",
                 "Uživa u pažnji djece, alergična na kikiriki",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "kira",
-                "kira",
-                "kira")
+                "kira", "kira", "kira")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Snupi",
                 12,
@@ -206,9 +203,7 @@ class MainActivity : AppCompatActivity() {
                 "Chow chow",
                 "Voli duge šetnje",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "snupi",
-                "snupi",
-               "snupi" )
+                "snupi", "snupi", "snupi" )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Rex",
                 10,
@@ -219,9 +214,7 @@ class MainActivity : AppCompatActivity() {
                 "Njemački ovčar",
                 "Problemi s kukovima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "reks",
-                "reks2",
-                "reks3")
+                "reks", "reks2", "reks3")
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Nala",
                 3,

@@ -55,7 +55,7 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             supportActionBar?.hide()
         }
 
-        view.findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
@@ -71,7 +71,7 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
         val datumRodjenjaPsa: TextView = view.findViewById(R.id.DatumRodenjaDetaljiPas)
         val kilazaPsa: TextView = view.findViewById(R.id.KilazaDetaljiPas)
         val dodatneInfoPsa: TextView = view.findViewById(R.id.DodatneInfoDetaljiPas)
-        val gumbUdomi: Button = view.findViewById(R.id.adopt_button)
+        val gumbUdomi: Button = view.findViewById(R.id.UsvojiMe)
 
         lifecycleScope.launch {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()
@@ -90,7 +90,6 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             setImage(slikaPsa3, pas.imageUrl2)
         }
 
-
         gumbUdomi.setOnClickListener {
             val formFragment = ZahtjevUdomljavanjeFragment.newInstance(pasID)
             parentFragmentManager.beginTransaction()
@@ -98,8 +97,6 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
                 .addToBackStack(null)
                 .commit()
         }
-
-
     }
 
     private fun setImage(view: ImageView, imageName: String) {

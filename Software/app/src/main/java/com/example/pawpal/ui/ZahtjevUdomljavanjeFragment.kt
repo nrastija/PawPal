@@ -56,17 +56,16 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
             supportActionBar?.hide()
         }
 
-        view.findViewById<ImageButton>(R.id.backButton).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        // UI elements for displaying the dog details
         val imePsaTextView: TextView = view.findViewById(R.id.UdomiPasUdomljavanje)
         val pasSlikaImageView: ImageView = view.findViewById(R.id.PasSlikaUdomljavanje)
         val imeInput: EditText = view.findViewById(R.id.ImeUdomljavanje)
         val prezimeInput: EditText = view.findViewById(R.id.PrezimeUdomljavanje)
-        val emailInput: EditText = view.findViewById(R.id.addressInput)
-        val telefonInput: EditText = view.findViewById(R.id.phoneInput)
+        val emailInput: EditText = view.findViewById(R.id.AdresaUdomljavanje)
+        val telefonInput: EditText = view.findViewById(R.id.BrojTelefonaUdomljavanje)
         val dodatneInfoInput: EditText = view.findViewById(R.id.DodatneInfoUdomljavanje)
         val radioDrugiLjubimci: RadioGroup = view.findViewById(R.id.RadioDrugiLjubimac)
         val radioClanObitelji: RadioGroup = view.findViewById(R.id.RadioClanObitelji)
@@ -77,7 +76,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()
             imePsaTextView.text = "Udomite psa: ${pas.ime}"
 
-            // Load dog image directly using resources
             val slikaID = resources.getIdentifier(pas.imageUrl, "drawable", requireContext().packageName)
             if (slikaID != 0) {
                 pasSlikaImageView.setImageResource(slikaID)
@@ -93,7 +91,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
             val telefon = telefonInput.text.toString()
             val dodatneInfo = dodatneInfoInput.text.toString()
 
-            // Collect selected radio button values
             val drugiLjubimci = when (radioDrugiLjubimci.checkedRadioButtonId) {
                 R.id.DrugiLjubimciDa -> "Da"
                 R.id.DrugiLjubimciNe -> "Ne"
@@ -112,7 +109,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                 else -> ""
             }
 
-            // Validate required fields
             if (ime.isEmpty() || prezime.isEmpty() || email.isEmpty() || telefon.isEmpty()) {
                 Toast.makeText(context, "Molimo popunite sva obavezna polja.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -131,8 +127,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                     iskustvoSPsima = iskustvoSPsima,
                     dodatneInformacije = dodatneInfo
                 )
-
-                // Show success message and return to the previous fragment
                 Toast.makeText(context, "Zahtjev uspješno poslan!", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
             }
