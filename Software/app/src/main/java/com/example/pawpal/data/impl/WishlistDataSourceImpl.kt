@@ -10,9 +10,9 @@ class WishlistDataSourceImpl(private val db: AppDatabase) : WishlistDataSource {
     private val wishlistQueries = db.wishlistQueries
     private val skolaQueries = db.skolaQueries
 
-    override suspend fun addToWishlist(skolaId: Long, korisnikID: Long) {
+    override suspend fun addToWishlist(skolaId: Long, korisnikID: Long, prioritet: Long) {
         withContext(Dispatchers.IO) {
-            wishlistQueries.insertWishlistItem(skolaId, korisnikID)
+            wishlistQueries.insertWishlistItem(skolaId, korisnikID, prioritet)
         }
     }
 
@@ -22,11 +22,18 @@ class WishlistDataSourceImpl(private val db: AppDatabase) : WishlistDataSource {
         }
     }
 
-    override suspend fun getAllWishlistItems(korisnikID: Long): List<Skola> {
+    override suspend fun updateWishlistPrioritet(skolaId: Long, korisnikID: Long, prioritet: Long) {
+        withContext(Dispatchers.IO) {
+            wishlistQueries.updateWishlistPrioritet(prioritet, skolaId, korisnikID)
+        }
+    }
+
+    override suspend fun getAllWishlistItemsWithPriorities(korisnikID: Long): List<Pair<Skola, Long>> {
         return withContext(Dispatchers.IO) {
             val wishlistItems = wishlistQueries.dohvatiSveWishlistItems(korisnikID).executeAsList()
-            wishlistItems.mapNotNull { skolaID ->
-                skolaQueries.dohvatiSkoluPoId(skolaID).executeAsOneOrNull()
+            wishlistItems.mapNotNull { (skolaID, prioritet) ->
+                val skola = skolaQueries.dohvatiSkoluPoId(skolaID).executeAsOneOrNull()
+                skola?.let { it to prioritet }
             }
         }
     }
