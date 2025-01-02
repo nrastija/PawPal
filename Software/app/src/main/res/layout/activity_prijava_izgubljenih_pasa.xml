@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".f02_izgubljeni_pas.PrijavaIzgubljenihPasa">
+    tools:context=".f02_izgubljeni_pas.PrijavaIzgubljenihPasaActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarIzgubljenPas"
@@ -15,21 +15,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-    </androidx.appcompat.widget.Toolbar>
 
-    <TextView
+        <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Prijavi izgubljenog psa"
         android:textSize="25dp"
         android:textStyle="bold"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarIzgubljenPas"
         app:layout_constraintEnd_toEndOf="@+id/toolbarIzgubljenPas"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/toolbarIzgubljenPas"
         app:layout_constraintTop_toTopOf="@+id/toolbarIzgubljenPas"
         app:layout_constraintVertical_bias="0.698" />
+    </androidx.appcompat.widget.Toolbar>
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -154,7 +158,7 @@
                 android:textSize="20dp" />
 
             <Button
-                android:id="@+id/potvrdi"
+                android:id="@+id/potvrdiprijavu"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Potvrdi"

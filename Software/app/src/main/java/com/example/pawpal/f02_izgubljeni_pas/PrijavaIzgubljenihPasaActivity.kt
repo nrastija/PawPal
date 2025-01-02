@@ -17,7 +17,7 @@ import com.example.pawpal.R
 import java.io.IOException
 import java.io.InputStream
 
-class PrijavaIzgubljenihPasa : AppCompatActivity() {
+class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +35,14 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
             view.setPadding(0, 0, 0, imeInsets.bottom)
             insets
         }
-
-        val buttonPrilozi: Button = findViewById(R.id.prilozislikupsa)
         imageView = findViewById(R.id.imageView)
         ponisti = findViewById(R.id.ponisti)
         dodatniopispsa = findViewById(R.id.dodatniopispsa)
         zadnjeviden = findViewById(R.id.zadnjeviden)
+        potvrdiprijavu = findViewById(R.id.potvrdiprijavu)
+        prilozisliku = findViewById(R.id.prilozislikupsa)
 
-        buttonPrilozi.setOnClickListener{
+        prilozisliku.setOnClickListener{
             openImageChooser()
         }
 
@@ -51,6 +51,24 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
             dodatniopispsa.text.clear()
             zadnjeviden.text.clear()
         }
+
+        potvrdiprijavu.setOnClickListener{
+            val opis = dodatniopispsa.text.toString()
+            val lokacija = zadnjeviden.text.toString()
+            val uri = imageView.tag as? Uri
+
+            if(opis.isNotBlank() && lokacija.isNotBlank() && uri !=null){
+                val intent = Intent(this, PotvrdaPrijaveIzgubljenogPsaActivity::class.java).apply{
+                    putExtra("opis", opis)
+                    putExtra("lokacija", lokacija)
+                    putExtra("slika", uri.toString())
+                }
+                startActivity(intent)
+            } else{
+                showToast("Molimo ispunite sve podatke i priložite sliku.")
+            }
+
+        }
     }
 
 
@@ -58,6 +76,8 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
     private lateinit var ponisti: Button
     private lateinit var dodatniopispsa: EditText
     private lateinit var zadnjeviden: EditText
+    private lateinit var potvrdiprijavu: Button
+    private lateinit var prilozisliku: Button
 
     private fun openImageChooser() {
         pickImageLauncher.launch("image/*")
@@ -72,6 +92,7 @@ class PrijavaIzgubljenihPasa : AppCompatActivity() {
 
     private fun loadImage(uri: Uri) {
         imageView.setImageURI(uri)
+        imageView.tag = uri
     }
 
     private fun checkImageSize(uri: Uri) {
