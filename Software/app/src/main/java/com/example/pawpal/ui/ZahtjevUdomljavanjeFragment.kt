@@ -51,11 +51,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as? MainActivity)?.apply {
-            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            supportActionBar?.hide()
-        }
-
         view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -135,9 +130,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as? MainActivity)?.apply {
-            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            supportActionBar?.show()
-        }
+
     }
 }

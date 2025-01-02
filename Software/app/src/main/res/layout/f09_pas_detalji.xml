@@ -246,11 +246,23 @@
             android:layout_marginBottom="16dp" />
 
         <TextView
+            android:id="@+id/Kontakt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kontakt"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <TextView
             android:id="@+id/Kontakti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ako želiš saznati više o meni ili vidjeti moje dodatne slike, kontaktiraj info@pawpal.com ili +385998752934"
-            android:textSize="23sp"
+            android:textSize="20sp"
             android:textColor="@color/proizvodInfo"
             android:paddingLeft="20sp"
             android:paddingRight="20sp"

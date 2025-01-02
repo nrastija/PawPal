@@ -50,10 +50,6 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as? MainActivity)?.apply {
-            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            supportActionBar?.hide()
-        }
 
         view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -79,7 +75,7 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             opisPsa.text = pas.opis ?: "Nema opisa"
             pasminaPsa.text = "Pasmina \n${pas.pasmina}"
             starostPsa.text = "Starost \n${pas.dob} godina"
-            zdravljePsa.text = "Cijepiva \n${pas.cijepiva}"
+            zdravljePsa.text = "Cijepiva: \n${pas.cijepiva}"
             spolPsa.text = "Spol \n${pas.spol}"
             datumRodjenjaPsa.text = "Datum rođenja \n${pas.datumRodenja}"
             kilazaPsa.text = "Kilaža \n${pas.kilaza} kg"
@@ -106,10 +102,6 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        (activity as? MainActivity)?.apply {
-            findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-            supportActionBar?.show()
-        }
     }
 }
 

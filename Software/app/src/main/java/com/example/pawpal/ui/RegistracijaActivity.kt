@@ -34,16 +34,17 @@ class RegistracijaActivity : AppCompatActivity() {
         }
 
         btnProziranReg.setOnClickListener {
-            startActivity(Intent(this, PrijavaActivity::class.java))
-            finish()
+            val intent = Intent(this, PrijavaActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
 
     private fun handleRegistration() {
-        val korime = findViewById<EditText>(R.id.editKorime).text.toString()
-        val lozinka = findViewById<EditText>(R.id.editLozinka).text.toString()
         val ime = findViewById<EditText>(R.id.editIme).text.toString()
         val prezime = findViewById<EditText>(R.id.editPrezime).text.toString()
+        val korime = findViewById<EditText>(R.id.editKorime).text.toString()
+        val lozinka = findViewById<EditText>(R.id.editLozinka).text.toString()
         val email = findViewById<EditText>(R.id.editEmail).text.toString()
 
         if (korime.isEmpty() || lozinka.isEmpty() || ime.isEmpty() ||

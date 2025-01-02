@@ -179,7 +179,7 @@ class MainActivity : AppCompatActivity() {
                 "Nara",
                 9,
                 "Ženka",
-                "Nara je pas neodoljivog šarma i zaigrane naravi. Obožava provoditi vrijeme s ljudima i uvijek je spremna za maženje, u čemu istinski uživa. Njena najveća strast je pokazivanje ljubavi kroz veselo i neumorno lizanje, čime osvaja srca svih oko sebe. Osim toga, Nara je prava gurmanica – uvijek u potrazi za ukusnim zalogajem i nikada ne propušta priliku za omiljenu poslasticu. Njezina energija i privrženost čine je savršenim prijateljem koji unosi radost u svaki trenutak.",
+                "Ja sam Nara, pas neodoljivog šarma i zaigrane naravi. Obožavam provoditi vrijeme s ljudima i uvijek sam spremna za maženje, u čemu istinski uživam. Moja najveća strast je pokazivanje ljubavi kroz veselo i neumorno lizanje, čime osvajam srca svih oko sebe. Osim toga, prava sam gurmanica, uvijek u potrazi za ukusnim zalogajem i nikada ne propuštam priliku za svoju omiljenu poslasticu. Moja energija i privrženost čine me savršenim prijateljem koji unosi radost u svaki trenutak.",
                 "25.03.2015.",
                 8.8,
                 "Shitzu-Maltezer",
@@ -191,11 +191,11 @@ class MainActivity : AppCompatActivity() {
                 "Zumi",
                 1,
                 "Ženka",
-                "Nara je pas neodoljivog šarma i zaigrane naravi. Obožava provoditi vrijeme s ljudima i uvijek je spremna za maženje, u čemu istinski uživa. Njena najveća strast je pokazivanje ljubavi kroz veselo i neumorno lizanje, čime osvaja srca svih oko sebe. Osim toga, Nara je prava gurmanica – uvijek u potrazi za ukusnim zalogajem i nikada ne propušta priliku za omiljenu poslasticu. Njezina energija i privrženost čine je savršenim prijateljem koji unosi radost u svaki trenutak.",
-                "25.03.2015.",
-                8.80,
-                "Shitzu-Maltezer",
-                "Ne zahtijeva puno šetnji",
+                "Ja sam Zumi, pas vrlo druželjubive naravi. Obožavam ljude, ljudsku prisutnost i ne mogu bez njih! Također sam jako znatiželjna, volim šnjofati svakakve skrivene kutke livada i dvorišta te nikada ne propuštam igru s drugim psima. Volim djecu kao i ostale pse, a lako se prilagodim na nove okoline. Jako sam hrabra i obožavam vodu, što je možda i pomalo čudno za psa. Nakon dugog dana punog igre, trčanja i istraživanja, najdraže mi je odmoriti na kauču uz doticaj svojih najmilijih. Umiljata sam i dobra, volim se maziti, a ponekad se malo previše zaigram, ali ne možete mi zamjeriti jer sam još mala! ",
+                "10.05.2024.",
+                2.8,
+                "Mini Pudla",
+                "Energična i slatka, uvijek zaigrana",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
                 "zumi", "zumi", "zumi"
             )
@@ -203,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                 "Kira",
                 12,
                 "Ženka",
-                "Kira je labradorica čije mirne i mudre oči odražavaju godine ispunjene ljubavlju i odanošću. Iako je u zrelim godinama, i dalje zadržava nježnu i prijateljsku narav tipičnu za labradore. Voli mirne šetnje i opušteno vrijeme provedeno u društvu svoje obitelji. Kira je pravi primjer psa koji je kroz godine postao vjeran i pouzdan pratitelj, uvijek spreman pružiti utjehu i toplinu svojim voljenima. Njezina ljubav prema ljudima i umirujuća prisutnost čine je nezamjenjivim članom vaše obitelji.",
+                "Ja sam Kira, labradorica čije mirne i mudre oči odražavaju godine ispunjene ljubavlju i odanošću. Iako sam u zrelim godinama, i dalje zadržavam nježnu i prijateljsku narav tipičnu za labradore. Volim mirne šetnje i opušteno vrijeme provedeno u društvu svoje obitelji. Kroz godine sam postala vjeran i pouzdan pratitelj, uvijek spremna pružiti utjehu i toplinu svojim voljenima. Moja ljubav prema ljudima i umirujuća prisutnost čine me nezamjenjivim članom vaše obitelji.",
                 "17.05.2012.",
                 35.00,
                 "Labrador",
@@ -215,60 +215,60 @@ class MainActivity : AppCompatActivity() {
                 "Snupi",
                 12,
                 "Mužjak",
-                "Snupi je nježan chow chow, poznat po svojoj impresivnoj, gustoj grivi i smirenoj prirodi. Iako je stariji, još uvijek zrači dostojanstvom i ljubaznošću. Njegova karakteristična smeđa dlaka daje mu izgled medvjedića, a na njegovom licu često možete primijetiti izraz tihe mudrosti. Snupi je vjerni prijatelj, koji uživa u mirnim šetnjama, udobnim trenucima odmora i svojoj omiljenoj hrskavici. Unatoč svojim godinama, on i dalje odražava tu posebnu, neponovljivu osobnost chow chow pasmine.",
+                "Ja sam Snupi, nježan chow chow poznat po svojoj impresivnoj, gustoj grivi i smirenoj prirodi. Iako sam stariji, još uvijek zračim dostojanstvom i ljubaznošću. Moja karakteristična smeđa dlaka daje mi izgled medvjedića, a na mom licu često možete primijetiti izraz tihe mudrosti. Vjerni sam prijatelj koji uživa u mirnim šetnjama, udobnim trenucima odmora i svojoj omiljenoj hrskavici. Unatoč svojim godinama, i dalje nosim onu posebnu, neponovljivu osobnost koja čini chow chow pasminu tako jedinstvenom.",
                 "15.12.2012.",
                 41.60,
                 "Chow chow",
                 "Voli duge šetnje",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "snupi", "snupi", "snupi" )
+                "snupi", "snupi", "snupi"
+            )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Rex",
                 10,
                 "Mužjak",
-                "Rex je 10-godišnji njemački ovčar, poznat po svojoj odanosti i inteligenciji. Iako je u zlatnim godinama, njegova energija i stražarska instinkta ostali su snažni. Sa svojim prepoznatljivim crno-smeđim krznom i izraženim mišićima, Rex zrači snagom i ponosom. Iako je mirniji nego u mladosti, još uvijek voli aktivne igre i šetnje, a naročito voli obiteljsku pažnju. Njegova zaštitnička priroda i odanost svojim vlasnicima ostali su nepromijenjeni, a sa svakim danom postaje sve mudriji i nježniji.",
+                "Ja sam Rex, njemački ovčar poznat po svojoj odanosti i inteligenciji. Iako sam u zlatnim godinama, moja energija i stražarski instinkt još uvijek su snažni. Sa svojim prepoznatljivim crno-smeđim krznom i izraženim mišićima, zračim snagom i ponosom. Iako sam mirniji nego u mladosti, i dalje uživam u aktivnim igrama i šetnjama, a posebno volim pažnju svoje obitelji. Moja zaštitnička priroda i odanost prema onima koje volim nikada se nisu promijenile, a sa svakim danom postajem sve mudriji i nježniji.",
                 "23.07.2014.",
                 40.10,
                 "Njemački ovčar",
                 "Problemi s kukovima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "reks", "reks2", "reks3"
+                "reks2", "reks", "reks3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Nala",
                 3,
                 "Ženka",
-                "Nala je energična i vesela Jorkširski terijer, stara 3 godine. Iako je mala, njena osobnost je sve samo ne to! Ova preslatka djevojčica obožava pažnju i uživa u igri, bilo da je u dvorištu ili u udobnosti svog doma. Njena vesela narav i stalna želja za ljubavlju čine je savršenim prijateljem za obitelj. Jorkširski terijeri poznati su po svojoj hrabrosti i inteligenciji, a Nala nije iznimka - brzo se uči i voli biti u centru pažnje. Njen luksuzni zlatno-smeđi kaput zahtijeva malo pažnje, ali uz to dolazi nevjerojatan izgled koji će vas oduševiti svaki put kada je pogledate. Idealna je za obitelj koja traži malog, ali energičnog ljubimca koji će im pružiti puno ljubavi i radosti.",
+                "Ja sam Nala, energična i vesela terijerka stara 3 godine. Iako sam mala, moja osobnost je sve samo ne to! Obožavam pažnju i uživam u igri, bilo da sam u dvorištu ili u udobnosti svog doma. Moja vesela narav i stalna želja za ljubavlju čine me savršenim prijateljem za obitelj. Kao pravi Jorkširski terijer, hrabra sam i inteligentna, brzo učim i volim biti u centru pažnje. Moj luksuzni zlatno-smeđi kaput traži malo pažnje, ali uz to dolazi nevjerojatan izgled koji će vas oduševiti svaki put kada me pogledate. Idealna sam za obitelj koja traži malog, ali energičnog ljubimca koji će im pružiti puno ljubavi i radosti.",
                 "15.06.2021.",
                 6.5,
                 "Jorkširski terijer",
                 "Ne slaže se najbolje s drugim psima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "nala","nala2","nala3"
+                "nala2","nala","nala3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Maša",
                 1,
                 "Ženka",
-                "Maša je mješanac njemačkog špica i pomeranca, mala je i živahna kuglica energije. S svojim gustim krznom izgleda poput pravog malog medvjedića. Maša je vesela, znatiželjna i uvijek spremna za igru, a njezina razigrana osobnost čini je omiljenom u obitelji. Iako je mala, njezina hrabrost i glasno lajanje često je čine vrlo odvažnom u društvu većih pasa. Zbog svoje inteligencije brzo uči nove trikove i voli biti u centru pažnje, uživajući u svakom trenutku provedenom s vlasnicima. Njezina privrženost i veselo ponašanje čine je izvrsnim pratiteljem za aktivan i sretan život.",
+                "Ja sam Maša, mješanac njemačkog špica i pomeranca, mala sam i živahna kuglica energije. S mojim gustim krznom izgledam poput pravog malog medvjedića. Vesela sam, znatiželjna i uvijek spremna za igru, a moja razigrana osobnost čini me omiljenom u obitelji. Iako sam mala, moja hrabrost i glasno lajanje često me čine vrlo odvažnom u društvu većih pasa. Zbog svoje inteligencije brzo učim nove trikove i volim biti u centru pažnje, uživajući u svakom trenutku provedenom s vlasnicima. Moja privrženost i veselo ponašanje čine me izvrsnim pratiteljem za aktivan i sretan život.",
                 "26.11.2023.",
                 4.10,
                 "Njemački špic-pomeranac",
                 "Uživa u društvu djece, puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "masa","masa2", "masa"
+                "masa2","masa", "masa"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Ref",
                 4,
                 "Mužjak",
-                "Ref je 5-godišnji njemački oštrodlaki ptičar, lovački pas izuzetnih sposobnosti. S svojom gustim, oštrim krznom prilagođenim za rad u zahtjevnim uvjetima, Ref je pravi profesionalac u lovu, s izvrsnim instinktom za praćenje mirisa. Iako je najviše usmjeren na lovačke zadatke, njegova energična i vesela priroda također ga čini sjajnim članom obitelji. Uz visoku inteligenciju, Ref je vrlo poslušan i voljan raditi sa svojim vlasnicima, bilo da je u lovu ili uživa u obiteljskim trenucima. S godinama, stekao je i mudrost, ali i dalje zrači snagom i entuzijazmom za nove izazove.",
-                "06.05.2020.",
+                "Ja sam Ref, njemački oštrodlaki ptičar, lovački pas izuzetnih sposobnosti. S mojim gustim, oštrim krznom prilagođenim za rad u zahtjevnim uvjetima, pravi sam profesionalac u lovu, s izvrsnim instinktom za praćenje mirisa. Iako sam najviše usmjeren na lovačke zadatke, moja energična i vesela priroda također me čini sjajnim članom obitelji. Uz visoku inteligenciju, vrlo sam poslušan i voljan raditi sa svojim vlasnicima, bilo da sam u lovu ili uživam u obiteljskim trenucima. S godinama, stekao sam i mudrost, ali i dalje zračim snagom i entuzijazmom za nove izazove.",                "06.05.2020.",
                 27.50,
                 "Njemački oštrodlaki ptičar",
                 "Zahtijeva duge šetnje, ima puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "ref","ref2","ref3"
+                "ref2","ref","ref3"
             )
         }
 

@@ -31,7 +31,7 @@ class PasUdomljavanjeAdapter(
         holder.pasIme.text = pas.ime
         holder.pasOpis.text = "${pas.spol}, ${pas.dob} godina"
 
-        val slikicaNaziv = pas.imageUrl2
+        val slikicaNaziv = pas.imageUrl
         val slikicaID = holder.itemView.context.resources.getIdentifier(slikicaNaziv, "drawable", holder.itemView.context.packageName)
         holder.pasSlika.setImageResource(slikicaID)
 

@@ -30,13 +30,14 @@
 
                 <ImageButton
                     android:id="@+id/btnNatrag"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
                     android:padding="16dp"
-                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/arrow_back_icon"
-                    tools:ignore="SpeakableTextPresentCheck"></ImageButton>
+                    android:scaleType="centerInside"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </FrameLayout>
         </RelativeLayout>
 
