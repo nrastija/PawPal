@@ -97,18 +97,25 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun sendRequest() {
+        val imaNepostavljenPrioritet = wishlist.any { it.second == 0L }
+
+        if (imaNepostavljenPrioritet) {
+            Toast.makeText(requireContext(), "Svi prioriteti moraju biti postavljeni prije slanja zahtjeva!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val fragment = PregledWishlisteFragment()
 
         if (fragment is DatabaseConsumer) {
             fragment.database = database
         }
 
-
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .addToBackStack(null)
             .commit()
     }
+
 
 
 

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
@@ -33,25 +34,35 @@ class WishlistAdapter(
         holder.nazivSkole.text = skola.naziv
 
 
-        holder.odabirPrioriteta.setSelection((prioritet - 1).toInt())
+        val opcijePrioriteta = mutableListOf("0")
+        opcijePrioriteta.addAll((1..skolaList.size).map { it.toString() })
 
 
-        holder.odabirPrioriteta.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        val zauzetiPrioriteti = skolaList.map { it.second.toString() }
+        val dostupneOpcije = opcijePrioriteta.filter { it == "0" || !zauzetiPrioriteti.contains(it) || it == prioritet.toString() }
+
+
+        val adapter = ArrayAdapter(holder.itemView.context, android.R.layout.simple_spinner_item, dostupneOpcije)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        holder.odabirPrioriteta.adapter = adapter
+
+
+        holder.odabirPrioriteta.setSelection(dostupneOpcije.indexOf(prioritet.toString()))
+
+        holder.odabirPrioriteta.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                val noviPrioritet = pos + 1L
-                if (noviPrioritet != prioritet) {
-                    onPriorityChange(skola, noviPrioritet)
+                val novaVrijednost = dostupneOpcije[pos].toLong()
+                if (novaVrijednost != prioritet) {
+                    onPriorityChange(skola, novaVrijednost)
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-        })
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
 
         holder.buttonRemove.setOnClickListener { onRemoveClick(skola) }
     }
 
     override fun getItemCount(): Int = skolaList.size
 }
+
