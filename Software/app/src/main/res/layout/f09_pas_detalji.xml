@@ -11,34 +11,94 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@drawable/rounded_background"
         android:padding="0dp"
-        android:clipToPadding="true"
-        android:layout_margin="0dp"> <!-- Set margin to 0 to span the whole screen -->
+        android:layout_margin="-10dp"> <!-- Set margin to 0 to span the whole screen -->
 
         <!-- Slika psa -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:clipToPadding="true">
 
-            <ImageView
-                android:id="@+id/SlikaDetaljiPas"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="330dp"
-                android:layout_marginBottom="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/zumi"
-                android:clipToOutline="true" />
+                android:scrollbars="none"
+                tools:ignore="SpeakableTextPresentCheck">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <!-- Slika 1 -->
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi" />
+                    </FrameLayout>
+
+                    <!-- Slika 2 -->
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi" />
+                    </FrameLayout>
+
+                    <!-- Slika 3 -->
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi" />
+                    </FrameLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Back Button -->
             <ImageButton
                 android:id="@+id/backButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
                 android:padding="16dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/arrow_back_icon"
                 android:scaleType="centerInside"
                 tools:ignore="SpeakableTextPresentCheck" />
-
 
         </FrameLayout>
 
@@ -61,26 +121,29 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp">
 
             <TextView
-                android:id="@+id/PasminaDetaljiPas"
-                android:layout_width="150sp"
-                android:layout_height="wrap_content"
-                android:text="Breed\nBernese"
-                android:background="@drawable/rounded_background"
+                android:id="@+id/StarostDetaljiPas"
+                android:layout_width="110sp"
+                android:layout_height="70sp"
+                android:text="Age\n1 year"
+                android:background="@drawable/rounded_background2"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginEnd="8dp"
                 android:padding="12dp"
                 android:gravity="center" />
 
+
             <TextView
                 android:id="@+id/KilazaDetaljiPas"
-                android:layout_width="110sp"
+                android:layout_width="90sp"
                 android:layout_height="70sp"
                 android:text="Kilaza\n 8kg"
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/rounded_background2"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginEnd="8dp"
@@ -89,10 +152,10 @@
 
             <TextView
                 android:id="@+id/SpolDetaljiPas"
-                android:layout_width="110sp"
+                android:layout_width="80sp"
                 android:layout_height="70sp"
                 android:text="Sex\nMale"
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/rounded_background2"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:padding="12dp"
@@ -105,14 +168,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp">
 
             <TextView
-                android:id="@+id/StarostDetaljiPas"
-                android:layout_width="110sp"
-                android:layout_height="70sp"
-                android:text="Age\n1 year"
-                android:background="@drawable/rounded_background"
+                android:id="@+id/PasminaDetaljiPas"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Breed\nBernese"
+                android:background="@drawable/rounded_background2"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:layout_marginEnd="8dp"
@@ -124,7 +189,7 @@
                 android:layout_width="150sp"
                 android:layout_height="70sp"
                 android:text="Datum rodenja\n21.01.2024."
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/rounded_background2"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:padding="12dp"
@@ -189,6 +254,18 @@
             android:paddingLeft="20sp"
             android:paddingRight="20sp"
             android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/Kontakti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ako želiš saznati više o meni ili vidjeti moje dodatne slike, kontaktiraj info@pawpal.com ili +385998752934"
+            android:textSize="23sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp"
+            tools:ignore="VisualLintLongText" />
 
         <!-- Gumb za udomljavanje psa -->
         <Button
