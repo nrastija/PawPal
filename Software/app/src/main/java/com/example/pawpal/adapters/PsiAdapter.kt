@@ -1,9 +1,9 @@
 package com.example.pawpal.adapters
 
-import android.graphics.ImageDecoder
-import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.os.Build
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +15,7 @@ import appdatabase.IzgubljeniPsi
 import com.example.pawpal.R
 
 class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter<PsiAdapter.PsiViewHolder>() {
-    class PsiViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        val slikaPsa: ImageView = itemView.findViewById(R.id.slikaPsa)
-        val opisPsa: TextView = itemView.findViewById(R.id.opisPsa)
-        val lokacija: TextView = itemView.findViewById(R.id.lokacija)
-        val odaberiPsa: Button = itemView.findViewById(R.id.odaberiPsa)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PsiViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.f02_izgubljeni_psi_item, parent, false)
@@ -30,29 +24,39 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: PsiViewHolder, position: Int) {
         val pas = psiList[position]
-        holder.opisPsa.text = pas.description
-        holder.lokacija.text = pas.lastseenlocation
-        val imageUri = Uri.parse(pas.imageUri)
+        holder.bind(pas)
+    }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            try {
-                val source = ImageDecoder.createSource(holder.slikaPsa.context.contentResolver, imageUri)
-                val drawable: Drawable = ImageDecoder.decodeDrawable(source)
-                holder.slikaPsa.setImageDrawable(drawable)
-            } catch (e: Exception) {
-                e.printStackTrace()
+    class PsiViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
+        private val slikaPsa: ImageView = itemView.findViewById(R.id.slikaPsa)
+        private val opisPsa: TextView = itemView.findViewById(R.id.opisPsa)
+        private val lokacija: TextView = itemView.findViewById(R.id.lokacija)
+        private val odaberiPsa: Button = itemView.findViewById(R.id.odaberiPsa)
+
+        fun bind(pas: IzgubljeniPsi) {
+            Log.d("Velicina slike", pas.imageUri.length.toString())
+            opisPsa.text = pas.description
+            lokacija.text = pas.lastseenlocation
+            pas.imageUri.let {
+                val bitmap = decodeBase64ToBitmap(it)
+                slikaPsa.setImageBitmap(bitmap)
             }
-        } else {
-            holder.slikaPsa.setImageURI(imageUri)
+
+            odaberiPsa.setOnClickListener{
+            }
         }
 
-        holder.odaberiPsa.setOnClickListener{
-
+        private fun decodeBase64ToBitmap(base64String: String): Bitmap? {
+            Log.d("Usao u funkciju", "")
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            Log.d("Dekodiram", "")
+            return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
         }
     }
 
-    override fun getItemCount(): Int {
-        return psiList.size
-    }
+
+
+    override fun getItemCount(): Int = psiList.size
 
 }

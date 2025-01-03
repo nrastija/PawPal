@@ -1,8 +1,11 @@
 package com.example.pawpal.f02_izgubljeni_pas
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,6 +21,8 @@ import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.example.pawpal.main.MainActivity
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,25 +48,31 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
 
         val opis = intent.getStringExtra("opis")
         val lokacija = intent.getStringExtra("lokacija")
-        val slikaUriString = intent.getStringExtra("slika")
+        val slikaBase64String = intent.getStringExtra("slika")
 
         opisPsa.text = opis ?: "Nije unesen opis"
         zadnjalokacija.text = lokacija ?: "Nije unesena zadnje viđena lokacija"
 
-        slikaUriString.let {
-            val slika = Uri.parse(it)
-            slikapsa.setImageURI(slika)
+        slikaBase64String?.let {
+            val bitmap = decodeBase64ToBitmap(it)
+            if (bitmap != null) {
+                slikapsa.setImageBitmap(bitmap)
+            } else {
+                Toast.makeText(this, "Greška pri učitavanju slike", Toast.LENGTH_SHORT).show()
+            }
         }
-
         odustani.setOnClickListener{
             finish()
         }
 
         potvrdi.setOnClickListener{
-            if (opis != null && lokacija != null && slikaUriString != null) {
+
+            if (opis != null && lokacija != null && slikaBase64String != null) {
+
+
 
                 lifecycleScope.launch {
-                    saveLostDogs(opis, lokacija, slikaUriString)
+                    saveLostDogs(opis, lokacija, slikaBase64String)
                 }
 
                 val intent = Intent(this, MainActivity::class.java)
@@ -76,8 +87,32 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
 
         }
 
-    private suspend fun saveLostDogs(opis: String, lokacija: String, slikaUriString: String) {
-        dataSource.dodajIzgubljenogPsa(opis, lokacija, slikaUriString)
+
+    private fun convertImageToByteArray(uri: Uri): ByteArray? {
+        val inputStream: InputStream = contentResolver.openInputStream(uri) ?: return null
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        val buffer = ByteArray(1024)
+        var length: Int
+        while (inputStream.read(buffer).also { length = it } != -1) {
+            byteArrayOutputStream.write(buffer, 0, length)
+        }
+        inputStream.close()
+        return byteArrayOutputStream.toByteArray()
+    }
+
+
+    private fun decodeBase64ToBitmap(base64String: String): Bitmap? {
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            null
+        }
+    }
+
+
+    private suspend fun saveLostDogs(opis: String, lokacija: String, base64Image: String) {
+        dataSource.dodajIzgubljenogPsa(opis, lokacija, base64Image)
     }
 
 

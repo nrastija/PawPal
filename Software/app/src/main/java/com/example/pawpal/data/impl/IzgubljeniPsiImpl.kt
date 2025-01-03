@@ -1,5 +1,8 @@
 package com.example.pawpal.data.impl
 
+import android.net.Uri
+import android.util.Base64
+import android.util.Log
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.IzgubljeniPsi
@@ -13,6 +16,8 @@ class IzgubljeniPsiImpl(db: AppDatabase) : IzgubljeniPsiDataSource {
     private val queries = db.izgubljeniPsiQueries
 
     override suspend fun dodajIzgubljenogPsa(opis: String, lokacija: String, slikaUri: String) {
+        Log.d("Velicina slike", slikaUri.length.toString())
+
         withContext(Dispatchers.IO){
             queries.unesiNovogPsa(
                 description = opis,
@@ -22,7 +27,12 @@ class IzgubljeniPsiImpl(db: AppDatabase) : IzgubljeniPsiDataSource {
         }
     }
 
+
+
     override suspend fun dohvatiSveIzgubljenePse(): Flow<List<IzgubljeniPsi>> {
+        Log.d("Usao sam u fkju dohvatipse", "")
+        val psiList = queries.dohvatiSvePse().executeAsList()
+        Log.d("Provera podataka", "Podaci iz baze: $psiList")
             return queries.dohvatiSvePse().asFlow().mapToList(context = Dispatchers.IO)
     }
 

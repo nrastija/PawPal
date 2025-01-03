@@ -1,68 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="390dp"
+    android:background="@drawable/zaobljeni_rubovi_kutije"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="7dp"
+    android:layout_marginTop="45dp"
+    android:layout_marginBottom="15dp">
 
 
-    <FrameLayout
-        android:layout_width="370dp"
+    <ImageView
+        android:id="@+id/slikaPsa"
+        android:layout_width="176dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/zaobljeni_rubovi_kutije"
+        android:layout_gravity="right"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.025">
 
-        <ImageView
-            android:id="@+id/slikaPsa"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_weight="0.3"
+            android:text="Opis:"
+            android:textSize="26dp"
+            android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:orientation="vertical">
+        <TextView
+            android:id="@+id/opisPsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="0.3"
+            android:text="tu ide opis"
+            android:textSize="26dp" />
 
-            <TextView
-                android:id="@+id/opisPsa"
-                android:layout_width="wrap_content"
-                android:layout_height="88dp"
-                android:layout_gravity="center"
-                android:layout_weight="0.3"
-                android:text="Opis: veliki crni"
-                android:textSize="26dp" />
 
-            <TextView
-                android:id="@+id/lokacija"
-                android:layout_width="wrap_content"
-                android:layout_height="109dp"
-                android:layout_gravity="center"
-                android:layout_weight="0.3"
-                android:gravity="center"
-                android:text="Zadnje viđen: dubrava"
-                android:textSize="26dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:text="Zadnje viđen:"
+            android:textSize="26dp"
+            android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/odaberiPsa"
-                android:layout_width="160dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/primaryColor"
-                android:text="Odaberi"
-                android:textColor="@color/textColorPrimary"
-                android:textSize="24dp" />
+        <TextView
+            android:id="@+id/lokacija"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:text="tu ide kad je viden"
+            android:textSize="26dp" />
 
-        </LinearLayout>
-    </FrameLayout>
+        <Button
+            android:id="@+id/odaberiPsa"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/primaryColor"
+            android:text="Javi vlasniku"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="24dp" />
+
+        <Button
+            android:id="@+id/obrisiPsa"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/warningColor"
+            android:text="Obriši prijavu"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

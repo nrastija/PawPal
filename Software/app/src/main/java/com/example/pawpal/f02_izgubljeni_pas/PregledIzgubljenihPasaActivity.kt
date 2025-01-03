@@ -1,6 +1,9 @@
 package com.example.pawpal.f02_izgubljeni_pas
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +19,10 @@ import com.example.pawpal.adapters.PsiAdapter
 import com.example.pawpal.data.datasource.IzgubljeniPsiDataSource
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class PregledIzgubljenihPasaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +49,9 @@ class PregledIzgubljenihPasaActivity : AppCompatActivity() {
             }
         }
 
-        }
     }
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var psiAdapter: PsiAdapter
     private lateinit var dataSource: IzgubljeniPsiImpl
+}

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 
@@ -58,16 +60,14 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
             val uri = imageView.tag as? Uri
 
             if(opis.isNotBlank() && lokacija.isNotBlank() && uri !=null){
+                val base64Image = convertImageToBase64(uri)
                 val intent = Intent(this, PotvrdaPrijaveIzgubljenogPsaActivity::class.java).apply{
                     putExtra("opis", opis)
                     putExtra("lokacija", lokacija)
-                    putExtra("slika", uri.toString())
+                    putExtra("slika", base64Image)
                 }
                 startActivity(intent)
             } else{
-                if (opis.isBlank()) showToast("Opis nedostaje.")
-                if (lokacija.isBlank()) showToast("Lokacija nedostaje.")
-                if (uri == null) showToast("Slika nije priložena.")
                 showToast("Molimo ispunite sve podatke i priložite sliku.")
             }
 
@@ -117,6 +117,23 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
         } catch (e: IOException){
             showToast("Greška prilikom učitavanja slike")
         }
+    }
+
+    private fun convertImageToBase64(uri: Uri): String? {
+        val byteArray = convertImageToByteArray(uri)
+        return byteArray?.let { Base64.encodeToString(it, Base64.DEFAULT) }
+    }
+
+    private fun convertImageToByteArray(uri: Uri): ByteArray? {
+        val inputStream: InputStream = contentResolver.openInputStream(uri) ?: return null
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        val buffer = ByteArray(1024)
+        var length: Int
+        while (inputStream.read(buffer).also { length = it } != -1) {
+            byteArrayOutputStream.write(buffer, 0, length)
+        }
+        inputStream.close()
+        return byteArrayOutputStream.toByteArray()
     }
 
     private fun showToast(message: String) {
