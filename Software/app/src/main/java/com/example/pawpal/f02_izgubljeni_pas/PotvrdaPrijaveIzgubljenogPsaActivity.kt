@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
+import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.example.pawpal.main.MainActivity
+import com.pawpal.appdatabase.AppDatabase
 import org.w3c.dom.Text
 
 class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.pawpal.R
+import com.example.pawpal.main.PawPalApplication
 import java.io.IOException
 import java.io.InputStream
 
@@ -120,4 +121,5 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
     }
+
 }
