@@ -35,7 +35,6 @@ class PrijavaActivity : AppCompatActivity() {
         }
 
         btnProziranPri.setOnClickListener {
-            /*startActivity(Intent(this, RegistracijaActivity::class.java))*/
             val intent = Intent(this, RegistracijaActivity::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -60,5 +59,4 @@ class PrijavaActivity : AppCompatActivity() {
         }
     }
 
-    }
-
+}
