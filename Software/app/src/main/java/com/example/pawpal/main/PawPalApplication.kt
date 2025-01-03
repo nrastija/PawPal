@@ -12,5 +12,8 @@ class PawPalApplication : Application() {
         super.onCreate()
         val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "appdatabase.db")
         database = AppDatabase(driver)
+
+        val dbPath = this.getDatabasePath("appdatabase.db").absolutePath
+        println("Path to database:$dbPath")
     }
 }

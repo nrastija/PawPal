@@ -41,17 +41,9 @@
 
         <activity android:name=".main.BaseActivity" />
         <activity android:name=".ui.CheckoutActivity" />
-        <activity android:name=".ui.ProfilKorisnikaActivity"/>
-        <activity android:name=".ui.KreiranjeProfilaPsaActivity"/>
-        <activity android:name=".ui.PrikazProfilaPsaActivity"/>
-        <activity android:name=".ui.UredivanjeProfilaKorisnika"/>
-        <activity android:name=".f01_autorizacija.BrisanjeDeaktivacijaActivity"/>
-        <activity android:name=".ui.PromjenaLozinkeActivity"/>
         <activity android:name=".f04_veterinar.odabirVeterinaraActivity"/>
         <activity android:name=".f04_veterinar.RezervacijaVeterinaraActivity"/>
         <activity android:name=".f04_veterinar.PotvrdaRezervacije"/>
-        <activity android:name=".f09_udomljavanje.UdomljavanjeActivity"/>
-        <activity android:name=".f09_udomljavanje.DetaljiUdomljavanjeActivity"/>
         <activity android:name=".ui.RegistracijaActivity"></activity>
 
     </application>

@@ -58,7 +58,7 @@ class ProfilKorisnikaFragment : Fragment(), DatabaseConsumer {
         }
 
         view.findViewById<Button>(R.id.btnUrediPodatkeK).setOnClickListener {
-            navigateToFragment(UredivanjeProfilaKorisnikaFragment())
+            navigateToFragment(UpravljanjeProfilomFragment())
         }
     }
 

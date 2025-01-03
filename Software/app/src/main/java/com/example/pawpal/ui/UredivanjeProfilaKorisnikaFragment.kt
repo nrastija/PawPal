@@ -126,3 +126,4 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
         Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
     }
 }
+
