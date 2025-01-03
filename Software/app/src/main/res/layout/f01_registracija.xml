@@ -93,96 +93,96 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.96" />
 
-    <EditText
-        android:id="@+id/editIme"
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Ime"
-        android:inputType="textCapSentences"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/inputBox"
+        android:layout_width="312dp"
+        android:layout_height="334dp"
+        android:background="#00000000"
+        android:orientation="vertical"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        app:layout_constraintVertical_bias="0.931">
 
-    <EditText
-        android:id="@+id/editPrezime"
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Prezime"
-        android:inputType="textCapSentences"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        <!-- Horizontalni layout za ime i prezime -->
+        <LinearLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <!-- Polje za Ime -->
+            <EditText
+                android:id="@+id/editIme"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:hint="Ime"
+                android:inputType="textCapSentences"
+                android:padding="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editLozinka"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Lozinka"
-        android:inputType="textPassword"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+            <!-- Polje za Prezime -->
+            <EditText
+                android:id="@+id/editPrezime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:hint="Prezime"
+                android:inputType="textCapSentences"
+                android:padding="14dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/editKorime"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Korisničko ime"
-        android:inputType="text"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        <!-- Polje za Korisničko ime -->
+        <EditText
+            android:id="@+id/editKorime"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:hint="Korisničko ime"
+            android:inputType="text"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="E-MAIL"
-        android:inputType="textEmailAddress"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        <!-- Polje za E-mail -->
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:hint="E-MAIL"
+            android:inputType="textEmailAddress"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <!-- Polje za Lozinku -->
+        <EditText
+            android:id="@+id/editLozinka"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:hint="Lozinka"
+            android:inputType="textPassword"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnProziranReg"

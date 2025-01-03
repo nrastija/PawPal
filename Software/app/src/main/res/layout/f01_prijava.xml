@@ -94,41 +94,44 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.817" />
 
-    <EditText
-        android:id="@+id/editLozinka2"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Lozinka"
-        android:inputType="textPassword"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/inputBoxPrijava"
+        android:layout_width="312dp"
+        android:layout_height="150dp"
+        android:background="#00000000"
+        android:orientation="vertical"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.66">
 
-    <EditText
-        android:id="@+id/editKorime2"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Korisničko ime"
-        android:inputType="text"
-        android:padding="18dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583" />
+        <EditText
+            android:id="@+id/editKorime2"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:hint="Korisničko ime"
+            android:inputType="text"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editLozinka2"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:hint="Lozinka"
+            android:inputType="textPassword"
+            android:padding="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnProziranPri"
