@@ -36,9 +36,9 @@ class IzgubljeniPsiImpl(db: AppDatabase) : IzgubljeniPsiDataSource {
             return queries.dohvatiSvePse().asFlow().mapToList(context = Dispatchers.IO)
     }
 
-    override suspend fun obrisiIzgubljenogPsa(id: Long) {
+    override suspend fun obrisiIzgubljenogPsa(pasId: Long) {
         withContext(Dispatchers.IO){
-            queries.izbrisiPsa(id)
+            queries.izbrisiPsa(pasId)
         }
     }
 

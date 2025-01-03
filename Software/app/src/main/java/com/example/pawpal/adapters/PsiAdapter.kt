@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import appdatabase.IzgubljeniPsi
 import com.example.pawpal.R
 
-class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter<PsiAdapter.PsiViewHolder>() {
+class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteClicked: (Long) -> Unit): RecyclerView.Adapter<PsiAdapter.PsiViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PsiViewHolder {
@@ -24,7 +24,7 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: PsiViewHolder, position: Int) {
         val pas = psiList[position]
-        holder.bind(pas)
+        holder.bind(pas, onDeleteClicked)
     }
 
     class PsiViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -33,8 +33,9 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter
         private val opisPsa: TextView = itemView.findViewById(R.id.opisPsa)
         private val lokacija: TextView = itemView.findViewById(R.id.lokacija)
         private val odaberiPsa: Button = itemView.findViewById(R.id.odaberiPsa)
+        private val brisnajePsa: Button = itemView.findViewById(R.id.brisanjePsa)
 
-        fun bind(pas: IzgubljeniPsi) {
+        fun bind(pas: IzgubljeniPsi, onDeleteClicked: (Long) -> Unit) {
             Log.d("Velicina slike", pas.imageUri.length.toString())
             opisPsa.text = pas.description
             lokacija.text = pas.lastseenlocation
@@ -44,6 +45,10 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>): RecyclerView.Adapter
             }
 
             odaberiPsa.setOnClickListener{
+            }
+
+            brisnajePsa.setOnClickListener{
+                onDeleteClicked(pas.id)
             }
         }
 

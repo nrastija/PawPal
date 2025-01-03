@@ -44,9 +44,24 @@ class PregledIzgubljenihPasaActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             dataSource.dohvatiSveIzgubljenePse().collect { psiList ->
-                psiAdapter = PsiAdapter(psiList)
+                psiAdapter = PsiAdapter(psiList){ pasId ->
+                    obrisiPrijavuIzgubljenogPsa(pasId)
+                }
                 recyclerView.adapter = psiAdapter
             }
+        }
+
+    }
+
+    private fun obrisiPrijavuIzgubljenogPsa(pasId: Long) {
+        lifecycleScope.launch {
+            dataSource.obrisiIzgubljenogPsa(pasId)
+            var updatedList = dataSource.dohvatiSveIzgubljenePse().first()
+
+            psiAdapter=PsiAdapter(updatedList){ pasId->
+                obrisiPrijavuIzgubljenogPsa(pasId)
+            }
+            recyclerView.adapter = psiAdapter
         }
 
     }
