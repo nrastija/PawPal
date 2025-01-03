@@ -10,7 +10,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.pawpal.R
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
-import com.example.pawpal.f09_udomljavanje.UdomljavanjeActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.google.android.material.navigation.NavigationView
 
@@ -51,8 +50,6 @@ open class BaseActivity : AppCompatActivity() {
                 R.id.nav_spa -> Toast.makeText(this, "Spa clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_school -> Toast.makeText(this, "School clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_adoption -> {
-                    val intent = Intent(this, UdomljavanjeActivity::class.java)
-                    startActivity(intent)
                 }
                 R.id.nav_lost_dogs -> Toast.makeText(this, "Lost dogs clicked", Toast.LENGTH_SHORT).show()
                 R.id.nav_shop -> {
