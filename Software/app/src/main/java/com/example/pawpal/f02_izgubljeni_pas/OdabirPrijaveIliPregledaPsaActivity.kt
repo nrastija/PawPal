@@ -28,6 +28,11 @@ class OdabirPrijaveIliPregledaPsaActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        pregledpsagumb.setOnClickListener{
+            val intent = Intent(this, PregledIzgubljenihPasaActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private lateinit var prijavipsagumb: Button

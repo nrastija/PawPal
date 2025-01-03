@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <FrameLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/zaobljeni_rubovi_kutije"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.027">
+
+        <ImageView
+            android:id="@+id/slikaPsa"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="80dp" />
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/opisPsa"
+                android:layout_width="wrap_content"
+                android:layout_height="88dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="Opis: veliki crni"
+                android:textSize="26dp" />
+
+            <TextView
+                android:id="@+id/lokacija"
+                android:layout_width="wrap_content"
+                android:layout_height="109dp"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:text="Zadnje viđen: dubrava"
+                android:textSize="26dp" />
+
+            <Button
+                android:id="@+id/gumb1"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primaryColor"
+                android:text="Odaberi"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="24dp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

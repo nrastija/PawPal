@@ -11,11 +11,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.example.pawpal.main.MainActivity
 import com.pawpal.appdatabase.AppDatabase
-import org.w3c.dom.Text
+import kotlinx.coroutines.launch
 
 class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +35,10 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
         slikapsa = findViewById(R.id.slikapsa)
         odustani = findViewById(R.id.odustaniGumb)
         potvrdi = findViewById(R.id.potvrdi)
+
+        val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "database.db")
+        val db = AppDatabase(driver)
+        dataSource = IzgubljeniPsiImpl(db)
 
 
         val opis = intent.getStringExtra("opis")
@@ -52,7 +58,16 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
         }
 
         potvrdi.setOnClickListener{
+            if (opis != null && lokacija != null && slikaUriString != null) {
+
+                lifecycleScope.launch {
+                    saveLostDogs(opis, lokacija, slikaUriString)
+                }
+
+            }
             Toast.makeText(this, "Prijava psa potvrđena!", Toast.LENGTH_SHORT).show()
+
+            }
 
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -60,11 +75,16 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
             finish()
         }
 
+    private suspend fun saveLostDogs(opis: String, lokacija: String, slikaUriString: String) {
+        dataSource.dodajIzgubljenogPsa(opis, lokacija, slikaUriString)
     }
+
 
     private lateinit var opisPsa: TextView
     private lateinit var zadnjalokacija: TextView
     private lateinit var slikapsa: ImageView
     private lateinit var odustani: Button
     private lateinit var potvrdi: Button
+
+    private lateinit var dataSource: IzgubljeniPsiImpl
 }
