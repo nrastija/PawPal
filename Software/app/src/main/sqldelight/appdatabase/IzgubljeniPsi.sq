@@ -1,0 +1,13 @@
+CREATE TABLE IzgubljeniPsi (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    opis TEXT NOT NULL,
+    zadnjevidenalokacija TEXT NOT NULL,
+    slikaUri TEXT NOT NULL
+);
+
+SELECT_ALL:
+SELECT  * FROM IzgubljeniPsi;
+
+INSERT_IZGUBLJENI_PSI:
+INSERT INTO IzgubljeniPsi(opis, zadnjevidenalokacija, slikaUri)
+VALUES (?, ?, ?);
