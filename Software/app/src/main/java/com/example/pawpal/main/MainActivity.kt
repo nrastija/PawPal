@@ -16,7 +16,7 @@ import com.example.pawpal.R
 import com.example.pawpal.data.impl.WishlistDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.ui.PregledWishlisteFragment
-import com.example.pawpal.ui.ProfilKorisnikaActivity
+import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.WishlistFragment
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> drawerLayout.closeDrawers()
-                R.id.nav_profile -> startActivity(Intent(this, ProfilKorisnikaActivity::class.java))
+                R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_wishlist -> {
