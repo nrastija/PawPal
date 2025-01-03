@@ -10,7 +10,7 @@ CREATE TABLE pas (
 );
 
 insertPas:
-INSERT INTO pas (ime, dob, pasmina, spol, kilaza, korisnikID)
+INSERT OR REPLACE INTO  pas(ime, dob, pasmina, spol, kilaza, korisnikID)
 VALUES (:ime, :dob, :pasmina, :spol, :kilaza, :korisnikID);
 
 dohvatiPasPoKorisnikID:
