@@ -9,20 +9,21 @@
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/zaobljeni_rubovi_kutije"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027">
+        app:layout_constraintVertical_bias="0.025">
 
         <ImageView
             android:id="@+id/slikaPsa"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="80dp" />
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
             android:layout_width="200dp"
@@ -50,7 +51,7 @@
                 android:textSize="26dp" />
 
             <Button
-                android:id="@+id/gumb1"
+                android:id="@+id/odaberiPsa"
                 android:layout_width="160dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"

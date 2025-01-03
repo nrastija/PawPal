@@ -64,15 +64,16 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
                     saveLostDogs(opis, lokacija, slikaUriString)
                 }
 
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                finish()
+
             }
             Toast.makeText(this, "Prijava psa potvrđena!", Toast.LENGTH_SHORT).show()
 
             }
 
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            finish()
         }
 
     private suspend fun saveLostDogs(opis: String, lokacija: String, slikaUriString: String) {

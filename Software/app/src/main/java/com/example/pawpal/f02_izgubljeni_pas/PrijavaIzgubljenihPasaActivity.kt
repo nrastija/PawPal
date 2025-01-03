@@ -13,11 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
-import com.example.pawpal.data.datasource.IzgubljeniPsiDataSource
-import com.example.pawpal.data.impl.IzgubljeniPsiImpl
-import com.pawpal.appdatabase.AppDatabase
 import java.io.IOException
 import java.io.InputStream
 
@@ -69,6 +65,9 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
             } else{
+                if (opis.isBlank()) showToast("Opis nedostaje.")
+                if (lokacija.isBlank()) showToast("Lokacija nedostaje.")
+                if (uri == null) showToast("Slika nije priložena.")
                 showToast("Molimo ispunite sve podatke i priložite sliku.")
             }
 
@@ -82,8 +81,6 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
     private lateinit var zadnjeviden: EditText
     private lateinit var potvrdiprijavu: Button
     private lateinit var prilozisliku: Button
-
-    private lateinit var dataSource: IzgubljeniPsiImpl
 
     private fun openImageChooser() {
         pickImageLauncher.launch("image/*")
