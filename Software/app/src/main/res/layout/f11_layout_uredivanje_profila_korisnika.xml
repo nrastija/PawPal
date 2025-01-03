@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:background="@color/basketColor">
 
         <Button
             android:id="@+id/btnSpremiP"
@@ -100,7 +100,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="409dp"
-            android:layout_height="270dp"
+            android:layout_height="230dp"
             android:background="@color/secondaryColor"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -139,14 +139,7 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarUredivanjeK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
+
 
         <TextView
             android:id="@+id/textMail"
@@ -170,9 +163,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.117"
+            app:layout_constraintVertical_bias="0.056"
             app:srcCompat="@drawable/profile_icon"
-            app:tint="@color/white"/>
+            app:tint="@color/white" />
 
         <EditText
             android:id="@+id/Prezime"
