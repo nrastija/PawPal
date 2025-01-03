@@ -82,8 +82,8 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
             dodatneInfoPsa.text = "Dodatne informacije: \n${pas.dodatneinfo ?: "Nema dodatnih informacija"}"
 
             setImage(slikaPsa1, pas.imageUrl)
-            setImage(slikaPsa2, pas.imageUrl3)
-            setImage(slikaPsa3, pas.imageUrl2)
+            setImage(slikaPsa2, pas.imageUrl2)
+            setImage(slikaPsa3, pas.imageUrl3)
         }
 
         gumbUdomi.setOnClickListener {

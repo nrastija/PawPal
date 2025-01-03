@@ -1,4 +1,4 @@
-CREATE TABLE pasudomljavanje (
+CREATE TABLE IF NOT EXISTS pasudomljavanje (
     pasudomljavanjeID INTEGER PRIMARY KEY AUTOINCREMENT,
     ime TEXT NOT NULL,
     dob INTEGER NOT NULL,
@@ -32,7 +32,6 @@ CREATE TABLE pasudomljavanje (
   dodajPasUdomljavanje:
     INSERT INTO pasudomljavanje (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl, imageUrl2, imageUrl3)
     VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?);
-
 
   deleteAllPasUdomljavanje:
   DELETE FROM pasudomljavanje;

@@ -127,7 +127,9 @@ class MainActivity : AppCompatActivity() {
                 "Shitzu-Maltezer",
                 "Ne zahtijeva puno šetnji",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "nara2", "nara3", "nara"
+                "nara2",
+                "nara3",
+                "nara"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Zumi",
@@ -139,7 +141,9 @@ class MainActivity : AppCompatActivity() {
                 "Mini Pudla",
                 "Energična i slatka, uvijek zaigrana",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "zumi", "zumi", "zumi"
+                "zumi3",
+                "zumi2",
+                "zumi"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Kira",
@@ -151,7 +155,9 @@ class MainActivity : AppCompatActivity() {
                 "Labrador",
                 "Uživa u pažnji djece, alergična na kikiriki",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "kira3", "kira", "kira2"
+                "kira3",
+                "kira",
+                "kira2"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Striček Viršl",
@@ -163,7 +169,9 @@ class MainActivity : AppCompatActivity() {
                 "Dugodlaki jazavčar",
                 "Obožava igranje i istraživanje",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "wirsl1", "wirsl2", "wirsl1"
+                "wirsl1",
+                "wirsl2",
+                "wirsl1"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Molly",
@@ -175,7 +183,9 @@ class MainActivity : AppCompatActivity() {
                 "Maltezer",
                 "Uživanje u maženju i društvu, ne slaže se s drugim psima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "molly3", "molly2", "molly"
+                "molly3",
+                "molly2",
+                "molly"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Rex",
@@ -187,7 +197,9 @@ class MainActivity : AppCompatActivity() {
                 "Njemački ovčar",
                 "Problemi s kukovima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "reks2", "reks", "reks3"
+                "reks2",
+                "reks",
+                "reks3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Nala",
@@ -199,7 +211,9 @@ class MainActivity : AppCompatActivity() {
                 "Jorkširski terijer",
                 "Ne slaže se najbolje s drugim psima",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "nala2","nala","nala3"
+                "nala2",
+                "nala",
+                "nala3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Maša",
@@ -211,7 +225,9 @@ class MainActivity : AppCompatActivity() {
                 "Njemački špic-pomeranac",
                 "Uživa u društvu djece, puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "masa2","masa", "masa"
+                "masa2",
+                "masa",
+                "masa3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Ref",
@@ -222,7 +238,9 @@ class MainActivity : AppCompatActivity() {
                 "Njemački oštrodlaki ptičar",
                 "Zahtijeva duge šetnje, ima puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "ref3","ref","ref2"
+                "ref3",
+                "ref",
+                "ref2"
             )
         }
 
