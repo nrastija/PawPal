@@ -1,0 +1,26 @@
+CREATE TABLE skola (
+    skolaID INTEGER NOT NULL PRIMARY KEY,
+    naziv TEXT NOT NULL,
+    opis TEXT NOT NULL,
+    cijena REAL NOT NULL,
+    termin TEXT NOT NULL
+);
+
+insertSkola:
+INSERT INTO skola (skolaID, naziv, opis, cijena, termin)
+VALUES (?, ?, ?, ?, ?);
+
+dohvatiSkoluPoId:
+SELECT * FROM skola
+WHERE skolaID = ?;
+
+dohvatiSveSkole:
+SELECT * FROM skola;
+
+deleteAllSkole:
+DELETE FROM skola;
+
+
+deleteSkolaById:
+DELETE FROM skola
+WHERE skolaID = ?;

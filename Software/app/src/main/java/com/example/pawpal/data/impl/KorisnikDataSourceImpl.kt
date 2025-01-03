@@ -1,5 +1,6 @@
 package com.example.pawpal.data.impl
 
+import android.util.Log
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.Korisnik
@@ -45,4 +46,33 @@ class KorisnikDataSourceImpl(db: AppDatabase) : KorisnikDataSource {
             queries.dodajKorisnik(korime, ime, prezime, lozinka, email)
         }
     }
+
+    override suspend fun azurirajKorisnika(
+        korisnikID: Long,
+        korime: String,
+        ime: String,
+        prezime: String,
+        email: String
+    ) {
+        withContext(Dispatchers.IO) {
+            queries.azurirajKorisnika(
+                korisnikID = korisnikID,
+                korime = korime,
+                ime = ime,
+                prezime = prezime,
+                email = email
+            )
+        }
+    }
+
+    override suspend fun azurirajLozinku(korisnikID: Long, novaLozinka: String)  {
+        withContext(Dispatchers.IO) {
+            queries.azurirajLozinku(
+                korisnikID = korisnikID,
+                novaLozinka = novaLozinka
+            )
+        }
+    }
+
+
 }

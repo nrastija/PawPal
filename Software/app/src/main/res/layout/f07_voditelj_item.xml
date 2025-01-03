@@ -1,0 +1,30 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/gumb_pozadina"
+    android:gravity="center_vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginTop="6dp">
+
+    <TextView
+        android:id="@+id/txtImePrezime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Ime Prezime"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="8dp" />
+
+    <ImageView
+        android:id="@+id/imgDesnaStrelica"
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:layout_gravity="end"
+        app:srcCompat="@drawable/desna_strelica" />
+</LinearLayout>

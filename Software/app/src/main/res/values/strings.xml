@@ -11,4 +11,10 @@
     <string name="placanjeKartica">Kartica</string>
     <string name="reset">RESET</string>
     <string name="placanjePayPal">PayPal</string>
+    <string-array name="opcije_prioriteta">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>

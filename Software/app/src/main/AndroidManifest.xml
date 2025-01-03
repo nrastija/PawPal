@@ -41,12 +41,12 @@
 
         <activity android:name=".main.BaseActivity" />
         <activity android:name=".ui.CheckoutActivity" />
-        <activity android:name=".f11_profil.ProfilKorisnikaActivity"/>
-        <activity android:name=".f11_profil.KreiranjeProfilaPsaActivity"/>
-        <activity android:name=".f11_profil.PrikazProfilaPsaActivity"/>
-        <activity android:name=".f11_profil.UredivanjeProfilaKorisnika"/>
+        <activity android:name=".ui.ProfilKorisnikaActivity"/>
+        <activity android:name=".ui.KreiranjeProfilaPsaActivity"/>
+        <activity android:name=".ui.PrikazProfilaPsaActivity"/>
+        <activity android:name=".ui.UredivanjeProfilaKorisnika"/>
         <activity android:name=".f01_autorizacija.BrisanjeDeaktivacijaActivity"/>
-        <activity android:name=".f11_profil.PromjenaLozinkeActivity"/>
+        <activity android:name=".ui.PromjenaLozinkeActivity"/>
         <activity android:name=".f04_veterinar.odabirVeterinaraActivity"/>
         <activity android:name=".f04_veterinar.RezervacijaVeterinaraActivity"/>
         <activity android:name=".f04_veterinar.PotvrdaRezervacije"/>
