@@ -1,0 +1,31 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/nazivSkole"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Naziv škole"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/odabirPrioriteta"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:minWidth="48dp"
+        android:entries="@array/opcije_prioriteta" />
+
+    <Button
+        android:id="@+id/gumbUkloni"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ukloni" />
+</LinearLayout>

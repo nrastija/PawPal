@@ -15,6 +15,33 @@
         android:layout_height="match_parent"
         android:background="@color/basketColor">
 
+        <EditText
+            android:id="@+id/Kilaza"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:hint="Kilaža"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2"
+            app:layout_constraintVertical_bias="0.711" />
+
+        <TextView
+            android:id="@+id/textKilaza3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KILAŽA:"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.707" />
+
         <Button
             android:id="@+id/btnSpremiP"
             android:layout_width="wrap_content"
@@ -30,11 +57,11 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/KorIme"
+            android:id="@+id/Pasmina"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Korisničko ime"
+            android:hint="Pasmina"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +71,7 @@
             app:layout_constraintVertical_bias="0.641" />
 
         <EditText
-            android:id="@+id/ImePsa"
+            android:id="@+id/Ime"
             android:layout_width= "wrap_content"
             android:layout_height="48dp"
             android:ems="10"
@@ -57,10 +84,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textKorIme"
+            android:id="@+id/textPasmina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="KORISNIČKO\nIME: "
+            android:text="PASMINA: "
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,10 +98,10 @@
             app:layout_constraintVertical_bias="0.644" />
 
         <TextView
-            android:id="@+id/textPrezime"
+            android:id="@+id/textSpol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PREZIME:  "
+            android:text="SPOL:  "
             android:textStyle="bold"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -124,36 +151,19 @@
             app:layout_constraintVertical_bias="0.412" />
 
 
-        <Button
-            android:id="@+id/btnPromjeniLozinku"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="PROMJENI LOZINKU"
-            android:textSize="17sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-
         <TextView
-            android:id="@+id/textMail"
+            android:id="@+id/textDob"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-MAIL:"
-            android:textStyle="bold"
+            android:text="DOB:"
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintHorizontal_bias="0.023"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.707" />
+            app:layout_constraintVertical_bias="0.774" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -164,15 +174,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
             app:layout_constraintVertical_bias="0.056"
-            app:srcCompat="@drawable/profile_icon"
+            app:srcCompat="@drawable/dog_profile"
             app:tint="@color/white" />
 
         <EditText
-            android:id="@+id/Prezime"
+            android:id="@+id/Spol"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="Prezime"
+            android:hint="Spol"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,18 +192,17 @@
             app:layout_constraintVertical_bias="0.571" />
 
         <EditText
-            android:id="@+id/Mail"
+            android:id="@+id/Dob"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
+            android:hint="Dob"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.92"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.711" />
+            app:layout_constraintVertical_bias="0.781" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

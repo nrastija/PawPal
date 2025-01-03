@@ -12,18 +12,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:background="@color/basketColor">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="409dp"
-            android:layout_height="270dp"
+            android:layout_height="230dp"
             android:background="@color/secondaryColor"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnUrediPodatkeP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="UREDI PODATKE PSA"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2"
+            app:layout_constraintVertical_bias="0.852" />
+
+        <Button
+            android:id="@+id/btnObrisiPsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="OBRIŠI PROFIL PSA"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2"
+            app:layout_constraintVertical_bias="0.935" />
 
         <TextView
             android:id="@+id/MojLjubimac"
@@ -39,14 +69,15 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar2" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:cardCornerRadius="16dp"
             app:cardBackgroundColor="@color/primaryColor"
-            app:layout_constraintTop_toBottomOf="@id/MojLjubimac"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/MojLjubimac">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,18 +96,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IME:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakIme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Pas ime"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="20sp"
-                        android:layout_marginStart="8dp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
 
@@ -90,18 +121,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SPOL:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakSpol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Pas spol"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="20sp"
-                        android:layout_marginStart="8dp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
 
@@ -115,18 +146,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="PASMINA:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakPasmina"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Pasmina"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="20sp"
-                        android:layout_marginStart="8dp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -139,9 +170,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="KILAŽA:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakKilaza"
@@ -163,18 +194,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="DOB:"
-                        android:textStyle="bold"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="22sp" />
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/podatakDob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:text="Datum rođenja"
                         android:textColor="@color/textColorPrimary"
-                        android:textSize="20sp"
-                        android:layout_marginStart="8dp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -184,7 +215,7 @@
             android:id="@+id/SlikaProfila"
             android:layout_width="182dp"
             android:layout_height="191dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -192,14 +223,7 @@
             app:srcCompat="@drawable/dog_profile"
             app:tint="@color/white" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarProfilPsa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

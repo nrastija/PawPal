@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:background="@color/basketColor">
 
         <EditText
             android:id="@+id/novaLozinka"
@@ -87,7 +87,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="409dp"
-            android:layout_height="270dp"
+            android:layout_height="230dp"
             android:background="@color/secondaryColor"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -126,14 +126,6 @@
             app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarPromjenaLozinke"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -143,9 +135,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.117"
+            app:layout_constraintVertical_bias="0.058"
             app:srcCompat="@drawable/profile_icon"
-            app:tint="@color/white"/>
+            app:tint="@color/white" />
 
         <EditText
             android:id="@+id/NovaLozinka"

@@ -13,13 +13,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:background="@color/basketColor">
 
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="409dp"
-            android:layout_height="270dp"
+            android:layout_height="230sp"
             android:background="@color/secondaryColor"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.117"
+            app:layout_constraintVertical_bias="0.062"
             app:srcCompat="@drawable/profile_icon"
             app:tint="@color/white" />
 
@@ -92,14 +92,7 @@
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
             app:layout_constraintVertical_bias="0.412" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarProfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
+
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
