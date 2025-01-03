@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                 "Dugodlaki jazavčar",
                 "Obožava igranje i istraživanje",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
-                "wirsl1", "wirsl2", "wirsl1"
+                "wirsl1", "wirsl2", "wirsl3"
             )
             queriesPasUdomljavanje.dodajPasUdomljavanje(
                 "Molly",
