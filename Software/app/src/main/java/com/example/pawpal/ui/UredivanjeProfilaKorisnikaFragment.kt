@@ -115,7 +115,17 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
                 )
 
                 prikaziPoruku("Promjene su uspješno spremljene.")
-                parentFragmentManager.popBackStack()
+
+                val fragment = ProfilKorisnikaFragment()
+                if (fragment is DatabaseConsumer) {
+                    fragment.database = database
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
             } catch (e: Exception) {
                 prikaziPoruku("Greška pri spremanju podataka: ${e.message}")
             }
@@ -126,4 +136,3 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
         Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
     }
 }
-
