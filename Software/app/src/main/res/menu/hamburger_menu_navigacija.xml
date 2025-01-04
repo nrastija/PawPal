@@ -43,6 +43,11 @@
                 android:title="Škola za pse"/>
 
             <item
+                android:id ="@+id/nav_wishlist"
+                android:icon = "@drawable/school_icon"
+                android:title="Wishlist"/>
+
+            <item
                 android:id ="@+id/nav_adoption"
                 android:icon = "@drawable/adoption_icon"
                 android:title="Udomljavanje pasa"/>

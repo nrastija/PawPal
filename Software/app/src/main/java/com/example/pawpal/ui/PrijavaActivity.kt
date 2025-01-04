@@ -22,7 +22,7 @@ class PrijavaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.f01_loginlayout)
+        setContentView(R.layout.f01_prijava)
 
         database = (application as PawPalApplication).database
         korisnikDataSource = KorisnikDataSourceImpl(database)
@@ -35,7 +35,10 @@ class PrijavaActivity : AppCompatActivity() {
         }
 
         btnProziranPri.setOnClickListener {
-            startActivity(Intent(this, RegistracijaActivity::class.java))
+            val intent = Intent(this, RegistracijaActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
         }
     }
 
@@ -56,5 +59,4 @@ class PrijavaActivity : AppCompatActivity() {
         }
     }
 
-    }
-
+}
