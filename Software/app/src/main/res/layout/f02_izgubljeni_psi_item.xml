@@ -3,19 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/primaryColor"
+    android:background="@color/bijelazakoristiti"
     android:layout_height="wrap_content"
     android:layout_marginTop="45dp"
     android:layout_marginBottom="15dp"
     android:padding="8dp">
 
 
-
-
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="398dp"
+        android:layout_height="634dp"
         android:layout_gravity="right"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,13 +28,14 @@
             android:layout_width="270dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
+            android:textColor="@color/textColorPrimary"
             android:layout_weight="0.3"
             android:text="Ime psa:"
             android:textSize="26dp"
@@ -47,8 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="0.3"
+            android:textColor="@color/textColorPrimary"
             android:layout_marginBottom="20dp"
+            android:layout_weight="0.3"
             android:text="tu ide ime psa"
             android:textSize="26dp" />
 
@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.3"
+            android:textColor="@color/textColorPrimary"
             android:text="Opis:"
             android:textSize="26dp"
             android:textStyle="bold" />
@@ -68,6 +69,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:layout_weight="0.3"
+            android:textColor="@color/textColorPrimary"
             android:text="tu ide opis"
             android:textSize="26dp" />
 
@@ -76,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/textColorPrimary"
             android:layout_weight="0.3"
             android:gravity="center"
             android:text="Zadnje viđen:"
@@ -87,43 +90,44 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginBottom="20dp"
             android:layout_weight="0.3"
             android:gravity="center"
-            android:layout_marginBottom="20dp"
             android:text="tu ide kad je viden"
             android:textSize="26dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right">
-
-        <Button
-            android:id="@+id/javivlasniku"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="Javi vlasniku"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="24dp" />
+            android:layout_gravity="right">
 
-        <Button
-            android:id="@+id/brisanjePsa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/warningColor"
-            android:text="Obriši prijavu"
-            android:textColor="@color/white"
-            android:textSize="24dp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/javivlasniku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/secondaryColor"
+                android:text="Javi vlasniku"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="24dp" />
+
+            <Button
+                android:id="@+id/brisanjePsa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/warningColor"
+                android:text="Obriši prijavu"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
