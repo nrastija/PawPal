@@ -51,7 +51,6 @@ class PrikazProfilaPsaFragment : Fragment(), DatabaseConsumer {
                 .addToBackStack(null)
                 .commit()
         }
-
     }
 
     private fun prikaziPodatkePsa(view: View) {
@@ -89,14 +88,22 @@ class PrikazProfilaPsaFragment : Fragment(), DatabaseConsumer {
             try {
                 pasDataSource.obrisiPasPoKorisnikID(korisnikID)
                 prikaziPoruku("Profil psa uspješno obrisan.")
-                parentFragmentManager.popBackStack()
+
+                val fragment = ProfilKorisnikaFragment()
+                if (fragment is DatabaseConsumer) {
+                    fragment.database = database
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
             } catch (e: Exception) {
                 prikaziPoruku("Greška pri brisanju profila psa: ${e.message}")
             }
         }
     }
-
-
 
     private fun prikaziPoruku(poruka: String) {
         Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
