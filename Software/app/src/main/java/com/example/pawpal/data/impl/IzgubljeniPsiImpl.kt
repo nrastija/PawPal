@@ -15,14 +15,16 @@ import kotlinx.coroutines.withContext
 class IzgubljeniPsiImpl(db: AppDatabase) : IzgubljeniPsiDataSource {
     private val queries = db.izgubljeniPsiQueries
 
-    override suspend fun dodajIzgubljenogPsa(opis: String, lokacija: String, slikaUri: String) {
+    override suspend fun dodajIzgubljenogPsa(ime: String, opis: String, lokacija: String, slikaUri: String, korisnikid: Long) {
         Log.d("Velicina slike", slikaUri.length.toString())
 
         withContext(Dispatchers.IO){
             queries.unesiNovogPsa(
+                name = ime,
                 description = opis,
                 lastseenlocation = lokacija,
-                imageUri = slikaUri
+                imageUri = slikaUri,
+                userId = korisnikid
             )
         }
     }

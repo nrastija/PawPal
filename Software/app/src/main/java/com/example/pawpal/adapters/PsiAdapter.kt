@@ -13,8 +13,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import appdatabase.IzgubljeniPsi
 import com.example.pawpal.R
+import org.w3c.dom.Text
 
-class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteClicked: (Long) -> Unit): RecyclerView.Adapter<PsiAdapter.PsiViewHolder>() {
+class PsiAdapter(private var psiList: List<IzgubljeniPsi>,
+                 private val trenutnoPrijavljenKorisnikId: Long,
+                 private val onContactClicked: (String)-> Unit ,
+                 private val onDeleteClicked: (Long) -> Unit): RecyclerView.Adapter<PsiAdapter.PsiViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PsiViewHolder {
@@ -24,7 +28,7 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteC
 
     override fun onBindViewHolder(holder: PsiViewHolder, position: Int) {
         val pas = psiList[position]
-        holder.bind(pas, onDeleteClicked)
+        holder.bind(pas, onDeleteClicked, trenutnoPrijavljenKorisnikId, onContactClicked)
     }
 
     class PsiViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -32,11 +36,15 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteC
         private val slikaPsa: ImageView = itemView.findViewById(R.id.slikaPsa)
         private val opisPsa: TextView = itemView.findViewById(R.id.opisPsa)
         private val lokacija: TextView = itemView.findViewById(R.id.lokacija)
-        private val odaberiPsa: Button = itemView.findViewById(R.id.odaberiPsa)
-        private val brisnajePsa: Button = itemView.findViewById(R.id.brisanjePsa)
+        private val javivlasniku: Button = itemView.findViewById(R.id.javivlasniku)
+        private val brisanjePsa: Button = itemView.findViewById(R.id.brisanjePsa)
+        private val imePsa: TextView = itemView.findViewById(R.id.imePsa)
 
-        fun bind(pas: IzgubljeniPsi, onDeleteClicked: (Long) -> Unit) {
+        fun bind(pas: IzgubljeniPsi, onDeleteClicked: (Long) -> Unit,
+                 trenutnoPrijavljenKorisnikId: Long,
+                 onContactClicked: (String) -> Unit) {
             Log.d("Velicina slike", pas.imageUri.length.toString())
+            imePsa.text = pas.name
             opisPsa.text = pas.description
             lokacija.text = pas.lastseenlocation
             pas.imageUri.let {
@@ -44,11 +52,19 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteC
                 slikaPsa.setImageBitmap(bitmap)
             }
 
-            odaberiPsa.setOnClickListener{
+            if(pas.userId == trenutnoPrijavljenKorisnikId){
+                brisanjePsa.visibility = View.VISIBLE
+                javivlasniku.visibility = View.GONE
+                brisanjePsa.setOnClickListener{
+                    onDeleteClicked(pas.id)
+                }
             }
-
-            brisnajePsa.setOnClickListener{
-                onDeleteClicked(pas.id)
+            else{
+                brisanjePsa.visibility = View.GONE
+                javivlasniku.visibility = View.VISIBLE
+                javivlasniku.setOnClickListener{
+                    onContactClicked("Korisnik ID: ${pas.userId}")
+                }
             }
         }
 
@@ -60,6 +76,10 @@ class PsiAdapter(private val psiList: List<IzgubljeniPsi>, private val onDeleteC
         }
     }
 
+    fun updatePsiList(newPsiList: List<IzgubljeniPsi>){
+        psiList = newPsiList
+        notifyDataSetChanged()
+    }
 
 
     override fun getItemCount(): Int = psiList.size

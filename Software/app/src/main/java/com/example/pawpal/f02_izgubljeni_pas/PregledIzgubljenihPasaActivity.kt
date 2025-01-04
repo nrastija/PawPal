@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +19,7 @@ import com.example.pawpal.R
 import com.example.pawpal.adapters.PsiAdapter
 import com.example.pawpal.data.datasource.IzgubljeniPsiDataSource
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
+import com.example.pawpal.data.session.KorisnikManager
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
@@ -41,27 +43,39 @@ class PregledIzgubljenihPasaActivity : AppCompatActivity() {
         val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "database.db")
         val db = AppDatabase(driver)
         dataSource = IzgubljeniPsiImpl(db)
+        dohvatisvePsice()
 
+    }
+
+    private fun dohvatisvePsice() {
         lifecycleScope.launch {
             dataSource.dohvatiSveIzgubljenePse().collect { psiList ->
-                psiAdapter = PsiAdapter(psiList){ pasId ->
-                    obrisiPrijavuIzgubljenogPsa(pasId)
-                }
+                psiAdapter = PsiAdapter(
+                    psiList,
+                    trenutnoPrijavljenKorisnikId = trenutnoPrijavljenKorisnikId,
+                    onContactClicked = { kontakt ->
+                        Toast.makeText(
+                            this@PregledIzgubljenihPasaActivity,
+                            kontakt,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    onDeleteClicked = { pasId ->
+                        obrisiPrijavuIzgubljenogPsa(pasId)
+                    }
+                )
+
                 recyclerView.adapter = psiAdapter
             }
         }
-
     }
 
     private fun obrisiPrijavuIzgubljenogPsa(pasId: Long) {
         lifecycleScope.launch {
             dataSource.obrisiIzgubljenogPsa(pasId)
-            var updatedList = dataSource.dohvatiSveIzgubljenePse().first()
+            val updatedList = dataSource.dohvatiSveIzgubljenePse().first()
 
-            psiAdapter=PsiAdapter(updatedList){ pasId->
-                obrisiPrijavuIzgubljenogPsa(pasId)
-            }
-            recyclerView.adapter = psiAdapter
+            psiAdapter.updatePsiList(updatedList)
         }
 
     }
@@ -69,4 +83,15 @@ class PregledIzgubljenihPasaActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var psiAdapter: PsiAdapter
     private lateinit var dataSource: IzgubljeniPsiImpl
+
+    val trenutnoPrijavljenKorisnikId: Long by lazy { getCurrentUserId() }
+
+    private fun getCurrentUserId(): Long {
+        var userId = KorisnikManager.dajUlogiranogKorisnika()
+        if (userId == null || userId == -1L) {
+            Toast.makeText(this, "korisnik nije prijavljen", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+        return userId?: -1L
+    }
 }

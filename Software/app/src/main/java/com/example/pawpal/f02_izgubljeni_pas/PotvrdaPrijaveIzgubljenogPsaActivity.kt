@@ -18,6 +18,7 @@ import androidx.lifecycle.lifecycleScope
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.MainActivity
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
@@ -40,16 +41,18 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
         slikapsa = findViewById(R.id.slikapsa)
         odustani = findViewById(R.id.odustaniGumb)
         potvrdi = findViewById(R.id.potvrdi)
+        imePsa = findViewById(R.id.imePsa)
 
         val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "database.db")
         val db = AppDatabase(driver)
         dataSource = IzgubljeniPsiImpl(db)
 
-
+        val ime = intent.getStringExtra("ime")
         val opis = intent.getStringExtra("opis")
         val lokacija = intent.getStringExtra("lokacija")
         val slikaBase64String = intent.getStringExtra("slika")
 
+        imePsa.text = ime ?: "Nije uneseno ime psa"
         opisPsa.text = opis ?: "Nije unesen opis"
         zadnjalokacija.text = lokacija ?: "Nije unesena zadnje viđena lokacija"
 
@@ -61,18 +64,17 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
                 Toast.makeText(this, "Greška pri učitavanju slike", Toast.LENGTH_SHORT).show()
             }
         }
-        odustani.setOnClickListener{
+        odustani.setOnClickListener {
             finish()
         }
 
-        potvrdi.setOnClickListener{
+        potvrdi.setOnClickListener {
 
-            if (opis != null && lokacija != null && slikaBase64String != null) {
-
+            if (ime != null && opis != null && lokacija != null && slikaBase64String != null) {
 
 
                 lifecycleScope.launch {
-                    saveLostDogs(opis, lokacija, slikaBase64String)
+                    saveLostDogs(ime, opis, lokacija, slikaBase64String)
                 }
 
                 val intent = Intent(this, MainActivity::class.java)
@@ -83,9 +85,9 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
             }
             Toast.makeText(this, "Prijava psa potvrđena!", Toast.LENGTH_SHORT).show()
 
-            }
-
         }
+
+    }
 
 
     private fun convertImageToByteArray(uri: Uri): ByteArray? {
@@ -111,11 +113,17 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
     }
 
 
-    private suspend fun saveLostDogs(opis: String, lokacija: String, base64Image: String) {
-        dataSource.dodajIzgubljenogPsa(opis, lokacija, base64Image)
+    private suspend fun saveLostDogs(
+        ime: String,
+        opis: String,
+        lokacija: String,
+        base64Image: String
+    ) {
+        val korisnikId = getCurrentUserId()
+        dataSource.dodajIzgubljenogPsa(ime, opis, lokacija, base64Image, korisnikId)
     }
 
-
+    private lateinit var imePsa: TextView
     private lateinit var opisPsa: TextView
     private lateinit var zadnjalokacija: TextView
     private lateinit var slikapsa: ImageView
@@ -123,4 +131,14 @@ class PotvrdaPrijaveIzgubljenogPsaActivity : AppCompatActivity() {
     private lateinit var potvrdi: Button
 
     private lateinit var dataSource: IzgubljeniPsiImpl
+
+    private fun getCurrentUserId(): Long {
+        val korisnikId = KorisnikManager.dajUlogiranogKorisnika()
+        if (korisnikId==null || korisnikId == -1L) {
+            Toast.makeText(this, "Korisnik nije prijavljen", Toast.LENGTH_SHORT).show()
+            finish()
+
+        }
+        return korisnikId?: -1L
+    }
 }

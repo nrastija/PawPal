@@ -43,12 +43,14 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
         zadnjeviden = findViewById(R.id.zadnjeviden)
         potvrdiprijavu = findViewById(R.id.potvrdiprijavu)
         prilozisliku = findViewById(R.id.prilozislikupsa)
+        imePsa = findViewById(R.id.imePsa)
 
         prilozisliku.setOnClickListener{
             openImageChooser()
         }
 
         ponisti.setOnClickListener{
+
             imageView.setImageURI(null)
             dodatniopispsa.text.clear()
             zadnjeviden.text.clear()
@@ -57,11 +59,13 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
         potvrdiprijavu.setOnClickListener{
             val opis = dodatniopispsa.text.toString()
             val lokacija = zadnjeviden.text.toString()
+            val ime = imePsa.text.toString()
             val uri = imageView.tag as? Uri
 
-            if(opis.isNotBlank() && lokacija.isNotBlank() && uri !=null){
+            if(ime.isNotBlank() &&  opis.isNotBlank() && lokacija.isNotBlank() && uri !=null){
                 val base64Image = convertImageToBase64(uri)
                 val intent = Intent(this, PotvrdaPrijaveIzgubljenogPsaActivity::class.java).apply{
+                    putExtra("ime", ime)
                     putExtra("opis", opis)
                     putExtra("lokacija", lokacija)
                     putExtra("slika", base64Image)
@@ -81,6 +85,7 @@ class PrijavaIzgubljenihPasaActivity : AppCompatActivity() {
     private lateinit var zadnjeviden: EditText
     private lateinit var potvrdiprijavu: Button
     private lateinit var prilozisliku: Button
+    private lateinit var imePsa: EditText
 
     private fun openImageChooser() {
         pickImageLauncher.launch("image/*")

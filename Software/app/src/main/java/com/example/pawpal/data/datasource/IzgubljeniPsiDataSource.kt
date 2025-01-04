@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IzgubljeniPsiDataSource {
 
-    suspend fun dodajIzgubljenogPsa(opis: String, lokacija: String, slikaUri: String)
+    suspend fun dodajIzgubljenogPsa(ime: String, opis: String, lokacija: String, slikaUri: String, korisnikid: Long)
     suspend fun dohvatiSveIzgubljenePse(): Flow<List<IzgubljeniPsi>>
     suspend fun obrisiIzgubljenogPsa(id:Long)
 }
