@@ -22,4 +22,6 @@ filtrirajProizvodePoKategoriji:
   SELECT * FROM proizvod
   WHERE kategorijaId = ?;
 
+deleteAllProizvods:
+DELETE FROM proizvod;
 

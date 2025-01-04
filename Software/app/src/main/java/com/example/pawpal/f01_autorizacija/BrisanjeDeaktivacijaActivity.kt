@@ -21,7 +21,7 @@ class BrisanjeDeaktivacijaActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.f01_brisanjelayout)
+        setContentView(R.layout.f01_upravljanje_profilom)
 
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
