@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import appdatabase.IzgubljeniPsi
 import com.example.pawpal.R
-import org.w3c.dom.Text
 
 class PsiAdapter(private var psiList: List<IzgubljeniPsi>,
                  private val trenutnoPrijavljenKorisnikId: Long,

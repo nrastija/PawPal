@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -15,10 +14,9 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.KategorijaDataSourceImpl
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
-import com.example.pawpal.f02_izgubljeni_pas.OdabirPrijaveIliPregledaPsaActivity
-import com.example.pawpal.f02_izgubljeni_pas.PrijavaIzgubljenihPasaActivity
 import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
 import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
+import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.ShopFragment
 import com.google.android.material.navigation.NavigationView
 import com.pawpal.appdatabase.AppDatabase
@@ -90,8 +88,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_profile -> startActivity(Intent(this, ProfilKorisnikaActivity::class.java))
                 R.id.nav_veterinar -> startActivity(Intent(this, odabirVeterinaraActivity::class.java))
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
-                R.id.nav_lost_dogs -> startActivity(Intent(this, OdabirPrijaveIliPregledaPsaActivity::class.java))
-                else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
             }
             drawerLayout.closeDrawers()
             true

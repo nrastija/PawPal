@@ -1,7 +1,5 @@
 package com.example.pawpal.data.impl
 
-import android.net.Uri
-import android.util.Base64
 import android.util.Log
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
