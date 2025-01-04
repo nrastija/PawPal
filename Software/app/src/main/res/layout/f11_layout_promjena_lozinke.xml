@@ -15,6 +15,39 @@
         android:layout_height="match_parent"
         android:background="@color/basketColor">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@color/secondaryColor"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/PromjenaNaslov"
+            android:layout_width="169dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="52dp"
+            android:text="PROMJENA LOZINKE"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+        <ImageView
+            android:id="@+id/imageViewToolbar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="36dp"
+            android:src="@drawable/korisnik"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbar2"
+            app:layout_constraintVertical_bias="1.0" />
+
         <EditText
             android:id="@+id/novaLozinka"
             android:layout_width="wrap_content"
@@ -27,21 +60,21 @@
             app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.619" />
+            app:layout_constraintVertical_bias="0.386" />
 
         <TextView
-            android:id="@+id/textNovaLozinka2"
-            android:layout_width="122dp"
-            android:layout_height="52dp"
-            android:text="NOVA LOZINKA:  "
+            android:id="@+id/textTrenutnaLozinka"
+            android:layout_width="107dp"
+            android:layout_height="55dp"
+            android:text="TRENUTNA LOZINKA: "
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.622" />
+            app:layout_constraintVertical_bias="0.27" />
 
         <EditText
             android:id="@+id/StaraLozinka"
@@ -54,7 +87,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.267" />
 
         <TextView
             android:id="@+id/textPonovnaLozinka"
@@ -65,79 +99,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.767" />
-
-        <TextView
-            android:id="@+id/textTrenutnaLozinka"
-            android:layout_width="107dp"
-            android:layout_height="55dp"
-            android:text="TRENUTNA LOZINKA: "
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.505" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="409dp"
-            android:layout_height="230dp"
-            android:background="@color/secondaryColor"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/PromjenaLozinke"
-            android:layout_width="244dp"
-            android:layout_height="36dp"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:text="Promjena lozinke"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.412" />
-
-
-        <Button
-            android:id="@+id/btnSpremiP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="SPREMI"
-            android:textSize="17sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="209dp"
-            android:layout_height="184dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.058"
-            app:srcCompat="@drawable/profile_icon"
-            app:tint="@color/white" />
+            app:layout_constraintVertical_bias="0.499" />
 
         <EditText
             android:id="@+id/NovaLozinka"
@@ -151,17 +116,44 @@
             app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.754" />
+            app:layout_constraintVertical_bias="0.503" />
 
+        <TextView
+            android:id="@+id/textNovaLozinka2"
+            android:layout_width="122dp"
+            android:layout_height="52dp"
+            android:text="NOVA LOZINKA:  "
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.387" />
+
+        <Button
+            android:id="@+id/btnSpremiP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="SPREMI"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id = "@+id/navPromjenaLozinke"
+        android:id="@+id/navPromjenaLozinke"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/hamburger_menu_header"
-        app:menu ="@menu/hamburger_menu_navigacija"
+        app:menu="@menu/hamburger_menu_navigacija"
         app:itemIconTint="@color/accentColor"
         app:itemTextColor="@color/accentColor"
         android:layout_gravity="start"
