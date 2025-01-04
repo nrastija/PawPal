@@ -75,6 +75,6 @@
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="@+id/toolbarOdabir"
         app:layout_constraintTop_toTopOf="@+id/toolbarOdabir"
-        app:layout_constraintVertical_bias="0.475"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/pronadi_psa" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -204,5 +204,6 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="@+id/toolbarIzgubljenPas"
         app:layout_constraintTop_toTopOf="@+id/toolbarIzgubljenPas"
-        app:srcCompat="@drawable/wanted" />
+        app:srcCompat="@drawable/wanted"
+        app:layout_constraintVertical_bias="0.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

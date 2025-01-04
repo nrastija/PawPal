@@ -74,6 +74,7 @@ class PrijavaIzgubljenihPasaFragment: Fragment() {
             imageView.setImageURI(null)
             dodatniopispsa.text.clear()
             zadnjeviden.text.clear()
+            imePsa.text.clear()
         }
 
         potvrdiprijavu.setOnClickListener {
