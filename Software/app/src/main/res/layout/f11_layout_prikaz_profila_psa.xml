@@ -16,57 +16,42 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
-            android:layout_width="409dp"
-            android:layout_height="230dp"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
             android:background="@color/secondaryColor"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnUrediPodatkeP"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="UREDI PODATKE PSA"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.852" />
-
-        <Button
-            android:id="@+id/btnObrisiPsa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/secondaryColor"
-            android:text="OBRIŠI PROFIL PSA"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.935" />
-
         <TextView
-            android:id="@+id/MojLjubimac"
-            android:layout_width="244dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="16dp"
-            android:text="Moj ljubimac"
-            android:textSize="25sp"
+            android:id="@+id/MojLjubimacToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
+            android:text="MOJ LJUBIMAC"
+            android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.095"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar2" />
+            app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+        <ImageView
+            android:id="@+id/imageViewToolbar"
+            android:layout_width="121dp"
+            android:layout_height="112dp"
+            android:layout_marginEnd="36dp"
+            android:src="@drawable/pesek2"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbar2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/viewSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
@@ -75,9 +60,9 @@
             android:layout_margin="16dp"
             app:cardBackgroundColor="@color/primaryColor"
             app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewSeparator"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/MojLjubimac">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,10 +70,10 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -110,10 +95,10 @@
                         android:textSize="20sp" />
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -135,10 +120,10 @@
                         android:textSize="20sp" />
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -163,6 +148,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -211,19 +197,32 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:id="@+id/SlikaProfila"
-            android:layout_width="182dp"
-            android:layout_height="191dp"
-            android:layout_marginTop="28dp"
+        <Button
+            android:id="@+id/btnUrediPodatkeP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="224dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="UREDI PODATKE PSA"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnObrisiPsa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="164dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="OBRIŠI PROFIL PSA"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:srcCompat="@drawable/dog_profile"
-            app:tint="@color/white" />
-
-
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
