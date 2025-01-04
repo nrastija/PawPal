@@ -14,11 +14,14 @@ import com.example.pawpal.R
 import com.example.pawpal.adapters.PsiAdapter
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.example.pawpal.data.session.KorisnikManager
+import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class PregledIzgubljenihPasaFragment: Fragment() {
+class PregledIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
+
+    override lateinit var database: AppDatabase
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var psiAdapter: PsiAdapter
@@ -26,22 +29,26 @@ class PregledIzgubljenihPasaFragment: Fragment() {
 
     private val trenutnoPrijavljenKorisnikId: Long by lazy { getCurrentUserId() }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_pregled_izgubljenih_pasa, container, false)
+
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val driver = AndroidSqliteDriver(AppDatabase.Schema, requireContext(), "appdatabase.db" )
+        database = AppDatabase(driver)
+
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val driver = AndroidSqliteDriver(AppDatabase.Schema, requireContext(), "database.db")
-        val db = AppDatabase(driver)
-        dataSource = IzgubljeniPsiImpl(db)
+        dataSource = IzgubljeniPsiImpl(database)
 
         dohvatisvePsice()
     }

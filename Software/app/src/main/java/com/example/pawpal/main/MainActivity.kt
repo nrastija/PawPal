@@ -17,10 +17,6 @@ import com.example.pawpal.data.impl.WishlistDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
-import com.example.pawpal.data.impl.KategorijaDataSourceImpl
-import com.example.pawpal.data.impl.ProizvodDataSourceImpl
-import com.example.pawpal.f04_veterinar.odabirVeterinaraActivity
-import com.example.pawpal.f11_profil.ProfilKorisnikaActivity
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
@@ -73,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
                 R.id.nav_wishlist -> {
                     val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
                     if (korisnikID == null) {
@@ -91,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
-                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
+
             }
             drawerLayout.closeDrawers()
             true

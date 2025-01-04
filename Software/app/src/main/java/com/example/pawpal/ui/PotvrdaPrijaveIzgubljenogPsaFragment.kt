@@ -1,6 +1,6 @@
 package com.example.pawpal.ui
 
-import android.content.Intent
+
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -18,11 +18,13 @@ import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.IzgubljeniPsiImpl
 import com.example.pawpal.data.session.KorisnikManager
-import com.example.pawpal.main.MainActivity
+import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
-class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment() {
+class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment(), DatabaseConsumer {
+
+    override lateinit var database: AppDatabase
 
     private lateinit var imePsa: TextView
     private lateinit var opisPsa: TextView
@@ -40,8 +42,12 @@ class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment() {
         return inflater.inflate(R.layout.fragment_potvrda_prijave_izgubljenog_psa, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val driver = AndroidSqliteDriver(AppDatabase.Schema, requireContext(), "appdatabase.db" )
+        database = AppDatabase(driver)
 
         imePsa = view.findViewById(R.id.imePsa)
         opisPsa = view.findViewById(R.id.opisPsa)
@@ -50,9 +56,7 @@ class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment() {
         odustani = view.findViewById(R.id.odustaniGumb)
         potvrdi = view.findViewById(R.id.potvrdi)
 
-        val driver = AndroidSqliteDriver(AppDatabase.Schema, requireContext(), "database.db")
-        val db = AppDatabase(driver)
-        dataSource = IzgubljeniPsiImpl(db)
+        dataSource = IzgubljeniPsiImpl(database)
 
         val ime = arguments?.getString("ime")
         val opis = arguments?.getString("opis")

@@ -16,11 +16,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.pawpal.R
+import com.example.pawpal.main.DatabaseConsumer
+import com.pawpal.appdatabase.AppDatabase
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
 
-class PrijavaIzgubljenihPasaFragment: Fragment() {
+class PrijavaIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
+
+    override lateinit var database: AppDatabase
 
     private lateinit var imageView: ImageView
     private lateinit var ponisti: Button
@@ -83,7 +87,6 @@ class PrijavaIzgubljenihPasaFragment: Fragment() {
             val ime = imePsa.text.toString()
             val uri = imageView.tag as? Uri
 
-
             if (ime.isNotBlank() && opis.isNotBlank() && lokacija.isNotBlank() && uri != null) {
                 val base64Image = convertImageToBase64(uri)
                 val fragment = PotvrdaPrijaveIzgubljenogPsaFragment().apply {
@@ -94,7 +97,7 @@ class PrijavaIzgubljenihPasaFragment: Fragment() {
                         putString("slika", base64Image)
                     }
                 }
-                    parentFragmentManager.beginTransaction()
+                parentFragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
                     .replace(R.id.fragmentContainer, fragment)
                     .addToBackStack(null)
