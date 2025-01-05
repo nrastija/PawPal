@@ -131,4 +131,37 @@ class NotificationHelper(private val context: Context) {
 
         notificationManager.notify(notificationId, builder.build())
     }
+
+    fun sendBigStyleNotification(
+        channelId: String,
+        notificationId: Int,
+        naslov: String,
+        opis: String,
+        priority: Priority = Priority.MEDIUM,
+        slika: Bitmap? = null
+    ) {
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val builder = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
+            .setContentTitle(naslov)
+            .setContentText(opis)
+            .setPriority(priority.level)
+            .setColor(priority.color)
+            .setAutoCancel(true)
+
+
+        slika?.let {
+            builder.setLargeIcon(it)
+                .setStyle(NotificationCompat.BigPictureStyle().bigPicture(it))
+        }
+
+        val bigTextStyle = NotificationCompat.BigTextStyle()
+            .bigText(opis)
+        builder.setStyle(bigTextStyle)
+
+        notificationManager.notify(notificationId, builder.build())
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -73,11 +74,26 @@ class PregledIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
     }
 
     private fun obrisiPrijavuIzgubljenogPsa(pasId: Long) {
+
+        val notificationHelper = NotificationHelper(requireContext())
+        notificationHelper.createNotificationChannel(
+            channelId = "lost_dogs_notification",
+            channelName = "Lost Dogs Notifications"
+        )
+
         lifecycleScope.launch {
             dataSource.obrisiIzgubljenogPsa(pasId)
             val updatedList = dataSource.dohvatiSveIzgubljenePse().first()
             psiAdapter.updatePsiList(updatedList)
         }
+
+        notificationHelper.sendBigStyleNotification(
+            channelId = "lost_dogs_notification",
+            notificationId = pasId.toInt(),
+            naslov = "Uspješno obrisana objava!",
+            opis = "Oho, jeste li napokon pronašli psa? Objava je uspješno obrisana. ",
+            priority = NotificationHelper.Priority.MEDIUM
+        )
     }
 
     private fun getCurrentUserId(): Long {

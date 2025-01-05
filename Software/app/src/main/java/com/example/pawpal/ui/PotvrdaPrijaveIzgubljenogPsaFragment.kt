@@ -1,6 +1,7 @@
 package com.example.pawpal.ui
 
 
+import NotificationHelper
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -49,6 +50,12 @@ class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment(), DatabaseConsumer {
         val driver = AndroidSqliteDriver(AppDatabase.Schema, requireContext(), "appdatabase.db" )
         database = AppDatabase(driver)
 
+        val notificationHelper = NotificationHelper(requireContext())
+        notificationHelper.createNotificationChannel(
+            channelId = "lost_dogs_notification",
+            channelName = "Lost Dogs Notifications"
+        )
+
         imePsa = view.findViewById(R.id.imePsa)
         opisPsa = view.findViewById(R.id.opisPsa)
         zadnjalokacija = view.findViewById(R.id.zadnjalokacija)
@@ -87,6 +94,16 @@ class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment(), DatabaseConsumer {
                 }
                 navigateToMainFragment()
             }
+
+            val sifraIzgubljenogPsa = database.izgubljeniPsiQueries.dohvatiZadnjegPsa().executeAsOneOrNull();
+
+            notificationHelper.sendBigStyleNotification(
+                channelId = "lost_dogs_notification",
+                notificationId = sifraIzgubljenogPsa?.id?.toInt() ?: 0,
+                naslov = "Objava uspješna!",
+                opis = "Upravo smo objavili informaciju o vašem izgubljenom psu ${ime}. Nadamo se brzom pronalasku!",
+                priority = NotificationHelper.Priority.MEDIUM
+            )
             Toast.makeText(requireContext(), "Prijava psa potvrđena!", Toast.LENGTH_SHORT).show()
         }
     }
