@@ -155,7 +155,7 @@
         android:layout_marginTop="50dp">
 
         <Button
-            android:id="@+id/ponisti"
+            android:id="@+id/ponistiVet"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Poništi"
@@ -165,7 +165,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/potvrdi"
+            android:id="@+id/potvrdiVet"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Potvrdi"

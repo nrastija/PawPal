@@ -18,6 +18,7 @@ import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
+import com.example.pawpal.ui.OdabirVeterinaraFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         resetShopData()
         resetSkolaData()
         resetAdoptionData()
+
+        resetVeterinarianData()
     }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
                 R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
+                R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                 R.id.nav_wishlist -> {
                     val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
                     if (korisnikID == null) {
@@ -240,6 +244,34 @@ class MainActivity : AppCompatActivity() {
                 "Zahtijeva duge šetnje, ima puno energije",
                 "Bjesnoća, Štenećak, Parvovirus, Hepatitis, Parainfluenza, Leptospiroza",
                 "ref3", "ref", "ref2"
+            )
+        }
+    }
+
+    private fun resetVeterinarianData() {
+        val vetQueries = database.veterinarQueries
+
+        vetQueries.transaction {
+            vetQueries.izbrisiSveVeterinare()
+        }
+
+        vetQueries.transaction {
+            vetQueries.dodajVeterinara(
+                "Luka Zorić",
+                "Dr.spec",
+                "0934567635",
+            )
+            vetQueries.dodajVeterinara(
+                "Ana Anić",
+                "Dr.spec",
+                "093454667",
+
+            )
+            vetQueries.dodajVeterinara(
+                "Miro Mirić",
+                "Dr.vet.spec",
+                "094523445",
+
             )
         }
     }

@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/pozadina">
 
         <TextView
-            android:id="@+id/textOdabirImeVeterinara"
+            android:id="@+id/imeVeterinaraTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="85dp"

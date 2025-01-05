@@ -1,0 +1,16 @@
+CREATE TABLE vrstaUsluge (
+    uslugaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    nazivUsluge TEXT NOT NULL UNIQUE,
+    opis TEXT,
+    cijena TEXT
+);
+
+dodajVrstuUsluge:
+INSERT OR REPLACE INTO vrstaUsluge (nazivUsluge, opis, cijena)
+VALUES (?, ?, ?);
+
+dohvatiSveUsluge:
+SELECT * FROM vrstaUsluge;
+
+izbrisiUsluguID:
+DELETE FROM vrstaUsluge WHERE uslugaID = ?;
