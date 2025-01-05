@@ -4,6 +4,7 @@ import android.util.Log
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.IzgubljeniPsi
+import appdatabase.RezervacijaVeterinara
 import com.example.pawpal.data.datasource.IzgubljeniPsiDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +40,13 @@ class IzgubljeniPsiImpl(db: AppDatabase) : IzgubljeniPsiDataSource {
     override suspend fun obrisiIzgubljenogPsa(pasId: Long) {
         withContext(Dispatchers.IO){
             queries.izbrisiPsa(pasId)
+        }
+    }
+
+
+    override suspend fun dohvatiZadnjuRezervaciju(): IzgubljeniPsi? {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiZadnjegPsa().executeAsOneOrNull()
         }
     }
 

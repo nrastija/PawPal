@@ -17,3 +17,8 @@ VALUES (?,?, ?, ?, ?);
 
 izbrisiPsa:
 DELETE FROM IzgubljeniPsi WHERE id=?;
+
+dohvatiZadnjegPsa:
+SELECT * FROM IzgubljeniPsi
+ORDER BY id DESC
+LIMIT 1;
