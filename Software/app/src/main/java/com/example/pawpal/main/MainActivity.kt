@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         resetAdoptionData()
 
         resetVeterinarianData()
+        resetUslugaData()
     }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
@@ -273,6 +274,67 @@ class MainActivity : AppCompatActivity() {
                 "094523445",
 
             )
+        }
+    }
+
+    private fun resetUslugaData() {
+        val vetQueries = database.vrstaUslugeQueries
+
+        vetQueries.transaction {
+            vetQueries.izbrisiSveUsluge()
+        }
+
+
+        vetQueries.transaction {
+            vetQueries.dodajVrstuUsluge(
+                "Odaberite uslugu",
+                "",
+            )
+
+            vetQueries.dodajVrstuUsluge(
+                "Prvi Pregled",
+                "50€",
+            )
+            vetQueries.dodajVrstuUsluge(
+                "Kontrola",
+                "50€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Cijepljenje",
+                "100€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Laboratorijska dijagnostika",
+                "150€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Dermatologija",
+                "100€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Kirurgija",
+                "200€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Neurologija",
+                "190€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Oftamologija",
+                "130€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Stomatologija",
+                "120€",
+
+                )
         }
     }
 

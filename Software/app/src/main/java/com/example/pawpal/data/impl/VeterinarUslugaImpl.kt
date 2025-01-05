@@ -13,11 +13,10 @@ class VeterinarUslugaImpl(db:AppDatabase) : VeterinarUslugaDataSource {
 
     private val queries = db.vrstaUslugeQueries
 
-    override suspend fun dodajUslugu(nazivUsluge: String, opis: String?, cijena: String) {
+    override suspend fun dodajUslugu(nazivUsluge: String, cijena: String) {
         withContext(Dispatchers.IO) {
             queries.dodajVrstuUsluge(
                 nazivUsluge = nazivUsluge,
-                opis = opis,
                 cijena = cijena
             )
         }

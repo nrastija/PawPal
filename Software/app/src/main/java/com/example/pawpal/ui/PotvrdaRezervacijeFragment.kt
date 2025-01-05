@@ -22,14 +22,17 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
 
     override lateinit var database: AppDatabase
     private var veterinarID: Long = 0
+    private var uslugaID: Long = 0
 
     companion object{
         const val ARG_VETERINAR_ID = "veterinarID"
+        const val ARG_USLUGA_ID = "uslugaID"
 
-        fun newInstance(veterinarID: Long): PotvrdaRezervacijeFragment{
+        fun newInstance(veterinarID: Long, uslugaID: Long): PotvrdaRezervacijeFragment{
             val fragment = PotvrdaRezervacijeFragment()
             val args = Bundle()
             args.putLong(ARG_VETERINAR_ID, veterinarID)
+            args.putLong(ARG_USLUGA_ID, uslugaID)
             fragment.arguments = args
             return fragment
         }
@@ -39,6 +42,7 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
         super.onCreate(savedInstanceState)
         arguments?.let{
             veterinarID = it.getLong(ARG_VETERINAR_ID)
+            uslugaID = it.getLong(ARG_USLUGA_ID)
         }
 
 
@@ -83,7 +87,7 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
 
         val datum = arguments?.getString("odabrani_datum") ?: "Nije odabran datum"
         val vrijeme = arguments?.getString("odabrano_vrijeme") ?: "Nije odabrano vrijeme"
-        val usluga = arguments?.getString("odabrana_usluga") ?: "Nije odabrana usluga"
+        //val usluga = arguments?.getString("uslugaID") ?: "Nije odabrana usluga"
         val opis = arguments?.getString("uneseni_opis") ?: "Nije unesen opis"
 
         val korisnikId = getCurrentUserId()
@@ -99,6 +103,10 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
                 val veterinar = database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOne()
                 imeVetPotvrda.text = veterinar.imePrezime
                 titulaVetPotvrda.text = veterinar.specijalizacija
+
+                val usluga = database.vrstaUslugeQueries.dohvatiuslugupoID(uslugaID).executeAsOne()
+                uslugaTextView.text = "${usluga.nazivUsluge} - ${usluga.cijena}"
+
             }
 
             }
@@ -113,7 +121,6 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
 
         datumTextView.text = datum
         vrijemeTextView.text = vrijeme
-        uslugaTextView.text = usluga
         opisTextView.text = opis
 
         potvrdiButton.setOnClickListener {
@@ -121,7 +128,7 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
                 database.rezervacijaVeterinaraQueries.dodajRezervaciju(
                     korisnikID = korisnikId,
                     veterinarID = veterinarID,
-                    usluga = usluga,
+                    uslugaID = uslugaID,
                     datum = datum,
                     vrijeme = vrijeme,
                     dodatniOpis = opis

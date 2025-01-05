@@ -43,6 +43,12 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
     private lateinit var gumbponisti: Button
     private lateinit var gumbpotvrdi: Button
 
+    private suspend fun dohvatiSveUsluge(): List<String> {
+        return database.vrstaUslugeQueries.dohvatiSveUsluge().executeAsList().map {
+            "${it.nazivUsluge} - ${it.cijena}"
+        }
+    }
+
     companion object {
         private const val ARG_VETERINAR_ID = "veterinarID"
 
@@ -74,7 +80,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        spiner = view.findViewById(R.id.spiner)
 
         val imeVet: TextView = view.findViewById(R.id.textImeVeterinara)
         val titula: TextView = view.findViewById(R.id.titulaVetRez)
@@ -90,30 +96,16 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         dodatniOpis = view.findViewById(R.id.dodatniOpis)
 
         lifecycleScope.launch {
-            val veterinar = database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOne()
+            val veterinar =
+                database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOne()
             imeVet.text = veterinar.imePrezime
             titula.text = veterinar.specijalizacija
+            val usluge = dohvatiSveUsluge()
+            val adapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, usluge)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spiner.adapter = adapter
         }
-
-
-
-        val usluge = listOf(
-            "Odaberite uslugu",
-            "Prvi pregled",
-            "Kontrola",
-            "Cijepljenje",
-            "Laboratorijska dijagnostika",
-            "Dermatologija",
-            "Kirurgija",
-            "Neurologija",
-            "Oftamologija",
-            "Stomatologija"
-        )
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, usluge)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spiner.adapter = adapter
-
-        spiner.setSelection(0)
 
         gumbponisti.setOnClickListener {
             datumTekst.text = ""
@@ -128,31 +120,46 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             val opis = dodatniOpis.text.toString()
             val datum = datumTekst.text.toString()
             val vrijeme = vrijemeTekst.text.toString()
-            val usluga = spiner.selectedItem.toString()
+            val usluga = spiner.selectedItem as String
 
-            val ValidanDatum = !datum.contains("Nedjeljom ne radimo!") && datum.contains("Odabrani datum")
+            val uslugaNaziv = usluga.split(" - ")[0]
+            val uslugaCijena = usluga.split(" - ")[1]
+
+
+            val ValidanDatum =
+                !datum.contains("Nedjeljom ne radimo!") && datum.contains("Odabrani datum")
             val ValidnoVrijeme = vrijeme.contains("Odabrano vrijeme")
 
-            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && usluga != "Odaberite uslugu" && ValidanDatum && ValidnoVrijeme) {
-                val fragment = PotvrdaRezervacijeFragment().apply {
-                    arguments = Bundle().apply {
-                        putString("odabrani_datum", datum)
-                        putString("odabrano_vrijeme", vrijeme)
-                        putString("odabrana_usluga", usluga)
-                        putString("uneseni_opis", opis)
-                        putLong("veterinarID", veterinarID)
+            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && uslugaNaziv != "Odaberite uslugu" && ValidanDatum && ValidnoVrijeme) {
+
+                lifecycleScope.launch {
+                    val uslugaID = database.vrstaUslugeQueries.dohvatiusluguponazivu(uslugaNaziv)
+                        .executeAsOneOrNull()?.uslugaID
+
+                    if (uslugaID != null) {
+                        val fragment = PotvrdaRezervacijeFragment().apply {
+                            arguments = Bundle().apply {
+                                putString("odabrani_datum", datum)
+                                putString("odabrano_vrijeme", vrijeme)
+                                putLong("uslugaID", uslugaID)
+                                putString("uneseni_opis", opis)
+                                putLong("veterinarID", veterinarID)
+                            }
+                        }
+                        parentFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+                            .replace(R.id.fragmentContainer, fragment)
+                            .addToBackStack(null)
+                            .commit()
+                    } else {
+                        showToast("Molimo ispunite sve podatke ispravno.")
                     }
                 }
-                parentFragmentManager.beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                    .replace(R.id.fragmentContainer, fragment)
-                    .addToBackStack(null)
-                    .commit()
             } else {
                 showToast("Molimo ispunite sve podatke ispravno.")
             }
-        }
 
+        }
         datumGumb.setOnClickListener { openDatePicker() }
         vrijemeGumb.setOnClickListener { openTimePicker() }
     }
