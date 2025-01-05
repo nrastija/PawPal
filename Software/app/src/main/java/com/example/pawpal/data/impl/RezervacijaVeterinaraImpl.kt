@@ -46,4 +46,10 @@ class RezervacijaVeterinaraImpl(db: AppDatabase) : RezervacijaVeterinaraDataSour
             queries.obrisiRezervaciju(rezervacijaID)
         }
     }
+
+    override suspend fun dohvatiZadnjuRezervaciju(): RezervacijaVeterinara? {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiZadnjuRezervaciju().executeAsOneOrNull()
+        }
+    }
 }

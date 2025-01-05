@@ -11,9 +11,15 @@ CREATE TABLE rezervacijaVeterinara (
     FOREIGN KEY (uslugaID) REFERENCES vrstaUsluge (uslugaID) ON DELETE CASCADE
 );
 
+
 dodajRezervaciju:
 INSERT INTO rezervacijaVeterinara (korisnikID, veterinarID, uslugaID, datum, vrijeme, dodatniOpis)
 VALUES (?, ?, ?, ?, ?, ?);
+
+dohvatiZadnjuRezervaciju:
+SELECT * FROM rezervacijaVeterinara
+ORDER BY rezervacijaID DESC
+LIMIT 1;
 
 dohvatiSveRezervacije:
 SELECT * FROM rezervacijaVeterinara;

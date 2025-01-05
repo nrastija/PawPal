@@ -121,10 +121,9 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             val uslugaNaziv = usluga.split(" - ")[0]
 
             val ValidanDatum =
-                !datum.contains("Nedjeljom ne radimo!") && datum.contains("Odabrani datum")
-            val ValidnoVrijeme = vrijeme.contains("Odabrano vrijeme")
+                !datum.contains("Nedjeljom ne radimo!")
 
-            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && uslugaNaziv != "Odaberite uslugu" && ValidanDatum && ValidnoVrijeme) {
+            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && uslugaNaziv != "Odaberite uslugu" && ValidanDatum ) {
 
                 lifecycleScope.launch {
                     val uslugaID = database.vrstaUslugeQueries.dohvatiusluguponazivu(uslugaNaziv)
@@ -189,7 +188,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
                     else -> {
                         val selectedDateText =
                             SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(selectedDate)
-                        datumTekst.text = "Odabrani datum: $selectedDateText"
+                        datumTekst.text = selectedDateText
                         datumTekst.setTextColor(ContextCompat.getColor(requireContext(), R.color.textColorPrimary))
                     }
                 }
@@ -213,7 +212,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             { _, selectedHour, selectedMinute ->
                 if (selectedHour in 8..18) {
                     val formatiranoVrijeme = String.format("%02d:%02d", selectedHour, selectedMinute)
-                    vrijemeTekst.text = "Odabrano vrijeme: $formatiranoVrijeme"
+                    vrijemeTekst.text = formatiranoVrijeme
                 } else {
                     vrijemeTekst.text = "Molimo odaberite vrijeme između 08:00 i 19:00."
                 }

@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,9 @@ import com.example.pawpal.data.impl.RezervacijaVeterinaraImpl
 import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
@@ -116,7 +120,11 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
 
         rezervacijeDataSource = RezervacijaVeterinaraImpl(database)
 
-
+        val notificationHelper = NotificationHelper(requireContext())
+        notificationHelper.createNotificationChannel(
+            channelId = "vet_reservation_notification",
+            channelName = "Vet Reservation Notifications"
+        )
 
         datumTextView.text = datum
         vrijemeTextView.text = vrijeme
@@ -132,6 +140,39 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
                     vrijeme = vrijeme,
                     dodatniOpis = opis
                 )
+
+                val zadnjaRezervacija = database.rezervacijaVeterinaraQueries.dohvatiZadnjuRezervaciju().executeAsOneOrNull()
+                val veterinar = database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOneOrNull()
+                val usluga = zadnjaRezervacija?.let { it1 -> database.vrstaUslugeQueries.dohvatiuslugupoID(it1.uslugaID).executeAsOneOrNull() }
+                if (zadnjaRezervacija != null) {
+                    notificationHelper.sendNotification(
+                        channelId = "checkout_notifications",
+                        notificationId = zadnjaRezervacija.rezervacijaID.toInt(),
+                        naslov = "Rezervacija poslana!",
+                        opis = "Rezervacija sa šifrom ${zadnjaRezervacija.rezervacijaID} trenutno čeka na odobrenje od strane zaposlenika.",
+                        priority = NotificationHelper.Priority.HIGH
+                    )
+
+                    if (veterinar != null && usluga != null) {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(5000)
+                            notificationHelper.sendNotificationWithCalendarOption(
+                                channelId = "checkout_notifications",
+                                notificationId = zadnjaRezervacija.rezervacijaID.toInt(),
+                                naslov = "Obavijest o rezervaciji!",
+                                opis = "Vaša rezervacija sa šifrom ${zadnjaRezervacija.rezervacijaID} je prihvaćena od strane zaposlenika! Zakazano vrijeme: ${vrijeme} ${datum}. Kliknite kako biste zapisali vrijeme u kalendar!",
+                                priority = NotificationHelper.Priority.MEDIUM,
+                                datum = datum,
+                                vrijeme = vrijeme,
+                                veterinar = veterinar.imePrezime,
+                                usluga = usluga.nazivUsluge,
+                                cijena = usluga.cijena.toString()
+                            )
+                        }
+                    }
+
+                }
+
                 Toast.makeText(context, "Zahtjev uspješno poslan!", Toast.LENGTH_SHORT).show()
                 navigateToMainFragment()
             }
