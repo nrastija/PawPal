@@ -48,8 +48,7 @@ class MainActivity : AppCompatActivity() {
         //Resetiranje - ciscenje podataka u BP
         //resetDatabase(this)
 
-        //Instanciranje - instanca nove BP
-        database = (application as PawPalApplication).database
+            database = (application as PawPalApplication).database
 
         resetShopData()
         resetSkolaData()
