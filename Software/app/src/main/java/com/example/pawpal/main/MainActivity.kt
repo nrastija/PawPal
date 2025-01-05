@@ -264,7 +264,7 @@ class MainActivity : AppCompatActivity() {
             )
             vetQueries.dodajVeterinara(
                 "Ana Anić",
-                "Dr.spec",
+                "Dr.vet.spec",
                 "093454667",
 
             )
@@ -274,6 +274,20 @@ class MainActivity : AppCompatActivity() {
                 "094523445",
 
             )
+
+            vetQueries.dodajVeterinara(
+                "Ante Stanislav",
+                "Dr.spec",
+                "094523445",
+
+                )
+
+            vetQueries.dodajVeterinara(
+                "Ankica Narić",
+                "Dr.med.vet",
+                "094523445",
+
+                )
         }
     }
 

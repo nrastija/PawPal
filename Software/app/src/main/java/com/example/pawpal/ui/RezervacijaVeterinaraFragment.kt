@@ -14,12 +14,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
-import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
@@ -43,7 +39,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
     private lateinit var gumbponisti: Button
     private lateinit var gumbpotvrdi: Button
 
-    private suspend fun dohvatiSveUsluge(): List<String> {
+    private fun dohvatiSveUsluge(): List<String> {
         return database.vrstaUslugeQueries.dohvatiSveUsluge().executeAsList().map {
             "${it.nazivUsluge} - ${it.cijena}"
         }
@@ -74,7 +70,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_rezervacija_veterinara, container, false)
+        return inflater.inflate(R.layout.fragment_rezervacija_veterinara, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -123,8 +119,6 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             val usluga = spiner.selectedItem as String
 
             val uslugaNaziv = usluga.split(" - ")[0]
-            val uslugaCijena = usluga.split(" - ")[1]
-
 
             val ValidanDatum =
                 !datum.contains("Nedjeljom ne radimo!") && datum.contains("Odabrani datum")

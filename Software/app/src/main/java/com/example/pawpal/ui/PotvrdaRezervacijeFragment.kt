@@ -63,7 +63,7 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_potvrda_rezervacije, container, false)
+        return inflater.inflate(R.layout.fragment_potvrda_rezervacije, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,7 +87,6 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
 
         val datum = arguments?.getString("odabrani_datum") ?: "Nije odabran datum"
         val vrijeme = arguments?.getString("odabrano_vrijeme") ?: "Nije odabrano vrijeme"
-        //val usluga = arguments?.getString("uslugaID") ?: "Nije odabrana usluga"
         val opis = arguments?.getString("uneseni_opis") ?: "Nije unesen opis"
 
         val korisnikId = getCurrentUserId()
