@@ -13,17 +13,50 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor">
+        android:background="@color/basketColor"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-30dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@color/secondaryColor"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/UredivanjeProfilaToolbar"
+            android:layout_width="222dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="UREĐIVANJE PROFILA"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/toolbar2" />
+
+        <ImageView
+            android:id="@+id/imageViewToolbar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/korisnik"
+            app:layout_constraintBottom_toBottomOf="@id/toolbar2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/toolbar2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/btnSpremiP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="208dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="SPREMI"
-            android:textSize="17sp"
             android:textColor="@color/white"
+            android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,23 +71,24 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.641" />
+            app:layout_constraintVertical_bias="0.366" />
 
         <EditText
             android:id="@+id/ImePsa"
-            android:layout_width= "wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:ems="10"
             android:hint="Ime"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.225" />
 
         <TextView
             android:id="@+id/textKorIme"
@@ -65,114 +99,67 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.021"
+            app:layout_constraintHorizontal_bias="0.08"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.644" />
+            app:layout_constraintVertical_bias="0.361" />
 
         <TextView
             android:id="@+id/textPrezime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PREZIME:  "
-            android:textStyle="bold"
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.299" />
 
         <TextView
             android:id="@+id/textIme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="IME: "
-            android:textStyle="bold"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.021"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="409dp"
-            android:layout_height="270dp"
-            android:background="@color/secondaryColor"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/UredivanjeProfila"
-            android:layout_width="244dp"
-            android:layout_height="36dp"
             android:textStyle="bold"
-            android:textSize="25sp"
-            android:text="Uređivanje profila"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.067"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.412" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.231" />
 
         <Button
             android:id="@+id/btnPromjeniLozinku"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="272dp"
             android:backgroundTint="@color/secondaryColor"
             android:text="PROMJENI LOZINKU"
-            android:textSize="17sp"
             android:textColor="@color/white"
+            android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarUredivanjeK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/secondaryColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/hamburger_menu_icon"
-            app:titleTextColor="@color/accentColor"/>
 
         <TextView
             android:id="@+id/textMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="E-MAIL:"
-            android:textStyle="bold"
             android:textSize="17sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.022"
+            app:layout_constraintHorizontal_bias="0.071"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.707" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="209dp"
-            android:layout_height="184dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.117"
-            app:srcCompat="@drawable/profile_icon"
-            app:tint="@color/white"/>
+            app:layout_constraintVertical_bias="0.436" />
 
         <EditText
             android:id="@+id/Prezime"
@@ -183,10 +170,10 @@
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintVertical_bias="0.295" />
 
         <EditText
             android:id="@+id/Mail"
@@ -197,19 +184,19 @@
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.925"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar2"
-            app:layout_constraintVertical_bias="0.711" />
+            app:layout_constraintVertical_bias="0.436" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id = "@+id/navUredivanjeK"
+        android:id="@+id/navUredivanjeK"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:headerLayout="@layout/hamburger_menu_header"
-        app:menu ="@menu/hamburger_menu_navigacija"
+        app:menu="@menu/hamburger_menu_navigacija"
         app:itemIconTint="@color/accentColor"
         app:itemTextColor="@color/accentColor"
         android:layout_gravity="start"

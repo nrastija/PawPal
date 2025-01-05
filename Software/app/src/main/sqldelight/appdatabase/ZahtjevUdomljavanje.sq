@@ -1,0 +1,29 @@
+CREATE TABLE zahtjevudomljavanje (
+    zahtjevID INTEGER PRIMARY KEY AUTOINCREMENT,
+    paszahtjevID INTEGER NOT NULL,
+    ime TEXT NOT NULL,
+    prezime TEXT NOT NULL,
+    email TEXT NOT NULL,
+    telefon TEXT NOT NULL,
+    drugiLjubimci TEXT NOT NULL,
+    clanObitelji TEXT NOT NULL,
+    iskustvoSPsima TEXT NOT NULL,
+    dodatneInformacije TEXT,
+    FOREIGN KEY (paszahtjevID) REFERENCES pasudomljavanje(pasudomljavanjeID)
+);
+
+insertZahtjev:
+INSERT INTO zahtjevudomljavanje (
+    paszahtjevID,
+    ime,
+    prezime,
+    email,
+    telefon,
+    drugiLjubimci,
+    clanObitelji,
+    iskustvoSPsima,
+    dodatneInformacije
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+dohvatiSveZahtjeve:
+SELECT * FROM zahtjevudomljavanje;

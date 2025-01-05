@@ -1,0 +1,29 @@
+CREATE TABLE voditelj (
+    voditeljID INTEGER NOT NULL PRIMARY KEY,
+    ime TEXT NOT NULL,
+    prezime TEXT NOT NULL,
+    email TEXT NOT NULL,
+    telefon TEXT NOT NULL
+);
+
+insertVoditelj:
+INSERT INTO voditelj (voditeljID, ime, prezime, email, telefon)
+VALUES (?, ?, ?, ?, ?);
+
+dohvatiSveVoditelje:
+SELECT * FROM voditelj;
+
+deleteAllVoditelji:
+DELETE FROM voditelj;
+
+dohvatiVoditeljeZaSkolu:
+SELECT v.*
+FROM SkolaVoditelj sv
+JOIN voditelj v ON sv.voditeljID = v.voditeljID
+WHERE sv.skolaID = ?;
+
+dohvatiVoditeljaPoId:
+SELECT * FROM voditelj
+WHERE voditeljID = ?;
+
+

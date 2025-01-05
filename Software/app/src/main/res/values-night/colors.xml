@@ -14,5 +14,8 @@
     <color name="proizvodKolicinaBorder">#282828</color>
     <color name="basketColor">#1c1c1c</color>
     <color name="bijelazakoristiti">#aaa</color>
+    <color name="crnoubijelo">#fff</color>
+    <color name="bijeloucrno">#000</color>
+
 
 </resources>
