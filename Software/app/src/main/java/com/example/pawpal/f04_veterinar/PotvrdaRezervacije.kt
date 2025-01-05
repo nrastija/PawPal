@@ -38,8 +38,6 @@ class PotvrdaRezervacije : AppCompatActivity() {
         val opis = intent.getStringExtra("uneseni_opis")
         val imeVeterinara = intent.getStringExtra("ime_veterinara")
 
-        val textView = findViewById<TextView>(R.id.imeVeterinaraTextView)
-        textView.text = imeVeterinara
 
         datumTextView.text = datum
         vrijemeTextView.text = vrijeme

@@ -17,9 +17,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.lifecycle.lifecycleScope
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.example.pawpal.R
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -28,6 +32,7 @@ import java.util.Locale
 class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
 
     override lateinit var database: AppDatabase
+    private var veterinarID: Long = 0
 
     private lateinit var datumTekst: TextView
     private lateinit var datumGumb: Button
@@ -35,14 +40,13 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
     private lateinit var vrijemeGumb: Button
     private lateinit var spiner: Spinner
     private lateinit var dodatniOpis: EditText
-    private lateinit var potvrdi: Button
-    private lateinit var ponisti: Button
+    private lateinit var gumbponisti: Button
+    private lateinit var gumbpotvrdi: Button
 
     companion object {
-        private const val ARG_VETERINAR_ID = "veterinar_id"
+        private const val ARG_VETERINAR_ID = "veterinarID"
 
         fun newInstance(veterinarID: Long): RezervacijaVeterinaraFragment {
-            Log.d("Usao u newInstance", veterinarID.toString())
             val fragment = RezervacijaVeterinaraFragment()
             val args = Bundle()
             args.putLong(ARG_VETERINAR_ID, veterinarID)
@@ -51,12 +55,13 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         }
     }
 
-
-    private var veterinarID: Long? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        veterinarID = arguments?.getLong(ARG_VETERINAR_ID)
+        arguments?.let {
+            veterinarID = it.getLong(ARG_VETERINAR_ID)
+
+        }
+        Log.d("VeterinarID", "Veterinar ID: $veterinarID")
     }
 
     override fun onCreateView(
@@ -68,18 +73,14 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("RezervacijaVeterinaraFragment", "Database: $database")
-        ViewCompat.setOnApplyWindowInsetsListener(view.findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        val veterinarID = arguments?.getLong("veterinar_id")
-        if (veterinarID == null) {
-            Toast.makeText(requireContext(), "Neispravan ID veterinara!", Toast.LENGTH_SHORT).show()
-            return
-        }
+
+
+        val imeVet: TextView = view.findViewById(R.id.textImeVeterinara)
+        val titula: TextView = view.findViewById(R.id.titulaVetRez)
+        gumbponisti = view.findViewById(R.id.ponistiVet)
+        gumbpotvrdi = view.findViewById(R.id.potvrdiVet)
+
 
         datumTekst = view.findViewById(R.id.datumTekst)
         datumGumb = view.findViewById(R.id.datumGumb)
@@ -87,21 +88,26 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         vrijemeGumb = view.findViewById(R.id.vrijemeGumb)
         spiner = view.findViewById(R.id.spiner)
         dodatniOpis = view.findViewById(R.id.dodatniOpis)
-        potvrdi = view.findViewById(R.id.potvrdiVet)
-        ponisti = view.findViewById(R.id.ponistiVet)
 
-        // Postavljanje spinnera
+        lifecycleScope.launch {
+            val veterinar = database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOne()
+            imeVet.text = veterinar.imePrezime
+            titula.text = veterinar.specijalizacija
+        }
+
+
+
         val usluge = listOf(
             "Odaberite uslugu",
-            "Prvi pregled - 30,00€",
-            "Kontrola - 35,00€",
-            "Cijepljenje - 60,00€",
-            "Laboratorijska dijagnostika - 120,00€",
-            "Dermatologija - 70,00€",
-            "Kirurgija - 170,00€",
-            "Neurologija - 200,00€",
-            "Oftamologija - 80,00€",
-            "Stomatologija - 60,00€"
+            "Prvi pregled",
+            "Kontrola",
+            "Cijepljenje",
+            "Laboratorijska dijagnostika",
+            "Dermatologija",
+            "Kirurgija",
+            "Neurologija",
+            "Oftamologija",
+            "Stomatologija"
         )
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, usluge)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -109,7 +115,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
 
         spiner.setSelection(0)
 
-        ponisti.setOnClickListener {
+        gumbponisti.setOnClickListener {
             datumTekst.text = ""
             vrijemeTekst.text = ""
             spiner.setSelection(0)
@@ -117,7 +123,8 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             showToast("Podaci su poništeni")
         }
 
-        potvrdi.setOnClickListener {
+        gumbpotvrdi.setOnClickListener {
+
             val opis = dodatniOpis.text.toString()
             val datum = datumTekst.text.toString()
             val vrijeme = vrijemeTekst.text.toString()
@@ -133,6 +140,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
                         putString("odabrano_vrijeme", vrijeme)
                         putString("odabrana_usluga", usluga)
                         putString("uneseni_opis", opis)
+                        putLong("veterinarID", veterinarID)
                     }
                 }
                 parentFragmentManager.beginTransaction()

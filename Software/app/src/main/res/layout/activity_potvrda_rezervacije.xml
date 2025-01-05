@@ -25,17 +25,27 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/pozadina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pozadina"
         app:layout_constraintTop_toTopOf="@+id/pozadina">
 
         <TextView
-            android:id="@+id/imeVeterinaraTextView"
+            android:id="@+id/titulaVetPotvrda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="85dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/imeVetPotvrda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="10dp"
             android:textSize="25dp"
             android:textStyle="bold" />
     </LinearLayout>

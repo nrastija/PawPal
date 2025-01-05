@@ -17,14 +17,14 @@ class RezervacijaVeterinaraImpl(db: AppDatabase) : RezervacijaVeterinaraDataSour
         korisnikID: Long,
         datum: String,
         vrijeme: String,
-        uslugaID: Long,
+        usluga: String,
         dodatniOpis: String
     ) {
         withContext(Dispatchers.IO) {
             queries.dodajRezervaciju(
                 korisnikID = korisnikID,
                 veterinarID = veterinarID,
-                uslugaID = uslugaID,
+                usluga = usluga,
                 datum = datum,
                 vrijeme = vrijeme,
                 dodatniOpis = dodatniOpis

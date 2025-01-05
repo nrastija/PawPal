@@ -182,11 +182,21 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarVeterinar"
         app:layout_constraintEnd_toEndOf="@+id/toolbarVeterinar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbarVeterinar">
+
+        <TextView
+            android:id="@+id/titulaVetRez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            />
 
         <TextView
             android:id="@+id/textImeVeterinara"
@@ -194,7 +204,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:layout_marginLeft="85dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
             />
     </LinearLayout>
