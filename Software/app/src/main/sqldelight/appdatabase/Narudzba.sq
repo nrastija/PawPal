@@ -13,5 +13,9 @@ insertNarudzba:
 INSERT INTO narudzba (korisnikId, ukupnaCijena, datum, status, nacinPlacanja)
 VALUES (?, ?, ?, ?, ?);
 
+dohvatiNarudzbu:
+SELECT * FROM narudzba
+WHERE narudzbaID = ?;
+
 zadnjaNarudzbaId:
 SELECT last_insert_rowid() AS narudzbaId;

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 
 class NotificationHelper(private val context: Context) {
@@ -48,11 +49,12 @@ class NotificationHelper(private val context: Context) {
         priority: Priority = Priority.MEDIUM,
         slika: Bitmap? = null
     ) {
+        Log.d("NotificationHelper", "Slanje notifikacije: $naslov")
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
             .setContentTitle(naslov)
             .setContentText(opis)
             .setPriority(priority.level)
@@ -65,6 +67,7 @@ class NotificationHelper(private val context: Context) {
                 .setStyle(NotificationCompat.BigPictureStyle().bigPicture(it))
         }
 
+        Log.d("NotificationHelper", "Sending notification...")
         notificationManager.notify(notificationId, builder.build())
     }
 }

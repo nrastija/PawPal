@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -39,6 +40,12 @@ class CheckoutActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.f12_checkout)
 
+        val notificationHelper = NotificationHelper(this)
+        notificationHelper.createNotificationChannel(
+            channelId = "checkout_notifications",
+            channelName = "Checkout Notifications"
+        )
+
         kosaricaID = intent.getLongExtra("KOSARICA_ID", -1L)
 
         val radioGroupPlacanja: RadioGroup = findViewById(R.id.odabirPlacanja)
@@ -48,6 +55,7 @@ class CheckoutActivity : AppCompatActivity()  {
         val sekcijaPodaciKartice: LinearLayout = findViewById(R.id.sekcijaPodaciKartice)
 
         val karticaVisa: RadioButton = findViewById(R.id.visaOption)
+        val karticaMastercard: RadioButton = findViewById(R.id.mastercardOption)
         val karticaBroj : EditText = findViewById(R.id.unosBrojKartice)
         val karticaDatum : EditText = findViewById(R.id.unosDatumIsteka)
         val karticaCVV : EditText = findViewById(R.id.unosCVV)
@@ -80,13 +88,30 @@ class CheckoutActivity : AppCompatActivity()  {
 
         database = (application as PawPalApplication).database
 
-
         val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
 
         btnPotvrda.setOnClickListener {
             if (placanjePayPal.isChecked){
                 pokreniPlacanje()
                 unosNarudzbe("Paypal")
+
+                val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
+                val ukupnaCijenaNarudzbe = database.narudzbaQueries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()?.ukupnaCijena
+
+                notificationHelper.sendNotification(
+                    channelId = "checkout_notifications",
+                    notificationId = narudzbaId.toInt(),
+                    naslov = "Narudžba u transakciji!",
+                    opis = "Vaša narudžba ${narudzbaId.toInt()} je trenutno u transakciji...",
+                    priority = NotificationHelper.Priority.HIGH
+                )
+                notificationHelper.sendNotification(
+                    channelId = "checkout_notifications",
+                    notificationId = narudzbaId.toInt()+1,
+                    naslov = "Narudžba uspješna!",
+                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od €${String.format("%.2f", ukupnaCijenaNarudzbe)} je uspješno kreirana. Način plaćanja: PayPal.",
+                    priority = NotificationHelper.Priority.MEDIUM
+                )
                 return@setOnClickListener
             }
             else if (placanjeKarticom.isChecked) {
@@ -99,13 +124,56 @@ class CheckoutActivity : AppCompatActivity()  {
                     return@setOnClickListener
                 } else {
                     Toast.makeText(this, "Plaćanje je u tijeku...", Toast.LENGTH_SHORT).show()
+
                     unosNarudzbe("Kartica")
+
+                    val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
+                    val ukupnaCijenaNarudzbe = database.narudzbaQueries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()?.ukupnaCijena
+
+
+                    notificationHelper.sendNotification(
+                        channelId = "checkout_notifications",
+                        notificationId = narudzbaId.toInt(),
+                        naslov = "Narudžba u transakciji!",
+                        opis = "Narudžba sa šifrom ${narudzbaId.toInt()} je trenutno u transakciji.",
+                        priority = NotificationHelper.Priority.HIGH
+                    )
+
+                    if (karticaVisa.isChecked){
+                        notificationHelper.sendNotification(
+                            channelId = "checkout_notifications",
+                            notificationId = narudzbaId.toInt()+1,
+                            naslov = "Narudžba uspješna!",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${String.format("%.2f", ukupnaCijenaNarudzbe)}€ je uspješno izvršena. Način plačanja: VISA Kartica (${broj}).",
+                            priority = NotificationHelper.Priority.LOW
+                        )
+                    }
+                    else if (karticaMastercard.isChecked){
+                        notificationHelper.sendNotification(
+                            channelId = "checkout_notifications",
+                            notificationId = narudzbaId.toInt()+1,
+                            naslov = "Narudžba uspješna!",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${String.format("%.2f", ukupnaCijenaNarudzbe)}€ je uspješno izvršena. Način plačanja: Mastercard Kartica (${broj}).",
+                            priority = NotificationHelper.Priority.LOW
+                        )
+                    }
                 }
 
             }
             else if (placanjeGotovinom.isChecked) {
                 Toast.makeText(this, "Placanje gotovinom je odabrano.", Toast.LENGTH_SHORT).show()
                 unosNarudzbe("Gotovina")
+
+                val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
+                val ukupnaCijenaNarudzbe = database.narudzbaQueries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()?.ukupnaCijena
+
+                notificationHelper.sendNotification(
+                    channelId = "checkout_notifications",
+                    notificationId = narudzbaId.toInt()+1,
+                    naslov = "Narudžba uspješna!",
+                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od €${String.format("%.2f", ukupnaCijenaNarudzbe)} je uspješno kreirana. Način plaćanja: Gotovina.",
+                    priority = NotificationHelper.Priority.MEDIUM
+                )
             }
 
             Toast.makeText(this, "Placanje uspjesno izvrseno!", Toast.LENGTH_LONG).show()
@@ -254,6 +322,8 @@ class CheckoutActivity : AppCompatActivity()  {
         }
 
         database.kosaricaProizvodQueries.brisanjeKosarice(kosaricaID)
+
+        val notificationHelper = NotificationHelper(this)
 
         Toast.makeText(this, "Narudžba uspješno kreirana!", Toast.LENGTH_SHORT).show()
     }
