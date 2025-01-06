@@ -37,9 +37,9 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
 
         postaviPodatkeKorisnika(view)
 
-        view.findViewById<Button>(R.id.btnSpremiP).setOnClickListener {
-            spremiPromjene(view)
-        }
+        val btnSpremi: Button = view.findViewById(R.id.btnSpremiP)
+
+        btnSpremi.setOnClickListener {prikaziPorukuSpremanja(view)}
 
         view.findViewById<Button>(R.id.btnPromjeniLozinku).setOnClickListener {
             val fragment = PromjenaLozinkeFragment()
@@ -52,6 +52,20 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
                 .addToBackStack(null)
                 .commit()
         }
+    }
+
+    private fun prikaziPorukuSpremanja(view: View){
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Potvrda brisanja")
+            .setMessage("Jeste li sigurni da želite spremiti promjene?")
+            .setPositiveButton("Da") { dialog, which ->
+                spremiPromjene(view)
+            }
+            .setNegativeButton("Ne") { dialog, which ->
+                Toast.makeText(context, "Prekinuto spremanje", Toast.LENGTH_SHORT).show()
+            }
+
+        builder.create().show()
     }
 
     private fun postaviPodatkeKorisnika(view: View) {

@@ -1,11 +1,13 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
@@ -57,12 +59,17 @@ class UpravljanjeProfilomFragment : Fragment() {
     }
 
     private fun prikaziPotvrduOdjave() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Potvrda odjave")
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Potvrda brisanja")
             .setMessage("Jeste li sigurni da se želite odjaviti?")
-            .setPositiveButton("Da") { _, _ -> odjaviKorisnika() }
-            .setNegativeButton("Ne", null)
-            .show()
+            .setPositiveButton("Da") { dialog, which ->
+                odjaviKorisnika()
+            }
+            .setNegativeButton("Ne") { dialog, which ->
+                Toast.makeText(context, "Prekinuta odjava", Toast.LENGTH_SHORT).show()
+            }
+
+        builder.create().show()
     }
 
     private fun odjaviKorisnika() {
@@ -73,12 +80,18 @@ class UpravljanjeProfilomFragment : Fragment() {
     }
 
     private fun prikaziPotvrduDeaktivacije() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Potvrda deaktivacije")
-            .setMessage("Jeste li sigurni da želite deaktivirati svoj račun? Ova radnja je nepovratna.")
-            .setPositiveButton("Da") { _, _ -> deaktivirajKorisnika() }
-            .setNegativeButton("Ne", null)
-            .show()
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Potvrda brisanja")
+            .setMessage("Jeste li sigurni da želite deaktivirati profil?")
+            .setPositiveButton("Da") { dialog, which ->
+                deaktivirajKorisnika()
+            }
+            .setNegativeButton("Ne") { dialog, which ->
+                Toast.makeText(context, "Otkazana deaktivacija profila", Toast.LENGTH_SHORT).show()
+            }
+
+        builder.create().show()
+
     }
 
     private fun deaktivirajKorisnika() {
@@ -87,6 +100,20 @@ class UpravljanjeProfilomFragment : Fragment() {
         if (korisnikID == null) {
             return
         }
+
+        val notificationHelper = NotificationHelper(requireContext())
+        notificationHelper.createNotificationChannel(
+            channelId = "deactivation_notifications",
+            channelName = "Deactivation Notifications"
+        )
+
+        notificationHelper.sendNotification(
+            channelId = "checkout_notifications",
+            notificationId = korisnikID.toInt(),
+            naslov = "Narudžba u transakciji!",
+            opis = "Vaš korisnički profil sa šifrom ${korisnikID} je uspješno obrisan iz sustava.",
+            priority = NotificationHelper.Priority.LOW
+        )
 
         lifecycleScope.launch {
             korisnikDataSource.dajKorisnikaPoID(korisnikID)?.let {
