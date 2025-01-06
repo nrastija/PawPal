@@ -1,4 +1,6 @@
 package com.example.pawpal.data.impl
+import appdatabase.IzgubljeniPsi
+import appdatabase.Zahtjevudomljavanje
 import com.example.pawpal.data.datasource.ZahtjevUdomljavanjeDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +32,12 @@ class ZahtjevUdomljavanjeDataSourceImpl(db: AppDatabase) : ZahtjevUdomljavanjeDa
                 iskustvoSPsima,
                 dodatneInformacije
             )
+        }
+    }
+
+    override suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje? {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiZadnjiZahtjev().executeAsOneOrNull()
         }
     }
 }
