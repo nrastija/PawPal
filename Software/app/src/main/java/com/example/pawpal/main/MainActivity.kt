@@ -3,6 +3,7 @@ package com.example.pawpal.main
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        database = (application as PawPalApplication).database
         // Show main images
         setImagesVisibility(View.VISIBLE)
 
@@ -42,12 +44,26 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
+        val headerView = navView.getHeaderView(0)
+
+        val usernameTextView: TextView = headerView.findViewById(R.id.username_hamburger)
+        val mailTextView: TextView = headerView.findViewById(R.id.mail_hamburger)
+
+        val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+
+        if (korisnikID != null) {
+            val logiraniKorisnikInfo = database.korisnikQueries.dajKorisnikaPoID(korisnikID).executeAsOneOrNull()
+            val korisnickoIme = logiraniKorisnikInfo?.korime
+            val korisnickiMail = logiraniKorisnikInfo?.email
+
+            usernameTextView.text = korisnickoIme
+            mailTextView.text = korisnickiMail
+        } else {
+            usernameTextView.text = "temp"
+            mailTextView.text = "temp@temp.com"
+        }
+
         setupHamburgerMenu(drawerLayout, toolbar, navView)
-
-        //Resetiranje - ciscenje podataka u BP
-        //resetDatabase(this)
-
-            database = (application as PawPalApplication).database
 
         resetShopData()
         resetSkolaData()

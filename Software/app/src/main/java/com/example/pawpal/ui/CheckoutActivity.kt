@@ -14,6 +14,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawpal.R
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.MainActivity
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
@@ -83,11 +84,12 @@ class CheckoutActivity : AppCompatActivity()  {
         }
 
         val btnPotvrda: Button = findViewById(R.id.btnPotvrdiPlacanje)
-        //POTREBNO DODATI KORISNIKOV ID KAD MIRTA NAPRAVI
+
+        val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
 
         database = (application as PawPalApplication).database
 
-        val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+        val kosarica = database.kosaricaQueries.provjeriPostojanje(logiranKorisnikID).executeAsOneOrNull()
 
         btnPotvrda.setOnClickListener {
             if (placanjePayPal.isChecked){
@@ -139,20 +141,20 @@ class CheckoutActivity : AppCompatActivity()  {
                     )
 
                     if (karticaVisa.isChecked){
-                        notificationHelper.sendNotification(
+                        notificationHelper.sendBigStyleNotification(
                             channelId = "checkout_notifications",
                             notificationId = narudzbaId.toInt()+1,
                             naslov = "Narudžba uspješna!",
-                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${String.format("%.2f", ukupnaCijenaNarudzbe)}€ je uspješno izvršena. Način plačanja: VISA Kartica (${broj}).",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${ukupnaCijenaNarudzbe}€ je uspješno izvršena. Način plačanja: VISA Kartica (${broj}).",
                             priority = NotificationHelper.Priority.LOW
                         )
                     }
                     else if (karticaMastercard.isChecked){
-                        notificationHelper.sendNotification(
+                        notificationHelper.sendBigStyleNotification(
                             channelId = "checkout_notifications",
                             notificationId = narudzbaId.toInt()+1,
                             naslov = "Narudžba uspješna!",
-                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${String.format("%.2f", ukupnaCijenaNarudzbe)}€ je uspješno izvršena. Način plačanja: Mastercard Kartica (${broj}).",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${ukupnaCijenaNarudzbe}€ je uspješno izvršena. Način plačanja: Mastercard Kartica (${broj}).",
                             priority = NotificationHelper.Priority.LOW
                         )
                     }
@@ -297,14 +299,18 @@ class CheckoutActivity : AppCompatActivity()  {
         val datumNarudzbe = System.currentTimeMillis().toString()
         val statusNarudzbe = "Uspješna"
 
+        val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
+
         // Insert into Narudzba table
-        database.narudzbaQueries.insertNarudzba(
-            korisnikId = 1, //ID KORISNIKA KAD MIRTA NAPRAVI
-            ukupnaCijena = ukupnaCijena,
-            datum = datumNarudzbe,
-            status = statusNarudzbe,
-            nacinPlacanja = nacinPlacanja
-        )
+        if (logiranKorisnikID != null) {
+            database.narudzbaQueries.insertNarudzba(
+                korisnikId = logiranKorisnikID,
+                ukupnaCijena = ukupnaCijena,
+                datum = datumNarudzbe,
+                status = statusNarudzbe,
+                nacinPlacanja = nacinPlacanja
+            )
+        }
 
         val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
 

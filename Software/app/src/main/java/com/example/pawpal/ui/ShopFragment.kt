@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ProizvodShopAdapter
 import com.example.pawpal.data.impl.ProizvodDataSourceImpl
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.pawpal.appdatabase.AppDatabase
@@ -61,11 +62,11 @@ class ShopFragment : Fragment(), DatabaseConsumer {
 
         floatingButton.setOnClickListener {
             lifecycleScope.launch {
-                //POTREBNO KASNIJE DOHVATITI KORISNIKID!
-                val kosarica = database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(logiranKorisnikID).executeAsOneOrNull()
                     ?: let {
-                        database.kosaricaQueries.InsertKosarica(1)
-                        database.kosaricaQueries.provjeriPostojanje(1).executeAsOneOrNull()
+                        database.kosaricaQueries.InsertKosarica(logiranKorisnikID)
+                        database.kosaricaQueries.provjeriPostojanje(logiranKorisnikID).executeAsOneOrNull()
                     }
 
                 if (kosarica != null) {

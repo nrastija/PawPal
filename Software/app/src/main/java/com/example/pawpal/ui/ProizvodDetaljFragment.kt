@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.KategorijaDataSourceImpl
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
@@ -85,14 +86,13 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             lifecycleScope.launch {
                 val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
 
-                //logika za dohvacanje ID-ja korisnika
-                val korisnikId = 1L
+                val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
 
-                val kosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull();
+                val kosarica = database.kosaricaQueries.provjeriPostojanje(logiranKorisnikID).executeAsOneOrNull();
 
                 if (kosarica == null){
-                    database.kosaricaQueries.InsertKosarica(korisnikId)
-                    val novaKosarica = database.kosaricaQueries.provjeriPostojanje(korisnikId).executeAsOneOrNull()
+                    database.kosaricaQueries.InsertKosarica(logiranKorisnikID)
+                    val novaKosarica = database.kosaricaQueries.provjeriPostojanje(logiranKorisnikID).executeAsOneOrNull()
 
                     if (novaKosarica != null) {
                         database.kosaricaProizvodQueries.dodajProizvodUKosaricu(novaKosarica.kosaricaID,
