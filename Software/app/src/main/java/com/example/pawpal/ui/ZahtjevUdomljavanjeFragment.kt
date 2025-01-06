@@ -1,11 +1,11 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
@@ -50,6 +50,12 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val notificationHelper = NotificationHelper(requireContext())
+        notificationHelper.createNotificationChannel(
+            channelId = "adoption_notifications",
+            channelName = "Adoption Notifications"
+        )
 
         view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -109,7 +115,6 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                 return@setOnClickListener
             }
 
-            // Submit form data to the database
             lifecycleScope.launch {
                 database.zahtjevUdomljavanjeQueries.insertZahtjev(
                     paszahtjevID = pasID,
@@ -122,6 +127,22 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                     iskustvoSPsima = iskustvoSPsima,
                     dodatneInformacije = dodatneInfo
                 )
+
+                val zadnjiZahtjev = database.zahtjevUdomljavanjeQueries.dohvatiZadnjiZahtjev().executeAsOneOrNull()
+
+                if (zadnjiZahtjev != null) {
+                    val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(zadnjiZahtjev.paszahtjevID).executeAsOneOrNull()
+                    if (pas != null) {
+                        notificationHelper.sendBigStyleNotification(
+                            channelId = "checkout_notifications",
+                            notificationId = zadnjiZahtjev.zahtjevID.toInt(),
+                            naslov = "Zahtjev uspješan!",
+                            opis = "Vaš zahtjev za udomljavanje psa ${pas.ime} upravo je poslan! Šifra: ${zadnjiZahtjev.zahtjevID}. Nadamo se uskorom udomljenju!",
+                            priority = NotificationHelper.Priority.LOW
+                        )
+                    }
+                }
+
                 Toast.makeText(context, "Zahtjev uspješno poslan!", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
             }

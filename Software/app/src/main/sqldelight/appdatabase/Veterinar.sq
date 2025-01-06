@@ -1,0 +1,27 @@
+CREATE TABLE veterinari (
+    veterinarID INTEGER PRIMARY KEY AUTOINCREMENT,
+    imePrezime TEXT NOT NULL,
+    specijalizacija TEXT,
+    kontakt TEXT
+);
+
+dodajVeterinara:
+INSERT OR REPLACE INTO veterinari (imePrezime, specijalizacija, kontakt)
+VALUES (?, ?,  ?);
+
+dohvatiSveVeterinare:
+SELECT * FROM veterinari;
+
+dohvatiVeterinaraID:
+SELECT * FROM veterinari WHERE veterinarID = ?;
+
+izbrisiVeterinaraID:
+DELETE FROM veterinari WHERE veterinarID = ?;
+
+izbrisiSveVeterinare:
+DELETE FROM veterinari;
+
+azurirajVeterinaraID:
+UPDATE veterinari
+SET imePrezime=?, specijalizacija = ?, kontakt = ?
+WHERE veterinarID = ?;

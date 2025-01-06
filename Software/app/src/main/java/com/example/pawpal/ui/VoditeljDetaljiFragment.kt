@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import com.example.pawpal.R
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class VoditeljDetaljiFragment : Fragment(), DatabaseConsumer {
     private var voditeljId: Long? = null

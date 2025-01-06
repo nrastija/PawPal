@@ -3,14 +3,18 @@ CREATE TABLE narudzba (
     korisnikId INTEGER NOT NULL,
     ukupnaCijena REAL NOT NULL,
     datum TEXT NOT NULL,
-    ---status TEXT NOT NULL,
-    nacinPlacanja TEXT NOT NULL
-    ---FOREIGN KEY (korisnikId) REFERENCES korisnik(korisnikId)
-    --- DODATI NAKON STO MIRTA NAPRAVI KORISNIKA
+    status TEXT NOT NULL,
+    nacinPlacanja TEXT NOT NULL,
+    FOREIGN KEY (korisnikId) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
 );
 
 insertNarudzba:
-INSERT INTO narudzba (korisnikId, ukupnaCijena, datum, nacinPlacanja)
-VALUES (?, ?, ?, ?);
+INSERT INTO narudzba (korisnikId, ukupnaCijena, datum, status, nacinPlacanja)
+VALUES (?, ?, ?, ?, ?);
 
+dohvatiNarudzbu:
+SELECT * FROM narudzba
+WHERE narudzbaID = ?;
 
+zadnjaNarudzbaId:
+SELECT last_insert_rowid() AS narudzbaId;

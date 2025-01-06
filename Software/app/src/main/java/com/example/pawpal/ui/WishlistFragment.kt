@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -114,10 +115,29 @@ class WishlistFragment : Fragment(), DatabaseConsumer {
             val wishlistDataSource = WishlistDataSourceImpl(database)
             wishlistDataSource.updateWishlistStatus(korisnikID, 1)
 
+            val notificationHelper = NotificationHelper(requireContext())
+            notificationHelper.createNotificationChannel(
+                channelId = "wishlist_notifications",
+                channelName = "Wishlist Notifications"
+            )
+
             val fragment = PregledWishlisteFragment()
             if (fragment is DatabaseConsumer) {
                 fragment.database = database
             }
+
+            val lastWishlist = wishlistDataSource.getLastWishlist()
+
+            if (lastWishlist != null) {
+                notificationHelper.sendNotification(
+                    channelId = "wishlist_notifications",
+                    notificationId = lastWishlist.wishlistID.toInt(),
+                    naslov = "Wishlista poslana na analizu",
+                    opis = "Vaša wishlista za škole je uspješno poslana školi! Nadamo se što bržem odobrenju! ",
+                    priority = NotificationHelper.Priority.HIGH
+                )
+            }
+
 
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)

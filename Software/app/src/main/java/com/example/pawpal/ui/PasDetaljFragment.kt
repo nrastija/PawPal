@@ -8,12 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.main.DatabaseConsumer
-import com.example.pawpal.main.MainActivity
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 

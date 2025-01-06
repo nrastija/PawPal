@@ -1,5 +1,7 @@
 package com.example.pawpal.data.datasource
 
+import appdatabase.Zahtjevudomljavanje
+
 interface ZahtjevUdomljavanjeDataSource {
 
     suspend fun insertZahtjev(
@@ -12,6 +14,8 @@ interface ZahtjevUdomljavanjeDataSource {
         iskustvoSPsima: String,
         dodatneInformacije: String,
         paszahtjevID: Long)
+
+    suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje?
 }
 
 

@@ -1,0 +1,48 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarVet"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/secondaryColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="220dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:text="Odaberi veterinara"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="120dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewVet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarVet" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="113dp"
+        android:layout_height="113dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarVet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="@+id/toolbarVet"
+        app:layout_constraintTop_toTopOf="@+id/toolbarVet"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/corner_vet_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

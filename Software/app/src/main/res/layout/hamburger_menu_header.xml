@@ -19,6 +19,7 @@
         android:id="@+id/username_hamburger"
         android:paddingTop="8dp"
         android:textSize="20sp"
+        android:layout_marginLeft="30px"
         android:text = "Niko Rastija"
         android:textColor="@color/accentColor"
         android:textStyle="bold"
@@ -28,6 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:id="@+id/mail_hamburger"
+        android:layout_marginLeft="30px"
         android:textColor="@color/accentColor"
         android:text = "nrastija22@student.foi.hr"/>
 

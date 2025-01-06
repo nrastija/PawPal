@@ -39,3 +39,8 @@ dohvatiSkoluIzWishlista:
 SELECT *
 FROM Wishlist
 WHERE skolaID = ? AND korisnikID = ?;
+
+dohvatiZadnjuWishListu:
+SELECT * FROM Wishlist
+ORDER BY wishlistID DESC
+LIMIT 1;

@@ -27,3 +27,9 @@ INSERT INTO zahtjevudomljavanje (
 
 dohvatiSveZahtjeve:
 SELECT * FROM zahtjevudomljavanje;
+
+
+dohvatiZadnjiZahtjev:
+SELECT * FROM zahtjevudomljavanje
+ORDER BY zahtjevID DESC
+LIMIT 1;

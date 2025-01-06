@@ -3,6 +3,7 @@ package com.example.pawpal.main
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,8 @@ import com.example.pawpal.data.impl.WishlistDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
+import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
+import com.example.pawpal.ui.OdabirVeterinaraFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
@@ -33,19 +36,41 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        database = (application as PawPalApplication).database
+        // Show main images
         setImagesVisibility(View.VISIBLE)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        setupHamburgerMenu(drawerLayout, toolbar, navView)
+        val headerView = navView.getHeaderView(0)
 
-        database = (application as PawPalApplication).database
+        val usernameTextView: TextView = headerView.findViewById(R.id.username_hamburger)
+        val mailTextView: TextView = headerView.findViewById(R.id.mail_hamburger)
+
+        val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+
+        if (korisnikID != null) {
+            val logiraniKorisnikInfo = database.korisnikQueries.dajKorisnikaPoID(korisnikID).executeAsOneOrNull()
+            val korisnickoIme = logiraniKorisnikInfo?.korime
+            val korisnickiMail = logiraniKorisnikInfo?.email
+
+            usernameTextView.text = korisnickoIme
+            mailTextView.text = korisnickiMail
+        } else {
+            usernameTextView.text = "temp"
+            mailTextView.text = "temp@temp.com"
+        }
+
+        setupHamburgerMenu(drawerLayout, toolbar, navView)
 
         resetShopData()
         resetSkolaData()
         resetAdoptionData()
+
+        resetVeterinarianData()
+        resetUslugaData()
     }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
@@ -62,6 +87,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
+                R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                 R.id.nav_wishlist -> {
                     val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
                     if (korisnikID == null) {
@@ -80,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+
             }
             drawerLayout.closeDrawers()
             true
@@ -235,6 +263,109 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun resetVeterinarianData() {
+        val vetQueries = database.veterinarQueries
+
+        vetQueries.transaction {
+            vetQueries.izbrisiSveVeterinare()
+        }
+
+        vetQueries.transaction {
+            vetQueries.dodajVeterinara(
+                "Luka Zorić",
+                "Dr.spec",
+                "0934567635",
+            )
+            vetQueries.dodajVeterinara(
+                "Ana Anić",
+                "Dr.vet.spec",
+                "093454667",
+
+            )
+            vetQueries.dodajVeterinara(
+                "Miro Mirić",
+                "Dr.vet.spec",
+                "094523445",
+
+            )
+
+            vetQueries.dodajVeterinara(
+                "Ante Stanislav",
+                "Dr.spec",
+                "094523445",
+
+                )
+
+            vetQueries.dodajVeterinara(
+                "Ankica Narić",
+                "Dr.med.vet",
+                "094523445",
+
+                )
+        }
+    }
+
+    private fun resetUslugaData() {
+        val vetQueries = database.vrstaUslugeQueries
+
+        vetQueries.transaction {
+            vetQueries.izbrisiSveUsluge()
+        }
+
+
+        vetQueries.transaction {
+            vetQueries.dodajVrstuUsluge(
+                "Odaberite uslugu",
+                "",
+            )
+
+            vetQueries.dodajVrstuUsluge(
+                "Prvi Pregled",
+                "50€",
+            )
+            vetQueries.dodajVrstuUsluge(
+                "Kontrola",
+                "50€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Cijepljenje",
+                "100€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Laboratorijska dijagnostika",
+                "150€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Dermatologija",
+                "100€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Kirurgija",
+                "200€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Neurologija",
+                "190€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Oftamologija",
+                "130€",
+
+                )
+            vetQueries.dodajVrstuUsluge(
+                "Stomatologija",
+                "120€",
+
+                )
+        }
+    }
+
     private fun resetSkolaData() {
         val skolaQueries = database.skolaQueries
         val voditeljQueries = database.voditeljQueries
@@ -260,9 +391,10 @@ class MainActivity : AppCompatActivity() {
 
 
         voditeljQueries.transaction {
-            voditeljQueries.insertVoditelj(1, "Ivan", "Horvat", "ivan@example.com", "0912345678")
-            voditeljQueries.insertVoditelj(2, "Ana", "Kovač", "ana@example.com", "0987654321")
-            voditeljQueries.insertVoditelj(3, "Marko", "Novak", "marko@example.com", "0919876543")
+            voditeljQueries.insertVoditelj(1, "Ivan", "Horvat", "ivan.horvatHR92@gmail.com", "0912345678")
+            voditeljQueries.insertVoditelj(2, "Ana", "Kovač", "ana.kovac4412@gmail.com", "0987654321")
+            voditeljQueries.insertVoditelj(3, "Marko", "Novak", "markonovak84@gmail.com", "0919876543")
+            voditeljQueries.insertVoditelj(4, "Elza", "Rakitić", "elrakitic998877@gmail.com", "0919876543")
         }
 
 
@@ -270,6 +402,7 @@ class MainActivity : AppCompatActivity() {
             skolaVoditeljQueries.insertSkolaVoditelj(1, 1)
             skolaVoditeljQueries.insertSkolaVoditelj(1, 2)
             skolaVoditeljQueries.insertSkolaVoditelj(2, 3)
+            skolaVoditeljQueries.insertSkolaVoditelj(3, 4)
         }
     }
 

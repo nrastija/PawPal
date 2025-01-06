@@ -115,6 +115,7 @@ class UredivanjeProfilaPsaFragment : Fragment(), DatabaseConsumer {
         }
     }
 
+
     private fun prikaziPoruku(poruka: String) {
         Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
     }

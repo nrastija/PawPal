@@ -1,7 +1,8 @@
 CREATE TABLE kosarica (
     kosaricaID INTEGER PRIMARY KEY AUTOINCREMENT,
     korisnikID INTEGER,
-    vrijemeKreiranja TEXT DEFAULT CURRENT_TIMESTAMP
+    vrijemeKreiranja TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
 );
 
 InsertKosarica:

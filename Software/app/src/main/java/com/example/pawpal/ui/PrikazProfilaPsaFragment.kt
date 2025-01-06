@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,7 +52,6 @@ class PrikazProfilaPsaFragment : Fragment(), DatabaseConsumer {
                 .addToBackStack(null)
                 .commit()
         }
-
     }
 
     private fun prikaziPodatkePsa(view: View) {
@@ -84,21 +84,45 @@ class PrikazProfilaPsaFragment : Fragment(), DatabaseConsumer {
             prikaziPoruku("Korisnik nije prijavljen.")
             return
         }
+        var potvrda = false
 
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Potvrda brisanja")
+            .setMessage("Jeste li sigurni da želite obrisati profil psa?")
+            .setPositiveButton("Da") { dialog, which ->
+                brisanjeFunkcija(korisnikID)
+            }
+            .setNegativeButton("Ne") { dialog, which ->
+                Toast.makeText(context, "Otkazano brisanje psa", Toast.LENGTH_SHORT).show()
+            }
+
+        builder.create().show()
+
+    }
+
+    private fun prikaziPoruku(poruka: String) {
+        Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun brisanjeFunkcija(korisnikID: Long){
         lifecycleScope.launch {
             try {
                 pasDataSource.obrisiPasPoKorisnikID(korisnikID)
                 prikaziPoruku("Profil psa uspješno obrisan.")
-                parentFragmentManager.popBackStack()
+
+                val fragment = ProfilKorisnikaFragment()
+                if (fragment is DatabaseConsumer) {
+                    fragment.database = database
+                }
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainer, fragment)
+                    .addToBackStack(null)
+                    .commit()
+
             } catch (e: Exception) {
                 prikaziPoruku("Greška pri brisanju profila psa: ${e.message}")
             }
         }
-    }
-
-
-
-    private fun prikaziPoruku(poruka: String) {
-        Toast.makeText(requireContext(), poruka, Toast.LENGTH_SHORT).show()
     }
 }
