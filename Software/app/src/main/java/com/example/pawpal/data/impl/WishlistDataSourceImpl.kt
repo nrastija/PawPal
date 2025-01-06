@@ -1,6 +1,8 @@
 package com.example.pawpal.data.impl
 
+import appdatabase.IzgubljeniPsi
 import appdatabase.Skola
+import appdatabase.Wishlist
 import com.example.pawpal.data.datasource.WishlistDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +55,12 @@ class WishlistDataSourceImpl(private val db: AppDatabase) : WishlistDataSource {
     override suspend fun isSkolaInWishlist(skolaId: Long, korisnikID: Long): Boolean {
         return withContext(Dispatchers.IO) {
             wishlistQueries.dohvatiSkoluIzWishlista(skolaId, korisnikID).executeAsOneOrNull() != null
+        }
+    }
+
+    override suspend fun getLastWishlist(): Wishlist? {
+        return withContext(Dispatchers.IO) {
+            wishlistQueries.dohvatiZadnjuWishListu().executeAsOneOrNull()
         }
     }
 }

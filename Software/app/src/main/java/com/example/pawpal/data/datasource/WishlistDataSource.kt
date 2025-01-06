@@ -1,6 +1,7 @@
 package com.example.pawpal.data.datasource
 
 import appdatabase.Skola
+import appdatabase.Wishlist
 
 interface WishlistDataSource {
     suspend fun addToWishlist(skolaId: Long, korisnikID: Long, prioritet: Long)
@@ -10,4 +11,5 @@ interface WishlistDataSource {
     suspend fun getWishlistStatus(korisnikID: Long): Long
     suspend fun getAllWishlistItemsWithPriorities(korisnikID: Long): List<Pair<Skola, Long>>
     suspend fun isSkolaInWishlist(skolaId: Long, korisnikID: Long): Boolean
+    suspend fun getLastWishlist(): Wishlist?
 }
