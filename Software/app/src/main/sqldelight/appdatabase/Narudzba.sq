@@ -4,9 +4,8 @@ CREATE TABLE narudzba (
     ukupnaCijena REAL NOT NULL,
     datum TEXT NOT NULL,
     status TEXT NOT NULL,
-    nacinPlacanja TEXT NOT NULL
-    ---FOREIGN KEY (korisnikId) REFERENCES korisnik(korisnikId)
-    --- DODATI NAKON STO MIRTA NAPRAVI KORISNIKA
+    nacinPlacanja TEXT NOT NULL,
+    FOREIGN KEY (korisnikId) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
 );
 
 insertNarudzba:
