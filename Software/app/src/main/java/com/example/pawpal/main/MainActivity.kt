@@ -375,9 +375,10 @@ class MainActivity : AppCompatActivity() {
 
 
         voditeljQueries.transaction {
-            voditeljQueries.insertVoditelj(1, "Ivan", "Horvat", "ivan@example.com", "0912345678")
-            voditeljQueries.insertVoditelj(2, "Ana", "Kovač", "ana@example.com", "0987654321")
-            voditeljQueries.insertVoditelj(3, "Marko", "Novak", "marko@example.com", "0919876543")
+            voditeljQueries.insertVoditelj(1, "Ivan", "Horvat", "ivan.horvatHR92@gmail.com", "0912345678")
+            voditeljQueries.insertVoditelj(2, "Ana", "Kovač", "ana.kovac4412@gmail.com", "0987654321")
+            voditeljQueries.insertVoditelj(3, "Marko", "Novak", "markonovak84@gmail.com", "0919876543")
+            voditeljQueries.insertVoditelj(4, "Elza", "Rakitić", "elrakitic998877@gmail.com", "0919876543")
         }
 
 
@@ -385,6 +386,7 @@ class MainActivity : AppCompatActivity() {
             skolaVoditeljQueries.insertSkolaVoditelj(1, 1)
             skolaVoditeljQueries.insertSkolaVoditelj(1, 2)
             skolaVoditeljQueries.insertSkolaVoditelj(2, 3)
+            skolaVoditeljQueries.insertSkolaVoditelj(3, 4)
         }
     }
 

@@ -39,11 +39,7 @@
         </activity>
 
 
-        <activity android:name=".main.BaseActivity" />
         <activity android:name=".ui.CheckoutActivity" />
-        <activity android:name=".f04_veterinar.odabirVeterinaraActivity"/>
-        <activity android:name=".f04_veterinar.RezervacijaVeterinaraActivity"/>
-        <activity android:name=".f04_veterinar.PotvrdaRezervacije"/>
         <activity android:name=".ui.RegistracijaActivity"></activity>
 
     </application>

@@ -6,9 +6,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.provider.CalendarContract
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.pawpal.main.MainActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -164,4 +167,38 @@ class NotificationHelper(private val context: Context) {
         notificationManager.notify(notificationId, builder.build())
     }
 
+    fun sendHeadsUpNotification(
+        channelId: String,
+        notificationId: Int,
+        naslov: String,
+        opis: String,
+        priority: Priority = Priority.MEDIUM,
+        slika: Bitmap? = null
+    ) {
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val intent = Intent(context, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val builder = NotificationCompat.Builder(context, channelId)
+            .setSmallIcon(android.R.drawable.ic_notification_overlay)
+            .setContentTitle(naslov)
+            .setContentText(opis)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setColor(priority.color)
+            .setAutoCancel(true)
+            .setFullScreenIntent(pendingIntent, true)
+
+        slika?.let {
+            builder.setLargeIcon(it)
+                .setStyle(NotificationCompat.BigPictureStyle().bigPicture(it))
+        }
+
+        notificationManager.notify(notificationId, builder.build())
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            notificationManager.cancel(1)
+        }, 5000)
+    }
 }

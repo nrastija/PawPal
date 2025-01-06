@@ -14,7 +14,6 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pawpal.R
-import com.example.pawpal.main.BaseActivity
 import com.example.pawpal.main.MainActivity
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
