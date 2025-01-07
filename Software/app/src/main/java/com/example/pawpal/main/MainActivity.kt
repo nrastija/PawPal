@@ -82,7 +82,11 @@ class MainActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_home -> drawerLayout.closeDrawers()
+                R.id.nav_home -> {
+                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    setImagesVisibility(View.VISIBLE)
+                    drawerLayout.closeDrawers()
+                }
                 R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
@@ -426,4 +430,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.imageView2).visibility = visibility
         findViewById<ImageView>(R.id.imageView7).visibility = visibility
     }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+            setImagesVisibility(View.VISIBLE)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
 }
