@@ -1,0 +1,180 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayoutDetaljiVoditelja"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryColor"
+    tools:context=".main.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/basketColor">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/pozadina"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@color/secondaryColor"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/voditelj_icon"
+            android:layout_width="129dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="84dp"
+            android:src="@drawable/voditelj"
+            app:layout_constraintBottom_toBottomOf="@+id/pozadina"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/naslov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="DETALJI VODITELJA"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/pozadina"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.155"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pozadina"
+            app:layout_constraintVertical_bias="0.822" />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/primaryColor"
+            app:layout_constraintTop_toBottomOf="@id/pozadina"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/txtImeVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IME:"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/podatakImeVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Ime Voditelja"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/txtPrezimeVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PREZIME:"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/podatakPrezimeVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Prezime Voditelja"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/txtTelefonVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TELEFON:"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/podatakTelefonVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Telefon Voditelja"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/txtEmailVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EMAIL:"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/podatakEmailVoditelja"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Email Voditelja"
+                        android:textColor="@color/textColorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

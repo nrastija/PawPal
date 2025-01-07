@@ -1,0 +1,34 @@
+CREATE TABLE rezervacijaVeterinara (
+    rezervacijaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    korisnikID INTEGER NOT NULL,
+    veterinarID INTEGER NOT NULL,
+    uslugaID INTEGER NOT NULL,
+    datum TEXT NOT NULL,
+    vrijeme TEXT NOT NULL,
+    dodatniOpis TEXT,
+    FOREIGN KEY (korisnikID) REFERENCES korisnik (korisnikID) ON DELETE CASCADE,
+    FOREIGN KEY (veterinarID) REFERENCES veterinari (veterinarID) ON DELETE CASCADE,
+    FOREIGN KEY (uslugaID) REFERENCES vrstaUsluge (uslugaID) ON DELETE CASCADE
+);
+
+
+dodajRezervaciju:
+INSERT INTO rezervacijaVeterinara (korisnikID, veterinarID, uslugaID, datum, vrijeme, dodatniOpis)
+VALUES (?, ?, ?, ?, ?, ?);
+
+dohvatiZadnjuRezervaciju:
+SELECT * FROM rezervacijaVeterinara
+ORDER BY rezervacijaID DESC
+LIMIT 1;
+
+dohvatiSveRezervacije:
+SELECT * FROM rezervacijaVeterinara;
+
+dohvatiRezervacijeKorisnika:
+SELECT * FROM rezervacijaVeterinara WHERE korisnikID = ?;
+
+dohvatiRezervacijeVeterinara:
+SELECT * FROM rezervacijaVeterinara WHERE veterinarID = ?;
+
+obrisiRezervaciju:
+DELETE FROM rezervacijaVeterinara WHERE rezervacijaID = ?;

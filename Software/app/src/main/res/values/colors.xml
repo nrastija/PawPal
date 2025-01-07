@@ -15,5 +15,7 @@
     <color name="basketColor">#FFFFFF</color>
     <color name="warningColor">#FF0000</color>
     <color name="bijelazakoristiti">#ffffff</color>
+    <color name="crnoubijelo">#000</color>
+    <color name="bijeloucrno">#fff</color>
 
 </resources>
