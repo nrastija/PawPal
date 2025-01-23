@@ -152,6 +152,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
+        val queriesZahtjevUdomljavanje = database.zahtjevUdomljavanjeQueries
+
+        queriesZahtjevUdomljavanje.transaction {
+            queriesZahtjevUdomljavanje.deleteAllZahtjevUdomljavanje()
+        }
+
         queriesPasUdomljavanje.transaction {
             queriesPasUdomljavanje.deleteAllPasUdomljavanje() }
 

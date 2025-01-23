@@ -10,7 +10,7 @@ CREATE TABLE zahtjevudomljavanje (
     clanObitelji TEXT NOT NULL,
     iskustvoSPsima TEXT NOT NULL,
     dodatneInformacije TEXT,
-    FOREIGN KEY (paszahtjevID) REFERENCES pasudomljavanje(pasudomljavanjeID),
+    FOREIGN KEY (paszahtjevID) REFERENCES pasudomljavanje(pasudomljavanjeID) ON DELETE CASCADE,
     FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
 );
 
@@ -31,8 +31,10 @@ INSERT INTO zahtjevudomljavanje (
 dohvatiSveZahtjeve:
 SELECT * FROM zahtjevudomljavanje;
 
-
 dohvatiZadnjiZahtjev:
 SELECT * FROM zahtjevudomljavanje
 ORDER BY zahtjevID DESC
 LIMIT 1;
+
+deleteAllZahtjevUdomljavanje:
+DELETE FROM zahtjevudomljavanje;

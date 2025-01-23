@@ -6,7 +6,7 @@ CREATE TABLE pas (
     spol TEXT NOT NULL,
     kilaza TEXT NOT NULL,
     korisnikID INTEGER NOT NULL UNIQUE, -- Veza sa korisnikom, korisnik može imati samo jednog psa
-    FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID)
+    FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
 );
 
 insertPas:

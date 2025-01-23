@@ -5,7 +5,7 @@ CREATE TABLE proizvod (
     opis TEXT,
     imageUrl TEXT NOT NULL,
     kategorijaId INTEGER NOT NULL,
-    FOREIGN KEY (kategorijaId) REFERENCES kategorija(kategorijaID)
+    FOREIGN KEY (kategorijaId) REFERENCES kategorija(kategorijaID) ON DELETE CASCADE
   );
 
 insertProizvod:
