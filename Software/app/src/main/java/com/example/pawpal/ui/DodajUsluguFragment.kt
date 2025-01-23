@@ -15,12 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SlikeZaUslugeAdapter
 import com.example.pawpal.main.DatabaseConsumer
-import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
-class DodajUsluguFragment : Fragment() {
-    private lateinit var database: AppDatabase
+class DodajUsluguFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private lateinit var nazivInput: EditText
     private lateinit var cijenaInput: EditText
     private lateinit var opisInput: EditText
@@ -29,14 +28,8 @@ class DodajUsluguFragment : Fragment() {
     private lateinit var btnSpremi: Button
     private var odabranaSlika: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.f03_dodaj_uslugu, container, false)
-        database = (requireActivity().application as PawPalApplication).database
-        return view
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.f03_dodaj_uslugu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

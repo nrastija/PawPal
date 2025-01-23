@@ -13,24 +13,20 @@ import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.session.KorisnikManager
 import com.pawpal.appdatabase.AppDatabase
-import com.example.pawpal.main.PawPalApplication
 import com.example.pawpal.data.datasource.KorisnikDataSource
 import com.example.pawpal.data.impl.KorisnikDataSourceImpl
 import com.example.pawpal.main.DatabaseConsumer
 import kotlinx.coroutines.launch
 
-class UpravljanjeProfilomFragment : Fragment() {
-
+class UpravljanjeProfilomFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private lateinit var korisnikDataSource: KorisnikDataSource
-    private lateinit var database: AppDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.f01_upravljanje_profilom, container, false)
-
-        database = (requireActivity().application as PawPalApplication).database
         korisnikDataSource = KorisnikDataSourceImpl(database)
 
         val btnOdjava: Button = view.findViewById(R.id.btnOdjava)
@@ -46,6 +42,7 @@ class UpravljanjeProfilomFragment : Fragment() {
 
         return view
     }
+
 
     private fun navigateToFragment(fragment: Fragment) {
         if (fragment is DatabaseConsumer) {

@@ -9,17 +9,13 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.adapters.SlikeZaUslugeAdapter
 import com.example.pawpal.main.DatabaseConsumer
-import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
-class AzurirajUsluguFragment : Fragment() {
-    private lateinit var database: AppDatabase
+class AzurirajUsluguFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private var uslugaID: Long = 0
 
     companion object {
@@ -35,9 +31,7 @@ class AzurirajUsluguFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.f03_azuriraj_uslugu, container, false)
-        database = (requireActivity().application as PawPalApplication).database
-        return view
+        return inflater.inflate(R.layout.f03_azuriraj_uslugu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,7 +42,6 @@ class AzurirajUsluguFragment : Fragment() {
         val cijenaInput = view.findViewById<EditText>(R.id.cijenaUslugeInput)
         val trajanjeInput = view.findViewById<EditText>(R.id.trajanjeUslugeInput)
 
-        // Load current service data
         lifecycleScope.launch {
             val usluga = database.uslugaQueries.dohvatiUsluguPoID(uslugaID).executeAsOne()
             nazivInput.setText(usluga.naziv)
@@ -57,12 +50,10 @@ class AzurirajUsluguFragment : Fragment() {
             trajanjeInput.setText(usluga.trajanje.toString())
         }
 
-        // Back button
         view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        // Save button
         view.findViewById<Button>(R.id.btnSpremiUslugu).setOnClickListener {
             val naziv = nazivInput.text.toString()
             val opis = opisInput.text.toString()

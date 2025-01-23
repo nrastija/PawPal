@@ -17,13 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.session.KorisnikManager
+import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class SPADetaljiFragment : Fragment() {
-    private lateinit var database: AppDatabase
+class SPADetaljiFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private var uslugaID: Long = 0
     private lateinit var datumInput: EditText
     private lateinit var vrijemeInput: EditText
@@ -38,13 +39,12 @@ class SPADetaljiFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        database = (requireActivity().application as PawPalApplication).database
         uslugaID = arguments?.getLong(ARG_USLUGA_ID) ?: 0
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.f03_usluga_detalji, container, false)
-        database = (requireActivity().application as PawPalApplication).database
-        return view
+        return inflater.inflate(R.layout.f03_usluga_detalji, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

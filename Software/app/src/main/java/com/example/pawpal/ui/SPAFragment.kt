@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SPAAdapter
 import com.example.pawpal.data.session.KorisnikManager
+import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 import com.example.pawpal.main.MainActivity
-import com.example.pawpal.main.PawPalApplication
 
 
-class SPAFragment : Fragment() {
-    private lateinit var database: AppDatabase
+class SPAFragment : Fragment(), DatabaseConsumer {
+    override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SPAAdapter
     private val uslugaList = mutableListOf<appdatabase.Usluga>()
@@ -30,9 +30,7 @@ class SPAFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.f03_sve_usluge, container, false)
-        database = (requireActivity().application as PawPalApplication).database
-        return view
+        return inflater.inflate(R.layout.f03_sve_usluge, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
