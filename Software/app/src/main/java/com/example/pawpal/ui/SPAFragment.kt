@@ -30,7 +30,7 @@ class SPAFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.f03_termini, container, false)
+        val view = inflater.inflate(R.layout.f03_sve_usluge, container, false)
         database = (requireActivity().application as PawPalApplication).database
         return view
     }

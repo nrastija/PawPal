@@ -46,7 +46,7 @@
             android:orientation="vertical"
             android:background="@drawable/rounded_background"
             android:padding="0dp"
-            android:layout_marginTop="-10dp">
+            android:layout_marginTop="-20dp">
 
             <TextView
                 android:id="@+id/UdomiPasUdomljavanje"
@@ -62,40 +62,48 @@
 
             <EditText
                 android:id="@+id/ImeUdomljavanje"
-                android:layout_width="280dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="Ime"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/navigationBar"
+                android:textColorHint="@color/navigationBar"
                 android:padding="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp" />
 
             <EditText
                 android:id="@+id/PrezimeUdomljavanje"
-                android:layout_width="280dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="Prezime"
                 android:inputType="textPersonName"
+                android:backgroundTint="@color/navigationBar"
+                android:textColorHint="@color/navigationBar"
                 android:padding="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp" />
 
             <EditText
                 android:id="@+id/AdresaUdomljavanje"
-                android:layout_width="280dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:backgroundTint="@color/navigationBar"
+                android:textColorHint="@color/navigationBar"
                 android:padding="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp" />
 
             <EditText
                 android:id="@+id/BrojTelefonaUdomljavanje"
-                android:layout_width="280dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:hint="Broj telefona"
                 android:inputType="phone"
+                android:backgroundTint="@color/navigationBar"
+                android:textColorHint="@color/navigationBar"
                 android:padding="12dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp" />
@@ -104,10 +112,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li posjedujete druge kućne ljubimce?"
-                android:textColor="@color/crnoubijelo"
-                android:textStyle="bold"
-                android:layout_marginLeft="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/navigationBar"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/RadioDrugiLjubimac"
@@ -133,10 +142,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li ste samac ili član obitelji?"
-                android:textColor="@color/crnoubijelo"
-                android:textStyle="bold"
                 android:layout_marginLeft="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/navigationBar"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <RadioGroup
                 android:id="@+id/RadioClanObitelji"
@@ -162,10 +172,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Da li imate iskustva sa psima?"
-                android:textColor="@color/crnoubijelo"
-                android:textStyle="bold"
                 android:layout_marginLeft="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/navigationBar"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <RadioGroup
                 android:id="@+id/IskustvoSPsima"
@@ -193,8 +204,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Zašto želite udomiti baš ovog psa?"
                 android:inputType="textMultiLine"
-                android:padding="12dp"
                 android:background="@drawable/rounded_background"
+                android:padding="12dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="24dp" />

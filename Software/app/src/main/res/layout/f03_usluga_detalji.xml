@@ -28,9 +28,11 @@
             android:gravity="center">
 
             <FrameLayout
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_background">
 
@@ -102,11 +104,23 @@
             </FrameLayout>
 
             <Button
+                android:id="@+id/btnAzurirajUslugu"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/secondaryColor"
+                android:padding="12dp"
+                android:text="Ažuriraj uslugu"
+                android:textColor="@color/crnoubijelo"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <Button
                 android:id="@+id/btnObrisiUslugu"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="16dp"
                 android:backgroundTint="@color/secondaryColor"
                 android:padding="12dp"
                 android:text="Obriši uslugu"
@@ -116,9 +130,11 @@
 
             <FrameLayout
                 android:id="@+id/RezervacijaFrame"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_background">
 
