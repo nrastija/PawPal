@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         database = (application as PawPalApplication).database
-        // Show main images
         setImagesVisibility(View.VISIBLE)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
@@ -69,8 +68,7 @@ class MainActivity : AppCompatActivity() {
         resetShopData()
         resetSkolaData()
         resetAdoptionData()
-        resetSPAData()
-
+        //resetSPAData()
         resetVeterinarianData()
         resetUslugaData()
     }
@@ -413,7 +411,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun resetSPAData(){
+    public fun resetSPAData(){
         val queriesSPA = database.uslugaQueries
         queriesSPA.transaction {
             queriesSPA.deleteAllUsluga() }
