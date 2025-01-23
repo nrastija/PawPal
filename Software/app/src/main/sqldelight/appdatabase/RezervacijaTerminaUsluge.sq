@@ -1,0 +1,29 @@
+CREATE TABLE rezervacijaTermina (
+    rezervacijaTerminID INTEGER PRIMARY KEY AUTOINCREMENT,
+    korisnikID INTEGER NOT NULL,
+    uslugaID INTEGER NOT NULL,
+    datum TEXT NOT NULL,
+    vrijeme TEXT NOT NULL,
+    napomene TEXT,
+    FOREIGN KEY (korisnikID) REFERENCES korisnik (korisnikID) ON DELETE CASCADE,
+    FOREIGN KEY (uslugaID) REFERENCES usluga (uslugaID) ON DELETE CASCADE
+);
+
+
+dodajRezervaciju:
+INSERT INTO rezervacijaTermina (korisnikID, uslugaID, datum, vrijeme, napomene)
+VALUES (?, ?, ?, ?, ?);
+
+dohvatiZadnjuRezervaciju:
+SELECT * FROM rezervacijaTermina
+ORDER BY rezervacijaTerminID DESC
+LIMIT 1;
+
+dohvatiSveRezervacije:
+SELECT * FROM rezervacijaTermina;
+
+dohvatiRezervacijeKorisnika:
+SELECT * FROM rezervacijaTermina WHERE korisnikID = ?;
+
+obrisiRezervaciju:
+DELETE FROM rezervacijaTermina WHERE rezervacijaTerminID = ?;
