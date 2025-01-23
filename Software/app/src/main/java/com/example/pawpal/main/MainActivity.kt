@@ -19,6 +19,7 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.SPAFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         resetShopData()
         resetSkolaData()
         resetAdoptionData()
+        resetSPAData()
 
         resetVeterinarianData()
         resetUslugaData()
@@ -88,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                 }
                 R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
+                R.id.nav_spa -> navigateToFragment(SPAFragment())
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
@@ -407,6 +410,48 @@ class MainActivity : AppCompatActivity() {
             skolaVoditeljQueries.insertSkolaVoditelj(1, 2)
             skolaVoditeljQueries.insertSkolaVoditelj(2, 3)
             skolaVoditeljQueries.insertSkolaVoditelj(3, 4)
+        }
+    }
+
+    private fun resetSPAData(){
+        val queriesSPA = database.uslugaQueries
+        queriesSPA.transaction {
+            queriesSPA.deleteAllUsluga() }
+
+        queriesSPA.transaction {
+            queriesSPA.insertUsluga(
+                "Općenito uljepšavanje",
+                50.00,
+                "Kompleksan tretman koji uključuje kupanje, šišanje, četkanje, čišćenje ušiju i rezanje noktiju. Savršeno rješenje za sveobuhvatnu njegu vašeg psa u jednom dolasku.",
+                90,
+                "spa1")
+        }
+
+        queriesSPA.transaction {
+            queriesSPA.insertUsluga(
+                "Šišanje",
+                35.00,
+                "U kombiniranom tretmanu, vaš pas dobiva profesionalno šišanje prilagođeno njegovoj pasmini, uz sigurno i nježno rezanje noktiju. Brinemo o udobnosti i sigurnosti vašeg ljubimca koristeći visokokvalitetne alate i pristup prilagođen svakom psu.",
+                75,
+                "spa2")
+        }
+
+        queriesSPA.transaction {
+            queriesSPA.insertUsluga(
+                "Kupanje i feniranje",
+                25.00,
+                "Vaš pas će uživati u profesionalnom kupanju s visokokvalitetnim šamponima prilagođenima njegovom tipu dlake i koži. Nakon toga slijedi nježno sušenje fenom i uređivanje dlake kako bi izgledao čisto, svježe i dotjerano.",
+                45,
+                "spa4")
+        }
+
+        queriesSPA.transaction {
+            queriesSPA.insertUsluga(
+                "Četkanje",
+                15.00,
+                "Temeljito četkanje za uklanjanje mrtve dlake, zapetljaja i poddlake. Ova usluga osigurava zdrav i sjajan izgled dlake te pomaže u sprječavanju nastanka čvorova.",
+                30,
+                "spa5")
         }
     }
 
