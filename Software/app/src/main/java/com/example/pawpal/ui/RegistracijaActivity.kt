@@ -46,6 +46,7 @@ class RegistracijaActivity : AppCompatActivity() {
         val korime = findViewById<EditText>(R.id.editKorime).text.toString()
         val lozinka = findViewById<EditText>(R.id.editLozinka).text.toString()
         val email = findViewById<EditText>(R.id.editEmail).text.toString()
+        val tip_korisnika: Long = 1
 
         if (korime.isEmpty() || lozinka.isEmpty() || ime.isEmpty() ||
             prezime.isEmpty() || email.isEmpty()) {
@@ -55,7 +56,7 @@ class RegistracijaActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                korisnikDataSource.dodajKorisnik(korime, ime, prezime, email, lozinka)
+                korisnikDataSource.dodajKorisnik(korime, ime, prezime, email, lozinka,tip_korisnika)
                 Toast.makeText(this@RegistracijaActivity, "Uspješna registracija!", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this@RegistracijaActivity, PrijavaActivity::class.java))
                 finish()

@@ -4,13 +4,14 @@ CREATE TABLE korisnik (
     ime TEXT NOT NULL,
     prezime TEXT NOT NULL,
     lozinka TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE
+    email TEXT NOT NULL UNIQUE,
+    tip_korisnika INTEGER NOT NULL
 );
 
 dodajKorisnik:
 INSERT OR REPLACE
-INTO korisnik(korime, ime, prezime, lozinka, email)
-VALUES (?, ?, ?,?,?);
+INTO korisnik(korime, ime, prezime, lozinka, email, tip_korisnika)
+VALUES (?, ?, ?,?,?,?);
 
 dajSveKorisnike:
 SELECT *
@@ -48,3 +49,7 @@ azurirajLozinku:
 UPDATE korisnik
 SET lozinka = :novaLozinka
 WHERE korisnikID = :korisnikID;
+
+obrisiAdmina:
+DELETE FROM korisnik
+WHERE tip_korisnika=2;

@@ -14,9 +14,12 @@ interface KorisnikDataSource {
     suspend fun obrisiKorisnikaPoID(korisnikID:Long)
 
     suspend fun dodajKorisnik(korime: String, ime: String,
-                              prezime: String, email: String, lozinka: String)
+                              prezime: String, email: String, lozinka: String,
+                              tip_korisnika: Long)
 
     suspend fun azurirajKorisnika(korisnikID: Long, korime: String, ime: String, prezime: String, email: String)
 
     suspend fun azurirajLozinku(korisnikID: Long, novaLozinka: String)
+
+    suspend fun obrisiAdmina()
 }

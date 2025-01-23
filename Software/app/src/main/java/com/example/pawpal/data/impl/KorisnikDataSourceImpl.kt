@@ -35,15 +35,22 @@ class KorisnikDataSourceImpl(db: AppDatabase) : KorisnikDataSource {
         }
     }
 
+    override suspend fun obrisiAdmina() {
+        withContext(Dispatchers.IO) {
+            queries.obrisiAdmina()
+        }
+    }
+
     override suspend fun dodajKorisnik(
         korime: String,
         ime: String,
         prezime: String,
         email: String,
-        lozinka: String
+        lozinka: String,
+        tip_korisnika: Long
     ) {
         withContext(Dispatchers.IO){
-            queries.dodajKorisnik(korime, ime, prezime, lozinka, email)
+            queries.dodajKorisnik(korime, ime, prezime, lozinka, email, tip_korisnika)
         }
     }
 
