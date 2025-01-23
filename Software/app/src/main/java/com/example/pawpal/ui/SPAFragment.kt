@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SPAAdapter
+import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
+import com.example.pawpal.main.MainActivity
+
 
 class SPAFragment : Fragment(), DatabaseConsumer {
     override lateinit var database: AppDatabase
@@ -29,39 +33,43 @@ class SPAFragment : Fragment(), DatabaseConsumer {
         return inflater.inflate(R.layout.f03_termini, container, false)
     }
 
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.recyclerSPA)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = SPAAdapter(uslugaList) { usluga ->
-            navigateToUslugaDetaljiFragment(usluga)
-        }
-        recyclerView.adapter = adapter
-        dajUsluge()
-    }*/
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.recyclerSPA)
 
-        // Ispravan LinearLayoutManager s kontekstom fragmenta
+        //novo
+        val usluge = database.uslugaQueries.dohvatiSveUsluge().executeAsList()
+        if (usluge.isEmpty()) {
+            (activity as MainActivity).resetSPAData()
+        }
+
+        recyclerView = view.findViewById(R.id.recyclerSPA)
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = layoutManager
 
-        // Postavljanje paddinga za centriranje kartica
-        recyclerView.setPadding(0, 0, 20, 0)
-        recyclerView.clipToPadding = false
-
-        // Postavljanje adaptera
         adapter = SPAAdapter(uslugaList) { usluga ->
             navigateToUslugaDetaljiFragment(usluga)
         }
         recyclerView.adapter = adapter
 
-        // Dohvaćanje usluga
         dajUsluge()
-    }
 
+        lifecycleScope.launch {
+            val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+            korisnikID?.let { id ->
+                val korisnik = database.korisnikQueries.dajKorisnikaPoID(id).executeAsOneOrNull()
+                if (korisnik?.tip_korisnika == 2L) {
+                    view.findViewById<Button>(R.id.btnDodajUslugu)?.apply {
+                        visibility = View.VISIBLE
+                        setOnClickListener {
+                            navigateToDodajUsluguFragment()
+                        }
+                    }
+                    view.findViewById<TextView>(R.id.spacentar)?.visibility = View.GONE
+                    view.findViewById<TextView>(R.id.zakazitetermin)?.visibility = View.GONE
+                }
+            }
+        }
+    }
 
     private fun dajUsluge() {
         lifecycleScope.launch {
@@ -77,7 +85,7 @@ class SPAFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun navigateToUslugaDetaljiFragment(usluga: appdatabase.Usluga) {
-        val detaljFragment =  SPADetaljiFragment.newInstance(usluga.uslugaID).apply {
+        val detaljFragment = SPADetaljiFragment.newInstance(usluga.uslugaID).apply {
             database = this@SPAFragment.database
         }
         parentFragmentManager.beginTransaction()
@@ -87,4 +95,14 @@ class SPAFragment : Fragment(), DatabaseConsumer {
             .commit()
     }
 
+    private fun navigateToDodajUsluguFragment() {
+        val dodajUsluguFragment = DodajUsluguFragment().apply {
+            database = this@SPAFragment.database
+        }
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            .replace(R.id.fragmentContainer, dodajUsluguFragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }
