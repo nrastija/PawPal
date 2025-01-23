@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SPAAdapter
 import com.example.pawpal.data.session.KorisnikManager
-import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 import com.example.pawpal.main.MainActivity
+import com.example.pawpal.main.PawPalApplication
 
 
-class SPAFragment : Fragment(), DatabaseConsumer {
-    override lateinit var database: AppDatabase
+class SPAFragment : Fragment() {
+    private lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SPAAdapter
     private val uslugaList = mutableListOf<appdatabase.Usluga>()
@@ -30,7 +30,9 @@ class SPAFragment : Fragment(), DatabaseConsumer {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.f03_termini, container, false)
+        val view = inflater.inflate(R.layout.f03_termini, container, false)
+        database = (requireActivity().application as PawPalApplication).database
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,9 +87,7 @@ class SPAFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun navigateToUslugaDetaljiFragment(usluga: appdatabase.Usluga) {
-        val detaljFragment = SPADetaljiFragment.newInstance(usluga.uslugaID).apply {
-            database = this@SPAFragment.database
-        }
+        val detaljFragment = SPADetaljiFragment.newInstance(usluga.uslugaID)
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, detaljFragment)
@@ -96,9 +96,7 @@ class SPAFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun navigateToDodajUsluguFragment() {
-        val dodajUsluguFragment = DodajUsluguFragment().apply {
-            database = this@SPAFragment.database
-        }
+        val dodajUsluguFragment = DodajUsluguFragment()
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, dodajUsluguFragment)
