@@ -18,11 +18,13 @@ class ZahtjevUdomljavanjeDataSourceImpl(db: AppDatabase) : ZahtjevUdomljavanjeDa
         clanObitelji: String,
         iskustvoSPsima: String,
         dodatneInformacije: String,
-        paszahtjevID: Long
+        paszahtjevID: Long,
+        korisnikID: Long
     ) {
         withContext(Dispatchers.IO) {
             queries.insertZahtjev(
                 paszahtjevID,
+                korisnikID,
                 ime,
                 prezime,
                 email,

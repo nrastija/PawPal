@@ -131,6 +131,14 @@ class MainActivity : AppCompatActivity() {
             kategorijaQueries.deleteAllKategorijas()
         }
 
+
+        kategorijaQueries.transaction {
+            kategorijaQueries.insertKategorija(1, "Zdravlje")
+            kategorijaQueries.insertKategorija(2, "Hrana")
+            kategorijaQueries.insertKategorija(3, "Higijena")
+            kategorijaQueries.insertKategorija(4, "Ostalo")
+        }
+
         proizvodQueries.transaction {
             proizvodQueries.insertProizvod("Paramol 250ML", 14.99, "Lijek za pse protiv virusa", "proizvod_1", 1)
             proizvodQueries.insertProizvod("Reid Fills 400G", 11.98, "Hrana za pse u granulama", "proizvod_2", 2)
@@ -139,13 +147,6 @@ class MainActivity : AppCompatActivity() {
             proizvodQueries.insertProizvod("Healthy Paws 2KG", 32.00, "Healthy paws zdrava hrana sa povrćem za pse", "proizvod_5", 2)
             proizvodQueries.insertProizvod("Healthy Paws Multivitamal", 32.00, "Multivitamin smjesa za zdravlje pasa, 90 kapsula", "proizvod_6", 1)
             proizvodQueries.insertProizvod("CozyPaw SleepPad", 74.50, "Udoban ergonomski krevet za pse, namijenjen za pse male do srednje veličine", "proizvod_7", 4)
-        }
-
-        kategorijaQueries.transaction {
-            kategorijaQueries.insertKategorija(1, "Zdravlje")
-            kategorijaQueries.insertKategorija(2, "Hrana")
-            kategorijaQueries.insertKategorija(3, "Higijena")
-            kategorijaQueries.insertKategorija(4, "Ostalo")
         }
     }
 
@@ -376,24 +377,17 @@ class MainActivity : AppCompatActivity() {
         val voditeljQueries = database.voditeljQueries
         val skolaVoditeljQueries = database.skolaVoditeljQueries
 
+        skolaVoditeljQueries.transaction {
+            skolaVoditeljQueries.deleteAllSkolaVoditelj()
+        }
 
         skolaQueries.transaction {
             skolaQueries.deleteAllSkole()
         }
 
-        skolaVoditeljQueries.transaction {
-            skolaVoditeljQueries.deleteAllSkolaVoditelj()
-        }
         voditeljQueries.transaction {
             voditeljQueries.deleteAllVoditelji()
         }
-
-        skolaQueries.transaction {
-            skolaQueries.insertSkola(1, "Osnovni trening", "Učenje osnovnih naredbi i poslušnosti za pse.", 150.00, "Ponedjeljak 10:00 - 12:00")
-            skolaQueries.insertSkola(2, "Napredni trening", "Napredne tehnike poslušnosti i socijalizacije.", 250.00, "Srijeda 14:00 - 16:00")
-            skolaQueries.insertSkola(3, "Specijalizacija", "Specijalni treninzi za radne ili sportske pse.", 350.00, "Petak 09:00 - 11:00")
-        }
-
 
         voditeljQueries.transaction {
             voditeljQueries.insertVoditelj(1, "Ivan", "Horvat", "ivan.horvatHR92@gmail.com", "0912345678")
@@ -402,6 +396,11 @@ class MainActivity : AppCompatActivity() {
             voditeljQueries.insertVoditelj(4, "Elza", "Rakitić", "elrakitic998877@gmail.com", "0919876543")
         }
 
+        skolaQueries.transaction {
+            skolaQueries.insertSkola(1, "Osnovni trening", "Učenje osnovnih naredbi i poslušnosti za pse.", 150.00, "Ponedjeljak 10:00 - 12:00")
+            skolaQueries.insertSkola(2, "Napredni trening", "Napredne tehnike poslušnosti i socijalizacije.", 250.00, "Srijeda 14:00 - 16:00")
+            skolaQueries.insertSkola(3, "Specijalizacija", "Specijalni treninzi za radne ili sportske pse.", 350.00, "Petak 09:00 - 11:00")
+        }
 
         skolaVoditeljQueries.transaction {
             skolaVoditeljQueries.insertSkolaVoditelj(1, 1)

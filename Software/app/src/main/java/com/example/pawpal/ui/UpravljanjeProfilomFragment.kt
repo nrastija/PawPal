@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.session.KorisnikManager
@@ -126,6 +125,7 @@ class UpravljanjeProfilomFragment : Fragment() {
                 }
             }
         }
-    }
+        }
 
 }
+

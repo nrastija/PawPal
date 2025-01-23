@@ -28,6 +28,9 @@ class PawPalApplication : Application() {
         val driver = AndroidSqliteDriver(AppDatabase.Schema, this, "appdatabase.db")
         database = AppDatabase(driver)
 
+        // Enable foreign key support
+        driver.execute(null, "PRAGMA foreign_keys = ON", 0)
+
         resetUserData()
 
         val dbPath = this.getDatabasePath("appdatabase.db").absolutePath

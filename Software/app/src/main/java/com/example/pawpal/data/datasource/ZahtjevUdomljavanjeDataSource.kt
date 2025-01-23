@@ -13,7 +13,8 @@ interface ZahtjevUdomljavanjeDataSource {
         clanObitelji : String,
         iskustvoSPsima: String,
         dodatneInformacije: String,
-        paszahtjevID: Long)
+        paszahtjevID: Long,
+        korisnikID: Long)
 
     suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje?
 }
