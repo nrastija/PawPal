@@ -27,7 +27,6 @@
         android:layout_marginTop="70dp"
         android:gravity="center">
 
-            <!-- Prvi okvir - Opis usluge -->
             <FrameLayout
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
@@ -101,7 +100,6 @@
                 </LinearLayout>
             </FrameLayout>
 
-            <!-- Drugi okvir - Rezervacija -->
             <FrameLayout
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
@@ -126,7 +124,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/datumInput"
+                        android:id="@+id/datumRezervacijaUsluga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -136,7 +134,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/vrijemeInput"
+                        android:id="@+id/vrijemeRezervacijaUsluga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -146,7 +144,7 @@
                         android:textSize="20sp" />
 
                     <EditText
-                        android:id="@+id/napomeneInput"
+                        android:id="@+id/napomeneRezervacijaUsluga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -157,7 +155,7 @@
                         android:textSize="20sp" />
 
                     <Button
-                        android:id="@+id/UsvojiMe"
+                        android:id="@+id/btnRezervirajTermin"
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
