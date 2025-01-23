@@ -42,4 +42,10 @@ class UslugaDataSourceImpl(db: AppDatabase) : UslugaDataSource {
             )
         }
     }
+
+    override suspend fun obrisiUsluguPoID(uslugaID: Long) {
+        withContext(Dispatchers.IO){
+            queries.obrisiUsluguPoID(uslugaID)
+        }
+    }
 }

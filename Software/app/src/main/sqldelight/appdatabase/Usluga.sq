@@ -19,10 +19,15 @@ INSERT INTO usluga (
 dohvatiSveUsluge:
 SELECT * FROM usluga;
 
-  dohvatiUsluguPoID:
+dohvatiUsluguPoID:
   SELECT *
   FROM usluga
   WHERE uslugaID = ?;
 
- deleteAllUsluga:
+obrisiUsluguPoID:
+DELETE FROM usluga
+WHERE uslugaID = ?;
+
+deleteAllUsluga:
   DELETE FROM usluga;
+

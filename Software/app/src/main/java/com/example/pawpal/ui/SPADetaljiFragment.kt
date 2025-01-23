@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
@@ -47,6 +48,20 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
         super.onViewCreated(view, savedInstanceState)
         setupViews(view)
         ucitajUslugaDetalje(view)
+
+        // Add this to check user type and handle visibility
+        lifecycleScope.launch {
+            val trenutniKorisnikID = KorisnikManager.dajUlogiranogKorisnika()!!
+            val trenutniKorisnik = database.korisnikQueries.dajKorisnikaPoID(trenutniKorisnikID).executeAsOne()
+
+            if (trenutniKorisnik.tip_korisnika == 2L) {
+                view.findViewById<FrameLayout>(R.id.RezervacijaFrame).visibility = View.GONE
+                view.findViewById<Button>(R.id.btnObrisiUslugu).apply {
+                    visibility = View.VISIBLE
+                    setOnClickListener { obrisiUslugu() }
+                }
+            }
+        }
     }
 
     private fun setupViews(view: View) {
@@ -97,8 +112,8 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
     }
 
     private fun spremiRezervaciju() {
-        val datum = datumInput.text.toString()
-        val vrijeme = vrijemeInput.text.toString()
+        val datum: String = datumInput.text.toString()
+        val vrijeme: String = vrijemeInput.text.toString()
 
         if (datum.isEmpty() || vrijeme.isEmpty()) {
             Toast.makeText(context, "Molimo unesite datum i vrijeme", Toast.LENGTH_SHORT).show()
@@ -107,7 +122,7 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
 
         lifecycleScope.launch {
             try {
-                val trenutniKorisnikID = KorisnikManager.dajUlogiranogKorisnika()!!
+                val trenutniKorisnikID: Long = KorisnikManager.dajUlogiranogKorisnika()!!
                 val trenutniKorisnik = database.korisnikQueries.dajKorisnikaPoID(trenutniKorisnikID).executeAsOne()
 
                 database.rezervacijaTerminaUslugeQueries.dodajRezervaciju(
@@ -121,6 +136,18 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
                 parentFragmentManager.popBackStack()
             } catch (e: Exception) {
                 Toast.makeText(context, "Greška prilikom spremanja: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun obrisiUslugu() {
+        lifecycleScope.launch {
+            try {
+                database.uslugaQueries.obrisiUsluguPoID(uslugaID)
+                Toast.makeText(context, "Usluga uspješno obrisana!", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.popBackStack()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Greška prilikom brisanja: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
