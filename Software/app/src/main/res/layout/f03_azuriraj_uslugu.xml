@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pozadina">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/btnNatrag"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow_back_icon"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uredi uslugu"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:textColor="@color/crnoubijelo"/>
+
+        <EditText
+            android:id="@+id/nazivUslugeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Naziv usluge"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background_border"
+            android:textColor="@color/crnoubijelo"/>
+
+        <EditText
+            android:id="@+id/opisUslugeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opis usluge"
+            android:padding="12dp"
+            android:minLines="3"
+            android:gravity="top"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background_border"
+            android:textColor="@color/crnoubijelo"/>
+
+        <EditText
+            android:id="@+id/cijenaUslugeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cijena (€)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_background_border"
+            android:textColor="@color/crnoubijelo"/>
+
+        <EditText
+            android:id="@+id/trajanjeUslugeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Trajanje (min)"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_background_border"
+            android:textColor="@color/crnoubijelo"/>
+
+        <Button
+            android:id="@+id/btnSpremiUslugu"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Spremi promjene"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:textColor="@color/crnoubijelo"/>
+
+    </LinearLayout>
+</ScrollView>

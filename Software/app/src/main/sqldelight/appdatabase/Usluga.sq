@@ -24,6 +24,14 @@ dohvatiUsluguPoID:
   FROM usluga
   WHERE uslugaID = ?;
 
+azurirajUslugu:
+UPDATE usluga
+SET naziv = :naziv,
+    cijena = :cijena,
+    opis = :opis,
+    trajanje = :trajanje
+WHERE uslugaID = :uslugaID;
+
 obrisiUsluguPoID:
 DELETE FROM usluga
 WHERE uslugaID = ?;

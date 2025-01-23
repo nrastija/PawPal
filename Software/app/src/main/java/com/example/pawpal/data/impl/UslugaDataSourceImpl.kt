@@ -2,7 +2,6 @@ package com.example.pawpal.data.impl
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import appdatabase.Pasudomljavanje
 import appdatabase.Usluga
 import com.example.pawpal.data.datasource.UslugaDataSource
 import com.pawpal.appdatabase.AppDatabase
@@ -39,6 +38,24 @@ class UslugaDataSourceImpl(db: AppDatabase) : UslugaDataSource {
                 opis,
                 trajanje,
                 imageUrl
+            )
+        }
+    }
+
+    override suspend fun azurirajUslugu(
+        uslugaID: Long,
+        naziv: String,
+        cijena: Double,
+        opis: String,
+        trajanje: Long
+    ) {
+        withContext(Dispatchers.IO) {
+            queries.azurirajUslugu(
+                uslugaID = uslugaID,
+                naziv = naziv,
+                cijena = cijena,
+                opis = opis,
+                trajanje = trajanje
             )
         }
     }
