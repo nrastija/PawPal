@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pozadina">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/btnNatrag"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/arrow_back_icon"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="70dp"
+        android:gravity="center">
+
+            <!-- Prvi okvir - Opis usluge -->
+            <FrameLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/UslugaNaziv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center"
+                        android:text="Šišanje"
+                        android:textColor="@color/crnoubijelo"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/OpisUsluge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Opis usluge"
+                        android:gravity="center"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/DetaljiUslugaCijena"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="Cijena"
+                        android:textColor="@color/crnoubijelo"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/UslugaDetaljiCijena"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="cijena €"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/Trajanje"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="Trajanje usluge"
+                        android:textColor="@color/crnoubijelo"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/TrajanjeUsluge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="trajanje"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Drugi okvir - Rezervacija -->
+            <FrameLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Rezervacija termina"
+                        android:textColor="@color/crnoubijelo"
+                        android:textSize="25sp"
+                        android:gravity="center"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/datumInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:focusable="false"
+                        android:hint="Datum"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/vrijemeInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:focusable="false"
+                        android:hint="Vrijeme"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/napomeneInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:hint="Napomene"
+                        android:inputType="textMultiLine"
+                        android:minLines="3"
+                        android:textColor="@color/proizvodInfo"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/UsvojiMe"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/secondaryColor"
+                        android:padding="12dp"
+                        android:text="Rezerviraj termin"
+                        android:textColor="@color/crnoubijelo"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+            </FrameLayout>
+    </LinearLayout>
+    </FrameLayout>
+</ScrollView>
