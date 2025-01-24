@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS promoponuda (
+    promoponudaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    naziv TEXT NOT NULL,
+    opis TEXT NOT NULL,
+    datumValjanosti TEXT NOT NULL,
+    uvjeti TEXT NOT NULL,
+    kodovi INTEGER DEFAULT 1000
+);
+
+insertPromoPonuda:
+INSERT OR REPLACE INTO
+  promoponuda(naziv, opis, datumValjanosti, uvjeti)
+VALUES
+(:naziv, :opis, :datumValjanosti, :uvjeti);
+
+dohvatiSvePonude:
+SELECT * FROM promoponuda;
+
+dohvatiPromoPonuduPoID:
+SELECT * FROM promoponuda WHERE promoponudaID = :promoponudaID;
+
+obrisiPromoPonuduPoID:
+DELETE FROM promoponuda WHERE promoponudaID = :promoponudaID;
+
+obrisiSvePromoponude:
+DELETE FROM promoponuda;
