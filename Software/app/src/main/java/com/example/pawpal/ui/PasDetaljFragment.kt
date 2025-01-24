@@ -65,7 +65,7 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
         val datumRodjenjaPsa: TextView = view.findViewById(R.id.DatumRodenjaDetaljiPas)
         val kilazaPsa: TextView = view.findViewById(R.id.KilazaDetaljiPas)
         val dodatneInfoPsa: TextView = view.findViewById(R.id.DodatneInfoDetaljiPas)
-        val gumbUdomi: Button = view.findViewById(R.id.UsvojiMe)
+        val gumbUdomi: Button = view.findViewById(R.id.btnUsvojiMe)
 
         lifecycleScope.launch {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()

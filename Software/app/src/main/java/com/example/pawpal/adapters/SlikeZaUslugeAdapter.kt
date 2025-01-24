@@ -25,6 +25,7 @@ class SlikeZaUslugeAdapter(
             }
         }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val imageView = ImageView(parent.context).apply {
             layoutParams = ViewGroup.MarginLayoutParams(
@@ -44,5 +45,6 @@ class SlikeZaUslugeAdapter(
         holder.imageView.setImageResource(slike[pozicija])
         holder.imageView.alpha = if (pozicija == odabranaPozicija) 1f else 0.6f
     }
+
     override fun getItemCount() = slike.size
 }

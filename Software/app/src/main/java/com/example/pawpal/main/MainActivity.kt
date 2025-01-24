@@ -19,6 +19,7 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         resetSkolaData()
         resetAdoptionData()
         //resetSPAData()
+        //resetPromoData()
         resetVeterinarianData()
         resetUslugaData()
     }
@@ -89,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
                 R.id.nav_spa -> navigateToFragment(SPAFragment())
+                R.id.nav_promo ->navigateToFragment(PromoPonudaFragment())
                 R.id.nav_shop -> navigateToFragment(ShopFragment())
                 R.id.nav_school -> navigateToFragment(SkolaFragment())
                 R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
@@ -118,6 +121,40 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    public fun resetPromoData(){
+        val promoQueries = database.promoPonudaQueries
+        promoQueries.transaction {
+            promoQueries.obrisiSvePromoponude()
+        }
+
+        promoQueries.transaction {
+            promoQueries.insertPromoPonuda(
+                "Senior njega",
+                "Poseban tretman za pse starije od 7 godina uz 25% popusta",
+                "27.01.2025.",
+                "Potrebno donijeti veterinarsku dokumentaciju"
+            )
+            promoQueries.insertPromoPonuda(
+                "Duo paket",
+                "Dovedite dva psa i ostvarite 30% popusta na tretman za oba ljubimca",
+                "19.05.2025.",
+                "Potrebna prethodna rezervacija termina"
+            )
+            promoQueries.insertPromoPonuda(
+                "Happy Hour",
+                "Svaki dan od 14-16h sve usluge uz 15% popusta",
+                "01.04.2025.",
+                "Vrijedi za sve tretmane osim usluge općeninog uljepšavanja"
+            )
+            promoQueries.insertPromoPonuda(
+                "Štene paket",
+                "Poseban tretman za štence do 6 mjeseci starosti uz gratis igračku",
+                "01.01.2025.",
+                "Potrebno donijeti veterinarsku dokumentaciju"
+            )
+        }
     }
 
     private fun resetShopData() {

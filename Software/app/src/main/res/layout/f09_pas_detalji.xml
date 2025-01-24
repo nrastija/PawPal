@@ -270,7 +270,7 @@
             tools:ignore="VisualLintLongText" />
 
         <Button
-            android:id="@+id/UsvojiMe"
+            android:id="@+id/btnUsvojiMe"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/secondaryColor"

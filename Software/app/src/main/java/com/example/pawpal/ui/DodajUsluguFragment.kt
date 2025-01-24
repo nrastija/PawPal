@@ -21,11 +21,11 @@ import kotlinx.coroutines.launch
 
 class DodajUsluguFragment : Fragment(), DatabaseConsumer {
     override lateinit var database: AppDatabase
-    private lateinit var nazivInput: EditText
-    private lateinit var cijenaInput: EditText
-    private lateinit var opisInput: EditText
-    private lateinit var trajanjeInput: EditText
-    private lateinit var imageUrlInput: EditText
+    private lateinit var nazivUnos: EditText
+    private lateinit var cijenUnos: EditText
+    private lateinit var opisUnos: EditText
+    private lateinit var trajanjeUnos: EditText
+    private lateinit var imageUrlUnos: EditText
     private lateinit var btnSpremi: Button
     private var odabranaSlika: Int = 0
 
@@ -49,11 +49,11 @@ class DodajUsluguFragment : Fragment(), DatabaseConsumer {
         view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
-        nazivInput = view.findViewById(R.id.noviNazivUsluge)
-        cijenaInput = view.findViewById(R.id.novaCijenaUsluge)
-        opisInput = view.findViewById(R.id.noviOpisUsluge)
-        trajanjeInput = view.findViewById(R.id.novoTrajanjeUsluge)
-        imageUrlInput = view.findViewById(R.id.novaSlikaUsluge)
+        nazivUnos = view.findViewById(R.id.noviNazivUsluge)
+        cijenUnos = view.findViewById(R.id.novaCijenaUsluge)
+        opisUnos = view.findViewById(R.id.noviOpisUsluge)
+        trajanjeUnos = view.findViewById(R.id.novoTrajanjeUsluge)
+        imageUrlUnos = view.findViewById(R.id.novaSlikaUsluge)
         btnSpremi = view.findViewById(R.id.btnSpremiUslugu)
 
         btnSpremi.setOnClickListener {
@@ -74,15 +74,15 @@ class DodajUsluguFragment : Fragment(), DatabaseConsumer {
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = SlikeZaUslugeAdapter(images) { resourceId ->
             odabranaSlika = resourceId
-            imageUrlInput.setText(resourceId.toString())
+            imageUrlUnos.setText(resourceId.toString())
         }
     }
 
     private fun spremiUslugu() {
-        val naziv = nazivInput.text.toString()
-        val cijena = cijenaInput.text.toString().toDoubleOrNull()
-        val opis = opisInput.text.toString()
-        val trajanje = trajanjeInput.text.toString().toLongOrNull()
+        val naziv = nazivUnos.text.toString()
+        val cijena = cijenUnos.text.toString().toDoubleOrNull()
+        val opis = opisUnos.text.toString()
+        val trajanje = trajanjeUnos.text.toString().toLongOrNull()
         val imageUrl = odabranaSlika.toString()
         if (naziv.isBlank() || cijena == null || opis.isBlank() || trajanje == null || odabranaSlika == 0) {
             Toast.makeText(context, "Molimo popunite sva polja ispravno", Toast.LENGTH_SHORT).show()

@@ -70,7 +70,7 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
         val radioDrugiLjubimci: RadioGroup = view.findViewById(R.id.RadioDrugiLjubimac)
         val radioClanObitelji: RadioGroup = view.findViewById(R.id.RadioClanObitelji)
         val radioIskustvoSPsima: RadioGroup = view.findViewById(R.id.IskustvoSPsima)
-        val submitButton: Button = view.findViewById(R.id.UdomiPsa)
+        val submitButton: Button = view.findViewById(R.id.btnUdomiPsa)
 
         lifecycleScope.launch {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()

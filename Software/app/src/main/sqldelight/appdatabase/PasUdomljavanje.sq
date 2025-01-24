@@ -14,24 +14,25 @@ CREATE TABLE IF NOT EXISTS pasudomljavanje (
     imageUrl3 TEXT NOT NULL
 );
 
+dohvatiSvePse:
+SELECT *
+FROM pasudomljavanje;
 
-  dohvatiSvePse:
-  SELECT *
-  FROM pasudomljavanje;
+dohvatiPsaPoImenu:
+SELECT *
+FROM pasudomljavanje
+WHERE ime = ?;
 
-  dohvatiPsaPoImenu:
-  SELECT *
-  FROM pasudomljavanje
-  WHERE ime = ?;
+dohvatiPsaPoID:
+SELECT *
+FROM pasudomljavanje
+WHERE pasudomljavanjeID = ?;
 
-  dohvatiPsaPoID:
-  SELECT *
-  FROM pasudomljavanje
-  WHERE pasudomljavanjeID = ?;
+dodajPasUdomljavanje:
+INSERT INTO pasudomljavanje
+    (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl, imageUrl2, imageUrl3)
+VALUES
+    (?, ?, ?, ?, ?,?,?,?,?,?,?,?);
 
-  dodajPasUdomljavanje:
-    INSERT INTO pasudomljavanje (ime, dob, spol,opis, datumRodenja, kilaza, pasmina, dodatneinfo, cijepiva, imageUrl, imageUrl2, imageUrl3)
-    VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?);
-
-  deleteAllPasUdomljavanje:
-  DELETE FROM pasudomljavanje;
+deleteAllPasUdomljavanje:
+DELETE FROM pasudomljavanje;
