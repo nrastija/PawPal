@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.SlikeZaUslugeAdapter
 import com.example.pawpal.main.DatabaseConsumer
+import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -27,6 +28,11 @@ class DodajUsluguFragment : Fragment(), DatabaseConsumer {
     private lateinit var imageUrlInput: EditText
     private lateinit var btnSpremi: Button
     private var odabranaSlika: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        database = (requireActivity().application as PawPalApplication).database
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.f03_dodaj_uslugu, container, false)

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.main.DatabaseConsumer
+import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -27,7 +28,10 @@ class AzurirajUsluguFragment : Fragment(), DatabaseConsumer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        uslugaID = arguments?.getLong(ARG_USLUGA_ID) ?: 0
+        database = (requireActivity().application as PawPalApplication).database
+        arguments?.let {
+            uslugaID = it.getLong(ARG_USLUGA_ID)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

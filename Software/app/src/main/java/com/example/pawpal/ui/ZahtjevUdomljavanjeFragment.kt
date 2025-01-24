@@ -115,7 +115,7 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                 else -> ""
             }
 
-            if (ime.isEmpty() || prezime.isEmpty() || email.isEmpty() || telefon.isEmpty()) {
+            if (ime.isEmpty() || prezime.isEmpty() || email.isEmpty() || telefon.isEmpty() || drugiLjubimci.isEmpty() || dodatneInfo.isEmpty() || iskustvoSPsima.isEmpty() || clanObitelji.isEmpty()) {
                 Toast.makeText(context, "Molimo popunite sva obavezna polja.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }

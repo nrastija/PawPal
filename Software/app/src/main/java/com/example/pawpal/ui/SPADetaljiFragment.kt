@@ -96,7 +96,7 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
             view.findViewById<TextView>(R.id.TrajanjeUsluge).text = "${usluga.trajanje} min"
         }
     }
-
+    /*
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
         DatePickerDialog(
@@ -146,7 +146,88 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
                 Toast.makeText(context, "Greška prilikom spremanja: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+    }*/
+
+    private fun showDatePicker() {
+        val kalendar = Calendar.getInstance().apply {
+            add(Calendar.DAY_OF_YEAR, 1)
+        }
+
+        val rezerviraniDatumi = database.rezervacijaTerminaUslugeQueries
+            .dohvatiSveRezervacije()
+            .executeAsList()
+            .map { it.datum }
+
+        DatePickerDialog(
+            requireContext(),
+            { _, year, month, dayOfMonth ->
+                val formattedDate = "$dayOfMonth/${month + 1}/$year"
+
+                when {
+                    rezerviraniDatumi.contains(formattedDate) -> {
+                        Toast.makeText(context, "Termin je zauzet", Toast.LENGTH_SHORT).show()
+                    }
+                    Calendar.getInstance().apply {
+                        set(year, month, dayOfMonth)
+                    }.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY -> {
+                        datumInput.setText("Nedjeljom ne radimo")
+                    }
+                    else -> datumInput.setText(formattedDate)
+                }
+            },
+            kalendar.get(Calendar.YEAR),
+            kalendar.get(Calendar.MONTH),
+            kalendar.get(Calendar.DAY_OF_MONTH)
+        ).apply {
+            datePicker.minDate = kalendar.timeInMillis
+            show()
+        }
     }
+
+    private fun showTimePicker() {
+        TimePickerDialog(
+            requireContext(),
+            { _, hour, minute ->
+                if (hour in 8..15) {
+                    vrijemeInput.setText(String.format("%02d:%02d", hour, minute))
+                } else {
+                    Toast.makeText(context, "Radno vrijeme: 08:00-16:00", Toast.LENGTH_SHORT).show()
+                }
+            },
+            Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
+            Calendar.getInstance().get(Calendar.MINUTE),
+            true
+        ).show()
+    }
+
+
+    private fun spremiRezervaciju() {
+        val datum = datumInput.text.toString()
+        val vrijeme = vrijemeInput.text.toString()
+        val napomene = napomeneInput.text.toString()
+
+        if (datum.isEmpty() || vrijeme.isEmpty()) {
+            Toast.makeText(context, "Molimo unesite datum i vrijeme", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        lifecycleScope.launch {
+            try {
+                database.rezervacijaTerminaUslugeQueries.dodajRezervaciju(
+                    korisnikID = KorisnikManager.dajUlogiranogKorisnika()!!,
+                    uslugaID = uslugaID,
+                    datum = datum,
+                    vrijeme = vrijeme,
+                    napomene = napomene
+                )
+                Toast.makeText(context, "Rezervacija uspješno spremljena!", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.popBackStack()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Greška: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
 
     private fun obrisiUslugu() {
         lifecycleScope.launch {
