@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,6 +59,7 @@ class PromoPonudaFragment : Fragment(), DatabaseConsumer {
             val trenutniKorisnik = database.korisnikQueries.dajKorisnikaPoID(trenutniKorisnikID).executeAsOne()
 
             if (trenutniKorisnik.tip_korisnika == 2L) {
+                view.findViewById<TextView>(R.id.NapomenaZaKod).visibility = View.GONE
                 recyclerView.addOnChildAttachStateChangeListener(object : RecyclerView.OnChildAttachStateChangeListener {
                     override fun onChildViewAttachedToWindow(view: View) {
                         view.findViewById<Button>(R.id.btnGenerirajKod)?.visibility = View.GONE
