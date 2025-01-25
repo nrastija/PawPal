@@ -1,5 +1,6 @@
 package com.example.pawpal.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -19,6 +20,7 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
 import com.example.pawpal.ui.ShopFragment
@@ -75,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         resetUslugaData()
     }
 
-    private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
+    /*private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
         setSupportActionBar(toolbar)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
@@ -121,6 +123,77 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }*/
+
+    private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
+        setSupportActionBar(toolbar)
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        lifecycleScope.launch {
+            val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
+            if (korisnikID != null) {
+                val logiraniKorisnik = database.korisnikQueries.dajKorisnikaPoID(korisnikID).executeAsOne()
+
+                navView.menu.clear()
+                if (logiraniKorisnik.tip_korisnika == 2L) {
+                    navView.inflateMenu(R.menu.hamburger_menu_navigacija_admin)
+                } else {
+                    navView.inflateMenu(R.menu.hamburger_menu_navigacija)
+                }
+
+                navView.setNavigationItemSelectedListener { menuItem ->
+                    when (menuItem.itemId) {
+                        R.id.nav_home -> {
+                            supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                            setImagesVisibility(View.VISIBLE)
+                        }
+                        R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
+                        R.id.nav_spa -> navigateToFragment(SPAFragment())
+                        R.id.nav_promo -> navigateToFragment(PromoPonudaFragment())
+                        R.id.nav_shop -> navigateToFragment(ShopFragment())
+                        R.id.nav_school -> navigateToFragment(SkolaFragment())
+                        R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                        R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
+                        R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
+                        R.id.nav_wishlist -> {
+                            val currentKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
+                            if (currentKorisnikID == null) {
+                                runOnUiThread {
+                                    Toast.makeText(this@MainActivity, "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                lifecycleScope.launch {
+                                    val wishlistDataSource = WishlistDataSourceImpl(database)
+                                    val status = wishlistDataSource.getWishlistStatus(currentKorisnikID)
+                                    val fragment = if (status == 1L) PregledWishlisteFragment() else WishlistFragment()
+                                    if (fragment is DatabaseConsumer) {
+                                        fragment.database = database
+                                    }
+                                    navigateToFragment(fragment)
+                                }
+                            }
+                        }
+                        R.id.nav_odjava -> {
+                            KorisnikManager.odjava()
+                            val intent = Intent(this@MainActivity, PrijavaActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            finish()
+                            true
+                        }
+                        else -> {
+                            runOnUiThread {
+                                Toast.makeText(this@MainActivity, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                    drawerLayout.closeDrawers()
+                    true
+                }
+            }
+        }
     }
 
     public fun resetPromoData(){
