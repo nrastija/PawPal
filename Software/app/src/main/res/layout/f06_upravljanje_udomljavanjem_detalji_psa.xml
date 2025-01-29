@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/bijelazakoristiti"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/bijeloucrno"
+        android:padding="0dp"
+        android:layout_margin="-10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="true"
+            android:clipToPadding="true">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:scrollbars="none"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi"
+                            android:onClick="odaberiSliku"/>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_margin="8dp"
+                        android:clipToOutline="true"
+                        android:background="@drawable/rounded_background2">
+
+                        <ImageView
+                            android:id="@+id/PasDetaljiSlika3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:clipToOutline="true"
+                            android:src="@drawable/zumi" />
+                    </FrameLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ImageButton
+                android:id="@+id/btnNatrag"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/arrow_back_icon"
+                android:scaleType="centerInside"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/ImeDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unesite ime psa"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/crnoubijelo"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/StarostDetaljiPas"
+                android:layout_width="110sp"
+                android:layout_height="70sp"
+                android:hint="Starost"
+                android:textSize="16sp"
+                android:textColor="@color/crnoubijelo"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/KilazaDetaljiPas"
+                android:layout_width="90sp"
+                android:layout_height="70sp"
+                android:hint="Kilaza"
+                android:textSize="16sp"
+                android:textColor="@color/crnoubijelo"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/SpolDetaljiPas"
+                android:layout_width="80sp"
+                android:layout_height="70sp"
+                android:hint="Spol"
+                android:textSize="16sp"
+                android:textColor="@color/crnoubijelo"
+                android:padding="12dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp">
+
+            <EditText
+                android:id="@+id/PasminaDetaljiPas"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:hint="Pasmina"
+                android:textSize="16sp"
+                android:textColor="@color/crnoubijelo"
+                android:layout_marginEnd="8dp"
+                android:padding="12dp"
+                android:gravity="center" />
+
+            <EditText
+                android:id="@+id/DatumRodenjaDetaljiPas"
+                android:layout_width="150sp"
+                android:layout_height="70sp"
+                android:hint="Datum rođenja"
+                android:textSize="16sp"
+                android:textColor="@color/crnoubijelo"
+                android:padding="12dp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/DetaljiPasOmeni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="O meni"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/crnoubijelo"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <EditText
+            android:id="@+id/OpisDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unesite opis psa"
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/DetaljiPasDodatneInformacije"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dodatne informacije"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/crnoubijelo"
+            android:layout_gravity="left"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="20dp" />
+
+        <EditText
+            android:id="@+id/CjepivaDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cjepiva"
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/DodatneInfoDetaljiPas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dodatne informacije"
+            android:textSize="20sp"
+            android:textColor="@color/proizvodInfo"
+            android:paddingLeft="20sp"
+            android:paddingRight="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnAžurirajPas"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:padding="12dp"
+            android:text="Ažuriraj podatke"
+            android:textColor="@color/crnoubijelo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/btnObrišiPas"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondaryColor"
+            android:padding="12dp"
+            android:text="Obriši psa"
+            android:textColor="@color/crnoubijelo"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</ScrollView>

@@ -26,6 +26,7 @@ import com.example.pawpal.ui.SPAFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
+import com.example.pawpal.ui.UpravljanjeUdomljavanjemPasaFragment
 import com.example.pawpal.ui.WishlistFragment
 import com.google.android.material.navigation.NavigationView
 import com.pawpal.appdatabase.AppDatabase
@@ -155,6 +156,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_shop -> navigateToFragment(ShopFragment())
                         R.id.nav_school -> navigateToFragment(SkolaFragment())
                         R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                        R.id.nav_adoption_admin -> navigateToFragment(UpravljanjeUdomljavanjemPasaFragment())
                         R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
                         R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                         R.id.nav_wishlist -> {
@@ -259,6 +261,7 @@ class MainActivity : AppCompatActivity() {
             proizvodQueries.insertProizvod("CozyPaw SleepPad", 74.50, "Udoban ergonomski krevet za pse, namijenjen za pse male do srednje veličine", "proizvod_7", 4)
         }
     }
+
 
     private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
