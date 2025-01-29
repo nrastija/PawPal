@@ -109,6 +109,9 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
             putString("opis", pas.opis)
             putString("cjepiva", pas.cijepiva)
             putString("dodatneInfo", pas.dodatneinfo)
+            putString("slika1", pas.imageUrl)
+            putString("slika2", pas.imageUrl2)
+            putString("slika3", pas.imageUrl3)
         }
         detaljiPsaFragment.arguments = args
 

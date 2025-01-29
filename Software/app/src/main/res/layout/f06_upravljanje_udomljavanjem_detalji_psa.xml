@@ -47,7 +47,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi"
+                            android:src="@drawable/nophoto"
                             android:onClick="odaberiSliku"/>
                     </FrameLayout>
 
@@ -64,7 +64,8 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi" />
+                            android:onClick="odaberiSliku"
+                            android:src="@drawable/nophoto" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -80,7 +81,8 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi" />
+                            android:onClick="odaberiSliku"
+                            android:src="@drawable/nophoto" />
                     </FrameLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -240,7 +242,7 @@
             android:layout_marginBottom="16dp" />
 
         <Button
-            android:id="@+id/btnAžurirajPas"
+            android:id="@+id/btnAzurirajPas"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/secondaryColor"
