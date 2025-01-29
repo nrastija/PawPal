@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
         resetShopData()
         resetSkolaData()
-        resetAdoptionData()
+        //resetAdoptionData()
         //resetSPAData()
         //resetPromoData()
         resetVeterinarianData()
@@ -262,7 +262,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*private fun resetAdoptionData(){
+        val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
 
+        queriesPasUdomljavanje.transaction {
+            queriesPasUdomljavanje.deleteAllPasUdomljavanje() }
+    }*/
+
+/*
     private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
         val queriesZahtjevUdomljavanje = database.zahtjevUdomljavanjeQueries
@@ -387,6 +394,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+ */
 
     private fun resetVeterinarianData() {
         val vetQueries = database.veterinarQueries

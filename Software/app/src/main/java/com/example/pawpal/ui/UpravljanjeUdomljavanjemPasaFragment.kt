@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
 import com.example.pawpal.adapters.PasUdomljavanjeAdapter
 import com.example.pawpal.main.DatabaseConsumer
+import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.launch
 
@@ -24,6 +25,11 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PasUdomljavanjeAdapter
     private val pasList = mutableListOf<appdatabase.Pasudomljavanje>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        database = (requireActivity().application as PawPalApplication).database
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +45,7 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         recyclerView = view.findViewById(R.id.recyclerPasUdomljavanje)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = PasUdomljavanjeAdapter(pasList) { pas ->
-            //navigateToPasDetaljFragment(pas)
+            navigateToPasDetaljFragment(pas)
         }
         recyclerView.adapter = adapter
 
@@ -86,6 +92,29 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         parentFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
             .replace(R.id.fragmentContainer, dodajPsaFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun navigateToPasDetaljFragment(pas: appdatabase.Pasudomljavanje) {
+        val detaljiPsaFragment = UpravljanjeDetaljimaPsaFragment()
+        val args = Bundle().apply {
+            putLong("pasId", pas.pasudomljavanjeID)
+            putString("ime", pas.ime)
+            putString("starost", pas.dob.toString())
+            putString("kilaza", pas.kilaza.toString())
+            putString("spol", pas.spol)
+            putString("pasmina", pas.pasmina)
+            putString("datumRodenja", pas.datumRodenja)
+            putString("opis", pas.opis)
+            putString("cjepiva", pas.cijepiva)
+            putString("dodatneInfo", pas.dodatneinfo)
+        }
+        detaljiPsaFragment.arguments = args
+
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            .replace(R.id.fragmentContainer, detaljiPsaFragment)
             .addToBackStack(null)
             .commit()
     }

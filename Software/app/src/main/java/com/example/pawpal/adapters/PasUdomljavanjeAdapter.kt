@@ -1,5 +1,9 @@
 package com.example.pawpal.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,9 +35,25 @@ class PasUdomljavanjeAdapter(
         holder.pasIme.text = pas.ime
         holder.pasOpis.text = "${pas.spol}, ${pas.dob} godina"
 
-        val slikicaNaziv = pas.imageUrl
-        val slikicaID = holder.itemView.context.resources.getIdentifier(slikicaNaziv, "drawable", holder.itemView.context.packageName)
-        holder.pasSlika.setImageResource(slikicaID)
+        val imageUrl = pas.imageUrl
+        Log.d("Base64Image", "Slika URL: $imageUrl")
+
+        if (imageUrl.isNotEmpty()) {
+            try {
+                val decodedImage = Base64.decode(imageUrl, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.size)
+                holder.pasSlika.setImageBitmap(bitmap)
+            } catch (e: Exception) {
+                Log.e("Base64ImageError", "Greška pri dekodiranju Base64: ${e.message}")
+                holder.pasSlika.setImageResource(R.drawable.nophoto)
+            }
+        } else {
+            holder.pasSlika.setImageResource(R.drawable.nophoto)
+        }
+
+        //val slikicaNaziv = pas.imageUrl
+        //val slikicaID = holder.itemView.context.resources.getIdentifier(slikicaNaziv, "drawable", holder.itemView.context.packageName)
+        //holder.pasSlika.setImageResource(slikicaID)
 
         holder.gumbicDetalji.setOnClickListener {
             onItemClick(pas)

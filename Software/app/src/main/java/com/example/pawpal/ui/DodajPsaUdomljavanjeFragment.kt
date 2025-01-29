@@ -156,6 +156,9 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
 
 
                 Toast.makeText(context, "Pas uspješno dodan!", Toast.LENGTH_SHORT).show()
+
+                parentFragmentManager.popBackStack()
+
             } catch (e: Exception) {
                 Toast.makeText(context, "Greška: ${e.message}", Toast.LENGTH_SHORT).show()
             }
@@ -179,4 +182,5 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
         inputStream.close()
         return byteArrayOutputStream.toByteArray()
     }
+
 }
