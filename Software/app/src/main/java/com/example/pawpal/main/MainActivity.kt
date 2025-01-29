@@ -262,7 +262,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*private fun resetAdoptionData(){
+  /*  private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
 
         queriesPasUdomljavanje.transaction {

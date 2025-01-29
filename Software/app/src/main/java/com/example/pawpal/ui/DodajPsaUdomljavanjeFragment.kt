@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -70,6 +71,10 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
         super.onViewCreated(view, savedInstanceState)
         Log.d("DodajPsa", "View: $view")
         setupViews(view)
+
+        view.findViewById<ImageButton>(R.id.btnNatrag).setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
     }
 
