@@ -47,7 +47,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi" />
+                            android:src="@drawable/nophoto" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -63,7 +63,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi" />
+                            android:src="@drawable/nophoto" />
                     </FrameLayout>
 
                     <FrameLayout
@@ -79,7 +79,7 @@
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
                             android:clipToOutline="true"
-                            android:src="@drawable/zumi" />
+                            android:src="@drawable/nophoto" />
                     </FrameLayout>
                 </LinearLayout>
             </HorizontalScrollView>

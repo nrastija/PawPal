@@ -1,6 +1,9 @@
 package com.example.pawpal.ui
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,11 +95,24 @@ class PasDetaljFragment : Fragment(), DatabaseConsumer {
                 .commit()
         }
     }
-
-    private fun setImage(view: ImageView, imageName: String) {
-        val imageID = resources.getIdentifier(imageName, "drawable", requireContext().packageName)
-        view.setImageResource(if (imageID != 0) imageID else android.R.drawable.ic_menu_report_image)
+    private fun setImage(view: ImageView, imageName: String?) {
+        if (imageName.isNullOrEmpty()) {
+            view.setImageResource(android.R.drawable.ic_menu_report_image)
+        } else {
+            val bitmap = decodeBase64ToBitmap(imageName)
+            view.setImageBitmap(bitmap)
+        }
     }
+
+    private fun decodeBase64ToBitmap(base64String: String?): Bitmap {
+        return try {
+            val decodedString = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+        } catch (e: Exception) {
+            BitmapFactory.decodeResource(resources, R.drawable.nophoto)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
