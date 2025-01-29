@@ -13,7 +13,10 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
+import com.example.pawpal.adapters.PasUdomljavanjeAdapter
 import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
@@ -70,6 +73,7 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
         super.onViewCreated(view, savedInstanceState)
         Log.d("DodajPsa", "View: $view")
         setupViews(view)
+
     }
 
     private fun setupViews(view: View) {
@@ -149,12 +153,15 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
                     imageUrl2 = imageUrl2,
                     imageUrl3 = imageUrl3
                 )
+
+
                 Toast.makeText(context, "Pas uspješno dodan!", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 Toast.makeText(context, "Greška: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     private fun convertImageToBase64(uri: Uri): String {
         val byteArray = convertImageToByteArray(uri)

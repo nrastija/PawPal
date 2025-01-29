@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
 
     override lateinit var database: AppDatabase
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PasUdomljavanjeAdapter
     private val pasList = mutableListOf<appdatabase.Pasudomljavanje>()
@@ -42,6 +43,10 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         }
         recyclerView.adapter = adapter
 
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerPasUdomljavanje)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+
         val btnDodajPsa: Button? = view.findViewById(R.id.btnDodajPsaUdomljavanje)
         if (btnDodajPsa == null) {
             Log.e("DodajPsa", "Button is null!")
@@ -49,6 +54,7 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
             btnDodajPsa.setOnClickListener {
                 Log.d("DodajPsa", "Button clicked")
                 navigateToDodajPsaFragment()
+                updateRecyclerView()
             }
         }
         dajPeseke()
@@ -65,6 +71,13 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         pasList.clear()
         pasList.addAll(peseki)
         adapter.notifyDataSetChanged()
+    }
+
+    private fun updateRecyclerView() {
+        lifecycleScope.launch {
+            val listaPasa = database.pasUdomljavanjeQueries.dohvatiSvePse().executeAsList()
+            adapter.updateList(listaPasa)
+        }
     }
 
 
