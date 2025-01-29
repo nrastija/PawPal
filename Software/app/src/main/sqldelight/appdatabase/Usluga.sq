@@ -1,0 +1,41 @@
+CREATE TABLE usluga (
+    uslugaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    naziv TEXT NOT NULL,
+    cijena REAL NOT NULL,
+    opis TEXT,
+    trajanje INTEGER,
+    imageUrl TEXT NOT NULL
+);
+
+insertUsluga:
+INSERT INTO usluga (
+    naziv,
+    cijena,
+    opis,
+    trajanje,
+    imageUrl
+) VALUES (?, ?, ?, ?,?);
+
+dohvatiSveUsluge:
+SELECT * FROM usluga;
+
+dohvatiUsluguPoID:
+  SELECT *
+  FROM usluga
+  WHERE uslugaID = ?;
+
+azurirajUslugu:
+UPDATE usluga
+SET naziv = :naziv,
+    cijena = :cijena,
+    opis = :opis,
+    trajanje = :trajanje
+WHERE uslugaID = :uslugaID;
+
+obrisiUsluguPoID:
+DELETE FROM usluga
+WHERE uslugaID = ?;
+
+deleteAllUsluga:
+  DELETE FROM usluga;
+

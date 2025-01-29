@@ -9,6 +9,11 @@
         android:title="Početna stranica"/>
 
     <item
+        android:id ="@+id/nav_promo"
+        android:icon = "@drawable/promo_icon"
+        android:title="Promocije i ponude"/>
+
+    <item
         android:id ="@+id/nav_profile"
         android:icon = "@drawable/profile_icon"
         android:title="Korisnički profil"/>
@@ -41,6 +46,11 @@
                 android:id ="@+id/nav_school"
                 android:icon = "@drawable/school_icon"
                 android:title="Škola za pse"/>
+
+            <item
+                android:id ="@+id/nav_wishlist"
+                android:icon = "@drawable/school_icon"
+                android:title="Wishlist"/>
 
             <item
                 android:id ="@+id/nav_adoption"

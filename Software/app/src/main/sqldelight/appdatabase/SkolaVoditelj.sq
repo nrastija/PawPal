@@ -1,0 +1,14 @@
+CREATE TABLE SkolaVoditelj (
+    skolaID INTEGER NOT NULL,
+    voditeljID INTEGER NOT NULL,
+    PRIMARY KEY (skolaID, voditeljID),
+    FOREIGN KEY (skolaID) REFERENCES skola (skolaID) ON DELETE CASCADE,
+    FOREIGN KEY (voditeljID) REFERENCES voditelj (voditeljID) ON DELETE CASCADE
+);
+
+insertSkolaVoditelj:
+INSERT INTO SkolaVoditelj (skolaID, voditeljID)
+VALUES (?, ?);
+
+deleteAllSkolaVoditelj:
+DELETE FROM SkolaVoditelj;

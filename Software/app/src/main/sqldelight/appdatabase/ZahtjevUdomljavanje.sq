@@ -1,0 +1,40 @@
+CREATE TABLE zahtjevudomljavanje (
+    zahtjevID INTEGER PRIMARY KEY AUTOINCREMENT,
+    paszahtjevID INTEGER NOT NULL,
+    korisnikID INTEGER NOT NULL,
+    ime TEXT NOT NULL,
+    prezime TEXT NOT NULL,
+    email TEXT NOT NULL,
+    telefon TEXT NOT NULL,
+    drugiLjubimci TEXT NOT NULL,
+    clanObitelji TEXT NOT NULL,
+    iskustvoSPsima TEXT NOT NULL,
+    dodatneInformacije TEXT,
+    FOREIGN KEY (paszahtjevID) REFERENCES pasudomljavanje(pasudomljavanjeID) ON DELETE CASCADE,
+    FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
+);
+
+insertZahtjev:
+INSERT INTO zahtjevudomljavanje (
+    paszahtjevID,
+    korisnikID,
+    ime,
+    prezime,
+    email,
+    telefon,
+    drugiLjubimci,
+    clanObitelji,
+    iskustvoSPsima,
+    dodatneInformacije
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+dohvatiSveZahtjeve:
+SELECT * FROM zahtjevudomljavanje;
+
+dohvatiZadnjiZahtjev:
+SELECT * FROM zahtjevudomljavanje
+ORDER BY zahtjevID DESC
+LIMIT 1;
+
+deleteAllZahtjevUdomljavanje:
+DELETE FROM zahtjevudomljavanje;

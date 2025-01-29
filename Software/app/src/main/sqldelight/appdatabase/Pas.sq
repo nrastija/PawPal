@@ -1,0 +1,20 @@
+CREATE TABLE pas (
+    pasID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ime TEXT NOT NULL,
+    dob TEXT NOT NULL,
+    pasmina TEXT NOT NULL,
+    spol TEXT NOT NULL,
+    kilaza TEXT NOT NULL,
+    korisnikID INTEGER NOT NULL UNIQUE, -- Veza sa korisnikom, korisnik može imati samo jednog psa
+    FOREIGN KEY (korisnikID) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
+);
+
+insertPas:
+INSERT OR REPLACE INTO  pas(ime, dob, pasmina, spol, kilaza, korisnikID)
+VALUES (:ime, :dob, :pasmina, :spol, :kilaza, :korisnikID);
+
+dohvatiPasPoKorisnikID:
+SELECT * FROM pas WHERE korisnikID = :korisnikID;
+
+obrisiPasPoKorisnikID:
+DELETE FROM pas WHERE korisnikID = :korisnikID;

@@ -1,0 +1,24 @@
+CREATE TABLE vrstaUsluge (
+    uslugaID INTEGER PRIMARY KEY AUTOINCREMENT,
+    nazivUsluge TEXT NOT NULL UNIQUE,
+    cijena TEXT
+);
+
+dodajVrstuUsluge:
+INSERT OR REPLACE INTO vrstaUsluge (nazivUsluge, cijena)
+VALUES (?, ?);
+
+dohvatiSveUsluge:
+SELECT * FROM vrstaUsluge;
+
+izbrisiUsluguID:
+DELETE FROM vrstaUsluge WHERE uslugaID = ?;
+
+izbrisiSveUsluge:
+DELETE FROM vrstaUsluge;
+
+dohvatiusluguponazivu:
+SELECT * FROM vrstaUsluge WHERE nazivUsluge = :naziv LIMIT 1;
+
+dohvatiuslugupoID:
+SELECT * FROM vrstaUsluge WHERE uslugaID = ?;

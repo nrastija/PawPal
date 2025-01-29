@@ -1,0 +1,28 @@
+CREATE TABLE proizvod (
+    proizvodID INTEGER PRIMARY KEY AUTOINCREMENT,
+    naziv TEXT NOT NULL,
+    cijena REAL NOT NULL,
+    opis TEXT,
+    imageUrl TEXT NOT NULL,
+    kategorijaId INTEGER NOT NULL,
+    FOREIGN KEY (kategorijaId) REFERENCES kategorija(kategorijaID) ON DELETE CASCADE
+  );
+
+insertProizvod:
+  INSERT INTO proizvod (naziv, cijena, opis, imageUrl, kategorijaId)
+  VALUES (?, ?, ?, ?, ?);
+
+dohvatiProizvode:
+  SELECT * FROM proizvod;
+
+dohvatiProizvodPoId:
+SELECT * FROM  proizvod WHERE proizvodID = ?;
+
+filtrirajProizvodePoKategoriji:
+  SELECT * FROM proizvod
+  WHERE kategorijaId = ?;
+
+deleteAllProizvods:
+DELETE FROM proizvod;
+
+

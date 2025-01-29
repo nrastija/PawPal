@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id ="@+id/nav_home"
+        android:icon = "@drawable/home_icon"
+        android:title="Početna stranica"/>
+
+    <item
+        android:id ="@+id/nav_odjava"
+        android:icon = "@drawable/logout_icon"
+        android:title="Izlaz iz aplikacije"/>
+
+    <item
+        android:id ="@+id/nav_promo"
+        android:icon = "@drawable/promo_icon"
+        android:title="Promocije i ponude"/>
+
+    <item
+        android:id ="@+id/nav_finance"
+        android:icon = "@drawable/finance_icon"
+        android:title="Financijski pregled"/>
+
+
+    <item android:title="Usluge">
+
+        <menu>
+            <item
+                android:id ="@+id/nav_spa"
+                android:icon = "@drawable/spa_icon"
+                android:title="Pseći spa"/>
+
+            <item
+                android:id ="@+id/nav_adoption"
+                android:icon = "@drawable/adoption_icon"
+                android:title="Udomljavanje pasa"/>
+
+        </menu>
+
+    </item>
+
+
+</menu>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="12dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp">
+
+        <ImageView
+            android:id="@+id/ponudeSlika"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/pawpal2" />
+
+        <TextView
+            android:id="@+id/ponudeTekst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="Promo ponude"
+            android:fontFamily="@font/happymonkey"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/promoOffersRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <TextView
+        android:id="@+id/NapomenaZaKod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:gravity="center"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="Prilikom plaćanja na našoj lokaciji molimo vas da zaposleniku pokažete svoj kod."
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btnDodajPonudu"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Dodaj novu ponudu"
+        android:textSize="20sp"
+        android:backgroundTint="@color/secondaryColor"
+        android:textColor="@color/crnoubijelo"
+        app:cornerRadius="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"/>
+</LinearLayout>

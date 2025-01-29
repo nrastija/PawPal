@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/basketColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/naslovCheckout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Odaberite način plaćanja"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/accentColor"
+            android:layout_marginBottom="16dp" />
+
+        <RadioGroup
+            android:id="@+id/odabirPlacanja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/placanjeGotovinom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjeGotovina"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/placanjeKartica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjeKartica"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/placanjePayPal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placanjePayPal"
+                android:textColor="@color/accentColor"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/sekcijaPodaciKartice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Podaci kartice"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/accentColor"/>
+
+            <RadioGroup
+                android:id="@+id/odabirTipaKartice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp">
+
+                <RadioButton
+                    android:id="@+id/visaOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Visa"
+                    android:drawableStart="@drawable/visa_logo"
+                    android:drawablePadding="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/accentColor"/>
+
+                <RadioButton
+                    android:id="@+id/mastercardOption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mastercard"
+                    android:drawableStart="@drawable/mastercard_logo"
+                    android:drawablePadding="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/accentColor"/>
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/unosBrojKartice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Broj kartice"
+                android:inputType="number"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/unosDatumIsteka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Datum isteka (MM/YY)"
+                android:inputType="text"
+                android:digits="0123456789/"
+                android:padding="10dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/unosCVV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CVV"
+                android:inputType="numberPassword"
+                android:padding="10dp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnPotvrdiPlacanje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:text="Potvrdi plaćanje"
+            android:textColor="@color/accentColor"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

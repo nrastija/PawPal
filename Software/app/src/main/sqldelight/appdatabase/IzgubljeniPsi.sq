@@ -1,0 +1,24 @@
+CREATE TABLE IzgubljeniPsi (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    lastseenlocation TEXT NOT NULL,
+    imageUri TEXT NOT NULL,
+    userId INTEGER NOT NULL,
+    FOREIGN KEY (userId) REFERENCES korisnik(korisnikID) ON DELETE CASCADE
+);
+
+dohvatiSvePse:
+SELECT * FROM IzgubljeniPsi;
+
+unesiNovogPsa:
+INSERT INTO IzgubljeniPsi(name, description, lastseenlocation, imageUri, userId)
+VALUES (?,?, ?, ?, ?);
+
+izbrisiPsa:
+DELETE FROM IzgubljeniPsi WHERE id=?;
+
+dohvatiZadnjegPsa:
+SELECT * FROM IzgubljeniPsi
+ORDER BY id DESC
+LIMIT 1;
