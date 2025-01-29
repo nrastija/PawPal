@@ -2,6 +2,7 @@ package com.example.pawpal.ui
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,26 +43,18 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
     private lateinit var imageView3: ImageView
 
     private val pickMultipleImagesLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri> ->
-        if (uris.isNotEmpty()) {
+        if (uris.size <= 3) {
             slike.clear()
             slike.addAll(uris)
             if (slike.size > 0) imageView1.setImageURI(slike[0])
             if (slike.size > 1) imageView2.setImageURI(slike[1])
             if (slike.size > 2) imageView3.setImageURI(slike[2])
         }
-    }
-
-    companion object {
-        private const val ARG_PAS_ID = "pasudomljavanjeID"
-
-        fun newInstance(pasudomljavanjeID: Long): DodajPsaUdomljavanjeFragment {
-            val fragment = DodajPsaUdomljavanjeFragment()
-            val args = Bundle()
-            args.putLong(ARG_PAS_ID, pasudomljavanjeID)
-            fragment.arguments = args
-            return fragment
+        else{
+            Toast.makeText(context, "Možete odabrati najviše 3 slike", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +62,13 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.f06_upravljanje_udomljavanjem_detalji_psa, container, false)
+
+        return inflater.inflate(R.layout.f06_upravljanje_udomljavanjem_dodavanje, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("DodajPsa", "View: $view")
         setupViews(view)
     }
 
@@ -87,7 +82,7 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
         opisPas = view.findViewById(R.id.OpisDetaljiPas)
         cjepivaPas = view.findViewById(R.id.CjepivaDetaljiPas)
         dodatneInfoPas = view.findViewById(R.id.DodatneInfoDetaljiPas)
-        btnDodajPsa = view.findViewById(R.id.btnDodajPsa)
+        btnDodajPsa = view.findViewById(R.id.btnDodajPas)
 
         imageView1 = view.findViewById(R.id.PasDetaljiSlika1)
         imageView2 = view.findViewById(R.id.PasDetaljiSlika2)
@@ -95,9 +90,9 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
 
         slike = ArrayList()
 
-        view.findViewById<Button>(R.id.prilozislikupsa).setOnClickListener {
-            openImageChooser()
-        }
+        imageView1.setOnClickListener{openImageChooser()}
+        imageView2.setOnClickListener{openImageChooser()}
+        imageView3.setOnClickListener{openImageChooser()}
 
         btnDodajPsa.setOnClickListener {
             dodajPsa()

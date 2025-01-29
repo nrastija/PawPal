@@ -2,6 +2,7 @@ package com.example.pawpal.ui
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,13 +38,18 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         recyclerView = view.findViewById(R.id.recyclerPasUdomljavanje)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = PasUdomljavanjeAdapter(pasList) { pas ->
-            navigateToPasDetaljFragment(pas)
+            //navigateToPasDetaljFragment(pas)
         }
         recyclerView.adapter = adapter
 
-        val btnDodajPsa: Button = view.findViewById(R.id.btnDodajPsa)
-        btnDodajPsa.setOnClickListener {
-            navigateToDodajPsaFragment()
+        val btnDodajPsa: Button? = view.findViewById(R.id.btnDodajPsaUdomljavanje)
+        if (btnDodajPsa == null) {
+            Log.e("DodajPsa", "Button is null!")
+        } else {
+            btnDodajPsa.setOnClickListener {
+                Log.d("DodajPsa", "Button clicked")
+                navigateToDodajPsaFragment()
+            }
         }
         dajPeseke()
     }
@@ -61,16 +67,6 @@ class UpravljanjeUdomljavanjemPasaFragment : Fragment(), DatabaseConsumer {
         adapter.notifyDataSetChanged()
     }
 
-    private fun navigateToPasDetaljFragment(pas: appdatabase.Pasudomljavanje) {
-        val detaljFragment = DodajPsaUdomljavanjeFragment.newInstance(pas.pasudomljavanjeID).apply {
-            database = this@UpravljanjeUdomljavanjemPasaFragment.database
-        }
-        parentFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-            .replace(R.id.fragmentContainer, detaljFragment)
-            .addToBackStack(null)
-            .commit()
-    }
 
     private fun navigateToDodajPsaFragment() {
         val dodajPsaFragment = DodajPsaUdomljavanjeFragment()

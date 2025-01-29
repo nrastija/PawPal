@@ -87,7 +87,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <Button
-        android:id="@+id/btnDodajPsa"
+        android:id="@+id/btnDodajPsaUdomljavanje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dodaj psa" />
