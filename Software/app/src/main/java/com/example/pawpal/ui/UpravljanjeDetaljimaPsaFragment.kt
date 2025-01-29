@@ -79,6 +79,34 @@ class UpravljanjeDetaljimaPsaFragment: Fragment(), DatabaseConsumer {
         view.findViewById<Button>(R.id.btnAzurirajPas).setOnClickListener {
             saveDogDetails(view)
         }
+
+        view.findViewById<Button>(R.id.btnObrisiPsa).setOnClickListener {
+            potvrdabrisanja()
+        }
+    }
+
+    private fun potvrdabrisanja() {
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Brisanje psa")
+        builder.setMessage("Jeste li sigurni da želite obrisati ovog psa?")
+        builder.setPositiveButton("Da") { _, _ ->
+            brisanjepsa()
+        }
+        builder.setNegativeButton("Ne", null)
+        builder.show()
+    }
+
+    private fun brisanjepsa() {
+        lifecycleScope.launch {
+            try {
+                database.pasUdomljavanjeQueries.obrisipsaudomljavanje(pasId)
+                Toast.makeText(context, "Pas obrisan!", Toast.LENGTH_SHORT).show()
+
+                parentFragmentManager.popBackStack()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Došlo je do greške pri brisanju psa.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun selectImage(imageView: ImageView) {
@@ -100,7 +128,7 @@ class UpravljanjeDetaljimaPsaFragment: Fragment(), DatabaseConsumer {
                 view.findViewById<EditText>(R.id.DodatneInfoDetaljiPas).setText(it.dodatneinfo)
                 view.findViewById<EditText>(R.id.DatumRodenjaDetaljiPas).setText(it.datumRodenja)
 
-                // Slike
+
                 slika1 = it.imageUrl
                 slika2 = it.imageUrl2
                 slika3 = it.imageUrl3

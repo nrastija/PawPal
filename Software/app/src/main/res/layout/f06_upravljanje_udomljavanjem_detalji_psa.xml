@@ -256,7 +256,7 @@
             android:layout_gravity="center" />
 
         <Button
-            android:id="@+id/btnObrišiPas"
+            android:id="@+id/btnObrisiPsa"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/secondaryColor"

@@ -1,6 +1,5 @@
 package com.example.pawpal.adapters
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.util.Log
@@ -50,10 +49,6 @@ class PasUdomljavanjeAdapter(
         } else {
             holder.pasSlika.setImageResource(R.drawable.nophoto)
         }
-
-        //val slikicaNaziv = pas.imageUrl
-        //val slikicaID = holder.itemView.context.resources.getIdentifier(slikicaNaziv, "drawable", holder.itemView.context.packageName)
-        //holder.pasSlika.setImageResource(slikicaID)
 
         holder.gumbicDetalji.setOnClickListener {
             onItemClick(pas)

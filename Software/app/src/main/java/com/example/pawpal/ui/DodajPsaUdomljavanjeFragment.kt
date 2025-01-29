@@ -13,10 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pawpal.R
-import com.example.pawpal.adapters.PasUdomljavanjeAdapter
 import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
