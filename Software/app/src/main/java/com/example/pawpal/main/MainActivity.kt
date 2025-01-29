@@ -20,6 +20,7 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.PregledZahtjevaFragment
 import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
@@ -157,6 +158,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_school -> navigateToFragment(SkolaFragment())
                         R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
                         R.id.nav_adoption_admin -> navigateToFragment(UpravljanjeUdomljavanjemPasaFragment())
+                        R.id.nav_users_adpotion -> navigateToFragment(PregledZahtjevaFragment())
                         R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
                         R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                         R.id.nav_wishlist -> {

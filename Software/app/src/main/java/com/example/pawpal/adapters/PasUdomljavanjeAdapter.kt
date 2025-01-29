@@ -35,7 +35,7 @@ class PasUdomljavanjeAdapter(
         holder.pasOpis.text = "${pas.spol}, ${pas.dob} godina"
 
         val imageUrl = pas.imageUrl
-        Log.d("Base64Image", "Slika URL: $imageUrl")
+
 
         if (imageUrl.isNotEmpty()) {
             try {
@@ -43,7 +43,7 @@ class PasUdomljavanjeAdapter(
                 val bitmap = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.size)
                 holder.pasSlika.setImageBitmap(bitmap)
             } catch (e: Exception) {
-                Log.e("Base64ImageError", "Greška pri dekodiranju Base64: ${e.message}")
+                Log.e("error", "Greska pri dekodiranju base64: ${e.message}")
                 holder.pasSlika.setImageResource(R.drawable.nophoto)
             }
         } else {

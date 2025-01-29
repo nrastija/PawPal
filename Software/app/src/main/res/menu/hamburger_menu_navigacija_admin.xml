@@ -37,6 +37,11 @@
                 android:icon = "@drawable/adoption_icon"
                 android:title="Udomljavanje pasa"/>
 
+            <item
+                android:id ="@+id/nav_users_adpotion"
+                android:icon = "@drawable/adoption_icon"
+                android:title="Pregled zahtjeva"/>
+
         </menu>
 
     </item>
