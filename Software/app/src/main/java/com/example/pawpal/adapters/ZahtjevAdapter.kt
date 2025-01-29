@@ -21,13 +21,13 @@ class ZahtjevAdapter (
 
     inner class ZahtjevViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imeKorisnika: TextView = view.findViewById(R.id.imeKorisnika)
-        val imePsa: TextView = view.findViewById(R.id.imePsaZaUdomljavanje)
+        val idPsa: TextView = view.findViewById(R.id.imePsaZaUdomljavanje)
         val btnOdobri: Button = view.findViewById(R.id.odobriZahtjev)
         val btnOdbij: Button = view.findViewById(R.id.odbijZahtjev)
 
         fun bind(zahtjev: Zahtjevudomljavanje) {
-            imeKorisnika.text = zahtjev.ime
-            imePsa.text = zahtjev.dodatneInformacije ?: "Nepoznato"
+            imeKorisnika.text = "${zahtjev.ime} ${zahtjev.prezime}"
+            idPsa.text = " ${zahtjev.paszahtjevID}"
 
             btnOdobri.setOnClickListener { onOdobriClick(zahtjev) }
             btnOdbij.setOnClickListener { onOdbijClick(zahtjev) }
