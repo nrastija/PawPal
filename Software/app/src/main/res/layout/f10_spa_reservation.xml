@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:cardCornerRadius="8dp"
+    android:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/spaServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spa Usluga"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/spaServiceDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datum: 20.03.2025. 12:00"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/spaServiceNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Napomene: Za šišanje"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/spaServiceCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Otkazi rezervaciju"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
