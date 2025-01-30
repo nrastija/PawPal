@@ -20,6 +20,7 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.PregledRezervacijaFragment
 import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                             supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                             setImagesVisibility(View.VISIBLE)
                         }
+                        R.id.nav_reservations -> navigateToFragment(PregledRezervacijaFragment())
                         R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
                         R.id.nav_spa -> navigateToFragment(SPAFragment())
                         R.id.nav_promo -> navigateToFragment(PromoPonudaFragment())

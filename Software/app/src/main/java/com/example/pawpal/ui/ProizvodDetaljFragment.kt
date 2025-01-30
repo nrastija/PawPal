@@ -75,7 +75,6 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }
 
-        // Adapter for spinner
         val kolicinaList = listOf("1", "2", "3", "4", "5")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, kolicinaList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
