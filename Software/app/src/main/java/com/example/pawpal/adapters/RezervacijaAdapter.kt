@@ -1,39 +1,115 @@
-package com.example.pawpal.adapters
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.pawpal.R
 
 class RezervacijaAdapter(
-    private val rezervacije: List<Rezervacija>,
-    private val onDetaljiClick: (Rezervacija) -> Unit,
-    private val onOtkaziClick: (Rezervacija) -> Unit
-) : RecyclerView.Adapter<RezervacijaAdapter.RezervacijaViewHolder>() {
+    private val rezervacijeSPA: List<appdatabase.RezervacijaTermina>,
+    private val rezervacijeVet: List<appdatabase.RezervacijaVeterinara>,
+    private val narudzbeShop: List<appdatabase.Narudzba>,
+    private val zahtjeviUdomljavanje: List<appdatabase.Zahtjevudomljavanje>,
+    private val onCancelClick: (Any) -> Unit,
+    private val onInfoClick: (Any) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    inner class RezervacijaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val naziv: TextView = view.findViewById(R.id.nazivRezervacije)
-        val datum: TextView = view.findViewById(R.id.datumVrijeme)
-        val status: TextView = view.findViewById(R.id.statusRezervacije)
-        val btnDetalji: Button = view.findViewById(R.id.btnDetalji)
-        val btnOtkazi: Button = view.findViewById(R.id.btnOtkazi)
+    companion object {
+        const val TYPE_SPA = 0
+        const val TYPE_VET = 1
+        const val TYPE_SHOP = 2
+        const val TYPE_ADOPTION = 3
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RezervacijaViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_reservation, parent, false)
-        return RezervacijaViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: RezervacijaViewHolder, position: Int) {
-        val rezervacija = rezervacije[position]
-
-        holder.naziv.text = rezervacija.naziv
-        holder.datum.text = rezervacija.datum
-        holder.status.text = rezervacija.status
-
-        holder.btnDetalji.setOnClickListener {
-            onDetaljiClick(rezervacija)
-        }
-
-        holder.btnOtkazi.setOnClickListener {
-            onOtkaziClick(rezervacija)
+    // Create the ViewHolder for each type
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            TYPE_SPA -> SpaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.f10_spa_reservation, parent, false))
+            TYPE_VET -> VetViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.f10_vet_reservation, parent, false))
+            TYPE_SHOP -> ShopViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.f10_shop_orders, parent, false))
+            TYPE_ADOPTION -> AdoptionViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.f10_adoption_reservation, parent, false))
+            else -> throw IllegalArgumentException("Unknown view type")
         }
     }
 
-    override fun getItemCount(): Int = rezervacije.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is SpaViewHolder -> holder.bind(rezervacijeSPA[position])
+            is VetViewHolder -> holder.bind(rezervacijeVet[position])
+            is ShopViewHolder -> holder.bind(narudzbeShop[position])
+            is AdoptionViewHolder -> holder.bind(zahtjeviUdomljavanje[position])
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when {
+            position < rezervacijeSPA.size -> TYPE_SPA
+            position < rezervacijeSPA.size + rezervacijeVet.size -> TYPE_VET
+            position < rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size -> TYPE_SHOP
+            else -> TYPE_ADOPTION
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size + zahtjeviUdomljavanje.size
+    }
+
+    inner class SpaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val naziv: TextView = view.findViewById(R.id.spaServiceName)
+        val datum: TextView = view.findViewById(R.id.spaServiceDate)
+        val napomene: TextView = view.findViewById(R.id.spaServiceNotes)
+        val btnCancel: Button = view.findViewById(R.id.spaServiceCancel)
+
+        fun bind(reservation: appdatabase.RezervacijaTermina) {
+            naziv.text = "Spa Usluga"
+            datum.text = reservation.datum
+            napomene.text = reservation.napomene
+
+            btnCancel.setOnClickListener { onCancelClick(reservation) }
+        }
+    }
+
+    inner class VetViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val naziv: TextView = view.findViewById(R.id.vetServiceName)
+        val datum: TextView = view.findViewById(R.id.vetServiceDate)
+        val btnCancel: Button = view.findViewById(R.id.vetServiceCancel)
+
+        fun bind(reservation: appdatabase.RezervacijaVeterinara) {
+            naziv.text = "Veterinarski Pregled"
+            datum.text = reservation.datum
+
+            btnCancel.setOnClickListener { onCancelClick(reservation) }
+        }
+    }
+
+    inner class ShopViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val naziv: TextView = view.findViewById(R.id.shopServiceName)
+        val datum: TextView = view.findViewById(R.id.shopServiceDate)
+        val status: TextView = view.findViewById(R.id.shopServiceStatus)
+        val btnInfo: Button = view.findViewById(R.id.shopServiceInfo)
+
+        fun bind(reservation: appdatabase.Narudzba) {
+            naziv.text = "Kupovina Proizvoda" // Use data from your model if needed
+            datum.text = reservation.datum
+            status.text = reservation.status
+
+            btnInfo.setOnClickListener { onInfoClick(reservation) }
+        }
+    }
+
+    inner class AdoptionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val naziv: TextView = view.findViewById(R.id.adoptionServiceName)
+        val ime: TextView = view.findViewById(R.id.adoptionServiceUserName)
+        val email: TextView = view.findViewById(R.id.adoptionServiceUserEmail)
+        val btnCancel: Button = view.findViewById(R.id.adoptionServiceCancel)
+
+        fun bind(reservation: appdatabase.Zahtjevudomljavanje) {
+            naziv.text = "Udomljavanje Psa"
+            ime.text = reservation.ime
+            email.text = reservation.email
+
+            btnCancel.setOnClickListener { onCancelClick(reservation) }
+        }
+    }
 }
