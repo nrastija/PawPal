@@ -27,3 +27,17 @@ SELECT * FROM rezervacijaTermina WHERE korisnikID = ?;
 
 obrisiRezervaciju:
 DELETE FROM rezervacijaTermina WHERE rezervacijaTerminID = ?;
+
+dohvatiUkupneTroskoveRezervacija:
+SELECT IFNULL(SUM(u.cijena), 0.0) AS ukupno
+FROM rezervacijaTermina r
+JOIN usluga u ON r.uslugaID = u.uslugaID
+WHERE r.korisnikID = ?;
+
+dohvatiUsluguPoID:
+SELECT * FROM usluga WHERE uslugaID = ?;
+
+dohvatiUkupneTroskoveRezervacijaSvihKorisnika:
+SELECT IFNULL(SUM(u.cijena), 0.0) AS ukupno
+FROM rezervacijaTermina r
+JOIN usluga u ON r.uslugaID = u.uslugaID;
