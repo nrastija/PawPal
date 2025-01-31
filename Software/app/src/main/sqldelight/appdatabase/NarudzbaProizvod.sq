@@ -10,3 +10,7 @@ CREATE TABLE NarudzbaProizvod (
 insertProizvodUNarudzbu:
 INSERT INTO NarudzbaProizvod (narudzbaId, proizvodId, kolicina)
 VALUES (?, ?, ?);
+
+dohvatiProizvodeNarudzbePoId:
+SELECT * FROM NarudzbaProizvod
+WHERE narudzbaId = ?;

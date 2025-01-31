@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.WishlistDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
+import com.example.pawpal.helper.AppPreferencesHelper
 import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
@@ -36,12 +37,15 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var database: AppDatabase
+    private lateinit var appPreferences: AppPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         database = (application as PawPalApplication).database
+        appPreferences = AppPreferencesHelper(this)
+
         setImagesVisibility(View.VISIBLE)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
@@ -49,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         val headerView = navView.getHeaderView(0)
-
         val usernameTextView: TextView = headerView.findViewById(R.id.username_hamburger)
         val mailTextView: TextView = headerView.findViewById(R.id.mail_hamburger)
 
@@ -69,62 +72,16 @@ class MainActivity : AppCompatActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-        resetShopData()
-        resetSkolaData()
-        resetAdoptionData()
-        //resetSPAData()
-        //resetPromoData()
-        resetVeterinarianData()
-        resetUslugaData()
-    }
+        if (appPreferences.isFirstLaunch()) {
+            resetShopData()
+            resetSkolaData()
+            resetAdoptionData()
+            resetVeterinarianData()
+            resetUslugaData()
 
-    /*private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
-        setSupportActionBar(toolbar)
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> {
-                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    setImagesVisibility(View.VISIBLE)
-                    drawerLayout.closeDrawers()
-                }
-                R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
-                R.id.nav_spa -> navigateToFragment(SPAFragment())
-                R.id.nav_promo ->navigateToFragment(PromoPonudaFragment())
-                R.id.nav_shop -> navigateToFragment(ShopFragment())
-                R.id.nav_school -> navigateToFragment(SkolaFragment())
-                R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
-                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
-                R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
-                R.id.nav_wishlist -> {
-                    val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
-                    if (korisnikID == null) {
-                        Toast.makeText(this, "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
-                    } else {
-                        lifecycleScope.launch {
-                            val wishlistDataSource = WishlistDataSourceImpl(database)
-                            val status = wishlistDataSource.getWishlistStatus(korisnikID)
-                            val fragment = if (status == 1L) PregledWishlisteFragment() else WishlistFragment()
-                            if (fragment is DatabaseConsumer) {
-                                fragment.database = database
-                            }
-
-                            navigateToFragment(fragment)
-                        }
-                    }
-                }
-                else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
-
-            }
-            drawerLayout.closeDrawers()
-            true
+            appPreferences.setFirstLaunchDone()
         }
-
-    }*/
+    }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
         setSupportActionBar(toolbar)
