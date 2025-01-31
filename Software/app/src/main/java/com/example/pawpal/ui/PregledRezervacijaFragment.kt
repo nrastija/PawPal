@@ -1,10 +1,15 @@
 package com.example.pawpal.ui
 
-import RezervacijaAdapter
+import NarudzbePrikazAdapter
+import SpaPrikazRezervacijaAdapter
+import VetPrikazRezervacijaAdapter
+import ZahtjevUdomljavanjeAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +35,11 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
     private lateinit var recyclerViewAdoption: RecyclerView
     private lateinit var recyclerViewVet : RecyclerView
 
+    private lateinit var labelSPA: TextView
+    private lateinit var labelShop: TextView
+    private lateinit var labelAdoption: TextView
+    private lateinit var labelVet: TextView
+
     private var clientId: Long = 0
 
     override fun onCreateView(
@@ -43,10 +53,15 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
         recyclerViewShop = view.findViewById(R.id.recyclerViewShop)
         recyclerViewAdoption = view.findViewById(R.id.recyclerViewAdoption)
 
+        labelSPA = view.findViewById(R.id.spaLabel)
+        labelShop = view.findViewById(R.id.shopLabel)
+        labelAdoption = view.findViewById(R.id.adoptionLabel)
+        labelVet = view.findViewById(R.id.vetLabel)
+
         recyclerViewSPA.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewSPA.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewSPA.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewSPA.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewVet.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewShop.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewAdoption.layoutManager = LinearLayoutManager(requireContext())
 
         clientId = getCurrentUserId()
 
@@ -57,74 +72,49 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
     private fun fetchData() {
         lifecycleScope.launch {
             try {
-                // Dohvati rezervacije
                 val rezervacijeSPA = getSpaReservations()
                 val rezervacijeVet = getVetReservations()
                 val narudzbeShop = getShopOrders()
                 val zahtjeviUdomljavanje = getAdoptionRequests()
 
-                // Reervacije SPA
                 if (rezervacijeSPA.isNotEmpty()) {
+                    labelSPA.visibility = View.VISIBLE
                     recyclerViewSPA.visibility = View.VISIBLE
-                    val adapterSPA = RezervacijaAdapter(
-                        rezervacijeSPA,
-                        rezervacijeVet,
-                        narudzbeShop,
-                        zahtjeviUdomljavanje,
-                        onCancelClick = { cancelReservation(it) },
-                        onInfoClick = { showReservationInfo(it) }
-                    )
+                    val adapterSPA = SpaPrikazRezervacijaAdapter(rezervacijeSPA, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope)
                     recyclerViewSPA.adapter = adapterSPA
                 } else {
                     recyclerViewSPA.visibility = View.GONE
+                    labelSPA.visibility = View.GONE
                 }
 
-                // Rezervacije veterinar
                 if (rezervacijeVet.isNotEmpty()) {
+                    labelVet.visibility = View.VISIBLE
                     recyclerViewVet.visibility = View.VISIBLE
-                    val adapterVet = RezervacijaAdapter(
-                        rezervacijeSPA,
-                        rezervacijeVet,
-                        narudzbeShop,
-                        zahtjeviUdomljavanje,
-                        onCancelClick = { cancelReservation(it) },
-                        onInfoClick = { showReservationInfo(it) }
-                    )
+                    val adapterVet = VetPrikazRezervacijaAdapter(rezervacijeVet, onCancelClick = { cancelReservation(it) })
                     recyclerViewVet.adapter = adapterVet
                 } else {
                     recyclerViewVet.visibility = View.GONE
+                    labelVet.visibility = View.GONE
                 }
 
-                // Narudzbe
                 if (narudzbeShop.isNotEmpty()) {
+                    labelShop.visibility = View.VISIBLE
                     recyclerViewShop.visibility = View.VISIBLE
-                    val adapterShop = RezervacijaAdapter(
-                        rezervacijeSPA,
-                        rezervacijeVet,
-                        narudzbeShop,
-                        zahtjeviUdomljavanje,
-                        onCancelClick = { cancelReservation(it) },
-                        onInfoClick = { showReservationInfo(it) }
-                    )
+                    val adapterShop = NarudzbePrikazAdapter(narudzbeShop, onInfoClick = { showReservationInfo(it) })
                     recyclerViewShop.adapter = adapterShop
                 } else {
                     recyclerViewShop.visibility = View.GONE
+                    labelShop.visibility = View.GONE
                 }
 
-                // Zahtjevi za udomljavanje
                 if (zahtjeviUdomljavanje.isNotEmpty()) {
+                    labelAdoption.visibility = View.VISIBLE
                     recyclerViewAdoption.visibility = View.VISIBLE
-                    val adapterAdoption = RezervacijaAdapter(
-                        rezervacijeSPA,
-                        rezervacijeVet,
-                        narudzbeShop,
-                        zahtjeviUdomljavanje,
-                        onCancelClick = { cancelReservation(it) },
-                        onInfoClick = { showReservationInfo(it) }
-                    )
+                    val adapterAdoption = ZahtjevUdomljavanjeAdapter(zahtjeviUdomljavanje, onCancelClick = { cancelReservation(it) })
                     recyclerViewAdoption.adapter = adapterAdoption
                 } else {
                     recyclerViewAdoption.visibility = View.GONE
+                    labelAdoption.visibility = View.GONE
                 }
 
             } catch (e: Exception) {

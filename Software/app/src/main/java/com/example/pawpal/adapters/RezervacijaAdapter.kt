@@ -22,7 +22,6 @@ class RezervacijaAdapter(
         const val TYPE_ADOPTION = 3
     }
 
-    // Create the ViewHolder for each type
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             TYPE_SPA -> SpaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.f10_spa_reservation, parent, false))
@@ -41,18 +40,21 @@ class RezervacijaAdapter(
                 }
             }
             is VetViewHolder -> {
-                if (position < rezervacijeVet.size) {
-                    holder.bind(rezervacijeVet[position])
+                val vetPosition = position - rezervacijeSPA.size
+                if (vetPosition < rezervacijeVet.size) {
+                    holder.bind(rezervacijeVet[vetPosition])
                 }
             }
             is ShopViewHolder -> {
-                if (position < narudzbeShop.size) {
-                    holder.bind(narudzbeShop[position])
+                val shopPosition = position - (rezervacijeSPA.size + rezervacijeVet.size)
+                if (shopPosition < narudzbeShop.size) {
+                    holder.bind(narudzbeShop[shopPosition])
                 }
             }
             is AdoptionViewHolder -> {
-                if (position < zahtjeviUdomljavanje.size) {
-                    holder.bind(zahtjeviUdomljavanje[position])
+                val adoptionPosition = position - (rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size)
+                if (adoptionPosition < zahtjeviUdomljavanje.size) {
+                    holder.bind(zahtjeviUdomljavanje[adoptionPosition])
                 }
             }
         }
