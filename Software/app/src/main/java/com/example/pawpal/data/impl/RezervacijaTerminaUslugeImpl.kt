@@ -47,4 +47,32 @@ class RezervacijaTerminaUslugeImpl(db: AppDatabase) : RezervacijaTerminaUslugeDa
             queries.dohvatiZadnjuRezervaciju().executeAsOneOrNull()
         }
     }
+    override suspend fun dohvatiUkupneTroskoveRezervacija(korisnikID: Long): Double {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiUkupneTroskoveRezervacija(korisnikID)
+                .executeAsOneOrNull() ?: 0.0
+        }
+    }
+
+    override suspend fun dohvatiRezervacijeKorisnikaSDetaljima(korisnikId: Long): List<Pair<String, Triple<Double, String, String>>> {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiRezervacijeKorisnika(korisnikId).executeAsList().map { rezervacija ->
+                val usluga = queries.dohvatiUsluguPoID(rezervacija.uslugaID).executeAsOneOrNull()
+                val naziv = usluga?.naziv ?: "Nepoznata usluga"
+                val cijena = usluga?.cijena ?: 0.0
+                val datum = rezervacija.datum
+                val izvor = "Rezervacija usluge"
+                Pair(naziv, Triple(cijena, datum, izvor))
+            }
+        }
+    }
+
+    override suspend fun dohvatiUkupneTroskoveRezervacijaSvihKorisnika(): Double {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiUkupneTroskoveRezervacijaSvihKorisnika()
+                .executeAsOneOrNull() ?: 0.0
+        }
+    }
+
+
 }
