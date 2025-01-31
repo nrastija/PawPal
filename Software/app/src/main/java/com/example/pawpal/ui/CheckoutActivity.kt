@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -301,7 +302,6 @@ class CheckoutActivity : AppCompatActivity()  {
 
         val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
 
-        // Insert into Narudzba table
         if (logiranKorisnikID != null) {
             database.narudzbaQueries.insertNarudzba(
                 korisnikId = logiranKorisnikID,
@@ -319,12 +319,18 @@ class CheckoutActivity : AppCompatActivity()  {
             .executeAsList()
 
         proizvodiUKosarici.forEach { proizvod ->
-            database.narudzbaProizvodQueries.insertProizvodUNarudzbu(
-                narudzbaId = narudzbaId,
-                proizvodId = proizvod.proizvodID,
-                kolicina = proizvod.kolicina
-            )
+            Log.d("CheckoutActivity", "Inserting product: ${proizvod.proizvodID}, Quantity: ${proizvod.kolicina}")
+            if (proizvod.proizvodID != null && proizvod.kolicina > 0) {
+                database.narudzbaProizvodQueries.insertProizvodUNarudzbu(
+                    narudzbaId = narudzbaId,
+                    proizvodId = proizvod.proizvodID,
+                    kolicina = proizvod.kolicina
+                )
+            } else {
+                Log.e("CheckoutActivity", "Invalid product or quantity")
+            }
         }
+
 
         database.kosaricaProizvodQueries.brisanjeKosarice(kosaricaID)
 
