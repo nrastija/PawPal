@@ -26,6 +26,7 @@ class OrderDetailsAdapter(
         val kategorijaProizvoda: TextView = view.findViewById(R.id.kategorijaProizvoda)
         val cijenaProizvoda: TextView = view.findViewById(R.id.cijenaProizvoda)
         val detaljiProizvoda: TextView = view.findViewById(R.id.detaljiProizvoda)
+        val kolicinaProizvoda: TextView = view.findViewById(R.id.kolicinaProizvoda)
         val slikaProizvoda: ImageView = view.findViewById(R.id.slikaProizvoda)
     }
 
@@ -45,6 +46,7 @@ class OrderDetailsAdapter(
             holder.kategorijaProizvoda.text = getCategoryDetails(productDetails.kategorijaId)
             holder.cijenaProizvoda.text = productDetails.cijena.toString() + "€"
             holder.detaljiProizvoda.text = productDetails.opis
+            holder.kolicinaProizvoda.text = "Količina: " + item.kolicina
             val slikaID = holder.itemView.context.resources.getIdentifier(productDetails.imageUrl, "drawable", holder.itemView.context.packageName)
             holder.slikaProizvoda.setImageResource(slikaID)
         }

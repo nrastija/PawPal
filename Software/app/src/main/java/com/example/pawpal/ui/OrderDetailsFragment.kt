@@ -75,7 +75,7 @@ class OrderDetailsFragment : Fragment(), DatabaseConsumer {
                 val products = getOrderProducts(orderId)
 
                 if (order != null) {
-                    totalPriceTextView.text = "Cijena: ${order.ukupnaCijena}"
+                    totalPriceTextView.text = "Cijena: ${order.ukupnaCijena} €"
                     orderDateTextView.text = "Datum: ${order.datum}"
                     paymentMethodTextView.text = "Način plačanja: ${order.nacinPlacanja}"
                 }

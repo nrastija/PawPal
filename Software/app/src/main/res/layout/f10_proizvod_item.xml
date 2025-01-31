@@ -59,6 +59,14 @@
                 android:textColor="@color/textColorPrimary" />
 
             <TextView
+                android:id="@+id/kolicinaProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kolicina"
+                android:textSize="12sp"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginTop="8dp" />
+            <TextView
                 android:id="@+id/detaljiProizvoda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -27,6 +27,9 @@ import org.json.JSONObject
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class CheckoutActivity : AppCompatActivity()  {
@@ -297,7 +300,9 @@ class CheckoutActivity : AppCompatActivity()  {
             .dohvatiUkupnuCijenuZaKosaricu(kosaricaID)
             .executeAsOneOrNull()?.SUM ?: 0.0
 
-        val datumNarudzbe = System.currentTimeMillis().toString()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val datumNarudzbe = dateFormat.format(Date())
+
         val statusNarudzbe = "Uspješna"
 
         val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()

@@ -529,6 +529,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun navigateToFragment(fragment: Fragment) {
+
+
         if (fragment is DatabaseConsumer) {
             fragment.database = database
         }
@@ -546,15 +548,6 @@ class MainActivity : AppCompatActivity() {
     private fun setImagesVisibility(visibility: Int) {
         findViewById<ImageView>(R.id.imageView2).visibility = visibility
         findViewById<ImageView>(R.id.imageView7).visibility = visibility
-    }
-
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
-            setImagesVisibility(View.VISIBLE)
-        } else {
-            super.onBackPressed()
-        }
     }
 
 }
