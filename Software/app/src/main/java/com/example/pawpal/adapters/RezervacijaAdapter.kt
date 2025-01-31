@@ -35,21 +35,40 @@ class RezervacijaAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is SpaViewHolder -> holder.bind(rezervacijeSPA[position])
-            is VetViewHolder -> holder.bind(rezervacijeVet[position])
-            is ShopViewHolder -> holder.bind(narudzbeShop[position])
-            is AdoptionViewHolder -> holder.bind(zahtjeviUdomljavanje[position])
+            is SpaViewHolder -> {
+                if (position < rezervacijeSPA.size) {
+                    holder.bind(rezervacijeSPA[position])
+                }
+            }
+            is VetViewHolder -> {
+                if (position < rezervacijeVet.size) {
+                    holder.bind(rezervacijeVet[position])
+                }
+            }
+            is ShopViewHolder -> {
+                if (position < narudzbeShop.size) {
+                    holder.bind(narudzbeShop[position])
+                }
+            }
+            is AdoptionViewHolder -> {
+                if (position < zahtjeviUdomljavanje.size) {
+                    holder.bind(zahtjeviUdomljavanje[position])
+                }
+            }
         }
     }
+
 
     override fun getItemViewType(position: Int): Int {
         return when {
             position < rezervacijeSPA.size -> TYPE_SPA
             position < rezervacijeSPA.size + rezervacijeVet.size -> TYPE_VET
             position < rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size -> TYPE_SHOP
-            else -> TYPE_ADOPTION
+            position < rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size + zahtjeviUdomljavanje.size -> TYPE_ADOPTION
+            else -> throw IllegalArgumentException("Invalid position")
         }
     }
+
 
     override fun getItemCount(): Int {
         return rezervacijeSPA.size + rezervacijeVet.size + narudzbeShop.size + zahtjeviUdomljavanje.size
