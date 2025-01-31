@@ -21,6 +21,8 @@ interface ZahtjevUdomljavanjeDataSource {
     suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje?
 
     suspend fun dohvatiZahtjevePoIdKlijenta(klijentId: Long): Flow<List<Zahtjevudomljavanje>>
+
+    suspend fun obrisiZahtjevPoId(zahtjevId: Long)
 }
 
 

@@ -1,11 +1,14 @@
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
+import appdatabase.RezervacijaTermina
 import appdatabase.Usluga
 import com.example.pawpal.R
 import com.pawpal.appdatabase.AppDatabase
@@ -16,10 +19,11 @@ import kotlinx.coroutines.withContext
 // Adapter za SPA rezervacije
 
 class SpaPrikazRezervacijaAdapter(
-    private val rezervacijeSPA: List<appdatabase.RezervacijaTermina>,
+    private val rezervacijeSPA: MutableList<RezervacijaTermina>,
     private val onCancelClick: (Any) -> Unit,
     private val database: AppDatabase,
-    private val lifecycleScope: androidx.lifecycle.LifecycleCoroutineScope
+    private val lifecycleScope: LifecycleCoroutineScope,
+    private val context: Context?
 ) : RecyclerView.Adapter<SpaPrikazRezervacijaAdapter.SpaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpaViewHolder {
@@ -46,10 +50,14 @@ class SpaPrikazRezervacijaAdapter(
                 val usluga = getSPAService(reservation.uslugaID)
                 naziv.text = usluga.naziv
 
-                datum.text = reservation.datum
+                datum.text = reservation.datum + reservation.vrijeme
                 napomene.text = usluga.cijena.toString() + "€"
 
-                btnCancel.setOnClickListener { onCancelClick(reservation) }
+                btnCancel.setOnClickListener {
+                    lifecycleScope.launch {
+                        deleteReservation(reservation)
+                    }
+                }
             }
         }
     }
@@ -58,6 +66,17 @@ class SpaPrikazRezervacijaAdapter(
         return withContext(Dispatchers.IO) {
             database.uslugaQueries.dohvatiUsluguPoID(uslugaId).executeAsOne()
         }
+    }
+
+    private suspend fun deleteReservation(reservation: appdatabase.RezervacijaTermina) {
+        withContext(Dispatchers.IO) {
+            database.rezervacijaTerminaUslugeQueries.obrisiRezervaciju(reservation.rezervacijaTerminID)
+        }
+        rezervacijeSPA.remove(reservation)
+
+        Toast.makeText(context, "Rezervacija uspješno otkazana", Toast.LENGTH_SHORT).show()
+
+        notifyDataSetChanged()
     }
 }
 

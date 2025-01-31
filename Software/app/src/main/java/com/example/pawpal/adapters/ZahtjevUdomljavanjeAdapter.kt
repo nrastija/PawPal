@@ -1,8 +1,11 @@
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.RecyclerView
 import appdatabase.Pasudomljavanje
 import appdatabase.Usluga
@@ -13,10 +16,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ZahtjevUdomljavanjeAdapter(
-    private val zahtjeviUdomljavanje: List<appdatabase.Zahtjevudomljavanje>,
+    private val zahtjeviUdomljavanje: MutableList<appdatabase.Zahtjevudomljavanje>,
     private val onCancelClick: (Any) -> Unit,
     private val database: AppDatabase,
-    private val lifecycleScope: androidx.lifecycle.LifecycleCoroutineScope
+    private val lifecycleScope: LifecycleCoroutineScope,
+    private val context: Context?
 ) : RecyclerView.Adapter<ZahtjevUdomljavanjeAdapter.AdoptionViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdoptionViewHolder {
@@ -43,7 +47,11 @@ class ZahtjevUdomljavanjeAdapter(
                 pasmina.text = pas.pasmina
                 opis.text = pas.opis
 
-                btnCancel.setOnClickListener { onCancelClick(reservation) }
+                btnCancel.setOnClickListener {
+                    lifecycleScope.launch {
+                        deleteReservation(reservation)
+                    }
+                }
             }
         }
     }
@@ -52,5 +60,16 @@ class ZahtjevUdomljavanjeAdapter(
         return withContext(Dispatchers.IO) {
             database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasId).executeAsOne()
         }
+    }
+
+    private suspend fun deleteReservation(reservation: appdatabase.Zahtjevudomljavanje) {
+        withContext(Dispatchers.IO) {
+            database.zahtjevUdomljavanjeQueries.deleteZahtjevPoId(reservation.zahtjevID)
+        }
+        zahtjeviUdomljavanje.remove(reservation)
+
+        Toast.makeText(context, "Zahtjev uspješno obrisan", Toast.LENGTH_SHORT).show()
+
+        notifyDataSetChanged()
     }
 }

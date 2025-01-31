@@ -40,5 +40,9 @@ SELECT * FROM zahtjevudomljavanje
 ORDER BY zahtjevID DESC
 LIMIT 1;
 
+deleteZahtjevPoId:
+DELETE FROM zahtjevudomljavanje
+WHERE zahtjevID = ?;
+
 deleteAllZahtjevUdomljavanje:
 DELETE FROM zahtjevudomljavanje;

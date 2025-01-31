@@ -49,4 +49,9 @@ class ZahtjevUdomljavanjeDataSourceImpl(db: AppDatabase) : ZahtjevUdomljavanjeDa
     override suspend fun dohvatiZahtjevePoIdKlijenta(klijentId: Long): Flow<List<Zahtjevudomljavanje>>{
         return queries.dohvatiZahtjevePoIdKlijenta(klijentId).asFlow().mapToList(context = Dispatchers.IO)
     }
+
+    override suspend fun obrisiZahtjevPoId(zahtjevId: Long) {
+        withContext(Dispatchers.IO) {
+            queries.deleteZahtjevPoId(zahtjevId)
+        }    }
 }

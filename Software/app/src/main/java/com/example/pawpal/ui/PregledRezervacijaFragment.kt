@@ -5,7 +5,6 @@ import SpaPrikazRezervacijaAdapter
 import VetPrikazRezervacijaAdapter
 import ZahtjevUdomljavanjeAdapter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,15 +71,15 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
     private fun fetchData() {
         lifecycleScope.launch {
             try {
-                val rezervacijeSPA = getSpaReservations()
-                val rezervacijeVet = getVetReservations()
-                val narudzbeShop = getShopOrders()
-                val zahtjeviUdomljavanje = getAdoptionRequests()
+                val rezervacijeSPA = getSpaReservations().toMutableList()
+                val rezervacijeVet = getVetReservations().toMutableList()
+                val narudzbeShop = getShopOrders().toMutableList()
+                val zahtjeviUdomljavanje = getAdoptionRequests().toMutableList()
 
                 if (rezervacijeSPA.isNotEmpty()) {
                     labelSPA.visibility = View.VISIBLE
                     recyclerViewSPA.visibility = View.VISIBLE
-                    val adapterSPA = SpaPrikazRezervacijaAdapter(rezervacijeSPA, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope)
+                    val adapterSPA = SpaPrikazRezervacijaAdapter(rezervacijeSPA, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope, context)
                     recyclerViewSPA.adapter = adapterSPA
                 } else {
                     recyclerViewSPA.visibility = View.GONE
@@ -90,7 +89,7 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
                 if (rezervacijeVet.isNotEmpty()) {
                     labelVet.visibility = View.VISIBLE
                     recyclerViewVet.visibility = View.VISIBLE
-                    val adapterVet = VetPrikazRezervacijaAdapter(rezervacijeVet, onCancelClick = { cancelReservation(it) })
+                    val adapterVet = VetPrikazRezervacijaAdapter(rezervacijeVet, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope, context)
                     recyclerViewVet.adapter = adapterVet
                 } else {
                     recyclerViewVet.visibility = View.GONE
@@ -110,7 +109,7 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
                 if (zahtjeviUdomljavanje.isNotEmpty()) {
                     labelAdoption.visibility = View.VISIBLE
                     recyclerViewAdoption.visibility = View.VISIBLE
-                    val adapterAdoption = ZahtjevUdomljavanjeAdapter(zahtjeviUdomljavanje, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope)
+                    val adapterAdoption = ZahtjevUdomljavanjeAdapter(zahtjeviUdomljavanje, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope , context)
                     recyclerViewAdoption.adapter = adapterAdoption
                 } else {
                     recyclerViewAdoption.visibility = View.GONE
