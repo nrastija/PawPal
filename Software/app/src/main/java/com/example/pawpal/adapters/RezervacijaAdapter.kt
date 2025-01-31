@@ -120,15 +120,14 @@ class RezervacijaAdapter(
     }
 
     inner class AdoptionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val naziv: TextView = view.findViewById(R.id.adoptionServiceName)
-        val ime: TextView = view.findViewById(R.id.adoptionServiceUserName)
-        val email: TextView = view.findViewById(R.id.adoptionServiceUserEmail)
-        val btnCancel: Button = view.findViewById(R.id.adoptionServiceCancel)
+        val ime: TextView = view.findViewById(R.id.adoptionAnimalName)
+        val pasmina: TextView = view.findViewById(R.id.adoptionAnimalRace)
+        val opis: TextView = view.findViewById(R.id.adoptionAnimalDescription)
+        val btnCancel: Button = view.findViewById(R.id.adoptionCancelButton)
 
         fun bind(reservation: appdatabase.Zahtjevudomljavanje) {
-            naziv.text = "Udomljavanje Psa"
             ime.text = reservation.ime
-            email.text = reservation.email
+            opis.text = reservation.email
 
             btnCancel.setOnClickListener { onCancelClick(reservation) }
         }

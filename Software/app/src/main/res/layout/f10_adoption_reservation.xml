@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:layout_gravity="center"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/bijelousivo">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,32 +14,57 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/adoptionServiceName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Udomljavanje psa"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/adoptionAnimalImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/adoption_icon" />
 
         <TextView
-            android:id="@+id/adoptionServiceUserName"
+            android:id="@+id/adoptionAnimalName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marko Markic"
-            android:textSize="14sp"/>
+            android:text="Ime životinje"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:gravity="center"/>
 
         <TextView
-            android:id="@+id/adoptionServiceUserEmail"
+            android:id="@+id/adoptionAnimalRace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="mmarkic@test.com"
-            android:textSize="14sp"/>
+            android:text="Pasmina"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp"
+            android:gravity="center"/>
 
+        <!-- Opis -->
+        <TextView
+            android:id="@+id/adoptionAnimalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opis: Ljubazan, u potrazi za novim domom!"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:justificationMode="inter_word"/>
+
+        <!-- Gumb za otkazivanje -->
         <Button
-            android:id="@+id/adoptionServiceCancel"
+            android:id="@+id/adoptionCancelButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Otkazi rezervaciju"/>
+            android:text="Otkazi zahtjev"
+            android:width="300dp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/accentColor"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

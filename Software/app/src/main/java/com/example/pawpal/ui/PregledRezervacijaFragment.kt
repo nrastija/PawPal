@@ -110,7 +110,7 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
                 if (zahtjeviUdomljavanje.isNotEmpty()) {
                     labelAdoption.visibility = View.VISIBLE
                     recyclerViewAdoption.visibility = View.VISIBLE
-                    val adapterAdoption = ZahtjevUdomljavanjeAdapter(zahtjeviUdomljavanje, onCancelClick = { cancelReservation(it) })
+                    val adapterAdoption = ZahtjevUdomljavanjeAdapter(zahtjeviUdomljavanje, onCancelClick = { cancelReservation(it) }, database, lifecycleScope = lifecycleScope)
                     recyclerViewAdoption.adapter = adapterAdoption
                 } else {
                     recyclerViewAdoption.visibility = View.GONE
