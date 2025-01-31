@@ -99,7 +99,7 @@ class PregledRezervacijaFragment : Fragment(), DatabaseConsumer
                 if (narudzbeShop.isNotEmpty()) {
                     labelShop.visibility = View.VISIBLE
                     recyclerViewShop.visibility = View.VISIBLE
-                    val adapterShop = NarudzbePrikazAdapter(narudzbeShop, onInfoClick = { showReservationInfo(it) })
+                    val adapterShop = NarudzbePrikazAdapter(narudzbeShop, onInfoClick = { showReservationInfo(it) }, lifecycleScope = lifecycleScope, database, parentFragment = this@PregledRezervacijaFragment)
                     recyclerViewShop.adapter = adapterShop
                 } else {
                     recyclerViewShop.visibility = View.GONE
