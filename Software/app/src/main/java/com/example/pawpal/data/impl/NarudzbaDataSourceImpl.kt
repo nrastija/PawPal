@@ -4,9 +4,11 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import appdatabase.Kosarica
 import appdatabase.Narudzba
+import appdatabase.RezervacijaTermina
 import com.example.pawpal.data.datasource.NarudzbaDataSource
 import com.pawpal.appdatabase.AppDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import java.util.Date
 
@@ -27,5 +29,9 @@ class NarudzbaDataSourceImpl(db: AppDatabase) : NarudzbaDataSource {
         return withContext(Dispatchers.IO) {
             queries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()
         }
+    }
+
+    override suspend fun dohvatiNarudzbePoIdKlijenta(klijentId: Long): Flow<List<Narudzba>> {
+        return queries.dohvatiNarudzbuPoIdKorisnika(klijentId).asFlow().mapToList(context = Dispatchers.IO)
     }
 }

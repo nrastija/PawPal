@@ -31,6 +31,10 @@ INSERT INTO zahtjevudomljavanje (
 dohvatiSveZahtjeve:
 SELECT * FROM zahtjevudomljavanje;
 
+dohvatiZahtjevePoIdKlijenta:
+SELECT * FROM zahtjevudomljavanje
+WHERE korisnikID = ?;
+
 dohvatiZadnjiZahtjev:
 SELECT * FROM zahtjevudomljavanje
 ORDER BY zahtjevID DESC

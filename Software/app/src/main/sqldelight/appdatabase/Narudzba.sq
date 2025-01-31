@@ -16,5 +16,9 @@ dohvatiNarudzbu:
 SELECT * FROM narudzba
 WHERE narudzbaID = ?;
 
+dohvatiNarudzbuPoIdKorisnika:
+SELECT * FROM narudzba
+WHERE korisnikId = ?;
+
 zadnjaNarudzbaId:
 SELECT last_insert_rowid() AS narudzbaId;
