@@ -26,12 +26,14 @@ class NarudzbePrikazAdapter(
         val naziv: TextView = view.findViewById(R.id.shopServiceName)
         val datum: TextView = view.findViewById(R.id.shopServiceDate)
         val status: TextView = view.findViewById(R.id.shopServiceStatus)
+        val nacinPlacanja: TextView = view.findViewById(R.id.shopPaymentType)
         val btnInfo: Button = view.findViewById(R.id.shopServiceInfo)
 
         fun bind(order: appdatabase.Narudzba) {
-            naziv.text = "Kupovina Proizvoda"
+            naziv.text = "Kupovina"
             datum.text = order.datum
             status.text = order.status
+            nacinPlacanja.text = order.nacinPlacanja
 
             btnInfo.setOnClickListener { onInfoClick(order) }
         }
