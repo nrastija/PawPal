@@ -31,10 +31,19 @@ INSERT INTO zahtjevudomljavanje (
 dohvatiSveZahtjeve:
 SELECT * FROM zahtjevudomljavanje;
 
+dohvatiImePsa:
+SELECT p.ime AS imePsa
+FROM pasudomljavanje p
+WHERE p.pasudomljavanjeID = ?;
+
+
 dohvatiZadnjiZahtjev:
 SELECT * FROM zahtjevudomljavanje
 ORDER BY zahtjevID DESC
 LIMIT 1;
+
+obrisiZahtjevPoId:
+DELETE FROM zahtjevudomljavanje WHERE zahtjevID = ?;
 
 deleteAllZahtjevUdomljavanje:
 DELETE FROM zahtjevudomljavanje;

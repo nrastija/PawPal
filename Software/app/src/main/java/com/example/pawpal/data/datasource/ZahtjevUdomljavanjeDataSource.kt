@@ -17,6 +17,9 @@ interface ZahtjevUdomljavanjeDataSource {
         korisnikID: Long)
 
     suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje?
+
+    suspend fun obrisiZahtjevPoId(zahtjevID: Long)
+
 }
 
 

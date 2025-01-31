@@ -4,19 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import appdatabase.Zahtjevudomljavanje
 import com.example.pawpal.R
-import com.example.pawpal.ui.PregledZahtjevaFragment
-import com.example.pawpal.ui.ZahtjevUdomljavanjeFragment
+import com.example.pawpal.data.dataobjects.ZahtjevSImenomPsa
+
 
 class ZahtjevAdapter (
 
-    private val zahtjeviList: List<Zahtjevudomljavanje>,
-    private val onOdobriClick: (Zahtjevudomljavanje) -> Unit,
-    private val onOdbijClick: (Zahtjevudomljavanje) -> Unit
+    private val zahtjeviList: List<ZahtjevSImenomPsa>,
+    private val onOdobriClick: (ZahtjevSImenomPsa) -> Unit,
+    private val onOdbijClick: (ZahtjevSImenomPsa) -> Unit
 ) : RecyclerView.Adapter<ZahtjevAdapter.ZahtjevViewHolder>() {
 
     inner class ZahtjevViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,12 +23,13 @@ class ZahtjevAdapter (
         val btnOdobri: Button = view.findViewById(R.id.odobriZahtjev)
         val btnOdbij: Button = view.findViewById(R.id.odbijZahtjev)
 
-        fun bind(zahtjev: Zahtjevudomljavanje) {
+        fun bind(zahtjevsimenompsa: ZahtjevSImenomPsa) {
+            val zahtjev = zahtjevsimenompsa.zahtjev
             imeKorisnika.text = "${zahtjev.ime} ${zahtjev.prezime}"
-            idPsa.text = " ${zahtjev.paszahtjevID}"
+            idPsa.text = zahtjevsimenompsa.imePsa ?: "Ne postoji ime psa"
 
-            btnOdobri.setOnClickListener { onOdobriClick(zahtjev) }
-            btnOdbij.setOnClickListener { onOdbijClick(zahtjev) }
+            btnOdobri.setOnClickListener { onOdobriClick(zahtjevsimenompsa) }
+            btnOdbij.setOnClickListener { onOdbijClick(zahtjevsimenompsa) }
         }
     }
 

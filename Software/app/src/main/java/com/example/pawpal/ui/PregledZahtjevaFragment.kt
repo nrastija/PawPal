@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import appdatabase.Zahtjevudomljavanje
 import com.example.pawpal.R
 import com.example.pawpal.adapters.ZahtjevAdapter
+import com.example.pawpal.data.dataobjects.ZahtjevSImenomPsa
 import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
@@ -23,7 +22,7 @@ class PregledZahtjevaFragment: Fragment(), DatabaseConsumer{
     override lateinit var database: AppDatabase
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ZahtjevAdapter
-    private val zahtjeviList = mutableListOf<Zahtjevudomljavanje>()
+    private val zahtjeviList = mutableListOf<ZahtjevSImenomPsa>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,30 +49,31 @@ class PregledZahtjevaFragment: Fragment(), DatabaseConsumer{
             val zahtjevi = database.zahtjevUdomljavanjeQueries.dohvatiSveZahtjeve().executeAsList()
             zahtjeviList.clear()
             zahtjeviList.addAll(zahtjevi.map { zahtjev ->
-                Zahtjevudomljavanje(
-                    zahtjev.zahtjevID,
-                    zahtjev.paszahtjevID,
-                    zahtjev.korisnikID,
-                    zahtjev.ime,
-                    zahtjev.prezime,
-                    zahtjev.email,
-                    zahtjev.telefon,
-                    zahtjev.drugiLjubimci,
-                    zahtjev.clanObitelji,
-                    zahtjev.iskustvoSPsima,
-                    zahtjev.dodatneInformacije
-                )
+                val imePsa = database.zahtjevUdomljavanjeQueries.dohvatiImePsa(zahtjev.paszahtjevID).executeAsOneOrNull()
+                ZahtjevSImenomPsa(zahtjev, imePsa)
             })
             adapter.notifyDataSetChanged()
         }
     }
 
-    private fun odobriZahtjev(zahtjev: Zahtjevudomljavanje) {
-        Toast.makeText(context, "Zahtjev ${zahtjev.zahtjevID} odobren", Toast.LENGTH_SHORT).show()
+    private fun obrisiZahtjev(zahtjev: ZahtjevSImenomPsa){
+        lifecycleScope.launch {
+            database.zahtjevUdomljavanjeQueries.obrisiZahtjevPoId(zahtjev.zahtjev.zahtjevID)
+            zahtjeviList.remove(zahtjev)
+            adapter.notifyDataSetChanged()
+        }
     }
 
-    private fun odbijZahtjev(zahtjev: Zahtjevudomljavanje) {
-        Toast.makeText(context, "Zahtjev ${zahtjev.zahtjevID} odbijen", Toast.LENGTH_SHORT).show()
+    private fun odobriZahtjev(zahtjev: ZahtjevSImenomPsa) {
+        val zahtjevToast = zahtjev.zahtjev
+        Toast.makeText(context, "Zahtjev od korisnika ${zahtjevToast.ime} ${zahtjevToast.prezime} odobren", Toast.LENGTH_SHORT).show()
+        obrisiZahtjev(zahtjev)
+    }
+
+    private fun odbijZahtjev(zahtjev: ZahtjevSImenomPsa) {
+        val zahtjevToast = zahtjev.zahtjev
+        Toast.makeText(context, "Zahtjev od korisnika ${zahtjevToast.ime} ${zahtjevToast.prezime} odbijen", Toast.LENGTH_SHORT).show()
+        obrisiZahtjev(zahtjev)
     }
 
 }
