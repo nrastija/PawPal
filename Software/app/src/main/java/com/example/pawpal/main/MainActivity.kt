@@ -25,6 +25,8 @@ import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
 import com.example.pawpal.ui.ShopFragment
 import com.example.pawpal.ui.SkolaFragment
+import com.example.pawpal.ui.SviTroskoviFragment
+import com.example.pawpal.ui.TroskoviFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
 import com.example.pawpal.ui.WishlistFragment
 import com.google.android.material.navigation.NavigationView
@@ -157,6 +159,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
                         R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
                         R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
+                        R.id.nav_finance -> navigateToFragment(TroskoviFragment())
+                        R.id.nav_finance2 -> navigateToFragment(SviTroskoviFragment())
                         R.id.nav_wishlist -> {
                             val currentKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
                             if (currentKorisnikID == null) {
@@ -403,13 +407,13 @@ class MainActivity : AppCompatActivity() {
                 "Dr.vet.spec",
                 "093454667",
 
-            )
+                )
             vetQueries.dodajVeterinara(
                 "Miro Mirić",
                 "Dr.vet.spec",
                 "094523445",
 
-            )
+                )
 
             vetQueries.dodajVeterinara(
                 "Ante Stanislav",
