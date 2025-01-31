@@ -19,7 +19,7 @@
         android:title="Promocije i ponude"/>
 
     <item
-        android:id ="@+id/nav_finance"
+        android:id ="@+id/nav_finance2"
         android:icon = "@drawable/finance_icon"
         android:title="Financijski pregled"/>
 
