@@ -18,3 +18,23 @@ WHERE narudzbaID = ?;
 
 zadnjaNarudzbaId:
 SELECT last_insert_rowid() AS narudzbaId;
+
+dohvatiUkupneTroskove:
+SELECT SUM(ukupnaCijena) AS ukupno
+FROM narudzba
+WHERE korisnikId = ?;
+
+
+
+dohvatiNarudzbuPoKorisniku:
+SELECT narudzbaID, korisnikId, ukupnaCijena, datum, status, nacinPlacanja
+FROM narudzba
+WHERE korisnikId = ?;
+
+dohvatiUkupneTroskoveSvihKorisnika:
+SELECT IFNULL(SUM(ukupnaCijena), 0.0) AS ukupno
+FROM narudzba;
+
+
+dohvatiSveNarudzbe:
+SELECT * FROM narudzba;
