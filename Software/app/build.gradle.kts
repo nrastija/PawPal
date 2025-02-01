@@ -66,6 +66,10 @@ dependencies {
     implementation ("com.paypal.android:card-payments:1.7.1")
     implementation ("com.squareup.okhttp3:okhttp:4.11.0")
 
+    //Retrofit ovisnosti za remote bazu
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
 }
 
 sqldelight {
