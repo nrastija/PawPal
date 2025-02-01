@@ -38,3 +38,10 @@ FROM narudzba;
 
 dohvatiSveNarudzbe:
 SELECT * FROM narudzba;
+
+dohvatiBrojNarudzbiKorisnika:
+SELECT COUNT(*) AS brojNarudzbi FROM narudzba WHERE korisnikId = ?;
+
+dohvatiBrojNarudzbiSvihKorisnika:
+SELECT COUNT(*) AS brojNarudzbi FROM narudzba;
+
