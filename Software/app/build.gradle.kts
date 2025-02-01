@@ -46,6 +46,7 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.engage.core)
     implementation(libs.common)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,6 +67,8 @@ dependencies {
     implementation ("com.paypal.android:card-payments:1.7.1")
     implementation ("com.squareup.okhttp3:okhttp:4.11.0")
 
+    //grafovi
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
 
 sqldelight {
