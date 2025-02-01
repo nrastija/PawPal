@@ -24,6 +24,11 @@
         android:title="Financijski pregled"/>
 
     <item
+        android:id ="@+id/nav_activity"
+        android:icon = "@drawable/finance_icon"
+        android:title="Pregled aktivnosti"/>
+
+    <item
         android:id ="@+id/nav_reservations"
         android:icon = "@drawable/reservations_icon"
         android:title="Pregled rezervacija"/>

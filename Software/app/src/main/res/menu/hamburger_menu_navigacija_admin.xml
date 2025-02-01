@@ -23,6 +23,11 @@
         android:icon = "@drawable/finance_icon"
         android:title="Financijski pregled"/>
 
+    <item
+        android:id ="@+id/nav_activity2"
+        android:icon = "@drawable/finance_icon"
+        android:title="Pregled aktivnosti centra"/>
+
 
     <item android:title="Usluge">
 
