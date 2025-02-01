@@ -42,4 +42,16 @@ class ZahtjevUdomljavanjeDataSourceImpl(db: AppDatabase) : ZahtjevUdomljavanjeDa
             queries.dohvatiZadnjiZahtjev().executeAsOneOrNull()
         }
     }
+
+    override suspend fun dohvatiBrojZahtjevaKorisnika(korisnikID: Long): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiSveZahtjeve().executeAsList().count { it.korisnikID == korisnikID }.toLong()
+        }
+    }
+
+    override suspend fun dohvatiBrojZahtjevaSvihKorisnika(): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojZahtjevaSvihKorisnika().executeAsOneOrNull() ?: 0
+        }
+    }
 }
