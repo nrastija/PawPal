@@ -241,17 +241,6 @@ class MainActivity : AppCompatActivity() {
         proizvodQueries.transaction {
             proizvodQueries.deleteAllProizvods()
         }
-        kategorijaQueries.transaction {
-            kategorijaQueries.deleteAllKategorijas()
-        }
-
-
-        kategorijaQueries.transaction {
-            kategorijaQueries.insertKategorija(1, "Zdravlje")
-            kategorijaQueries.insertKategorija(2, "Hrana")
-            kategorijaQueries.insertKategorija(3, "Higijena")
-            kategorijaQueries.insertKategorija(4, "Ostalo")
-        }
 
         proizvodQueries.transaction {
             proizvodQueries.insertProizvod("Paramol 250ML", 14.99, "Lijek za pse protiv virusa", "proizvod_1", 1)

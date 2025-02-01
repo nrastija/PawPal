@@ -1,6 +1,8 @@
 package com.example.pawpal.ui
 
+import ApiServiceHelper
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
-import com.example.pawpal.data.impl.KategorijaDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.pawpal.appdatabase.AppDatabase
@@ -61,6 +62,8 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
         val spinnerKolicina: Spinner = view.findViewById(R.id.odabirKolicineSpinner)
         val gumbDodajUKosaricu: Button = view.findViewById(R.id.dodajProizvodUKosaricu)
 
+        val apiServiceHelper = ApiServiceHelper()
+
         lifecycleScope.launch {
             val proizvod = database.proizvodQueries.dohvatiProizvodPoId(proizvodID).executeAsOne()
 
@@ -68,9 +71,14 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
             opisProizvoda.text = proizvod.opis
 
-            val kategorijaDataSource = KategorijaDataSourceImpl(database)
-            val kategorijaNaziv = kategorijaDataSource.dohvatiNazivPoId(proizvod.kategorijaId)
-            kategorijaProizvoda.text = "Kategorija: $kategorijaNaziv"
+            apiServiceHelper.getKategorijaById(proizvod.kategorijaId.toInt(),
+                onSuccess = { kategorija ->
+                    kategorijaProizvoda.text = "Kategorija: ${kategorija.naziv}"
+                },
+                onError = { errorMessage ->
+                    Log.e("Error", errorMessage)
+                }
+            )
             val slikaID = resources.getIdentifier(proizvod.imageUrl, "drawable", requireContext().packageName)
             slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }
