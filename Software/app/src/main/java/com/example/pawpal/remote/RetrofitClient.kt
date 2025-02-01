@@ -15,7 +15,7 @@ object RetrofitClient {
     private const val PASSWORD = "vEXB6*"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY // Logs request and response bodies
+        level = HttpLoggingInterceptor.Level.BODY // Loga requestove i response data
     }
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -26,7 +26,7 @@ object RetrofitClient {
     val instance: KategorijaApiService by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(okHttpClient) // Use the custom OkHttpClient
+            .client(okHttpClient) // Koristi custom okHttpClient iznad
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -38,11 +38,11 @@ class BasicAuthInterceptor(private val username: String, private val password: S
     @SuppressLint("NewApi")
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
-        // Create the Basic Authentication string
+        // String za autentifikaciju
         val credentials = "$username:$password"
         val base64Credentials = java.util.Base64.getEncoder().encodeToString(credentials.toByteArray())
 
-        // Add the Authorization header
+        // Dodavanje headera za autorizaciju
         val request = chain.request().newBuilder()
             .addHeader("Authorization", "Basic $base64Credentials")
             .build()

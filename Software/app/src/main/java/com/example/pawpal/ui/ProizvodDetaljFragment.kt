@@ -74,18 +74,15 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             apiServiceHelper.getKategorijaById(
                 proizvod.kategorijaId.toInt(),
                 onSuccess = { kategorija ->
-                    // Log the category details on success
                     Log.d("Kategorija", "Kategorija ${proizvod.kategorijaId.toInt()}")
                     Log.d("Kategorija", "Kategorija fetched successfully: ${kategorija.naziv}")
 
-                    // Update the UI with the fetched category name
+                    // Ažuriranje UI sa dohvaćenom kategorijom iz remote baze
                     kategorijaProizvoda.text = "Kategorija: ${kategorija.naziv}"
                 },
                 onError = { errorMessage ->
-                    // Log the error message on failure
                     Log.e("Kategorija", "Error fetching category: $errorMessage")
 
-                    // Display an error message in the UI
                     kategorijaProizvoda.text = "Error pri dohvaćanju remote kategorije"
                 }
             )
@@ -94,7 +91,7 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }
 
-        // Adapter for spinner
+        //Adapter za spinner
         val kolicinaList = listOf("1", "2", "3", "4", "5")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, kolicinaList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
