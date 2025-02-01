@@ -10,5 +10,5 @@ interface RezervacijaVeterinaraDataSource {
     suspend fun dohvatiRezervacijeZaVeterinara(veterinarID: Long): Flow<List<RezervacijaVeterinara>>
     suspend fun obrisiRezervacijuPoID(rezervacijaID: Long)
     suspend fun dohvatiZadnjuRezervaciju(): RezervacijaVeterinara?
-
+    suspend fun zauzetaRezervacija(veterinarID: Long, datum: String): Boolean
 }

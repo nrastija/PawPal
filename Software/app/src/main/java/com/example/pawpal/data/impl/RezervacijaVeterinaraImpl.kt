@@ -52,4 +52,12 @@ class RezervacijaVeterinaraImpl(db: AppDatabase) : RezervacijaVeterinaraDataSour
             queries.dohvatiZadnjuRezervaciju().executeAsOneOrNull()
         }
     }
+
+    override suspend fun zauzetaRezervacija(veterinarID: Long, datum: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            val result = queries.zauzetaRezervacija(veterinarID, datum).executeAsOneOrNull()
+            result == null
+        }
+    }
+
 }
