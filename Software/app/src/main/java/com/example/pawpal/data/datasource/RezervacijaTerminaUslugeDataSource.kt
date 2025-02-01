@@ -20,4 +20,8 @@ interface RezervacijaTerminaUslugeDataSource {
     suspend fun dohvatiRezervacijeKorisnikaSDetaljima(korisnikId: Long): List<Pair<String, Triple<Double, String, String>>>
 
     suspend fun dohvatiUkupneTroskoveRezervacijaSvihKorisnika(): Double
+
+    suspend fun dohvatiBrojRezervacijaUslugaKorisnika(korisnikID: Long): Long
+
+    suspend fun dohvatiBrojRezervacijaUslugaSvihKorisnika(): Long
 }

@@ -74,5 +74,16 @@ class RezervacijaTerminaUslugeImpl(db: AppDatabase) : RezervacijaTerminaUslugeDa
         }
     }
 
+    override suspend fun dohvatiBrojRezervacijaUslugaKorisnika(korisnikID: Long): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojRezervacijaUslugaKorisnika(korisnikID).executeAsOneOrNull() ?: 0
+        }
+    }
+
+    override suspend fun dohvatiBrojRezervacijaUslugaSvihKorisnika(): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojRezervacijaUslugaSvihKorisnika().executeAsOneOrNull() ?: 0
+        }
+    }
 
 }
