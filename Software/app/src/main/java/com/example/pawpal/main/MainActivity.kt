@@ -20,6 +20,8 @@ import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
+import com.example.pawpal.ui.PregledAktivnostiFragment
+import com.example.pawpal.ui.PregledSvihAktivnostiFragment
 import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
@@ -161,6 +163,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                         R.id.nav_finance -> navigateToFragment(TroskoviFragment())
                         R.id.nav_finance2 -> navigateToFragment(SviTroskoviFragment())
+                        R.id.nav_activity -> navigateToFragment(PregledAktivnostiFragment())
+                        R.id.nav_activity2 -> navigateToFragment(PregledSvihAktivnostiFragment())
                         R.id.nav_wishlist -> {
                             val currentKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
                             if (currentKorisnikID == null) {
