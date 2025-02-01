@@ -1,4 +1,6 @@
+import android.util.Log
 import com.example.pawpal.remote.Kategorija
+import com.example.pawpal.remote.KategorijaResponse
 import com.example.pawpal.remote.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,25 +30,28 @@ class ApiServiceHelper {
     }
 
     fun getKategorijaById(kategorijaID: Int, onSuccess: (Kategorija) -> Unit, onError: (String) -> Unit) {
-        RetrofitClient.instance.getKategorijaById(kategorijaID).enqueue(object : Callback<Kategorija> {
-            override fun onResponse(call: Call<Kategorija>, response: Response<Kategorija>) {
+        RetrofitClient.instance.getKategorijaById(kategorijaID).enqueue(object : Callback<KategorijaResponse> {
+            override fun onResponse(call: Call<KategorijaResponse>, response: Response<KategorijaResponse>) {
                 if (response.isSuccessful) {
-                    val kategorija = response.body()
-                    if (kategorija != null) {
+                    val kategorijaResponse = response.body()
+                    if (kategorijaResponse != null && kategorijaResponse.status == "success") {
+                        val kategorija = kategorijaResponse.category
+                        Log.d("responseBody", "Kategorija response $kategorija")
                         onSuccess(kategorija)
                     } else {
-                        onError("No data found")
+                        onError("No data found or invalid status")
                     }
                 } else {
                     onError("Failed to fetch data: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<Kategorija>, t: Throwable) {
+            override fun onFailure(call: Call<KategorijaResponse>, t: Throwable) {
                 onError("Network error: ${t.message}")
             }
         })
     }
+
 
     fun addKategorija(kategorija: Kategorija, onSuccess: (Kategorija) -> Unit, onError: (String) -> Unit) {
         RetrofitClient.instance.addKategorija(kategorija).enqueue(object : Callback<Kategorija> {

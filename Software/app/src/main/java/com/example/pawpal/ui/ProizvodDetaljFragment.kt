@@ -71,14 +71,25 @@ class ProizvodDetaljFragment : Fragment(), DatabaseConsumer {
             cijenaProizvoda.text = "Cijena: ${proizvod.cijena} €"
             opisProizvoda.text = proizvod.opis
 
-            apiServiceHelper.getKategorijaById(proizvod.kategorijaId.toInt(),
+            apiServiceHelper.getKategorijaById(
+                proizvod.kategorijaId.toInt(),
                 onSuccess = { kategorija ->
+                    // Log the category details on success
+                    Log.d("Kategorija", "Kategorija ${proizvod.kategorijaId.toInt()}")
+                    Log.d("Kategorija", "Kategorija fetched successfully: ${kategorija.naziv}")
+
+                    // Update the UI with the fetched category name
                     kategorijaProizvoda.text = "Kategorija: ${kategorija.naziv}"
                 },
                 onError = { errorMessage ->
-                    Log.e("Error", errorMessage)
+                    // Log the error message on failure
+                    Log.e("Kategorija", "Error fetching category: $errorMessage")
+
+                    // Display an error message in the UI
+                    kategorijaProizvoda.text = "Error pri dohvaćanju remote kategorije"
                 }
             )
+
             val slikaID = resources.getIdentifier(proizvod.imageUrl, "drawable", requireContext().packageName)
             slikaProizvoda.setImageResource(if (slikaID != 0) slikaID else android.R.drawable.ic_menu_report_image)
         }

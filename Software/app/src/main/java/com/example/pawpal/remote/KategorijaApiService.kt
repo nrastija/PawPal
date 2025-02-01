@@ -7,22 +7,22 @@ import retrofit2.http.*
 interface KategorijaApiService {
 
     // Dohvat svih kategorija
-    @GET("kategorija")
+    @GET("kategorija.php")
     fun getAllKategorije(): Call<List<Kategorija>>
 
     // Dohvat jedne kategorije po ID-ju
-    @GET("kategorija/{id}")
-    fun getKategorijaById(@Path("id") kategorijaID: Int): Call<Kategorija>
+    @GET("kategorija.php")
+    fun getKategorijaById(@Query("id") kategorijaID: Int): Call<KategorijaResponse>
 
     // Dodavanje nove kategorije
-    @POST("kategorija")
+    @POST("kategorija.php")
     fun addKategorija(@Body kategorija: Kategorija): Call<Kategorija>
 
     // Ažuriranje postojeće kategorije
-    @PUT("kategorija/{id}")
-    fun updateKategorija(@Path("id") kategorijaID: Int, @Body kategorija: Kategorija): Call<Kategorija>
+    @PUT("kategorija.php")
+    fun updateKategorija(@Query("id") kategorijaID: Int, @Body kategorija: Kategorija): Call<Kategorija>
 
     // Brisanje kategorije
-    @DELETE("kategorija/{id}")
-    fun deleteKategorija(@Path("id") kategorijaID: Int): Call<Void>
+    @DELETE("kategorija.php")
+    fun deleteKategorija(@Query("id") kategorijaID: Int): Call<Void>
 }
