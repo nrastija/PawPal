@@ -55,5 +55,17 @@ class NarudzbaDataSourceImpl(db: AppDatabase) : NarudzbaDataSource {
         }
     }
 
+    override suspend fun dohvatiBrojNarudzbiKorisnika(korisnikId: Long): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojNarudzbiKorisnika(korisnikId).executeAsOneOrNull() ?: 0
+        }
+    }
+
+    override suspend fun dohvatiBrojNarudzbiSvihKorisnika(): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojNarudzbiSvihKorisnika().executeAsOneOrNull() ?: 0
+        }
+    }
+
 
 }

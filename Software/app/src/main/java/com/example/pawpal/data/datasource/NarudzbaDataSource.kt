@@ -19,5 +19,8 @@ interface NarudzbaDataSource {
     suspend fun dohvatiUkupneTroskoveSvihKorisnika(): Double
     suspend fun dohvatiSveNarudzbe(): List<Narudzba>
 
+    suspend fun dohvatiBrojNarudzbiKorisnika(korisnikId: Long): Long
+
+    suspend fun dohvatiBrojNarudzbiSvihKorisnika(): Long
 
 }
