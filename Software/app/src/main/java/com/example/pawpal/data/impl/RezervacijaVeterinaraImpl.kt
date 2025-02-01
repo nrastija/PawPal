@@ -52,4 +52,15 @@ class RezervacijaVeterinaraImpl(db: AppDatabase) : RezervacijaVeterinaraDataSour
             queries.dohvatiZadnjuRezervaciju().executeAsOneOrNull()
         }
     }
+
+    override suspend fun dohvatiBrojRezervacijaVeterinaraKorisnika(korisnikID: Long): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojRezervacijaVeterinaraKorisnika(korisnikID).executeAsOneOrNull() ?: 0
+        }
+    }
+    override suspend fun dohvatiBrojRezervacijaVeterinaraSvihKorisnika(): Long {
+        return withContext(Dispatchers.IO) {
+            queries.dohvatiBrojRezervacijaVeterinaraSvihKorisnika().executeAsOneOrNull() ?: 0
+        }
+    }
 }
