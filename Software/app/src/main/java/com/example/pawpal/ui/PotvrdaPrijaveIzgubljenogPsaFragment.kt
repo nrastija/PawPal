@@ -40,7 +40,7 @@ class PotvrdaPrijaveIzgubljenogPsaFragment: Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_potvrda_prijave_izgubljenog_psa, container, false)
+        return inflater.inflate(R.layout.f02_potvrda_prijave_izgubljenog_psa, container, false)
     }
 
 

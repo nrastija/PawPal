@@ -70,7 +70,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_rezervacija_veterinara, container, false)
+        return inflater.inflate(R.layout.f04_rezervacija_veterinara, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
