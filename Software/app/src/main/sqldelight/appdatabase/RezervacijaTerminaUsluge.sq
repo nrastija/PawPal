@@ -41,3 +41,9 @@ dohvatiUkupneTroskoveRezervacijaSvihKorisnika:
 SELECT IFNULL(SUM(u.cijena), 0.0) AS ukupno
 FROM rezervacijaTermina r
 JOIN usluga u ON r.uslugaID = u.uslugaID;
+
+dohvatiBrojRezervacijaUslugaKorisnika:
+SELECT COUNT(*) AS brojRezervacijaUsluga FROM rezervacijaTermina WHERE korisnikID = ?;
+
+dohvatiBrojRezervacijaUslugaSvihKorisnika:
+SELECT COUNT(*) AS brojRezervacijaUsluga FROM rezervacijaTermina;
