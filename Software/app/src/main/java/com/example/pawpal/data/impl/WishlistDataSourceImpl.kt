@@ -63,4 +63,16 @@ class WishlistDataSourceImpl(private val db: AppDatabase) : WishlistDataSource {
             wishlistQueries.dohvatiZadnjuWishListu().executeAsOneOrNull()
         }
     }
+
+    override suspend fun dohvatiBrojWishlistKorisnika(korisnikID: Long): Long {
+        return withContext(Dispatchers.IO) {
+            wishlistQueries.dohvatiSveWishlistItems(korisnikID).executeAsList().size.toLong()
+        }
+    }
+
+    override suspend fun dohvatiBrojWishlistSvihKorisnika(): Long {
+        return withContext(Dispatchers.IO) {
+            wishlistQueries.dohvatiBrojWishlistSvihKorisnika().executeAsOneOrNull() ?: 0
+        }
+    }
 }

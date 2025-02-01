@@ -12,4 +12,6 @@ interface WishlistDataSource {
     suspend fun getAllWishlistItemsWithPriorities(korisnikID: Long): List<Pair<Skola, Long>>
     suspend fun isSkolaInWishlist(skolaId: Long, korisnikID: Long): Boolean
     suspend fun getLastWishlist(): Wishlist?
+    suspend fun dohvatiBrojWishlistKorisnika(korisnikID: Long): Long
+    suspend fun dohvatiBrojWishlistSvihKorisnika(): Long
 }
