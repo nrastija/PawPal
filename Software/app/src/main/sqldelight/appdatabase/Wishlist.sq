@@ -44,3 +44,9 @@ dohvatiZadnjuWishListu:
 SELECT * FROM Wishlist
 ORDER BY wishlistID DESC
 LIMIT 1;
+
+dohvatiBrojWishlistKorisnika:
+SELECT COUNT(*) AS broj FROM Wishlist WHERE korisnikID = ?;
+
+dohvatiBrojWishlistSvihKorisnika:
+SELECT COUNT(*) AS broj FROM Wishlist;
