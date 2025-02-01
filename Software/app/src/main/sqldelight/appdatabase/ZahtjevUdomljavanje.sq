@@ -38,3 +38,9 @@ LIMIT 1;
 
 deleteAllZahtjevUdomljavanje:
 DELETE FROM zahtjevudomljavanje;
+
+dohvatiBrojZahtjevaKorisnika:
+SELECT COUNT(*) AS broj FROM zahtjevudomljavanje WHERE korisnikID = ?;
+
+dohvatiBrojZahtjevaSvihKorisnika:
+SELECT COUNT(*) AS broj FROM zahtjevudomljavanje;
