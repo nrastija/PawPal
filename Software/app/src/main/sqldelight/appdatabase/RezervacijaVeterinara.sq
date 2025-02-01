@@ -32,3 +32,9 @@ SELECT * FROM rezervacijaVeterinara WHERE veterinarID = ?;
 
 obrisiRezervaciju:
 DELETE FROM rezervacijaVeterinara WHERE rezervacijaID = ?;
+
+dohvatiBrojRezervacijaVeterinaraKorisnika:
+SELECT COUNT(*) AS brojRezervacijaVeterinara FROM rezervacijaVeterinara WHERE korisnikID = ?;
+
+dohvatiBrojRezervacijaVeterinaraSvihKorisnika:
+SELECT COUNT(*) AS brojRezervacijaVeterinara FROM rezervacijaVeterinara;
