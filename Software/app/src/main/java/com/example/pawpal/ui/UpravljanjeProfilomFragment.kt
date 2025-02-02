@@ -56,7 +56,7 @@ class UpravljanjeProfilomFragment : Fragment(), DatabaseConsumer {
 
     private fun prikaziPotvrduOdjave() {
         val builder = android.app.AlertDialog.Builder(requireContext())
-        builder.setTitle("Potvrda brisanja")
+        builder.setTitle("Potvrda odjavljivanja")
             .setMessage("Jeste li sigurni da se želite odjaviti?")
             .setPositiveButton("Da") { dialog, which ->
                 odjaviKorisnika()
@@ -106,7 +106,7 @@ class UpravljanjeProfilomFragment : Fragment(), DatabaseConsumer {
         notificationHelper.sendNotification(
             channelId = "checkout_notifications",
             notificationId = korisnikID.toInt(),
-            naslov = "Narudžba u transakciji!",
+            naslov = "Deaktivacija uspješna!",
             opis = "Vaš korisnički profil sa šifrom ${korisnikID} je uspješno obrisan iz sustava.",
             priority = NotificationHelper.Priority.LOW
         )

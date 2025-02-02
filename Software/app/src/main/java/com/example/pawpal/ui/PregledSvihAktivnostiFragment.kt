@@ -61,7 +61,7 @@ class PregledSvihAktivnostiFragment : Fragment(), DatabaseConsumer {
                 view.findViewById<TextView>(R.id.brojNarudzbiText).text = "Broj narudžbi: $brojNarudzbi"
                 view.findViewById<TextView>(R.id.brojRezervacijaUslugaText).text = "Broj rezervacija usluga: $brojRezervacijaUsluga"
                 view.findViewById<TextView>(R.id.brojRezervacijaVeterinaraText).text = "Broj rezervacija veterinara: $brojRezervacijaVeterinara"
-                view.findViewById<TextView>(R.id.brojWishlistText).text = "Broj wishlist stavki: $brojWishlist"
+                view.findViewById<TextView>(R.id.brojWishlistText).text = "Broj upisa u škole: $brojWishlist"
                 view.findViewById<TextView>(R.id.brojZahtjevaUdomljavanjeText).text = "Broj zahtjeva za udomljavanje: $brojZahtjeva"
 
                 setupPieChart(view, brojNarudzbi, brojRezervacijaUsluga, brojRezervacijaVeterinara, brojWishlist, brojZahtjeva)

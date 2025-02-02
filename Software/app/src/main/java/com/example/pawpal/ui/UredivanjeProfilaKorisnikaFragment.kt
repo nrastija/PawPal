@@ -56,7 +56,7 @@ class UredivanjeProfilaKorisnikaFragment : Fragment(), DatabaseConsumer {
 
     private fun prikaziPorukuSpremanja(view: View){
         val builder = android.app.AlertDialog.Builder(requireContext())
-        builder.setTitle("Potvrda brisanja")
+        builder.setTitle("Potvrda uređivanja")
             .setMessage("Jeste li sigurni da želite spremiti promjene?")
             .setPositiveButton("Da") { dialog, which ->
                 spremiPromjene(view)
