@@ -42,7 +42,6 @@
             android:layout_marginTop="4dp"
             android:gravity="center"/>
 
-        <!-- Opis -->
         <TextView
             android:id="@+id/adoptionAnimalDescription"
             android:layout_width="wrap_content"
@@ -54,7 +53,6 @@
             android:gravity="center"
             android:justificationMode="inter_word"/>
 
-        <!-- Gumb za otkazivanje -->
         <Button
             android:id="@+id/adoptionCancelButton"
             android:layout_width="wrap_content"
