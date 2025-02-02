@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/basketColor">
 
-        <!-- Toolbar -->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarAktivnosti"
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Naslov i ikona -->
+
 
         <TextView
             android:id="@+id/naslovAktivnosti"
@@ -57,7 +57,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- ScrollView za pregled cijelog sadržaja -->
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -72,7 +72,7 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Kartica s podacima -->
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewAktivnosti"
                     android:layout_width="match_parent"
@@ -134,7 +134,7 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- Grafikon -->
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardViewGrafikon"
                     android:layout_width="match_parent"
