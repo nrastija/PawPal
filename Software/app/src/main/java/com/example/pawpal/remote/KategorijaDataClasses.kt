@@ -5,6 +5,7 @@ data class Kategorija(
     val naziv: String
 )
 
+// Odgovor za GET
 data class KategorijaResponse(
     val status: String,
     val category: Kategorija

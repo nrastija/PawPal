@@ -26,7 +26,7 @@ object RetrofitClient {
     val instance: KategorijaApiService by lazy {
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(okHttpClient) // Koristi custom okHttpClient iznad
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

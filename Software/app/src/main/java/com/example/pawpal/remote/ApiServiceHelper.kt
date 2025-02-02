@@ -16,10 +16,10 @@ class ApiServiceHelper {
                     if (kategorije != null) {
                         onSuccess(kategorije)
                     } else {
-                        onError("No data found")
+                        onError("Nisu pronadeni podaci")
                     }
                 } else {
-                    onError("Failed to fetch data: ${response.message()}")
+                    onError("Fail kod fetcha: ${response.message()}")
                 }
             }
 
@@ -39,10 +39,10 @@ class ApiServiceHelper {
                         Log.d("responseBody", "Kategorija response $kategorija")
                         onSuccess(kategorija)
                     } else {
-                        onError("No data found or invalid status")
+                        onError("Nisu pronadeni podaci")
                     }
                 } else {
-                    onError("Failed to fetch data: ${response.message()}")
+                    onError("Fail kod fetcha: ${response.message()}")
                 }
             }
 
@@ -61,10 +61,10 @@ class ApiServiceHelper {
                     if (newKategorija != null) {
                         onSuccess(newKategorija)
                     } else {
-                        onError("No data returned")
+                        onError("Nisu pronadeni podaci")
                     }
                 } else {
-                    onError("Failed to add data: ${response.message()}")
+                    onError("Fail pri dodavanju: ${response.message()}")
                 }
             }
 
@@ -82,10 +82,10 @@ class ApiServiceHelper {
                     if (updatedKategorija != null) {
                         onSuccess(updatedKategorija)
                     } else {
-                        onError("No data returned")
+                        onError("Nisu pronadeni podaci")
                     }
                 } else {
-                    onError("Failed to update data: ${response.message()}")
+                    onError("Fail pri azuriranju: ${response.message()}")
                 }
             }
 
@@ -101,7 +101,7 @@ class ApiServiceHelper {
                 if (response.isSuccessful) {
                     onSuccess()
                 } else {
-                    onError("Failed to delete data: ${response.message()}")
+                    onError("Fail pri brisanju: ${response.message()}")
                 }
             }
 
