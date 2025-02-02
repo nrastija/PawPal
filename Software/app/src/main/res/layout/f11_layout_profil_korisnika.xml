@@ -53,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- CardView s informacijama o korisniku -->
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
@@ -173,7 +173,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Gumbi -->
+
         <Button
             android:id="@+id/btnUrediPodatkeK"
             android:layout_width="wrap_content"
