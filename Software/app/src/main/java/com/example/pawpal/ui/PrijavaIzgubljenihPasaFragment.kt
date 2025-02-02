@@ -44,7 +44,7 @@ class PrijavaIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_prijava_izgubljenih_pasa, container, false)
+        return inflater.inflate(R.layout.f02_prijava_izgubljenih_pasa, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

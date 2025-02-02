@@ -24,6 +24,12 @@ LIMIT 1;
 dohvatiSveRezervacije:
 SELECT * FROM rezervacijaVeterinara;
 
+zauzetaRezervacija:
+SELECT * FROM rezervacijaVeterinara
+WHERE veterinarID = :veterinarID
+ AND datum = :datum
+LIMIT 1;
+
 dohvatiRezervacijeKorisnika:
 SELECT * FROM rezervacijaVeterinara WHERE korisnikID = ?;
 

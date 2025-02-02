@@ -70,7 +70,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_rezervacija_veterinara, container, false)
+        return inflater.inflate(R.layout.f04_rezervacija_veterinara, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -121,38 +121,50 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
             val uslugaNaziv = usluga.split(" - ")[0]
 
             val ValidanDatum =
-                !datum.contains("Nedjeljom ne radimo!")
+                !datum.contains("Nedjeljom ne radimo!") && !datum.contains("Odabrani dan je zauzet!")
 
-            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && uslugaNaziv != "Odaberite uslugu" && ValidanDatum ) {
+            if (opis.isNotEmpty() && datum.isNotEmpty() && vrijeme.isNotEmpty() && uslugaNaziv != "Odaberite uslugu" && ValidanDatum) {
+
 
                 lifecycleScope.launch {
-                    val uslugaID = database.vrstaUslugeQueries.dohvatiusluguponazivu(uslugaNaziv)
-                        .executeAsOneOrNull()?.uslugaID
 
-                    if (uslugaID != null) {
-                        val fragment = PotvrdaRezervacijeFragment().apply {
-                            arguments = Bundle().apply {
-                                putString("odabrani_datum", datum)
-                                putString("odabrano_vrijeme", vrijeme)
-                                putLong("uslugaID", uslugaID)
-                                putString("uneseni_opis", opis)
-                                putLong("veterinarID", veterinarID)
+                    val jeDostupanDan =
+                        database.rezervacijaVeterinaraQueries.zauzetaRezervacija(veterinarID, datum)
+                            .executeAsOneOrNull() == null
+
+                    if (jeDostupanDan) {
+
+                        val uslugaID =
+                            database.vrstaUslugeQueries.dohvatiusluguponazivu(uslugaNaziv)
+                                .executeAsOneOrNull()?.uslugaID
+
+                        if (uslugaID != null) {
+                            val fragment = PotvrdaRezervacijeFragment().apply {
+                                arguments = Bundle().apply {
+                                    putString("odabrani_datum", datum)
+                                    putString("odabrano_vrijeme", vrijeme)
+                                    putLong("uslugaID", uslugaID)
+                                    putString("uneseni_opis", opis)
+                                    putLong("veterinarID", veterinarID)
+                                }
                             }
+                            parentFragmentManager.beginTransaction()
+                                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+                                .replace(R.id.fragmentContainer, fragment)
+                                .addToBackStack(null)
+                                .commit()
+                        } else {
+                            showToast("Molimo ispunite sve podatke ispravno.")
                         }
-                        parentFragmentManager.beginTransaction()
-                            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                            .replace(R.id.fragmentContainer, fragment)
-                            .addToBackStack(null)
-                            .commit()
                     } else {
-                        showToast("Molimo ispunite sve podatke ispravno.")
+                        showToast("Odabrani datum je zauzet! Molimo odaberite drugi datum.")
                     }
                 }
             } else {
                 showToast("Molimo ispunite sve podatke ispravno.")
             }
-
         }
+
         datumGumb.setOnClickListener { openDatePicker() }
         vrijemeGumb.setOnClickListener { openTimePicker() }
     }
@@ -161,12 +173,6 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         val kalendar = Calendar.getInstance()
         kalendar.add(Calendar.DAY_OF_YEAR, 1)
         val minDate = kalendar.timeInMillis
-
-        val rezerviraniDatumi = listOf(
-            Calendar.getInstance().apply { set(2024, 10, 23, 0, 0, 0); clear(Calendar.MILLISECOND) }.timeInMillis,
-            Calendar.getInstance().apply { set(2024, 10, 28, 0, 0, 0); clear(Calendar.MILLISECOND) }.timeInMillis,
-            Calendar.getInstance().apply { set(2024, 10, 30, 0, 0, 0); clear(Calendar.MILLISECOND) }.timeInMillis
-        )
 
         val biracDatuma = DatePickerDialog(
             requireContext(),
@@ -177,19 +183,30 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
                 }
                 val selectedDate = selectedDateCalendar.timeInMillis
 
-                when {
-                    rezerviraniDatumi.contains(selectedDate) -> {
-                        showToast("Odabrani termin je zauzet. Molimo odaberite drugi datum.")
-                    }
-                    selectedDateCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY -> {
-                        datumTekst.text = "Nedjeljom ne radimo! Molimo odaberite drugi dan"
-                        datumTekst.setTextColor(ContextCompat.getColor(requireContext(), R.color.warningColor))
-                    }
-                    else -> {
-                        val selectedDateText =
-                            SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(selectedDate)
-                        datumTekst.text = selectedDateText
-                        datumTekst.setTextColor(ContextCompat.getColor(requireContext(), R.color.textColorPrimary))
+                if (selectedDateCalendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                    datumTekst.text = "Nedjeljom ne radimo! Molimo odaberite drugi dan"
+                    datumTekst.setTextColor(
+                        ContextCompat.getColor(requireContext(), R.color.warningColor)
+                    )
+                } else {
+                    val selectedDateText =
+                        SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(selectedDate)
+                    datumTekst.text = selectedDateText
+                    datumTekst.setTextColor(
+                        ContextCompat.getColor(requireContext(), R.color.textColorPrimary)
+                    )
+
+                    lifecycleScope.launch {
+                        val jeDostupan = database.rezervacijaVeterinaraQueries
+                            .zauzetaRezervacija(
+                                veterinarID,
+                                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate)
+                            )
+                            .executeAsOneOrNull() == null
+
+                        if (!jeDostupan) {
+                            datumTekst.text = "Datum je zauzet!"
+                        }
                     }
                 }
             },
@@ -201,6 +218,7 @@ class RezervacijaVeterinaraFragment : Fragment(), DatabaseConsumer {
         biracDatuma.datePicker.minDate = minDate
         biracDatuma.show()
     }
+
 
     private fun openTimePicker() {
         val kalendar = Calendar.getInstance()

@@ -12,4 +12,5 @@ interface RezervacijaVeterinaraDataSource {
     suspend fun dohvatiZadnjuRezervaciju(): RezervacijaVeterinara?
     suspend fun dohvatiBrojRezervacijaVeterinaraKorisnika(korisnikID: Long): Long
     suspend fun dohvatiBrojRezervacijaVeterinaraSvihKorisnika(): Long
+    suspend fun zauzetaRezervacija(veterinarID: Long, datum: String): Boolean
 }

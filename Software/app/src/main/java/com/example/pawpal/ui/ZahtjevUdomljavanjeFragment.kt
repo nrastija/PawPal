@@ -1,7 +1,10 @@
 package com.example.pawpal.ui
 
 import NotificationHelper
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,9 +79,11 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
             val pas = database.pasUdomljavanjeQueries.dohvatiPsaPoID(pasID).executeAsOne()
             imePsaTextView.text = "Udomite psa: ${pas.ime}"
 
-            val slikaID = resources.getIdentifier(pas.imageUrl, "drawable", requireContext().packageName)
-            if (slikaID != 0) {
-                pasSlikaImageView.setImageResource(slikaID)
+
+            val imageBase64 = pas.imageUrl
+            val imageBitmap = decodeBase64(imageBase64)
+            if (imageBitmap != null) {
+                pasSlikaImageView.setImageBitmap(imageBitmap)
             } else {
                 pasSlikaImageView.setImageResource(android.R.drawable.ic_menu_report_image)
             }
@@ -152,6 +157,15 @@ class ZahtjevUdomljavanjeFragment : Fragment(), DatabaseConsumer {
                 Toast.makeText(context, "Zahtjev uspješno poslan!", Toast.LENGTH_SHORT).show()
                 parentFragmentManager.popBackStack()
             }
+        }
+    }
+
+    private fun decodeBase64(base64String: String): Bitmap? {
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            null
         }
     }
 }

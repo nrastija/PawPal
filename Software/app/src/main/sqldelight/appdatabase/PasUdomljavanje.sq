@@ -34,5 +34,14 @@ INSERT INTO pasudomljavanje
 VALUES
     (?, ?, ?, ?, ?,?,?,?,?,?,?,?);
 
+azurirajpsaudomljavanje:
+UPDATE pasudomljavanje
+SET ime = ?, dob = ?, spol = ?, opis = ?, datumRodenja = ?, kilaza = ?, pasmina = ?, dodatneinfo = ?, cijepiva = ?, imageUrl = ?, imageUrl2 = ?, imageUrl3 = ?
+WHERE pasudomljavanjeID = ?;
+
+obrisipsaudomljavanje:
+DELETE FROM pasudomljavanje
+WHERE pasudomljavanjeID = ?;
+
 deleteAllPasUdomljavanje:
 DELETE FROM pasudomljavanje;

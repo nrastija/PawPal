@@ -67,7 +67,7 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_potvrda_rezervacije, container, false)
+        return inflater.inflate(R.layout.f04_potvrda_rezervacije, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,7 +101,6 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
             return
         }
 
-        lifecycleScope.launch {
             lifecycleScope.launch {
                 val veterinar = database.veterinarQueries.dohvatiVeterinaraID(veterinarID).executeAsOne()
                 imeVetPotvrda.text = veterinar.imePrezime
@@ -111,12 +110,6 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
                 uslugaTextView.text = "${usluga.nazivUsluge} - ${usluga.cijena}"
 
             }
-
-            }
-        if (veterinarID == null) {
-            Log.e("PotvrdaRezervacije", "Veterinar nije pronađen za ID: $veterinarID")
-            return
-        }
 
         rezervacijeDataSource = RezervacijaVeterinaraImpl(database)
 

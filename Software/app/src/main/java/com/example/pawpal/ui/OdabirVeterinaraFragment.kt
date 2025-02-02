@@ -28,7 +28,7 @@ class OdabirVeterinaraFragment : Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_odabir_veterinara, container, false)
+        return inflater.inflate(R.layout.f04_odabir_veterinara, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

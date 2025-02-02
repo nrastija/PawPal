@@ -1,11 +1,9 @@
 package com.example.pawpal.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import appdatabase.Veterinari
@@ -24,7 +22,7 @@ class VeterinarAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeterinarViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.veterinari_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.f04_veterinari_item, parent, false)
         return VeterinarViewHolder(view)
     }
 

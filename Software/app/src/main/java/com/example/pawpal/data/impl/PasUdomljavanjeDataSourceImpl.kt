@@ -50,4 +50,34 @@ class PasUdomljavanjeDataSourceImpl(db: AppDatabase) : PasUdomljavanjeDataSource
         }
     }
 
+    override suspend fun azurirajpsaudomljavanje(
+        pasudomljavanjeID: Long,
+        ime: String,
+        dob: Long,
+        spol: String,
+        opis: String,
+        datumRodenja: String,
+        kilaza: Double,
+        pasmina: String,
+        dodatneInfo: String,
+        cijepiva: String,
+        imageUrl: String,
+        imageUrl2: String,
+        imageUrl3: String
+    ) {
+        withContext(Dispatchers.IO) {
+            queries.azurirajpsaudomljavanje(
+                ime, dob, spol, opis, datumRodenja, kilaza,
+                pasmina, dodatneInfo, cijepiva,
+                imageUrl, imageUrl2, imageUrl3, pasudomljavanjeID
+            )
+        }
+    }
+
+    override suspend fun obrisipsaudomljavanje(pasudomljavanjeID: Long) {
+        withContext(Dispatchers.IO) {
+            queries.obrisipsaudomljavanje(pasudomljavanjeID)
+        }
+    }
+
 }

@@ -23,7 +23,7 @@ class OdabirPrijaveIliPregledaPsaFragment : Fragment(), DatabaseConsumer {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(
-            R.layout.fragment_odabir_prijave_ili_pregleda_psa,
+            R.layout.f02_odabir_prijave_ili_pregleda_psa,
             container,
             false
         )

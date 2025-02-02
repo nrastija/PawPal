@@ -35,7 +35,7 @@ class PregledIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_pregled_izgubljenih_pasa, container, false)
+        return inflater.inflate(R.layout.f02_pregled_izgubljenih_pasa, container, false)
 
     }
 

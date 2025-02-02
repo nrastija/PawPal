@@ -54,4 +54,11 @@ class ZahtjevUdomljavanjeDataSourceImpl(db: AppDatabase) : ZahtjevUdomljavanjeDa
             queries.dohvatiBrojZahtjevaSvihKorisnika().executeAsOneOrNull() ?: 0
         }
     }
+
+    override suspend fun obrisiZahtjevPoId(zahtjevID: Long) {
+        withContext(Dispatchers.IO) {
+            queries.obrisiZahtjevPoId(zahtjevID)
+        }
+    }
+
 }

@@ -22,6 +22,7 @@ import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
 import com.example.pawpal.ui.OdabirVeterinaraFragment
 import com.example.pawpal.ui.PregledAktivnostiFragment
 import com.example.pawpal.ui.PregledSvihAktivnostiFragment
+import com.example.pawpal.ui.PregledZahtjevaFragment
 import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
@@ -30,6 +31,7 @@ import com.example.pawpal.ui.SkolaFragment
 import com.example.pawpal.ui.SviTroskoviFragment
 import com.example.pawpal.ui.TroskoviFragment
 import com.example.pawpal.ui.UdomljavanjeFragment
+import com.example.pawpal.ui.UpravljanjeUdomljavanjemPasaFragment
 import com.example.pawpal.ui.WishlistFragment
 import com.google.android.material.navigation.NavigationView
 import com.pawpal.appdatabase.AppDatabase
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
         resetShopData()
         resetSkolaData()
-        resetAdoptionData()
+        //resetAdoptionData()
         //resetSPAData()
         //resetPromoData()
         resetVeterinarianData()
@@ -159,6 +161,8 @@ class MainActivity : AppCompatActivity() {
                         R.id.nav_shop -> navigateToFragment(ShopFragment())
                         R.id.nav_school -> navigateToFragment(SkolaFragment())
                         R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
+                        R.id.nav_adoption_admin -> navigateToFragment(UpravljanjeUdomljavanjemPasaFragment())
+                        R.id.nav_users_adpotion -> navigateToFragment(PregledZahtjevaFragment())
                         R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
                         R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
                         R.id.nav_finance -> navigateToFragment(TroskoviFragment())
@@ -268,6 +272,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+  /*  private fun resetAdoptionData(){
+        val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
+
+        queriesPasUdomljavanje.transaction {
+            queriesPasUdomljavanje.deleteAllPasUdomljavanje() }
+    }*/
+
+/*
     private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
         val queriesZahtjevUdomljavanje = database.zahtjevUdomljavanjeQueries
@@ -392,6 +404,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+ */
 
     private fun resetVeterinarianData() {
         val vetQueries = database.veterinarQueries

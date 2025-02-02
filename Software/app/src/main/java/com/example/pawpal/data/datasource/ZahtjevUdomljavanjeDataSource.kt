@@ -20,6 +20,9 @@ interface ZahtjevUdomljavanjeDataSource {
 
     suspend fun dohvatiBrojZahtjevaKorisnika(korisnikID: Long): Long
     suspend fun dohvatiBrojZahtjevaSvihKorisnika(): Long
+
+    suspend fun obrisiZahtjevPoId(zahtjevID: Long)
+
 }
 
 
