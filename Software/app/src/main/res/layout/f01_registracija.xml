@@ -107,7 +107,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.931">
 
-        <!-- Horizontalni layout za ime i prezime -->
         <LinearLayout
             android:layout_width="280dp"
             android:layout_height="wrap_content"
@@ -115,7 +114,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!-- Polje za Ime -->
             <EditText
                 android:id="@+id/editIme"
                 android:layout_width="0dp"
@@ -129,7 +127,6 @@
                 android:textColorHint="@color/black"
                 android:textSize="20sp" />
 
-            <!-- Polje za Prezime -->
             <EditText
                 android:id="@+id/editPrezime"
                 android:layout_width="0dp"
@@ -144,7 +141,6 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <!-- Polje za Korisničko ime -->
         <EditText
             android:id="@+id/editKorime"
             android:layout_width="280dp"
@@ -157,7 +153,6 @@
             android:textColorHint="@color/black"
             android:textSize="20sp" />
 
-        <!-- Polje za E-mail -->
         <EditText
             android:id="@+id/editEmail"
             android:layout_width="280dp"
@@ -170,7 +165,6 @@
             android:textColorHint="@color/black"
             android:textSize="20sp" />
 
-        <!-- Polje za Lozinku -->
         <EditText
             android:id="@+id/editLozinka"
             android:layout_width="280dp"

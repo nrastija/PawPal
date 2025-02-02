@@ -45,10 +45,4 @@ class PromoPonudaAdapater(
     }
 
     override fun getItemCount(): Int = promoList.size
-
-    /*fun updateList(newList: List<Promoponuda>) {
-        promoList.clear()
-        promoList.addAll(newList)
-        notifyDataSetChanged()
-    }*/
 }
