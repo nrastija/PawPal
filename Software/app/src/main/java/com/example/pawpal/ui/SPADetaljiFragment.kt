@@ -1,6 +1,7 @@
 
 package com.example.pawpal.ui
 
+import NotificationHelper
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
@@ -20,6 +21,10 @@ import com.example.pawpal.data.session.KorisnikManager
 import com.example.pawpal.main.DatabaseConsumer
 import com.example.pawpal.main.PawPalApplication
 import com.pawpal.appdatabase.AppDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -220,7 +225,34 @@ class SPADetaljiFragment : Fragment(), DatabaseConsumer {
                     vrijeme = vrijeme,
                     napomene = napomene
                 )
-                Toast.makeText(context, "Rezervacija uspješno spremljena!", Toast.LENGTH_SHORT).show()
+
+                 val dohvacenaUsluga = database.uslugaQueries.dohvatiUsluguPoID(uslugaID).executeAsOneOrNull()
+
+                val notificationHelper = NotificationHelper(requireContext())
+                notificationHelper.createNotificationChannel(
+                    channelId = "spa_reservations_notification",
+                    channelName = "SPA Reservations Notifications"
+                )
+
+                if (dohvacenaUsluga != null) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(5000)
+                        notificationHelper.sendNotificationWithCalendarOption(
+                            channelId = "checkout_notifications",
+                            notificationId = uslugaID.toInt(),
+                            naslov = "Obavijest o rezervaciji!",
+                            opis = "Uspješna rezervacije usluge ${dohvacenaUsluga.naziv} u našem psećem SPA. Datum i vrijeme: ${datum} ${vrijeme}. Kliknite kako biste zapisali vrijeme u kalendar! ",
+                            priority = NotificationHelper.Priority.MEDIUM,
+                            datum = datum,
+                            vrijeme = vrijeme,
+                            veterinar = null.toString(),
+                            usluga = dohvacenaUsluga.naziv,
+                            cijena = dohvacenaUsluga.cijena.toString(),
+                            vrsta = 2,
+                        )
+                    }
+                }
+
                 parentFragmentManager.popBackStack()
             } catch (e: Exception) {
                 Toast.makeText(context, "Greška: ${e.message}", Toast.LENGTH_SHORT).show()

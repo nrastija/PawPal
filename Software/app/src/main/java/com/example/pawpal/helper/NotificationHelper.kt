@@ -62,11 +62,14 @@ class NotificationHelper(private val context: Context) {
         usluga: String,
         veterinar: String,
         cijena: String,
+        vrsta: Int,
     ) {
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val calendarText = "Rezervirana usluga ${usluga} kod veterinara ${veterinar}. Termin je rezerviran ${datum} u ${vrijeme}. Ukupni troškovi usluge iznose ${cijena}. Vidimo se!"
+        var calendarText: String
+        if (vrsta == 1) calendarText = "Rezervirana usluga ${usluga} kod veterinara ${veterinar}. Termin je rezerviran ${datum} u ${vrijeme}. Ukupni troškovi usluge iznose ${cijena} €. Vidimo se!"
+        else  calendarText = "Rezervirana usluga ${usluga} u našem psećem SPA. Termin je rezerviran ${datum} u ${vrijeme}. Ukupni troškovi usluge iznose ${cijena} €. Vidimo se!"
 
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
