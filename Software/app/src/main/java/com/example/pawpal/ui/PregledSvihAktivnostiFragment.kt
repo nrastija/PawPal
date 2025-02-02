@@ -94,8 +94,8 @@ class PregledSvihAktivnostiFragment : Fragment(), DatabaseConsumer {
         }
 
         if (wishlist > 0) {
-            podaci.add(PieEntry(wishlist.toFloat(), "Wishlist"))
-            boje.add(Color.parseColor("#E9E5E5"))
+            podaci.add(PieEntry(wishlist.toFloat(), "Škola"))
+            boje.add(Color.parseColor("#cba95a"))
         }
 
         if (zahtjevi > 0) {
