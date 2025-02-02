@@ -1,6 +1,8 @@
 package com.example.pawpal.data.datasource
 
+import appdatabase.Narudzba
 import appdatabase.Zahtjevudomljavanje
+import kotlinx.coroutines.flow.Flow
 
 interface ZahtjevUdomljavanjeDataSource {
 
@@ -19,10 +21,13 @@ interface ZahtjevUdomljavanjeDataSource {
     suspend fun dohvatiZadnjuRezervaciju(): Zahtjevudomljavanje?
 
     suspend fun dohvatiBrojZahtjevaKorisnika(korisnikID: Long): Long
+
     suspend fun dohvatiBrojZahtjevaSvihKorisnika(): Long
 
     suspend fun obrisiZahtjevPoId(zahtjevID: Long)
 
+
+    suspend fun dohvatiZahtjevePoIdKlijenta(klijentId: Long): Flow<List<Zahtjevudomljavanje>>
 }
 
 

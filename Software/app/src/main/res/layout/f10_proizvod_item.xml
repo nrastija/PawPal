@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/bijelousivo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/slikaProizvoda"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/adoption_icon" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nazivProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Naziv proizvoda"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/kategorijaProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Kategorija proizvoda"
+                android:textSize="14sp"
+                android:textColor="@color/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/cijenaProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cijena proizvoda"
+                android:textSize="14sp"
+                android:textColor="@color/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/kolicinaProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kolicina"
+                android:textSize="12sp"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/detaljiProizvoda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dodatne informacije o proizvodu"
+                android:textSize="12sp"
+                android:textColor="@color/textColorPrimary"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

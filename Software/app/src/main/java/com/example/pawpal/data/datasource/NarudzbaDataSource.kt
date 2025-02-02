@@ -23,4 +23,6 @@ interface NarudzbaDataSource {
 
     suspend fun dohvatiBrojNarudzbiSvihKorisnika(): Long
 
+
+    suspend fun dohvatiNarudzbePoIdKlijenta(klijentId: Long): Flow<List<Narudzba>>
 }

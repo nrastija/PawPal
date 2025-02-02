@@ -176,8 +176,6 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
         }
     }
 
-
-
     private fun getCurrentUserId(): Long {
         val korisnikId = KorisnikManager.dajUlogiranogKorisnika()
         if (korisnikId == null || korisnikId == -1L) {

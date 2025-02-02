@@ -47,14 +47,13 @@ class ShopFragment : Fragment(), DatabaseConsumer {
 
         fetchProducts(proizvodDataSource)
 
-        // Set up category filter buttons
         val btnZdravlje: Button = view.findViewById(R.id.filterZdravlje)
         val btnHrana: Button = view.findViewById(R.id.filterHrana)
         val btnHigijena: Button = view.findViewById(R.id.filterHigijena)
         val btnOstalo: Button = view.findViewById(R.id.filterOstalo)
         val btnReset: Button = view.findViewById(R.id.filterReset)
 
-        btnZdravlje.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 1) } // Example category ID
+        btnZdravlje.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 1) }
         btnHrana.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 2) }
         btnHigijena.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 3) }
         btnOstalo.setOnClickListener { fetchFilteredProducts(proizvodDataSource, 4) }

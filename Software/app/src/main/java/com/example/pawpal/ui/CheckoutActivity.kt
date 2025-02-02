@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -26,6 +27,9 @@ import org.json.JSONObject
 import java.io.IOException
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class CheckoutActivity : AppCompatActivity()  {
@@ -296,12 +300,13 @@ class CheckoutActivity : AppCompatActivity()  {
             .dohvatiUkupnuCijenuZaKosaricu(kosaricaID)
             .executeAsOneOrNull()?.SUM ?: 0.0
 
-        val datumNarudzbe = System.currentTimeMillis().toString()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val datumNarudzbe = dateFormat.format(Date())
+
         val statusNarudzbe = "Uspješna"
 
         val logiranKorisnikID = KorisnikManager.dajUlogiranogKorisnika()
 
-        // Insert into Narudzba table
         if (logiranKorisnikID != null) {
             database.narudzbaQueries.insertNarudzba(
                 korisnikId = logiranKorisnikID,
@@ -319,12 +324,18 @@ class CheckoutActivity : AppCompatActivity()  {
             .executeAsList()
 
         proizvodiUKosarici.forEach { proizvod ->
-            database.narudzbaProizvodQueries.insertProizvodUNarudzbu(
-                narudzbaId = narudzbaId,
-                proizvodId = proizvod.proizvodID,
-                kolicina = proizvod.kolicina
-            )
+            Log.d("CheckoutActivity", "Inserting product: ${proizvod.proizvodID}, Quantity: ${proizvod.kolicina}")
+            if (proizvod.proizvodID != null && proizvod.kolicina > 0) {
+                database.narudzbaProizvodQueries.insertProizvodUNarudzbu(
+                    narudzbaId = narudzbaId,
+                    proizvodId = proizvod.proizvodID,
+                    kolicina = proizvod.kolicina
+                )
+            } else {
+                Log.e("CheckoutActivity", "Invalid product or quantity")
+            }
         }
+
 
         database.kosaricaProizvodQueries.brisanjeKosarice(kosaricaID)
 

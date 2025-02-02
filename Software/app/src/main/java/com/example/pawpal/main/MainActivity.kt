@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.pawpal.R
 import com.example.pawpal.data.impl.WishlistDataSourceImpl
 import com.example.pawpal.data.session.KorisnikManager
+import com.example.pawpal.helper.AppPreferencesHelper
 import com.example.pawpal.ui.PregledWishlisteFragment
 import com.example.pawpal.ui.ProfilKorisnikaFragment
 import com.example.pawpal.ui.OdabirPrijaveIliPregledaPsaFragment
@@ -23,6 +24,7 @@ import com.example.pawpal.ui.OdabirVeterinaraFragment
 import com.example.pawpal.ui.PregledAktivnostiFragment
 import com.example.pawpal.ui.PregledSvihAktivnostiFragment
 import com.example.pawpal.ui.PregledZahtjevaFragment
+import com.example.pawpal.ui.PregledRezervacijaFragment
 import com.example.pawpal.ui.PrijavaActivity
 import com.example.pawpal.ui.PromoPonudaFragment
 import com.example.pawpal.ui.SPAFragment
@@ -41,12 +43,15 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     lateinit var database: AppDatabase
+    private lateinit var appPreferences: AppPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         database = (application as PawPalApplication).database
+        appPreferences = AppPreferencesHelper(this)
+
         setImagesVisibility(View.VISIBLE)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
@@ -74,62 +79,16 @@ class MainActivity : AppCompatActivity() {
 
         setupHamburgerMenu(drawerLayout, toolbar, navView)
 
-        resetShopData()
-        resetSkolaData()
-        //resetAdoptionData()
-        //resetSPAData()
-        //resetPromoData()
-        resetVeterinarianData()
-        resetUslugaData()
-    }
+        if (appPreferences.isFirstLaunch()) {
+            resetShopData()
+            resetSkolaData()
+            resetAdoptionData()
+            resetVeterinarianData()
+            resetUslugaData()
 
-    /*private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
-        setSupportActionBar(toolbar)
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        navView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_home -> {
-                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    setImagesVisibility(View.VISIBLE)
-                    drawerLayout.closeDrawers()
-                }
-                R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
-                R.id.nav_spa -> navigateToFragment(SPAFragment())
-                R.id.nav_promo ->navigateToFragment(PromoPonudaFragment())
-                R.id.nav_shop -> navigateToFragment(ShopFragment())
-                R.id.nav_school -> navigateToFragment(SkolaFragment())
-                R.id.nav_adoption -> navigateToFragment(UdomljavanjeFragment())
-                R.id.nav_lost_dogs -> navigateToFragment(OdabirPrijaveIliPregledaPsaFragment())
-                R.id.nav_veterinar -> navigateToFragment(OdabirVeterinaraFragment())
-                R.id.nav_wishlist -> {
-                    val korisnikID = KorisnikManager.dajUlogiranogKorisnika()
-                    if (korisnikID == null) {
-                        Toast.makeText(this, "Korisnik nije prijavljen!", Toast.LENGTH_SHORT).show()
-                    } else {
-                        lifecycleScope.launch {
-                            val wishlistDataSource = WishlistDataSourceImpl(database)
-                            val status = wishlistDataSource.getWishlistStatus(korisnikID)
-                            val fragment = if (status == 1L) PregledWishlisteFragment() else WishlistFragment()
-                            if (fragment is DatabaseConsumer) {
-                                fragment.database = database
-                            }
-
-                            navigateToFragment(fragment)
-                        }
-                    }
-                }
-                else -> Toast.makeText(this, "Feature not implemented yet", Toast.LENGTH_SHORT).show()
-
-            }
-            drawerLayout.closeDrawers()
-            true
+            appPreferences.setFirstLaunchDone()
         }
-
-    }*/
+    }
 
     private fun setupHamburgerMenu(drawerLayout: DrawerLayout, toolbar: Toolbar, navView: NavigationView) {
         setSupportActionBar(toolbar)
@@ -155,6 +114,7 @@ class MainActivity : AppCompatActivity() {
                             supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                             setImagesVisibility(View.VISIBLE)
                         }
+                        R.id.nav_reservations -> navigateToFragment(PregledRezervacijaFragment())
                         R.id.nav_profile -> navigateToFragment(ProfilKorisnikaFragment())
                         R.id.nav_spa -> navigateToFragment(SPAFragment())
                         R.id.nav_promo -> navigateToFragment(PromoPonudaFragment())
@@ -244,7 +204,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetShopData() {
         val proizvodQueries = database.proizvodQueries
-        val kategorijaQueries = database.kategorijaQueries
 
         proizvodQueries.transaction {
             proizvodQueries.deleteAllProizvods()
@@ -261,14 +220,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-  /*  private fun resetAdoptionData(){
-        val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
-
-        queriesPasUdomljavanje.transaction {
-            queriesPasUdomljavanje.deleteAllPasUdomljavanje() }
-    }*/
-
-/*
     private fun resetAdoptionData(){
         val queriesPasUdomljavanje = database.pasUdomljavanjeQueries
         val queriesZahtjevUdomljavanje = database.zahtjevUdomljavanjeQueries
@@ -393,7 +344,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
- */
+
 
     private fun resetVeterinarianData() {
         val vetQueries = database.veterinarQueries
@@ -580,6 +531,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun navigateToFragment(fragment: Fragment) {
+
+
         if (fragment is DatabaseConsumer) {
             fragment.database = database
         }
@@ -597,15 +550,6 @@ class MainActivity : AppCompatActivity() {
     private fun setImagesVisibility(visibility: Int) {
         findViewById<ImageView>(R.id.imageView2).visibility = visibility
         findViewById<ImageView>(R.id.imageView7).visibility = visibility
-    }
-
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStack()
-            setImagesVisibility(View.VISIBLE)
-        } else {
-            super.onBackPressed()
-        }
     }
 
 }
