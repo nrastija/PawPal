@@ -60,8 +60,20 @@ class PregledIzgubljenihPasaFragment: Fragment(), DatabaseConsumer {
                 psiAdapter = PsiAdapter(
                     psiList,
                     trenutnoPrijavljenKorisnikId = trenutnoPrijavljenKorisnikId,
-                    onContactClicked = { kontakt ->
-                        Toast.makeText(requireContext(), kontakt, Toast.LENGTH_SHORT).show()
+                    onContactClicked = { korisnik ->
+                        val notificationHelper = NotificationHelper(requireContext())
+                        notificationHelper.createNotificationChannel(
+                            channelId = "lost_dogs_notification",
+                            channelName = "Lost Dogs Notifications"
+                        )
+
+                        notificationHelper.sendBigStyleNotification(
+                            channelId = "lost_dogs_notification",
+                            notificationId = trenutnoPrijavljenKorisnikId.toInt(),
+                            naslov = "Uspješno javljeno vlasniku!",
+                            opis = "Javljeno je vlasniku da ste vidjeli njegovog psa! Očekujte da će vam se uskoro javiti.",
+                            priority = NotificationHelper.Priority.LOW
+                        )
                     },
                     onDeleteClicked = { pasId ->
                         obrisiPrijavuIzgubljenogPsa(pasId)

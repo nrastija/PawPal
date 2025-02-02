@@ -110,11 +110,11 @@ class CheckoutActivity : AppCompatActivity()  {
                     opis = "Vaša narudžba ${narudzbaId.toInt()} je trenutno u transakciji...",
                     priority = NotificationHelper.Priority.HIGH
                 )
-                notificationHelper.sendNotification(
+                notificationHelper.sendBigStyleNotification(
                     channelId = "checkout_notifications",
                     notificationId = narudzbaId.toInt()+1,
                     naslov = "Narudžba uspješna!",
-                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od €${String.format("%.2f", ukupnaCijenaNarudzbe)} je uspješno kreirana. Način plaćanja: PayPal.",
+                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od $ukupnaCijenaNarudzbe € je uspješno kreirana. Način plaćanja: PayPal.",
                     priority = NotificationHelper.Priority.MEDIUM
                 )
                 return@setOnClickListener
@@ -149,7 +149,7 @@ class CheckoutActivity : AppCompatActivity()  {
                             channelId = "checkout_notifications",
                             notificationId = narudzbaId.toInt()+1,
                             naslov = "Narudžba uspješna!",
-                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${ukupnaCijenaNarudzbe}€ je uspješno izvršena. Način plačanja: VISA Kartica (${broj}).",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od $ukupnaCijenaNarudzbe € je uspješno izvršena. Način plačanja: VISA Kartica (${broj}).",
                             priority = NotificationHelper.Priority.LOW
                         )
                     }
@@ -158,7 +158,7 @@ class CheckoutActivity : AppCompatActivity()  {
                             channelId = "checkout_notifications",
                             notificationId = narudzbaId.toInt()+1,
                             naslov = "Narudžba uspješna!",
-                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od ${ukupnaCijenaNarudzbe}€ je uspješno izvršena. Način plačanja: Mastercard Kartica (${broj}).",
+                            opis = "Narudžba sa šifrom ${narudzbaId.toInt()} u iznosu od $ukupnaCijenaNarudzbe € je uspješno izvršena. Način plačanja: Mastercard Kartica (${broj}).",
                             priority = NotificationHelper.Priority.LOW
                         )
                     }
@@ -170,13 +170,14 @@ class CheckoutActivity : AppCompatActivity()  {
                 unosNarudzbe("Gotovina")
 
                 val narudzbaId = database.narudzbaQueries.zadnjaNarudzbaId().executeAsOne()
-                val ukupnaCijenaNarudzbe = database.narudzbaQueries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()?.ukupnaCijena
+                val dohvacenaNarudzba = database.narudzbaQueries.dohvatiNarudzbu(narudzbaId).executeAsOneOrNull()
+                val ukupnaCijenaNarudzbe = dohvacenaNarudzba?.ukupnaCijena
 
-                notificationHelper.sendNotification(
+                notificationHelper.sendBigStyleNotification(
                     channelId = "checkout_notifications",
                     notificationId = narudzbaId.toInt()+1,
                     naslov = "Narudžba uspješna!",
-                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od €${String.format("%.2f", ukupnaCijenaNarudzbe)} je uspješno kreirana. Način plaćanja: Gotovina.",
+                    opis = "Vaša narudžba ${narudzbaId.toInt()} u iznosu od $ukupnaCijenaNarudzbe € je uspješno kreirana. Način plaćanja: Gotovina.",
                     priority = NotificationHelper.Priority.MEDIUM
                 )
             }

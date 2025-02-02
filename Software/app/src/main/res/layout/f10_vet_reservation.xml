@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Status ikona -->
         <ImageView
             android:id="@+id/vetStatusIcon"
             android:layout_width="40dp"
@@ -22,7 +21,6 @@
             android:layout_gravity="center"
             android:src="@drawable/vet_icon" />
 
-        <!-- Naslov Veterinarske Usluge -->
         <TextView
             android:id="@+id/vetServiceName"
             android:layout_width="wrap_content"
@@ -33,7 +31,6 @@
             android:textStyle="bold"
             android:layout_marginTop="8dp" />
 
-        <!-- Datum -->
         <TextView
             android:id="@+id/vetServiceDate"
             android:layout_width="wrap_content"
@@ -43,7 +40,6 @@
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp"/>
 
-        <!-- Simptomi -->
         <TextView
             android:id="@+id/vetSymptoms"
             android:layout_width="wrap_content"
@@ -53,7 +49,6 @@
             android:textColor="@android:color/black"
             android:layout_marginTop="4dp"/>
 
-        <!-- Button za otkazivanje -->
         <Button
             android:id="@+id/vetServiceCancel"
             android:layout_width="wrap_content"

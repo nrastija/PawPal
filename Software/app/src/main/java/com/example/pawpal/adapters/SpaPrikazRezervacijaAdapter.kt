@@ -16,8 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-// Adapter za SPA rezervacije
-
 class SpaPrikazRezervacijaAdapter(
     private val rezervacijeSPA: MutableList<RezervacijaTermina>,
     private val onCancelClick: (Any) -> Unit,

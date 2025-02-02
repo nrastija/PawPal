@@ -159,7 +159,8 @@ class PotvrdaRezervacijeFragment : Fragment(), DatabaseConsumer {
                                 vrijeme = vrijeme,
                                 veterinar = veterinar.imePrezime,
                                 usluga = usluga.nazivUsluge,
-                                cijena = usluga.cijena.toString()
+                                cijena = usluga.cijena.toString(),
+                                vrsta = 1
                             )
                         }
                     }
