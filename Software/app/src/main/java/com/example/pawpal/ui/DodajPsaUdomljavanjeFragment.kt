@@ -46,7 +46,14 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
     private val pickMultipleImagesLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri> ->
         if (uris.size <= 3) {
             slike.clear()
-            slike.addAll(uris)
+            for (uri in uris) {
+                val fileSize = getFileSize(uri)
+                if (fileSize > 1 * 1024 * 1024) {
+                    Toast.makeText(context, "Odabrana slika je prevelika. Molimo odaberite manju sliku.", Toast.LENGTH_SHORT).show()
+                    continue
+                }
+                slike.add(uri)
+            }
             if (slike.size > 0) imageView1.setImageURI(slike[0])
             if (slike.size > 1) imageView2.setImageURI(slike[1])
             if (slike.size > 2) imageView3.setImageURI(slike[2])
@@ -56,6 +63,20 @@ class DodajPsaUdomljavanjeFragment: Fragment(), DatabaseConsumer {
         }
     }
 
+
+
+    private fun getFileSize(uri: Uri): Long {
+        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+        val sizeIndex = cursor?.getColumnIndex(android.provider.OpenableColumns.SIZE)
+        var fileSize: Long = 0
+
+        if (cursor != null && sizeIndex != null && cursor.moveToFirst()) {
+            fileSize = cursor.getLong(sizeIndex)
+        }
+        cursor?.close()
+
+        return fileSize
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
