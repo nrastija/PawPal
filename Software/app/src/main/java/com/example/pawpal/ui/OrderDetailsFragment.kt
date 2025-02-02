@@ -98,9 +98,7 @@ class OrderDetailsFragment : Fragment(), DatabaseConsumer {
 
     private suspend fun getOrderProducts(orderId: Long): List<NarudzbaProizvod> {
         return withContext(Dispatchers.IO) {
-            Log.d("OrderDetailsFragment", "Fetching products for orderId: $orderId")
             val products = database.narudzbaProizvodQueries.dohvatiProizvodeNarudzbePoId(orderId).executeAsList()
-            Log.d("OrderDetailsFragment", "Products fetched: ${products.size} items")
             return@withContext products
         }
     }

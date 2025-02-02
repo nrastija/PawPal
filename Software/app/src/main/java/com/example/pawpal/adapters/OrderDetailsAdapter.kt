@@ -1,5 +1,6 @@
 package com.example.pawpal.ui
 
+import ApiServiceHelper
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
@@ -38,12 +39,23 @@ class OrderDetailsAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val item = items[position]
+        val apiServiceHelper = ApiServiceHelper()
 
         lifecycleScope.launch {
             val productDetails = getProductDetails(item.proizvodId)
 
             holder.nazivProizvoda.text = productDetails.naziv
-            holder.kategorijaProizvoda.text = getCategoryDetails(productDetails.kategorijaId)
+
+            apiServiceHelper.getKategorijaById(
+                productDetails.kategorijaId.toInt(),
+                onSuccess = { kategorija ->
+                    holder.kategorijaProizvoda.text = "Kategorija: ${kategorija.naziv}"
+                },
+                onError = { errorMessage ->
+                    holder.kategorijaProizvoda.text = "Error fetching category"
+                }
+            )
+
             holder.cijenaProizvoda.text = productDetails.cijena.toString() + "€"
             holder.detaljiProizvoda.text = productDetails.opis
             holder.kolicinaProizvoda.text = "Količina: " + item.kolicina
@@ -60,9 +72,4 @@ class OrderDetailsAdapter(
         }
     }
 
-    private suspend fun getCategoryDetails(kategorijaId: Long): String{
-        return withContext(Dispatchers.IO) {
-            database.kategorijaQueries.dohvatiNazivKategorije(kategorijaId).executeAsOne()
-        }
-    }
 }
