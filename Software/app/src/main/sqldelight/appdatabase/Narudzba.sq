@@ -21,7 +21,9 @@ SELECT * FROM narudzba
 WHERE korisnikId = ?;
 
 zadnjaNarudzbaId:
-SELECT last_insert_rowid() AS narudzbaId;
+SELECT narudzbaID FROM narudzba
+ORDER BY narudzbaID DESC
+LIMIT 1;
 
 dohvatiUkupneTroskove:
 SELECT SUM(ukupnaCijena) AS ukupno
